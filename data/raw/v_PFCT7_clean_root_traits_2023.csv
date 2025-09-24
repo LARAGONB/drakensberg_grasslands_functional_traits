@@ -1,0 +1,2351 @@
+id,date,aspect,site_id,elevation_m_asl,plant_id,species,traits,value,unit
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,root_depth,16,cm
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,no_root_scan,5,count
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,root_wet_mass,0.0527,g
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,root_dry_mass,0.0183,g
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,total_root_length,1185.77074,cm
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,total_root_volume,96.305368,mm3
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,rd,0.291187,mm
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,bi,0.45034,count mm-1
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,srl,64.79621530054645,m g-1
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,rtd,0.19002056043231152,g cm-3
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,rdmc,347.24857685009493,mg g-1
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,tuber_wet_mass,NA,g
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,tuber_dry_mass,NA,g
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,reproductive_height,32.8,cm
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,veg_height,15,cm
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,no_leaves,5,NA
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,leaf_wet_mass,0.193,g
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,leaf_dry_mass,0.0663,g
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,leaf_area,10.324,cm2
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,sla,155.7164404223228,cm2 g-1
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,leaf_thickness,0.18733333333333332,mm
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,ldmc,0.3435233160621761,g g-1
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,bgb_agb,14.431829700963,g g-1
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,aboveground_biomass,0.5919,g
+FBC0289,12/05/2023,west,2,2200,3,Eragrostis capensis,belowground_biomass,8.5422,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,root_depth,12.7,cm
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,no_root_scan,5,count
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,root_wet_mass,0.0496,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,root_dry_mass,0.01543,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,total_root_length,765.949089,cm
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,total_root_volume,59.193603,mm3
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,rd,0.277175,mm
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,bi,0.261114,count mm-1
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,srl,49.640252041477645,m g-1
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,rtd,0.26067005922920417,g cm-3
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,rdmc,311.0887096774194,mg g-1
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,tuber_wet_mass,0.598,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,tuber_dry_mass,0.18462,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,reproductive_height,34,cm
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,veg_height,27,cm
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,no_leaves,1,NA
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,leaf_wet_mass,0.369,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,leaf_dry_mass,0.4487,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,leaf_area,6.056,cm2
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,sla,13.496768442166259,cm2 g-1
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,leaf_thickness,0.625,mm
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,ldmc,1.2159891598915988,g g-1
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,bgb_agb,2.6828193832599116,g g-1
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,aboveground_biomass,2.27,g
+FBD8952,12/08/2023,northwest,5,2800,1,Senecio glaberrimus,belowground_biomass,6.09,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,root_depth,18.5,cm
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,no_root_scan,4,count
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,root_wet_mass,0.0274,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,root_dry_mass,0.00644,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,total_root_length,583.687821,cm
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,total_root_volume,32.369208,mm3
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,rd,0.24752,mm
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,bi,0.476282,count mm-1
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,srl,90.6347548136646,m g-1
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,rtd,0.19895451257256586,g cm-3
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,rdmc,235.03649635036498,mg g-1
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,tuber_wet_mass,0.5807,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,tuber_dry_mass,0.18633,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,reproductive_height,36,cm
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,veg_height,18.4,cm
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,no_leaves,1,NA
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,leaf_wet_mass,1.0045,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,leaf_dry_mass,0.19982,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,leaf_area,19.036,cm2
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,sla,95.26573916524873,cm2 g-1
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,leaf_thickness,0.535,mm
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,ldmc,0.19892483822797413,g g-1
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,bgb_agb,0.7752808988764044,g g-1
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,aboveground_biomass,0.89,g
+FBE2394,12/09/2023,west,3,2400,3,Senecio glaberrimus,belowground_biomass,0.69,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,root_depth,28.8,cm
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,no_root_scan,5,count
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,root_wet_mass,0.122,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,root_dry_mass,0.04337,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,total_root_length,2383.898058,cm
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,total_root_volume,231.779959,mm3
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,rd,0.310761,mm
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,bi,0.445908,count mm-1
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,srl,54.966521973714556,m g-1
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,rtd,0.18711712689534127,g cm-3
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,rdmc,355.4918032786885,mg g-1
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,tuber_wet_mass,NA,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,tuber_dry_mass,NA,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,reproductive_height,NA,cm
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,veg_height,12,cm
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,no_leaves,5,NA
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,leaf_wet_mass,0.0868,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,leaf_dry_mass,0.03033,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,leaf_area,6.109,cm2
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,sla,201.41773821299043,cm2 g-1
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,leaf_thickness,0.151,mm
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,ldmc,0.34942396313364055,g g-1
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,bgb_agb,2.1824212271973464,g g-1
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,aboveground_biomass,12.06,g
+FBF4179,12/08/2023,northwest,5,2800,2,Themeda triandra,belowground_biomass,26.32,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,root_depth,11.7,cm
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,no_root_scan,3,count
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,root_wet_mass,0.0632,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,root_dry_mass,0.0266,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,total_root_length,641.165877,cm
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,total_root_volume,80.21192,mm3
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,rd,0.343326,mm
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,bi,0.583312,count mm-1
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,srl,24.103980338345867,m g-1
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,rtd,0.33162153455496385,g cm-3
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,rdmc,420.886075949367,mg g-1
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,tuber_wet_mass,NA,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,tuber_dry_mass,NA,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,reproductive_height,18.5,cm
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,veg_height,15,cm
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,no_leaves,5,NA
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,leaf_wet_mass,0.0982,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,leaf_dry_mass,0.0367,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,leaf_area,9.338,cm2
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,sla,254.44141689373294,cm2 g-1
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,leaf_thickness,0.113,mm
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,ldmc,0.3737270875763748,g g-1
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,bgb_agb,0.3374603499437225,g g-1
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,aboveground_biomass,2.9319,g
+FBG3400,12/05/2023,west,2,2200,5,Themeda triandra,belowground_biomass,0.9894,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,root_depth,21.4,cm
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,no_root_scan,5,count
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,root_wet_mass,0.0334,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,root_dry_mass,0.00739,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,total_root_length,990.2572,cm
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,total_root_volume,44.169911,mm3
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,rd,0.224573,mm
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,bi,0.400906,count mm-1
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,srl,133.9996211096076,m g-1
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,rtd,0.16730846480537395,g cm-3
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,rdmc,221.2574850299401,mg g-1
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,tuber_wet_mass,0.5752,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,tuber_dry_mass,0.19152,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,reproductive_height,29.7,cm
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,veg_height,14.5,cm
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,no_leaves,1,NA
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,leaf_wet_mass,1.9294,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,leaf_dry_mass,0.26669,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,leaf_area,34.673,cm2
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,sla,130.01237391728225,cm2 g-1
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,leaf_thickness,0.5973333333333333,mm
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,ldmc,0.13822431844096608,g g-1
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,bgb_agb,2.0240963855421685,g g-1
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,aboveground_biomass,1.66,g
+FBH8238,12/08/2023,northwest,5,2800,5,Senecio glaberrimus,belowground_biomass,3.36,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,root_depth,23,cm
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,no_root_scan,5,count
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,root_wet_mass,0.0316,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,root_dry_mass,0.01032,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,total_root_length,1384.162003,cm
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,total_root_volume,67.859183,mm3
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,rd,0.235311,mm
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,bi,0.43492,count mm-1
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,srl,134.12422509689924,m g-1
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,rtd,0.15207963821197198,g cm-3
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,rdmc,326.58227848101257,mg g-1
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,tuber_wet_mass,0.9371,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,tuber_dry_mass,0.17859,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,reproductive_height,21.1,cm
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,veg_height,2.5,cm
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,no_leaves,1,NA
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,leaf_wet_mass,0.6762,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,leaf_dry_mass,0.13551,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,leaf_area,12.243,cm2
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,sla,90.3475758246624,cm2 g-1
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,leaf_thickness,0.7853333333333333,mm
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,ldmc,0.20039929015084293,g g-1
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,bgb_agb,5.230769230769231,g g-1
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,aboveground_biomass,0.78,g
+FBI0246,12/08/2023,northwest,5,2800,2,Helichrysum pilosellum,belowground_biomass,4.08,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,root_depth,13,cm
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,no_root_scan,5,count
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,root_wet_mass,0.035,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,root_dry_mass,0.01374,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,total_root_length,919.170419,cm
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,total_root_volume,81.370931,mm3
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,rd,0.297983,mm
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,bi,0.478693,count mm-1
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,srl,66.89741040756914,m g-1
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,rtd,0.16885636960452133,g cm-3
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,rdmc,392.57142857142856,mg g-1
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,tuber_wet_mass,0.707,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,tuber_dry_mass,0.1356,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,reproductive_height,19.8,cm
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,veg_height,3.5,cm
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,no_leaves,1,NA
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,leaf_wet_mass,0.4948,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,leaf_dry_mass,0.09943,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,leaf_area,8.924,cm2
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,sla,89.7515840289651,cm2 g-1
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,leaf_thickness,0.7633333333333333,mm
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,ldmc,0.2009498787388844,g g-1
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,bgb_agb,3.707964601769912,g g-1
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,aboveground_biomass,1.13,g
+FBJ6221,12/08/2023,northwest,5,2800,4,Helichrysum pilosellum,belowground_biomass,4.19,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,root_depth,16.6,cm
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,no_root_scan,5,count
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,root_wet_mass,0.0643,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,root_dry_mass,0.0285,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,total_root_length,1179.061228,cm
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,total_root_volume,90.930101,mm3
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,rd,0.279577,mm
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,bi,0.427459,count mm-1
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,srl,41.370569403508775,m g-1
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,rtd,0.31342756344238526,g cm-3
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,rdmc,443.2348367029549,mg g-1
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,tuber_wet_mass,NA,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,tuber_dry_mass,NA,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,reproductive_height,17.2,cm
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,veg_height,19.2,cm
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,no_leaves,5,NA
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,leaf_wet_mass,0.0687,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,leaf_dry_mass,0.0315,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,leaf_area,8.14,cm2
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,sla,258.41269841269843,cm2 g-1
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,leaf_thickness,0.121,mm
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,ldmc,0.4585152838427948,g g-1
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,bgb_agb,1.043189368770764,g g-1
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,aboveground_biomass,2.6789,g
+FBK1070,12/05/2023,west,2,2200,3,Themeda triandra,belowground_biomass,2.7946,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,root_depth,21.8,cm
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,no_root_scan,5,count
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,root_wet_mass,0.097,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,root_dry_mass,0.03444,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,total_root_length,1369.442893,cm
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,total_root_volume,127.893169,mm3
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,rd,0.304636,mm
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,bi,0.42426,count mm-1
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,srl,39.76315020325203,m g-1
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,rtd,0.2692872517687008,g cm-3
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,rdmc,355.05154639175254,mg g-1
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,tuber_wet_mass,0.3345,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,tuber_dry_mass,0.10701,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,reproductive_height,26.5,cm
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,veg_height,14.2,cm
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,no_leaves,1,NA
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,leaf_wet_mass,1.5364,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,leaf_dry_mass,0.22366,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,leaf_area,27.454,cm2
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,sla,122.74881516587678,cm2 g-1
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,leaf_thickness,0.6126666666666667,mm
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,ldmc,0.14557406925279875,g g-1
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,bgb_agb,1.4776119402985073,g g-1
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,aboveground_biomass,1.34,g
+FBM2759,12/08/2023,northwest,5,2800,4,Senecio glaberrimus,belowground_biomass,1.98,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,root_depth,10,cm
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,no_root_scan,4,count
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,root_wet_mass,0.0248,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,root_dry_mass,0.00545,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,total_root_length,614.712528,cm
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,total_root_volume,28.462369,mm3
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,rd,0.231434,mm
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,bi,0.382293,count mm-1
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,srl,112.7912895412844,m g-1
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,rtd,0.19148089886685118,g cm-3
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,rdmc,219.75806451612905,mg g-1
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,tuber_wet_mass,0.6443,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,tuber_dry_mass,0.12552,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,reproductive_height,7.8,cm
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,veg_height,4.1,cm
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,no_leaves,1,NA
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,leaf_wet_mass,0.7515,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,leaf_dry_mass,0.13365,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,leaf_area,12.928,cm2
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,sla,96.73026561915452,cm2 g-1
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,leaf_thickness,0.7833333333333333,mm
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,ldmc,0.17784431137724552,g g-1
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,bgb_agb,2.393939393939394,g g-1
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,aboveground_biomass,0.66,g
+FBN8285,12/08/2023,northwest,5,2800,5,Helichrysum pilosellum,belowground_biomass,1.58,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,root_depth,18.2,cm
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,no_root_scan,5,count
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,root_wet_mass,0.07,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,root_dry_mass,0.0297,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,total_root_length,1316.542072,cm
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,total_root_volume,113.084877,mm3
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,rd,0.289672,mm
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,bi,0.423838,count mm-1
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,srl,44.32801589225589,m g-1
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,rtd,0.262634587293224,g cm-3
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,rdmc,424.2857142857142,mg g-1
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,tuber_wet_mass,NA,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,tuber_dry_mass,NA,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,reproductive_height,21.1,cm
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,veg_height,18.3,cm
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,no_leaves,5,NA
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,leaf_wet_mass,0.2021,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,leaf_dry_mass,0.0742,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,leaf_area,15.117,cm2
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,sla,203.73315363881403,cm2 g-1
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,leaf_thickness,0.13533333333333333,mm
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,ldmc,0.3671449777337952,g g-1
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,bgb_agb,1.8467776215544582,g g-1
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,aboveground_biomass,3.0583,g
+FBO8536,12/05/2023,west,2,2200,4,Themeda triandra,belowground_biomass,5.648,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,root_depth,20.1,cm
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,no_root_scan,5,count
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,root_wet_mass,0.0853,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,root_dry_mass,0.01967,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,total_root_length,1119.29945,cm
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,total_root_volume,114.149411,mm3
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,rd,0.313972,mm
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,bi,0.426159,count mm-1
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,srl,56.90388662938485,m g-1
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,rtd,0.17231801572765013,g cm-3
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,rdmc,230.59788980070343,mg g-1
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,tuber_wet_mass,0.8063,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,tuber_dry_mass,0.13203,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,reproductive_height,23.9,cm
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,veg_height,9.7,cm
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,no_leaves,1,NA
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,leaf_wet_mass,1.3087,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,leaf_dry_mass,0.20102,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,leaf_area,19.888,cm2
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,sla,98.93542931051637,cm2 g-1
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,leaf_thickness,0.6526666666666667,mm
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,ldmc,0.15360281195079087,g g-1
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,bgb_agb,1.207142857142857,g g-1
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,aboveground_biomass,1.4,g
+FBP4231,12/08/2023,northwest,5,2800,2,Senecio glaberrimus,belowground_biomass,1.69,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,root_depth,14.5,cm
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,no_root_scan,5,count
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,root_wet_mass,0.0389,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,root_dry_mass,0.00958,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,total_root_length,384.71799,cm
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,total_root_volume,33.111257,mm3
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,rd,0.29752,mm
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,bi,0.15076,count mm-1
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,srl,40.158454070981215,m g-1
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,rtd,0.2893275842714156,g cm-3
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,rdmc,246.2724935732648,mg g-1
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,tuber_wet_mass,0.5246,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,tuber_dry_mass,0.07859,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,reproductive_height,18.3,cm
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,veg_height,5,cm
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,no_leaves,1,NA
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,leaf_wet_mass,0.7915,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,leaf_dry_mass,0.14951,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,leaf_area,15.614,cm2
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,sla,104.43448598755937,cm2 g-1
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,leaf_thickness,1.1053333333333333,mm
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,ldmc,0.18889450410612763,g g-1
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,bgb_agb,0.6612903225806451,g g-1
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,aboveground_biomass,0.62,g
+FBQ2034,12/08/2023,northwest,5,2800,3,Helichrysum pilosellum,belowground_biomass,0.41,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,root_depth,16,cm
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,no_root_scan,5,count
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,root_wet_mass,0.0576,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,root_dry_mass,0.01929,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,total_root_length,1161.205461,cm
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,total_root_volume,82.343575,mm3
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,rd,0.272041,mm
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,bi,0.476229,count mm-1
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,srl,60.1972763608087,m g-1
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,rtd,0.23426235744561735,g cm-3
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,rdmc,334.89583333333337,mg g-1
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,tuber_wet_mass,0.644,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,tuber_dry_mass,0.10746,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,reproductive_height,9.5,cm
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,veg_height,4,cm
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,no_leaves,1,NA
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,leaf_wet_mass,1.0151,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,leaf_dry_mass,0.14336,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,leaf_area,16.376,cm2
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,sla,114.22991071428574,cm2 g-1
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,leaf_thickness,0.6306666666666667,mm
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,ldmc,0.1412274652743572,g g-1
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,bgb_agb,2.396694214876033,g g-1
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,aboveground_biomass,1.21,g
+FBR3362,12/08/2023,northwest,5,2800,1,Helichrysum pilosellum,belowground_biomass,2.9,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,root_depth,13.5,cm
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,no_root_scan,4,count
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,root_wet_mass,0.0329,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,root_dry_mass,0.0146,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,total_root_length,821.734718,cm
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,total_root_volume,77.562611,mm3
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,rd,0.312116,mm
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,bi,0.451484,count mm-1
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,srl,56.28319986301371,m g-1
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,rtd,0.18823502473375991,g cm-3
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,rdmc,443.76899696048633,mg g-1
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,tuber_wet_mass,NA,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,tuber_dry_mass,NA,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,reproductive_height,25.9,cm
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,veg_height,18.2,cm
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,no_leaves,5,NA
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,leaf_wet_mass,0.1568,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,leaf_dry_mass,0.0579,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,leaf_area,13.722,cm2
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,sla,236.99481865284974,cm2 g-1
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,leaf_thickness,0.14366666666666666,mm
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,ldmc,0.3692602040816327,g g-1
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,bgb_agb,1.7656951019524119,g g-1
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,aboveground_biomass,6.4638,g
+FBS3237,12/05/2023,west,2,2200,1,Themeda triandra,belowground_biomass,11.4131,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,root_depth,10.2,cm
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,no_root_scan,5,count
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,root_wet_mass,0.0466,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,root_dry_mass,0.0162,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,total_root_length,1115.271125,cm
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,total_root_volume,82.701692,mm3
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,rd,0.275913,mm
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,bi,0.393626,count mm-1
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,srl,68.84389660493828,m g-1
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,rtd,0.1958847468320237,g cm-3
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,rdmc,347.63948497854074,mg g-1
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,tuber_wet_mass,0.4185,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,tuber_dry_mass,0.1136,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,reproductive_height,22.5,cm
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,veg_height,11.5,cm
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,no_leaves,1,NA
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,leaf_wet_mass,1.1152,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,leaf_dry_mass,0.2338,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,leaf_area,20.71,cm2
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,sla,88.57998289136013,cm2 g-1
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,leaf_thickness,1.0553333333333332,mm
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,ldmc,0.20964849354375897,g g-1
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,bgb_agb,1.862539605166951,g g-1
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,aboveground_biomass,5.3339,g
+FBT2327,12/06/2023,west,2,2200,1,Helichrysum pilosellum,belowground_biomass,9.9346,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,root_depth,16.5,cm
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,no_root_scan,4,count
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,root_wet_mass,0.0355,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,root_dry_mass,0.0168,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,total_root_length,929.447789,cm
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,total_root_volume,69.021513,mm3
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,rd,0.285861,mm
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,bi,0.305558,count mm-1
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,srl,55.324273154761904,m g-1
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,rtd,0.24340237224298455,g cm-3
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,rdmc,473.2394366197184,mg g-1
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,tuber_wet_mass,0.6495,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,tuber_dry_mass,0.18223,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,reproductive_height,36,cm
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,veg_height,18.2,cm
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,no_leaves,1,NA
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,leaf_wet_mass,0.9809,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,leaf_dry_mass,0.1434,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,leaf_area,16.274,cm2
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,sla,113.48675034867505,cm2 g-1
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,leaf_thickness,0.6483333333333333,mm
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,ldmc,0.1461922724028953,g g-1
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,bgb_agb,1.821138211382114,g g-1
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,aboveground_biomass,1.23,g
+FBU8395,12/08/2023,west,4,2600,2,Senecio glaberrimus,belowground_biomass,2.24,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,root_depth,13,cm
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,no_root_scan,5,count
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,root_wet_mass,0.1044,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,root_dry_mass,0.0313,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,total_root_length,1551.731842,cm
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,total_root_volume,144.313764,mm3
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,rd,0.308655,mm
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,bi,0.387954,count mm-1
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,srl,49.576097188498395,m g-1
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,rtd,0.2168885290802893,g cm-3
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,rdmc,299.8084291187739,mg g-1
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,tuber_wet_mass,NA,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,tuber_dry_mass,NA,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,reproductive_height,23.4,cm
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,veg_height,13.7,cm
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,no_leaves,5,NA
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,leaf_wet_mass,0.1289,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,leaf_dry_mass,0.0459,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,leaf_area,10.418,cm2
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,sla,226.97167755991282,cm2 g-1
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,leaf_thickness,0.17233333333333334,mm
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,ldmc,0.3560899922420482,g g-1
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,bgb_agb,2.490024060707015,g g-1
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,aboveground_biomass,2.7015,g
+FBW8179,12/05/2023,west,2,2200,2,Eragrostis capensis,belowground_biomass,6.7268,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,root_depth,16.5,cm
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,no_root_scan,5,count
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,root_wet_mass,0.043,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,root_dry_mass,0.0146,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,total_root_length,921.50696,cm
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,total_root_volume,56.746535,mm3
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,rd,0.262245,mm
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,bi,0.317957,count mm-1
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,srl,63.11691506849316,m g-1
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,rtd,0.2572844315516357,g cm-3
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,rdmc,339.5348837209302,mg g-1
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,tuber_wet_mass,1.1321,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,tuber_dry_mass,0.239,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,reproductive_height,19,cm
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,veg_height,15.5,cm
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,no_leaves,1,NA
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,leaf_wet_mass,1.2497,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,leaf_dry_mass,0.2566,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,leaf_area,24.814,cm2
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,sla,96.70303975058457,cm2 g-1
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,leaf_thickness,1.1413333333333333,mm
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,ldmc,0.20532927902696646,g g-1
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,bgb_agb,2.3042793151679324,g g-1
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,aboveground_biomass,5.6481,g
+FBX4690,12/06/2023,west,2,2200,2,Helichrysum pilosellum,belowground_biomass,13.0148,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,root_depth,16,cm
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,no_root_scan,5,count
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,root_wet_mass,0.0611,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,root_dry_mass,0.02345,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,total_root_length,1694.492016,cm
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,total_root_volume,132.563228,mm3
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,rd,0.284323,mm
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,bi,0.474478,count mm-1
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,srl,72.25978746268656,m g-1
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,rtd,0.17689671829657014,g cm-3
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,rdmc,383.79705400981993,mg g-1
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,tuber_wet_mass,0.203,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,tuber_dry_mass,0.08881,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,reproductive_height,18,cm
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,veg_height,11.7,cm
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,no_leaves,1,NA
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,leaf_wet_mass,0.8817,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,leaf_dry_mass,0.16331,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,leaf_area,17.18,cm2
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,sla,105.19870185536709,cm2 g-1
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,leaf_thickness,0.6316666666666667,mm
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,ldmc,0.18522173074741977,g g-1
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,bgb_agb,1.3142857142857145,g g-1
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,aboveground_biomass,0.7,g
+FBY9580,12/08/2023,west,4,2600,4,Senecio glaberrimus,belowground_biomass,0.92,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,root_depth,17,cm
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,no_root_scan,3,count
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,root_wet_mass,0.0316,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,root_dry_mass,0.01083,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,total_root_length,708.271098,cm
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,total_root_volume,57.981301,mm3
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,rd,0.300308,mm
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,bi,0.408036,count mm-1
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,srl,65.39899335180057,m g-1
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,rtd,0.18678435656350653,g cm-3
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,rdmc,342.72151898734177,mg g-1
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,tuber_wet_mass,0.2829,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,tuber_dry_mass,0.10171,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,reproductive_height,30,cm
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,veg_height,14.6,cm
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,no_leaves,1,NA
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,leaf_wet_mass,0.4762,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,leaf_dry_mass,0.09164,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,leaf_area,10.178,cm2
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,sla,111.06503710170233,cm2 g-1
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,leaf_thickness,0.551,mm
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,ldmc,0.19244015119697605,g g-1
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,bgb_agb,1.2307692307692308,g g-1
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,aboveground_biomass,0.65,g
+FBZ6377,12/08/2023,west,4,2600,1,Senecio glaberrimus,belowground_biomass,0.8,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,root_depth,12.1,cm
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,no_root_scan,4,count
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,root_wet_mass,0.03,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,root_dry_mass,0.0139,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,total_root_length,1561.236903,cm
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,total_root_volume,75.958142,mm3
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,rd,0.23528,mm
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,bi,0.539956,count mm-1
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,srl,112.31920165467626,m g-1
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,rtd,0.1829955240348033,g cm-3
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,rdmc,463.3333333333333,mg g-1
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,tuber_wet_mass,NA,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,tuber_dry_mass,NA,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,reproductive_height,31.9,cm
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,veg_height,6.8,cm
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,no_leaves,5,NA
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,leaf_wet_mass,0.288,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,leaf_dry_mass,0.0938,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,leaf_area,11.467,cm2
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,sla,122.2494669509595,cm2 g-1
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,leaf_thickness,0.30333333333333334,mm
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,ldmc,0.32569444444444445,g g-1
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,bgb_agb,2.679469924422818,g g-1
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,aboveground_biomass,0.9659,g
+FCA5827,12/05/2023,west,2,2200,5,Eragrostis capensis,belowground_biomass,2.5881,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,root_depth,10,cm
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,no_root_scan,5,count
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,root_wet_mass,0.0047,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,root_dry_mass,0.0016,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,total_root_length,323.56961,cm
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,total_root_volume,15.62427,mm3
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,rd,0.230123,mm
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,bi,0.500665,count mm-1
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,srl,202.23100625,m g-1
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,rtd,0.10240478435152492,g cm-3
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,rdmc,340.4255319148936,mg g-1
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,tuber_wet_mass,0.9622,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,tuber_dry_mass,0.2751,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,reproductive_height,36,cm
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,veg_height,14,cm
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,no_leaves,1,NA
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,leaf_wet_mass,0.7798,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,leaf_dry_mass,0.1434,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,leaf_area,15.463,cm2
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,sla,107.83124128312413,cm2 g-1
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,leaf_thickness,0.48433333333333334,mm
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,ldmc,0.18389330597589124,g g-1
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,bgb_agb,1.1786582749249033,g g-1
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,aboveground_biomass,0.6991,g
+FCB1397,12/06/2023,west,2,2200,2,Senecio glaberrimus,belowground_biomass,0.824,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,root_depth,10.2,cm
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,no_root_scan,5,count
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,root_wet_mass,0.0427,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,root_dry_mass,0.01229,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,total_root_length,1189.366707,cm
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,total_root_volume,84.341871,mm3
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,rd,0.277355,mm
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,bi,0.350607,count mm-1
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,srl,96.77515923515053,m g-1
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,rtd,0.14571647337536536,g cm-3
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,rdmc,287.8220140515223,mg g-1
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,tuber_wet_mass,0.5294,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,tuber_dry_mass,0.9028,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,reproductive_height,25.3,cm
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,veg_height,3.8,cm
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,no_leaves,1,NA
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,leaf_wet_mass,0.5966,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,leaf_dry_mass,0.1105,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,leaf_area,10.28,cm2
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,sla,93.03167420814479,cm2 g-1
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,leaf_thickness,0.9446666666666667,mm
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,ldmc,0.1852162252765672,g g-1
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,bgb_agb,2.575,g g-1
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,aboveground_biomass,1.2,g
+FCC1836,12/08/2023,west,4,2600,5,Helichrysum pilosellum,belowground_biomass,3.09,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,root_depth,15.4,cm
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,no_root_scan,5,count
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,root_wet_mass,0.0245,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,root_dry_mass,0.01295,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,total_root_length,774.377249,cm
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,total_root_volume,60.463096,mm3
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,rd,0.28904,mm
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,bi,0.37966,count mm-1
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,srl,59.79747096525097,m g-1
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,rtd,0.2141802331789295,g cm-3
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,rdmc,528.5714285714286,mg g-1
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,tuber_wet_mass,0.4412,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,tuber_dry_mass,0.15965,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,reproductive_height,41,cm
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,veg_height,19.5,cm
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,no_leaves,1,NA
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,leaf_wet_mass,0.7751,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,leaf_dry_mass,0.13562,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,leaf_area,15.902,cm2
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,sla,117.25409231676744,cm2 g-1
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,leaf_thickness,0.505,mm
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,ldmc,0.17497097148754998,g g-1
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,bgb_agb,1.0290697674418605,g g-1
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,aboveground_biomass,1.72,g
+FCD2673,12/08/2023,west,4,2600,3,Senecio glaberrimus,belowground_biomass,1.77,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,root_depth,14,cm
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,no_root_scan,5,count
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,root_wet_mass,0.476,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,root_dry_mass,0.0178,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,total_root_length,1068.890457,cm
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,total_root_volume,104.231651,mm3
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,rd,0.31962,mm
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,bi,0.406964,count mm-1
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,srl,60.050025674157304,m g-1
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,rtd,0.17077346304338975,g cm-3
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,rdmc,37.39495798319328,mg g-1
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,tuber_wet_mass,NA,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,tuber_dry_mass,NA,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,reproductive_height,25.2,cm
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,veg_height,8,cm
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,no_leaves,5,NA
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,leaf_wet_mass,0.189,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,leaf_dry_mass,0.336,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,leaf_area,6.321,cm2
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,sla,18.812499999999996,cm2 g-1
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,leaf_thickness,0.16433333333333333,mm
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,ldmc,1.777777777777778,g g-1
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,bgb_agb,1.9701513452914796,g g-1
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,aboveground_biomass,1.4272,g
+FCE1581,12/05/2023,west,2,2200,4,Eragrostis capensis,belowground_biomass,2.8118,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,root_depth,17.5,cm
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,no_root_scan,5,count
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,root_wet_mass,0.0284,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,root_dry_mass,0.0046,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,total_root_length,368.713926,cm
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,total_root_volume,40.99111,mm3
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,rd,0.34838,mm
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,bi,0.287486,count mm-1
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,srl,80.15520130434783,m g-1
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,rtd,0.11221945441340818,g cm-3
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,rdmc,161.97183098591546,mg g-1
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,tuber_wet_mass,1.5751,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,tuber_dry_mass,0.3839,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,reproductive_height,46.7,cm
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,veg_height,16,cm
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,no_leaves,1,NA
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,leaf_wet_mass,0.9725,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,leaf_dry_mass,0.142,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,leaf_area,15.86,cm2
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,sla,111.69014084507043,cm2 g-1
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,leaf_thickness,0.756,mm
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,ldmc,0.1460154241645244,g g-1
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,bgb_agb,0.8278373573435798,g g-1
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,aboveground_biomass,1.7437,g
+FCF2601,12/06/2023,west,2,2200,1,Senecio glaberrimus,belowground_biomass,1.4435,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,root_depth,10,cm
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,no_root_scan,5,count
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,root_wet_mass,0.3908,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,root_dry_mass,0.00679,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,total_root_length,317.568674,cm
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,total_root_volume,23.584056,mm3
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,rd,0.286003,mm
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,bi,0.267659,count mm-1
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,srl,46.77005508100147,m g-1
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,rtd,0.2879063719997951,g cm-3
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,rdmc,17.374616171954965,mg g-1
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,tuber_wet_mass,0.0123,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,tuber_dry_mass,0.12031,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,reproductive_height,35.6,cm
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,veg_height,20,cm
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,no_leaves,1,NA
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,leaf_wet_mass,0.4215,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,leaf_dry_mass,0.06366,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,leaf_area,8.964,cm2
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,sla,140.81055607917062,cm2 g-1
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,leaf_thickness,0.457,mm
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,ldmc,0.1510320284697509,g g-1
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,bgb_agb,4.4190476190476184,g g-1
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,aboveground_biomass,1.05,g
+FCG9760,12/09/2023,west,3,2400,4,Senecio glaberrimus,belowground_biomass,4.64,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,root_depth,17.6,cm
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,no_root_scan,5,count
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,root_wet_mass,0.0388,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,root_dry_mass,0.01159,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,total_root_length,1303.539685,cm
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,total_root_volume,89.067164,mm3
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,rd,0.273399,mm
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,bi,0.342912,count mm-1
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,srl,112.4710685936152,m g-1
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,rtd,0.1301265189043181,g cm-3
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,rdmc,298.7113402061856,mg g-1
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,tuber_wet_mass,NA,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,tuber_dry_mass,NA,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,reproductive_height,NA,cm
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,veg_height,11.5,cm
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,no_leaves,5,NA
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,leaf_wet_mass,0.1094,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,leaf_dry_mass,0.03535,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,leaf_area,7.494,cm2
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,sla,211.994342291372,cm2 g-1
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,leaf_thickness,0.101,mm
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,ldmc,0.32312614259597805,g g-1
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,bgb_agb,1.9710743801652892,g g-1
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,aboveground_biomass,2.42,g
+FCH5965,12/08/2023,northwest,5,2800,4,Themeda triandra,belowground_biomass,4.77,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,root_depth,13.1,cm
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,no_root_scan,5,count
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,root_wet_mass,0.0178,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,root_dry_mass,0.0141,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,total_root_length,1318.066891,cm
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,total_root_volume,89.878793,mm3
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,rd,0.2628,mm
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,bi,0.515907,count mm-1
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,srl,93.47992134751773,m g-1
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,rtd,0.156877941162383,g cm-3
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,rdmc,792.1348314606741,mg g-1
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,tuber_wet_mass,NA,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,tuber_dry_mass,NA,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,reproductive_height,29.4,cm
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,veg_height,5.8,cm
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,no_leaves,5,NA
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,leaf_wet_mass,0.1573,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,leaf_dry_mass,0.0471,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,leaf_area,6.012,cm2
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,sla,127.64331210191081,cm2 g-1
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,leaf_thickness,0.26766666666666666,mm
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,ldmc,0.2994278448823904,g g-1
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,bgb_agb,3.008900928792569,g g-1
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,aboveground_biomass,0.5168,g
+FCI1638,12/05/2023,west,2,2200,1,Eragrostis capensis,belowground_biomass,1.555,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,root_depth,13.7,cm
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,no_root_scan,5,count
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,root_wet_mass,0.0249,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,root_dry_mass,0.0076,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,total_root_length,475.886684,cm
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,total_root_volume,44.637035,mm3
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,rd,0.309084,mm
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,bi,0.319404,count mm-1
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,srl,62.616668947368424,m g-1
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,rtd,0.17026220491571628,g cm-3
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,rdmc,305.22088353413653,mg g-1
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,tuber_wet_mass,0.3529,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,tuber_dry_mass,0.1016,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,reproductive_height,21.5,cm
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,veg_height,17.2,cm
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,no_leaves,1,NA
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,leaf_wet_mass,1.3984,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,leaf_dry_mass,0.2766,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,leaf_area,27.513,cm2
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,sla,99.46854663774404,cm2 g-1
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,leaf_thickness,0.6789999999999999,mm
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,ldmc,0.1977974828375286,g g-1
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,bgb_agb,1.16893649579189,g g-1
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,aboveground_biomass,0.6535,g
+FCJ1591,12/06/2023,west,2,2200,3,Senecio glaberrimus,belowground_biomass,0.7639,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,root_depth,8,cm
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,no_root_scan,5,count
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,root_wet_mass,0.0135,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,root_dry_mass,0.00865,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,total_root_length,544.592527,cm
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,total_root_volume,36.687523,mm3
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,rd,0.277841,mm
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,bi,0.325014,count mm-1
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,srl,62.9586736416185,m g-1
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,rtd,0.2357749799570824,g cm-3
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,rdmc,640.7407407407408,mg g-1
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,tuber_wet_mass,0.2652,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,tuber_dry_mass,0.05608,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,reproductive_height,21.5,cm
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,veg_height,5.3,cm
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,no_leaves,1,NA
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,leaf_wet_mass,0.4502,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,leaf_dry_mass,0.09691,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,leaf_area,8.338,cm2
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,sla,86.03859250851305,cm2 g-1
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,leaf_thickness,0.9056666666666666,mm
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,ldmc,0.21525988449577965,g g-1
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,bgb_agb,2.74468085106383,g g-1
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,aboveground_biomass,0.94,g
+FCK8784,12/08/2023,west,4,2600,1,Helichrysum pilosellum,belowground_biomass,2.58,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,root_depth,15.5,cm
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,no_root_scan,5,count
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,root_wet_mass,0.0345,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,root_dry_mass,0.01325,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,total_root_length,1163.305662,cm
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,total_root_volume,83.603139,mm3
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,rd,0.28242,mm
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,bi,0.328375,count mm-1
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,srl,87.79665373584906,m g-1
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,rtd,0.1584868721256985,g cm-3
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,rdmc,384.0579710144927,mg g-1
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,tuber_wet_mass,0.191,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,tuber_dry_mass,0.05992,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,reproductive_height,29.8,cm
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,veg_height,13.9,cm
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,no_leaves,1,NA
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,leaf_wet_mass,0.714,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,leaf_dry_mass,0.10252,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,leaf_area,14.687,cm2
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,sla,143.2598517362466,cm2 g-1
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,leaf_thickness,0.573,mm
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,ldmc,0.14358543417366948,g g-1
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,bgb_agb,1.109090909090909,g g-1
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,aboveground_biomass,0.55,g
+FCL0130,12/08/2023,west,4,2600,5,Senecio glaberrimus,belowground_biomass,0.61,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,root_depth,14.8,cm
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,no_root_scan,5,count
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,root_wet_mass,0.0777,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,root_dry_mass,0.0322,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,total_root_length,1556.334871,cm
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,total_root_volume,145.213469,mm3
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,rd,0.306359,mm
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,bi,0.502463,count mm-1
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,srl,48.33338108695652,m g-1
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,rtd,0.22174251618491392,g cm-3
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,rdmc,414.4144144144144,mg g-1
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,tuber_wet_mass,NA,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,tuber_dry_mass,NA,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,reproductive_height,25.8,cm
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,veg_height,15.5,cm
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,no_leaves,5,NA
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,leaf_wet_mass,0.1016,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,leaf_dry_mass,0.0353,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,leaf_area,9.166,cm2
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,sla,259.66005665722383,cm2 g-1
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,leaf_thickness,0.14366666666666666,mm
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,ldmc,0.34744094488188976,g g-1
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,bgb_agb,1.2381108560183667,g g-1
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,aboveground_biomass,3.049,g
+FCM1008,12/05/2023,west,2,2200,2,Themeda triandra,belowground_biomass,3.775,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,root_depth,10,cm
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,no_root_scan,4,count
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,root_wet_mass,0.0537,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,root_dry_mass,0.0155,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,total_root_length,772.075513,cm
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,total_root_volume,78.73045,mm3
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,rd,0.326135,mm
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,bi,0.374316,count mm-1
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,srl,49.811323419354835,m g-1
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,rtd,0.19687427164457968,g cm-3
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,rdmc,288.6405959031658,mg g-1
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,tuber_wet_mass,0.1616,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,tuber_dry_mass,0.0572,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,reproductive_height,37.2,cm
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,veg_height,19.8,cm
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,no_leaves,1,NA
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,leaf_wet_mass,0.9094,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,leaf_dry_mass,0.1676,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,leaf_area,16.615,cm2
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,sla,99.13484486873507,cm2 g-1
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,leaf_thickness,0.6276666666666667,mm
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,ldmc,0.18429733890477237,g g-1
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,bgb_agb,0.7282439082943225,g g-1
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,aboveground_biomass,0.8331,g
+FCN7125,12/06/2023,west,2,2200,4,Senecio glaberrimus,belowground_biomass,0.6067,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,root_depth,7,cm
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,no_root_scan,3,count
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,root_wet_mass,0.0146,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,root_dry_mass,0.00493,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,total_root_length,490.106341,cm
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,total_root_volume,27.432873,mm3
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,rd,0.255907,mm
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,bi,0.248926,count mm-1
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,srl,99.4130509127789,m g-1
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,rtd,0.1797113995315037,g cm-3
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,rdmc,337.6712328767124,mg g-1
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,tuber_wet_mass,0.6765,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,tuber_dry_mass,0.1592,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,reproductive_height,21.2,cm
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,veg_height,5.1,cm
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,no_leaves,1,NA
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,leaf_wet_mass,0.7561,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,leaf_dry_mass,0.15403,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,leaf_area,14.178,cm2
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,sla,92.04700383042265,cm2 g-1
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,leaf_thickness,0.9536666666666667,mm
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,ldmc,0.20371643962438832,g g-1
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,bgb_agb,1.125,g g-1
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,aboveground_biomass,1.04,g
+FCO4501,12/08/2023,west,4,2600,3,Helichrysum pilosellum,belowground_biomass,1.17,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,root_depth,14.8,cm
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,no_root_scan,5,count
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,root_wet_mass,0.0304,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,root_dry_mass,0.0105,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,total_root_length,1049.86903,cm
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,total_root_volume,74.93593,mm3
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,rd,0.278884,mm
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,bi,0.364807,count mm-1
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,srl,99.98752666666665,m g-1
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,rtd,0.140119699588702,g cm-3
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,rdmc,345.39473684210526,mg g-1
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,tuber_wet_mass,NA,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,tuber_dry_mass,NA,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,reproductive_height,22.5,cm
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,veg_height,21.5,cm
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,no_leaves,4,NA
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,leaf_wet_mass,0.1935,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,leaf_dry_mass,0.04616,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,leaf_area,8.839,cm2
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,sla,191.48613518197575,cm2 g-1
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,leaf_thickness,0.247,mm
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,ldmc,0.23855297157622737,g g-1
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,bgb_agb,4.285714285714286,g g-1
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,aboveground_biomass,1.75,g
+FCP0847,12/08/2023,west,4,2600,3,Themeda triandra,belowground_biomass,7.5,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,root_depth,9,cm
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,no_root_scan,5,count
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,root_wet_mass,0.0997,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,root_dry_mass,0.0482,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,total_root_length,966.875065,cm
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,total_root_volume,129.933781,mm3
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,rd,0.360265,mm
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,bi,0.411635,count mm-1
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,srl,20.05964865145228,m g-1
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,rtd,0.3709581883097821,g cm-3
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,rdmc,483.4503510531595,mg g-1
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,tuber_wet_mass,0.7861,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,tuber_dry_mass,0.2234,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,reproductive_height,19.5,cm
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,veg_height,7.5,cm
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,no_leaves,1,NA
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,leaf_wet_mass,1.0034,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,leaf_dry_mass,0.2235,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,leaf_area,19.653,cm2
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,sla,87.932885906040255,cm2 g-1
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,leaf_thickness,1.232,mm
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,ldmc,0.2227426749053219,g g-1
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,bgb_agb,4.278687886688197,g g-1
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,aboveground_biomass,2.5699,g
+FCQ4012,12/06/2023,west,2,2200,5,Helichrysum pilosellum,belowground_biomass,10.9958,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,root_depth,9,cm
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,no_root_scan,4,count
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,root_wet_mass,0.0088,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,root_dry_mass,0.0032,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,total_root_length,210.729988,cm
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,total_root_volume,21.344409,mm3
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,rd,0.323119,mm
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,bi,0.588431,count mm-1
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,srl,65.85312125,m g-1
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,rtd,0.14992216462868568,g cm-3
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,rdmc,363.6363636363636,mg g-1
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,tuber_wet_mass,0.8201,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,tuber_dry_mass,0.183,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,reproductive_height,9.1,cm
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,veg_height,10,cm
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,no_leaves,1,NA
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,leaf_wet_mass,1.5822,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,leaf_dry_mass,0.2741,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,leaf_area,24.207,cm2
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,sla,88.31448376504925,cm2 g-1
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,leaf_thickness,1.248,mm
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,ldmc,0.17323979269371761,g g-1
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,bgb_agb,2.1795174262734585,g g-1
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,aboveground_biomass,2.7975,g
+FCR0255,12/06/2023,west,2,2200,3,Helichrysum pilosellum,belowground_biomass,6.0972,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,root_depth,9,cm
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,no_root_scan,5,count
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,root_wet_mass,0.0277,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,root_dry_mass,0.01312,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,total_root_length,629.694274,cm
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,total_root_volume,40.605331,mm3
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,rd,0.272705,mm
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,bi,0.311262,count mm-1
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,srl,47.994990396341464,m g-1
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,rtd,0.3231102832285741,g cm-3
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,rdmc,473.64620938628155,mg g-1
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,tuber_wet_mass,0.6582,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,tuber_dry_mass,0.12652,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,reproductive_height,25.2,cm
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,veg_height,6.4,cm
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,no_leaves,1,NA
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,leaf_wet_mass,0.8883,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,leaf_dry_mass,0.13588,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,leaf_area,15.074,cm2
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,sla,110.93612010597586,cm2 g-1
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,leaf_thickness,0.7656666666666667,mm
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,ldmc,0.15296634020038274,g g-1
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,bgb_agb,2.5766871165644174,g g-1
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,aboveground_biomass,1.63,g
+FCS7407,12/08/2023,west,4,2600,4,Helichrysum pilosellum,belowground_biomass,4.2,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,root_depth,18,cm
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,no_root_scan,4,count
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,root_wet_mass,0.0481,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,root_dry_mass,0.01797,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,total_root_length,1353.774059,cm
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,total_root_volume,112.656251,mm3
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,rd,0.293154,mm
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,bi,0.391498,count mm-1
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,srl,75.3352286588759,m g-1
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,rtd,0.1595117877657761,g cm-3
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,rdmc,373.5966735966736,mg g-1
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,tuber_wet_mass,NA,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,tuber_dry_mass,NA,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,reproductive_height,36.2,cm
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,veg_height,9.4,cm
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,no_leaves,5,NA
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,leaf_wet_mass,0.1821,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,leaf_dry_mass,0.06666,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,leaf_area,14.458,cm2
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,sla,216.8916891689169,cm2 g-1
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,leaf_thickness,0.11633333333333333,mm
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,ldmc,0.3660626029654036,g g-1
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,bgb_agb,5.72,g g-1
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,aboveground_biomass,0.5,g
+FCT4052,12/08/2023,west,4,2600,2,Themeda triandra,belowground_biomass,2.86,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,root_depth,8,cm
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,no_root_scan,5,count
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,root_wet_mass,0.072,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,root_dry_mass,0.0218,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,total_root_length,1101.43895,cm
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,total_root_volume,127.17214,mm3
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,rd,0.354316,mm
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,bi,0.34228,count mm-1
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,srl,50.524722477064216,m g-1
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,rtd,0.17142119335256922,g cm-3
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,rdmc,302.77777777777783,mg g-1
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,tuber_wet_mass,0.1772,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,tuber_dry_mass,0.0488,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,reproductive_height,27.4,cm
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,veg_height,15.6,cm
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,no_leaves,1,NA
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,leaf_wet_mass,0.5447,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,leaf_dry_mass,0.1179,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,leaf_area,10.442,cm2
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,sla,88.5665818490246,cm2 g-1
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,leaf_thickness,0.742,mm
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,ldmc,0.21644942170001838,g g-1
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,bgb_agb,1.2214049282824568,g g-1
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,aboveground_biomass,0.5438,g
+FCU3875,12/06/2023,west,2,2200,5,Senecio glaberrimus,belowground_biomass,0.6642,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,root_depth,15,cm
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,no_root_scan,5,count
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,root_wet_mass,0.0498,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,root_dry_mass,0.0185,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,total_root_length,1009.189064,cm
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,total_root_volume,86.689275,mm3
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,rd,0.305654,mm
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,bi,0.296277,count mm-1
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,srl,54.550760216216226,m g-1
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,rtd,0.21340586825763624,g cm-3
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,rdmc,371.4859437751004,mg g-1
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,tuber_wet_mass,0.5776,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,tuber_dry_mass,0.1581,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,reproductive_height,27.5,cm
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,veg_height,7.5,cm
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,no_leaves,1,NA
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,leaf_wet_mass,0.8705,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,leaf_dry_mass,0.1887,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,leaf_area,18.178,cm2
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,sla,96.33280339162692,cm2 g-1
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,leaf_thickness,1.0953333333333333,mm
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,ldmc,0.21677197013210797,g g-1
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,bgb_agb,2.7800142990705603,g g-1
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,aboveground_biomass,1.8183,g
+FCV8597,12/06/2023,west,2,2200,4,Helichrysum pilosellum,belowground_biomass,5.0549,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,root_depth,9.8,cm
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,no_root_scan,5,count
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,root_wet_mass,0.0501,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,root_dry_mass,0.01431,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,total_root_length,830.649605,cm
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,total_root_volume,88.879016,mm3
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,rd,0.326452,mm
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,bi,0.400891,count mm-1
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,srl,58.0467928022362,m g-1
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,rtd,0.16100538286787514,g cm-3
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,rdmc,285.6287425149701,mg g-1
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,tuber_wet_mass,0.7454,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,tuber_dry_mass,0.14541,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,reproductive_height,30.1,cm
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,veg_height,6.5,cm
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,no_leaves,1,NA
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,leaf_wet_mass,1.6296,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,leaf_dry_mass,0.19215,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,leaf_area,15.302,cm2
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,sla,79.63570127504553,cm2 g-1
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,leaf_thickness,0.8933333333333333,mm
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,ldmc,0.11791237113402062,g g-1
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,bgb_agb,3.133663366336634,g g-1
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,aboveground_biomass,2.02,g
+FCW1015,12/08/2023,west,4,2600,2,Helichrysum pilosellum,belowground_biomass,6.33,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,root_depth,17,cm
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,no_root_scan,4,count
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,root_wet_mass,0.0296,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,root_dry_mass,0.01187,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,total_root_length,1095.216982,cm
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,total_root_volume,65.49297,mm3
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,rd,0.255433,mm
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,bi,0.416356,count mm-1
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,srl,92.26764802021903,m g-1
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,rtd,0.18124082630547983,g cm-3
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,rdmc,401.01351351351354,mg g-1
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,tuber_wet_mass,NA,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,tuber_dry_mass,NA,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,reproductive_height,17.5,cm
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,veg_height,9.2,cm
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,no_leaves,5,NA
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,leaf_wet_mass,0.1726,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,leaf_dry_mass,0.05718,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,leaf_area,13.664,cm2
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,sla,238.96467296257433,cm2 g-1
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,leaf_thickness,0.133,mm
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,ldmc,0.33128621089223637,g g-1
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,bgb_agb,2.10472972972973,g g-1
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,aboveground_biomass,2.96,g
+FCX5914,12/08/2023,west,4,2600,1,Themeda triandra,belowground_biomass,6.23,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,root_depth,15.5,cm
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,no_root_scan,5,count
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,root_wet_mass,0.0229,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,root_dry_mass,0.01028,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,total_root_length,1272.809424,cm
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,total_root_volume,67.709641,mm3
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,rd,0.246384,mm
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,bi,0.385761,count mm-1
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,srl,123.81414630350196,m g-1
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,rtd,0.15182476008106435,g cm-3
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,rdmc,448.9082969432314,mg g-1
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,tuber_wet_mass,NA,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,tuber_dry_mass,NA,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,reproductive_height,23.5,cm
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,veg_height,10,cm
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,no_leaves,5,NA
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,leaf_wet_mass,0.459,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,leaf_dry_mass,0.10583,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,leaf_area,11.294,cm2
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,sla,106.71832183690826,cm2 g-1
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,leaf_thickness,0.3486666666666667,mm
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,ldmc,0.2305664488017429,g g-1
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,bgb_agb,7.059479553903345,g g-1
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,aboveground_biomass,2.69,g
+FDB8375,12/08/2023,west,4,2600,1,Harpochloa falx,belowground_biomass,18.99,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,root_depth,12,cm
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,no_root_scan,4,count
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,root_wet_mass,0.0372,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,root_dry_mass,0.0131,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,total_root_length,651.10214,cm
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,total_root_volume,52.992536,mm3
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,rd,0.293245,mm
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,bi,0.307171,count mm-1
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,srl,49.7024534351145,m g-1
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,rtd,0.2472046251947633,g cm-3
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,rdmc,352.1505376344087,mg g-1
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,tuber_wet_mass,NA,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,tuber_dry_mass,NA,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,reproductive_height,22,cm
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,veg_height,15,cm
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,no_leaves,5,NA
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,leaf_wet_mass,0.852,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,leaf_dry_mass,0.17765,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,leaf_area,26.82,cm2
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,sla,150.97101041373486,cm2 g-1
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,leaf_thickness,0.3953333333333333,mm
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,ldmc,0.2085093896713615,g g-1
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,bgb_agb,1.0538116591928253,g g-1
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,aboveground_biomass,8.92,g
+FDF3034,12/09/2023,west,3,2400,3,Harpochloa falx,belowground_biomass,9.4,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,root_depth,10,cm
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,no_root_scan,5,count
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,root_wet_mass,0.2574,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,root_dry_mass,0.10309,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,total_root_length,2471.003003,cm
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,total_root_volume,271.691198,mm3
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,rd,0.326106,mm
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,bi,0.374342,count mm-1
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,srl,23.96937630226016,m g-1
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,rtd,0.3794381296077174,g cm-3
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,rdmc,400.50505050505046,mg g-1
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,tuber_wet_mass,NA,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,tuber_dry_mass,NA,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,reproductive_height,35.3,cm
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,veg_height,13.3,cm
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,no_leaves,5,NA
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,leaf_wet_mass,0.8073,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,leaf_dry_mass,0.12571,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,leaf_area,26.855,cm2
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,sla,213.62660090684912,cm2 g-1
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,leaf_thickness,0.33666666666666667,mm
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,ldmc,0.15571658615136874,g g-1
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,bgb_agb,1.4362342638204706,g g-1
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,aboveground_biomass,18.27,g
+FDJ1565,12/09/2023,west,3,2400,2,Harpochloa falx,belowground_biomass,26.24,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,root_depth,13,cm
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,no_root_scan,4,count
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,root_wet_mass,0.1848,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,root_dry_mass,0.06653,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,total_root_length,1398.335213,cm
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,total_root_volume,204.599001,mm3
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,rd,0.35809,mm
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,bi,0.396185,count mm-1
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,srl,21.01811533142943,m g-1
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,rtd,0.3251726532134925,g cm-3
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,rdmc,360.01082251082255,mg g-1
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,tuber_wet_mass,NA,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,tuber_dry_mass,NA,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,reproductive_height,28.6,cm
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,veg_height,13.5,cm
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,no_leaves,5,NA
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,leaf_wet_mass,0.6985,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,leaf_dry_mass,0.15285,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,leaf_area,21.979,cm2
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,sla,143.79456983971212,cm2 g-1
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,leaf_thickness,0.34500000000000003,mm
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,ldmc,0.21882605583392986,g g-1
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,bgb_agb,0.24513430915232426,g g-1
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,aboveground_biomass,62.17,g
+FDN1018,12/09/2023,west,3,2400,1,Harpochloa falx,belowground_biomass,15.24,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,root_depth,19.6,cm
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,no_root_scan,5,count
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,root_wet_mass,0.0381,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,root_dry_mass,0.01659,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,total_root_length,1321.921252,cm
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,total_root_volume,85.149809,mm3
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,rd,0.260498,mm
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,bi,0.389584,count mm-1
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,srl,79.68181145268234,m g-1
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,rtd,0.19483308529793647,g cm-3
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,rdmc,435.4330708661417,mg g-1
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,tuber_wet_mass,NA,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,tuber_dry_mass,NA,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,reproductive_height,23.9,cm
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,veg_height,20.1,cm
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,no_leaves,5,NA
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,leaf_wet_mass,0.2408,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,leaf_dry_mass,0.0898,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,leaf_area,19.969,cm2
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,sla,222.37193763919822,cm2 g-1
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,leaf_thickness,0.185,mm
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,ldmc,0.37292358803986714,g g-1
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,bgb_agb,4.638297872340425,g g-1
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,aboveground_biomass,2.35,g
+FDR6843,12/09/2023,west,3,2400,5,Themeda triandra,belowground_biomass,10.9,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,root_depth,21.6,cm
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,no_root_scan,4,count
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,root_wet_mass,0.0436,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,root_dry_mass,0.01805,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,total_root_length,1325.862079,cm
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,total_root_volume,79.482784,mm3
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,rd,0.252789,mm
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,bi,0.367308,count mm-1
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,srl,73.45496282548476,m g-1
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,rtd,0.22709320297587965,g cm-3
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,rdmc,413.9908256880734,mg g-1
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,tuber_wet_mass,NA,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,tuber_dry_mass,NA,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,reproductive_height,24.6,cm
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,veg_height,13.2,cm
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,no_leaves,5,NA
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,leaf_wet_mass,0.1258,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,leaf_dry_mass,0.04521,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,leaf_area,11.387,cm2
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,sla,251.86905551869057,cm2 g-1
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,leaf_thickness,0.127,mm
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,ldmc,0.35937996820349766,g g-1
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,bgb_agb,6.484149855907781,g g-1
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,aboveground_biomass,3.47,g
+FDV4335,12/09/2023,west,3,2400,4,Themeda triandra,belowground_biomass,22.5,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,root_depth,8,cm
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,no_root_scan,3,count
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,root_wet_mass,0.0172,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,root_dry_mass,0.00573,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,total_root_length,529.354592,cm
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,total_root_volume,28.417527,mm3
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,rd,0.239963,mm
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,bi,0.408044,count mm-1
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,srl,92.38300034904015,m g-1
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,rtd,0.20163612407230228,g cm-3
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,rdmc,333.1395348837209,mg g-1
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,tuber_wet_mass,0.2983,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,tuber_dry_mass,0.06399,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,reproductive_height,28.8,cm
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,veg_height,5.3,cm
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,no_leaves,1,NA
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,leaf_wet_mass,0.8981,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,leaf_dry_mass,0.17296,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,leaf_area,14.956,cm2
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,sla,86.47086031452359,cm2 g-1
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,leaf_thickness,0.8916666666666666,mm
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,ldmc,0.1925843447277586,g g-1
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,bgb_agb,2.7792207792207795,g g-1
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,aboveground_biomass,1.54,g
+FDY4037,12/09/2023,west,3,2400,5,Helichrysum pilosellum,belowground_biomass,4.28,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,root_depth,21.5,cm
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,no_root_scan,5,count
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,root_wet_mass,0.0314,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,root_dry_mass,0.013,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,total_root_length,1140.441533,cm
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,total_root_volume,63.558866,mm3
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,rd,0.246726,mm
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,bi,0.416505,count mm-1
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,srl,87.72627176923076,m g-1
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,rtd,0.2045348008568938,g cm-3
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,rdmc,414.0127388535032,mg g-1
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,tuber_wet_mass,NA,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,tuber_dry_mass,NA,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,reproductive_height,37.6,cm
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,veg_height,19.5,cm
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,no_leaves,5,NA
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,leaf_wet_mass,0.2419,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,leaf_dry_mass,0.08581,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,leaf_area,12.063,cm2
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,sla,140.57802120964925,cm2 g-1
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,leaf_thickness,0.27666666666666667,mm
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,ldmc,0.35473336089293095,g g-1
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,bgb_agb,7.4905660377358485,g g-1
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,aboveground_biomass,3.18,g
+FDZ1151,12/09/2023,west,3,2400,3,Themeda triandra,belowground_biomass,23.82,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,root_depth,12.5,cm
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,no_root_scan,5,count
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,root_wet_mass,0.028,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,root_dry_mass,0.00904,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,total_root_length,949.475283,cm
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,total_root_volume,50.716781,mm3
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,rd,0.237315,mm
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,bi,0.351773,count mm-1
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,srl,105.03045165929205,m g-1
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,rtd,0.1782447509829143,g cm-3
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,rdmc,322.85714285714283,mg g-1
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,tuber_wet_mass,NA,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,tuber_dry_mass,NA,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,reproductive_height,20.8,cm
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,veg_height,11.6,cm
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,no_leaves,5,NA
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,leaf_wet_mass,0.1414,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,leaf_dry_mass,0.04062,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,leaf_area,7.398,cm2
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,sla,182.12703101920235,cm2 g-1
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,leaf_thickness,0.21266666666666667,mm
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,ldmc,0.2872701555869873,g g-1
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,bgb_agb,8.548387096774194,g g-1
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,aboveground_biomass,0.93,g
+FEC6189,12/09/2023,west,3,2400,4,Eragrostis capensis,belowground_biomass,7.95,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,root_depth,16.5,cm
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,no_root_scan,4,count
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,root_wet_mass,0.0288,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,root_dry_mass,0.01425,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,total_root_length,536.457227,cm
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,total_root_volume,44.263995,mm3
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,rd,0.292776,mm
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,bi,0.443651,count mm-1
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,srl,37.646121192982456,m g-1
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,rtd,0.3219320804640431,g cm-3
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,rdmc,494.7916666666667,mg g-1
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,tuber_wet_mass,NA,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,tuber_dry_mass,NA,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,reproductive_height,28.5,cm
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,veg_height,16,cm
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,no_leaves,5,NA
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,leaf_wet_mass,0.174,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,leaf_dry_mass,0.06445,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,leaf_area,17.111,cm2
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,sla,265.4926299456944,cm2 g-1
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,leaf_thickness,0.13,mm
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,ldmc,0.3704022988505747,g g-1
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,bgb_agb,0.8544061302681992,g g-1
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,aboveground_biomass,2.61,g
+FED1194,12/09/2023,west,3,2400,2,Themeda triandra,belowground_biomass,2.23,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,root_depth,10,cm
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,no_root_scan,4,count
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,root_wet_mass,0.0266,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,root_dry_mass,0.00948,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,total_root_length,802.913315,cm
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,total_root_volume,46.825722,mm3
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,rd,0.251685,mm
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,bi,0.404776,count mm-1
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,srl,84.6954973628692,m g-1
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,rtd,0.20245283137332085,g cm-3
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,rdmc,356.3909774436091,mg g-1
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,tuber_wet_mass,0.242,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,tuber_dry_mass,0.08927,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,reproductive_height,42.2,cm
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,veg_height,21.3,cm
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,no_leaves,1,NA
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,leaf_wet_mass,1.018,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,leaf_dry_mass,0.16146,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,leaf_area,17.96,cm2
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,sla,111.2349808001982,cm2 g-1
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,leaf_thickness,0.603,mm
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,ldmc,0.15860510805500982,g g-1
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,bgb_agb,1.5612244897959184,g g-1
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,aboveground_biomass,0.98,g
+FEG8108,12/09/2023,west,3,2400,5,Senecio glaberrimus,belowground_biomass,1.53,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,root_depth,19,cm
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,no_root_scan,5,count
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,root_wet_mass,0.0237,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,root_dry_mass,0.0102,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,total_root_length,857.687413,cm
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,total_root_volume,64.205967,mm3
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,rd,0.272998,mm
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,bi,0.458209,count mm-1
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,srl,84.0870012745098,m g-1
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,rtd,0.1588637392533937,g cm-3
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,rdmc,430.3797468354431,mg g-1
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,tuber_wet_mass,NA,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,tuber_dry_mass,NA,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,reproductive_height,31,cm
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,veg_height,18.9,cm
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,no_leaves,5,NA
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,leaf_wet_mass,0.234,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,leaf_dry_mass,0.07888,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,leaf_area,14.873,cm2
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,sla,188.5522312373225,cm2 g-1
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,leaf_thickness,0.142,mm
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,ldmc,0.3370940170940171,g g-1
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,bgb_agb,0.9372623574144486,g g-1
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,aboveground_biomass,5.26,g
+FEH0081,12/09/2023,west,3,2400,1,Themeda triandra,belowground_biomass,4.93,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,root_depth,10,cm
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,no_root_scan,1,count
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,root_wet_mass,0.0053,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,root_dry_mass,0.0029,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,total_root_length,67.909679,cm
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,total_root_volume,2.590919,mm3
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,rd,0.215222,mm
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,bi,0.16198,count mm-1
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,srl,23.417130689655174,m g-1
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,rtd,1.119293964805538,g cm-3
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,rdmc,547.1698113207547,mg g-1
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,tuber_wet_mass,0.5651,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,tuber_dry_mass,0.11125,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,reproductive_height,32.4,cm
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,veg_height,9,cm
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,no_leaves,1,NA
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,leaf_wet_mass,0.9391,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,leaf_dry_mass,0.16845,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,leaf_area,17.014,cm2
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,sla,101.00326506381715,cm2 g-1
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,leaf_thickness,0.961,mm
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,ldmc,0.1793738685975934,g g-1
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,bgb_agb,1.1466666666666667,g g-1
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,aboveground_biomass,0.75,g
+FEK5954,12/09/2023,west,3,2400,2,Helichrysum pilosellum,belowground_biomass,0.86,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,root_depth,17.2,cm
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,no_root_scan,5,count
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,root_wet_mass,0.026,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,root_dry_mass,0.01002,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,total_root_length,961.957474,cm
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,total_root_volume,56.500935,mm3
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,rd,0.256532,mm
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,bi,0.369039,count mm-1
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,srl,96.00373992015969,m g-1
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,rtd,0.1773421979653965,g cm-3
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,rdmc,385.38461538461536,mg g-1
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,tuber_wet_mass,NA,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,tuber_dry_mass,NA,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,reproductive_height,26.2,cm
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,veg_height,9.5,cm
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,no_leaves,5,NA
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,leaf_wet_mass,0.1797,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,leaf_dry_mass,0.05629,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,leaf_area,10.299,cm2
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,sla,182.9632261502931,cm2 g-1
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,leaf_thickness,0.17566666666666667,mm
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,ldmc,0.3132442960489705,g g-1
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,bgb_agb,10.32520325203252,g g-1
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,aboveground_biomass,1.23,g
+FEL2208,12/08/2023,west,4,2600,3,Eragrostis capensis,belowground_biomass,12.7,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,root_depth,9,cm
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,no_root_scan,3,count
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,root_wet_mass,0.0229,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,root_dry_mass,0.00867,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,total_root_length,556.002374,cm
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,total_root_volume,35.802203,mm3
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,rd,0.263661,mm
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,bi,0.438847,count mm-1
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,srl,64.12945490196078,m g-1
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,rtd,0.24216386907811235,g cm-3
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,rdmc,378.6026200873362,mg g-1
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,tuber_wet_mass,0.7407,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,tuber_dry_mass,0.13608,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,reproductive_height,13.5,cm
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,veg_height,4.2,cm
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,no_leaves,1,NA
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,leaf_wet_mass,0.8182,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,leaf_dry_mass,0.15648,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,leaf_area,14.659,cm2
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,sla,93.67970347648262,cm2 g-1
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,leaf_thickness,0.923,mm
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,ldmc,0.19124908335370325,g g-1
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,bgb_agb,1.2857142857142856,g g-1
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,aboveground_biomass,0.91,g
+FEO1874,12/09/2023,west,3,2400,1,Helichrysum pilosellum,belowground_biomass,1.17,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,root_depth,21.2,cm
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,no_root_scan,5,count
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,root_wet_mass,0.024,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,root_dry_mass,0.01014,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,total_root_length,949.364572,cm
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,total_root_volume,64.238945,mm3
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,rd,0.274748,mm
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,bi,0.412908,count mm-1
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,srl,93.62569743589744,m g-1
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,rtd,0.1578481713857536,g cm-3
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,rdmc,422.5,mg g-1
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,tuber_wet_mass,NA,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,tuber_dry_mass,NA,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,reproductive_height,17.2,cm
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,veg_height,14.6,cm
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,no_leaves,5,NA
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,leaf_wet_mass,0.1739,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,leaf_dry_mass,0.05042,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,leaf_area,10.053,cm2
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,sla,199.3851646172154,cm2 g-1
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,leaf_thickness,0.18133333333333332,mm
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,ldmc,0.2899367452558942,g g-1
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,bgb_agb,11.520000000000001,g g-1
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,aboveground_biomass,2.25,g
+FEP9413,12/08/2023,west,4,2600,4,Themeda triandra,belowground_biomass,25.92,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,root_depth,8,cm
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,no_root_scan,5,count
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,root_wet_mass,0.0656,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,root_dry_mass,0.01492,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,total_root_length,983.009831,cm
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,total_root_volume,85.287418,mm3
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,rd,0.298348,mm
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,bi,0.42319,count mm-1
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,srl,65.88537741286864,m g-1
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,rtd,0.17493787887915657,g cm-3
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,rdmc,227.43902439024387,mg g-1
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,tuber_wet_mass,NA,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,tuber_dry_mass,NA,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,reproductive_height,41.2,cm
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,veg_height,14.4,cm
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,no_leaves,5,NA
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,leaf_wet_mass,0.9684,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,leaf_dry_mass,0.22844,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,leaf_area,30.487,cm2
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,sla,133.45736298371563,cm2 g-1
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,leaf_thickness,0.406,mm
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,ldmc,0.23589425857083848,g g-1
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,bgb_agb,1.2921914357682618,g g-1
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,aboveground_biomass,3.97,g
+FES3675,12/09/2023,west,3,2400,5,Harpochloa falx,belowground_biomass,5.13,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,root_depth,18,cm
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,no_root_scan,5,count
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,root_wet_mass,0.0191,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,root_dry_mass,0.01004,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,total_root_length,1137.416052,cm
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,total_root_volume,66.006879,mm3
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,rd,0.252849,mm
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,bi,0.390358,count mm-1
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,srl,113.28845139442231,m g-1
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,rtd,0.1521053585945186,g cm-3
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,rdmc,525.6544502617802,mg g-1
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,tuber_wet_mass,NA,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,tuber_dry_mass,NA,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,reproductive_height,NA,cm
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,veg_height,12,cm
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,no_leaves,5,NA
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,leaf_wet_mass,0.1717,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,leaf_dry_mass,0.05594,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,leaf_area,12.585,cm2
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,sla,224.97318555595282,cm2 g-1
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,leaf_thickness,0.14466666666666667,mm
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,ldmc,0.3258008153756552,g g-1
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,bgb_agb,5.7861445783132535,g g-1
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,aboveground_biomass,3.32,g
+FET3274,12/08/2023,northwest,5,2800,5,Themeda triandra,belowground_biomass,19.21,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,root_depth,8,cm
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,no_root_scan,3,count
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,root_wet_mass,0.0293,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,root_dry_mass,0.01072,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,total_root_length,347.932337,cm
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,total_root_volume,32.740988,mm3
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,rd,0.30989,mm
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,bi,0.22993,count mm-1
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,srl,32.456374720149256,m g-1
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,rtd,0.3274183418044684,g cm-3
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,rdmc,365.8703071672355,mg g-1
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,tuber_wet_mass,0.5238,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,tuber_dry_mass,0.09544,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,reproductive_height,33.5,cm
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,veg_height,6.9,cm
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,no_leaves,1,NA
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,leaf_wet_mass,0.4367,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,leaf_dry_mass,0.08267,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,leaf_area,9.015,cm2
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,sla,109.04802225716706,cm2 g-1
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,leaf_thickness,0.7936666666666666,mm
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,ldmc,0.18930615983512708,g g-1
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,bgb_agb,1.8124999999999998,g g-1
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,aboveground_biomass,0.8,g
+FEU2975,12/09/2023,west,3,2400,3,Helichrysum pilosellum,belowground_biomass,1.45,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,root_depth,20,cm
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,no_root_scan,5,count
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,root_wet_mass,0.0223,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,root_dry_mass,0.00913,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,total_root_length,768.040441,cm
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,total_root_volume,62.105082,mm3
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,rd,0.294943,mm
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,bi,0.386698,count mm-1
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,srl,84.12272081051479,m g-1
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,rtd,0.14700890339376732,g cm-3
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,rdmc,409.4170403587443,mg g-1
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,tuber_wet_mass,NA,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,tuber_dry_mass,NA,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,reproductive_height,17.7,cm
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,veg_height,7.5,cm
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,no_leaves,5,NA
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,leaf_wet_mass,0.5792,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,leaf_dry_mass,0.14626,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,leaf_area,18.153,cm2
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,sla,124.11459045535346,cm2 g-1
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,leaf_thickness,0.342,mm
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,ldmc,0.2525207182320442,g g-1
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,bgb_agb,5.473684210526316,g g-1
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,aboveground_biomass,1.33,g
+FEV1588,12/08/2023,west,4,2600,2,Harpochloa falx,belowground_biomass,7.28,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,root_depth,11,cm
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,no_root_scan,4,count
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,root_wet_mass,0.0298,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,root_dry_mass,0.01063,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,total_root_length,932.442329,cm
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,total_root_volume,60.220092,mm3
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,rd,0.26147,mm
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,bi,0.33675,count mm-1
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,srl,87.71799896519285,m g-1
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,rtd,0.17651915908730262,g cm-3
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,rdmc,356.7114093959732,mg g-1
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,tuber_wet_mass,NA,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,tuber_dry_mass,NA,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,reproductive_height,19.4,cm
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,veg_height,7.5,cm
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,no_leaves,4,NA
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,leaf_wet_mass,0.1059,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,leaf_dry_mass,0.03243,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,leaf_area,6.192,cm2
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,sla,190.93432007400554,cm2 g-1
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,leaf_thickness,0.16666666666666669,mm
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,ldmc,0.30623229461756374,g g-1
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,bgb_agb,6.98,g g-1
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,aboveground_biomass,0.5,g
+FEY3832,12/08/2023,west,4,2600,1,Eragrostis capensis,belowground_biomass,3.49,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,root_depth,19.6,cm
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,no_root_scan,5,count
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,root_wet_mass,0.0153,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,root_dry_mass,0.00378,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,total_root_length,277.937234,cm
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,total_root_volume,21.533563,mm3
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,rd,0.29742,mm
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,bi,0.237464,count mm-1
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,srl,73.52836878306879,m g-1
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,rtd,0.17553992342094057,g cm-3
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,rdmc,247.05882352941177,mg g-1
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,tuber_wet_mass,NA,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,tuber_dry_mass,NA,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,reproductive_height,24,cm
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,veg_height,9.7,cm
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,no_leaves,4,NA
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,leaf_wet_mass,0.496,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,leaf_dry_mass,0.12884,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,leaf_area,13.364,cm2
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,sla,103.72555107109594,cm2 g-1
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,leaf_thickness,0.339,mm
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,ldmc,0.25975806451612904,g g-1
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,bgb_agb,5.9708737864077674,g g-1
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,aboveground_biomass,1.03,g
+FEZ5712,12/08/2023,west,4,2600,4,Harpochloa falx,belowground_biomass,6.15,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,root_depth,19.2,cm
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,no_root_scan,5,count
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,root_wet_mass,0.0282,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,root_dry_mass,0.01083,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,total_root_length,900.798092,cm
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,total_root_volume,81.179114,mm3
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,rd,0.306958,mm
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,bi,0.424068,count mm-1
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,srl,83.17618578024009,m g-1
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,rtd,0.13340869918831585,g cm-3
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,rdmc,384.0425531914894,mg g-1
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,tuber_wet_mass,NA,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,tuber_dry_mass,NA,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,reproductive_height,NA,cm
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,veg_height,15.2,cm
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,no_leaves,5,NA
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,leaf_wet_mass,0.1293,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,leaf_dry_mass,0.0405,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,leaf_area,9.295,cm2
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,sla,229.50617283950618,cm2 g-1
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,leaf_thickness,0.09566666666666666,mm
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,ldmc,0.3132250580046404,g g-1
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,bgb_agb,2.1834942932396837,g g-1
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,aboveground_biomass,11.39,g
+FFC7215,12/08/2023,northwest,5,2800,3,Themeda triandra,belowground_biomass,24.87,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,root_depth,15,cm
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,no_root_scan,4,count
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,root_wet_mass,0.0428,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,root_dry_mass,0.01071,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,total_root_length,1548.360432,cm
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,total_root_volume,90.526024,mm3
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,rd,0.24857,mm
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,bi,0.501821,count mm-1
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,srl,144.571468907563,m g-1
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,rtd,0.11830852087351146,g cm-3
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,rdmc,250.23364485981313,mg g-1
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,tuber_wet_mass,NA,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,tuber_dry_mass,NA,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,reproductive_height,22,cm
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,veg_height,6.8,cm
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,no_leaves,5,NA
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,leaf_wet_mass,0.3042,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,leaf_dry_mass,0.06996,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,leaf_area,11.461,cm2
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,sla,163.82218410520298,cm2 g-1
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,leaf_thickness,0.311,mm
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,ldmc,0.22998027613412225,g g-1
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,bgb_agb,12.609375,g g-1
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,aboveground_biomass,0.64,g
+FFD9944,12/08/2023,west,4,2600,5,Harpochloa falx,belowground_biomass,8.07,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,root_depth,12.5,cm
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,no_root_scan,5,count
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,root_wet_mass,0.0334,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,root_dry_mass,0.01338,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,total_root_length,1092.792162,cm
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,total_root_volume,54.461143,mm3
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,rd,0.235171,mm
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,bi,0.360544,count mm-1
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,srl,81.67355470852019,m g-1
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,rtd,0.24567975005592518,g cm-3
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,rdmc,400.5988023952096,mg g-1
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,tuber_wet_mass,NA,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,tuber_dry_mass,NA,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,reproductive_height,37,cm
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,veg_height,20,cm
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,no_leaves,5,NA
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,leaf_wet_mass,0.4812,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,leaf_dry_mass,0.12929,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,leaf_area,14.509,cm2
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,sla,112.22058937272799,cm2 g-1
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,leaf_thickness,0.3323333333333333,mm
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,ldmc,0.2686824605153782,g g-1
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,bgb_agb,4.390449438202247,g g-1
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,aboveground_biomass,3.56,g
+FFG0527,12/13/2023,west,2,2200,5,Harpochloa falx,belowground_biomass,15.63,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,root_depth,20.4,cm
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,no_root_scan,5,count
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,root_wet_mass,0.122,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,root_dry_mass,0.03174,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,total_root_length,1908.682086,cm
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,total_root_volume,203.127241,mm3
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,rd,0.339084,mm
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,bi,0.251482,count mm-1
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,srl,60.134911342155014,m g-1
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,rtd,0.15625673761797412,g cm-3
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,rdmc,260.1639344262295,mg g-1
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,tuber_wet_mass,NA,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,tuber_dry_mass,NA,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,reproductive_height,NA,cm
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,veg_height,13.2,cm
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,no_leaves,5,NA
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,leaf_wet_mass,0.1446,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,leaf_dry_mass,0.04532,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,leaf_area,10.794,cm2
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,sla,238.1729920564872,cm2 g-1
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,leaf_thickness,0.13933333333333334,mm
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,ldmc,0.31341632088520055,g g-1
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,bgb_agb,7.0618556701030935,g g-1
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,aboveground_biomass,4.85,g
+FFH9263,12/08/2023,northwest,5,2800,1,Themeda triandra,belowground_biomass,34.25,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,root_depth,13,cm
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,no_root_scan,5,count
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,root_wet_mass,0.0648,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,root_dry_mass,0.0358,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,total_root_length,1170.683785,cm
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,total_root_volume,95.515827,mm3
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,rd,0.292101,mm
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,bi,0.280178,count mm-1
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,srl,32.700664385474866,m g-1
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,rtd,0.37480699402832995,g cm-3
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,rdmc,552.4691358024692,mg g-1
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,tuber_wet_mass,NA,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,tuber_dry_mass,NA,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,reproductive_height,45,cm
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,veg_height,13.5,cm
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,no_leaves,5,NA
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,leaf_wet_mass,0.411,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,leaf_dry_mass,0.10698,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,leaf_area,11.601,cm2
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,sla,108.44083006169377,cm2 g-1
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,leaf_thickness,0.35433333333333333,mm
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,ldmc,0.2602919708029197,g g-1
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,bgb_agb,1.4309392265193368,g g-1
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,aboveground_biomass,1.81,g
+FFK2932,12/13/2023,west,2,2200,1,Harpochloa falx,belowground_biomass,2.59,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,root_depth,14,cm
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,no_root_scan,5,count
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,root_wet_mass,0.043,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,root_dry_mass,0.01903,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,total_root_length,1195.081581,cm
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,total_root_volume,69.985116,mm3
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,rd,0.255678,mm
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,bi,0.326338,count mm-1
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,srl,62.79987288491855,m g-1
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,rtd,0.2719149597465838,g cm-3
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,rdmc,442.5581395348837,mg g-1
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,tuber_wet_mass,NA,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,tuber_dry_mass,NA,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,reproductive_height,46.5,cm
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,veg_height,32.5,cm
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,no_leaves,5,NA
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,leaf_wet_mass,0.8081,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,leaf_dry_mass,0.19192,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,leaf_area,22.476,cm2
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,sla,117.11129637348894,cm2 g-1
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,leaf_thickness,0.33566666666666667,mm
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,ldmc,0.23749535948521222,g g-1
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,bgb_agb,1.486211901306241,g g-1
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,aboveground_biomass,6.89,g
+FFL3841,12/13/2023,west,2,2200,2,Harpochloa falx,belowground_biomass,10.24,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,root_depth,12.8,cm
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,no_root_scan,4,count
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,root_wet_mass,0.0239,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,root_dry_mass,0.00789,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,total_root_length,1189.621186,cm
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,total_root_volume,58.421813,mm3
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,rd,0.237189,mm
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,bi,0.294211,count mm-1
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,srl,150.77581571609636,m g-1
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,rtd,0.13505229630583357,g cm-3
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,rdmc,330.12552301255226,mg g-1
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,tuber_wet_mass,NA,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,tuber_dry_mass,NA,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,reproductive_height,14,cm
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,veg_height,11.6,cm
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,no_leaves,4,NA
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,leaf_wet_mass,0.1521,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,leaf_dry_mass,0.04988,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,leaf_area,12.889,cm2
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,sla,258.4001603849238,cm2 g-1
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,leaf_thickness,0.26766666666666666,mm
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,ldmc,0.3279421433267587,g g-1
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,bgb_agb,61.37931034482759,g g-1
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,aboveground_biomass,0.087,g
+FFO5284,12/08/2023,west,4,2600,5,Themeda triandra,belowground_biomass,5.34,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,root_depth,17,cm
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,no_root_scan,5,count
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,root_wet_mass,0.0572,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,root_dry_mass,0.01827,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,total_root_length,1522.145274,cm
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,total_root_volume,127.253429,mm3
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,rd,0.292568,mm
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,bi,0.406006,count mm-1
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,srl,83.31391756978654,m g-1
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,rtd,0.14357176968488605,g cm-3
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,rdmc,319.40559440559446,mg g-1
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,tuber_wet_mass,NA,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,tuber_dry_mass,NA,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,reproductive_height,21.6,cm
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,veg_height,7.1,cm
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,no_leaves,5,NA
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,leaf_wet_mass,0.4485,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,leaf_dry_mass,0.10985,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,leaf_area,13.789,cm2
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,sla,125.52571688666363,cm2 g-1
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,leaf_thickness,0.3273333333333333,mm
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,ldmc,0.24492753623188407,g g-1
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,bgb_agb,0.6156615661566157,g g-1
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,aboveground_biomass,11.11,g
+FFP1160,12/08/2023,northwest,5,2800,4,Harpochloa falx,belowground_biomass,6.84,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,root_depth,13,cm
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,no_root_scan,5,count
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,root_wet_mass,0.0514,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,root_dry_mass,0.03064,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,total_root_length,1555.530183,cm
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,total_root_volume,97.701284,mm3
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,rd,0.261556,mm
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,bi,0.346506,count mm-1
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,srl,50.76795636422977,m g-1
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,rtd,0.3136089797960076,g cm-3
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,rdmc,596.1089494163424,mg g-1
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,tuber_wet_mass,NA,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,tuber_dry_mass,NA,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,reproductive_height,31,cm
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,veg_height,11,cm
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,no_leaves,5,NA
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,leaf_wet_mass,0.6533,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,leaf_dry_mass,0.15607,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,leaf_area,18.569,cm2
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,sla,118.97866342026015,cm2 g-1
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,leaf_thickness,0.33866666666666667,mm
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,ldmc,0.23889484157354965,g g-1
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,bgb_agb,3.0625909752547305,g g-1
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,aboveground_biomass,6.87,g
+FFS2715,12/13/2023,west,2,2200,4,Harpochloa falx,belowground_biomass,21.04,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,root_depth,8,cm
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,no_root_scan,4,count
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,root_wet_mass,0.0315,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,root_dry_mass,0.00464,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,total_root_length,529.047382,cm
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,total_root_volume,46.559796,mm3
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,rd,0.314897,mm
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,bi,0.283528,count mm-1
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,srl,114.01883232758621,m g-1
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,rtd,0.09965679402890855,g cm-3
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,rdmc,147.3015873015873,mg g-1
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,tuber_wet_mass,0.2278,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,tuber_dry_mass,0.08481,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,reproductive_height,38.9,cm
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,veg_height,21.5,cm
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,no_leaves,1,NA
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,leaf_wet_mass,0.6912,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,leaf_dry_mass,0.11621,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,leaf_area,12.847,cm2
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,sla,110.54986662077275,cm2 g-1
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,leaf_thickness,0.5486666666666666,mm
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,ldmc,0.1681278935185185,g g-1
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,bgb_agb,1.7499999999999998,g g-1
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,aboveground_biomass,0.68,g
+FFT9800,12/09/2023,west,3,2400,2,Senecio glaberrimus,belowground_biomass,1.19,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,root_depth,15,cm
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,no_root_scan,5,count
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,root_wet_mass,0.0742,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,root_dry_mass,0.00934,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,total_root_length,965.296483,cm
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,total_root_volume,128.564625,mm3
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,rd,0.375633,mm
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,bi,0.447531,count mm-1
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,srl,103.3508011777302,m g-1
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,rtd,0.07264828874972411,g cm-3
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,rdmc,125.87601078167116,mg g-1
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,tuber_wet_mass,0.3228,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,tuber_dry_mass,0.06723,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,reproductive_height,37,cm
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,veg_height,22.2,cm
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,no_leaves,1,NA
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,leaf_wet_mass,1.0568,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,leaf_dry_mass,0.1702,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,leaf_area,18.747,cm2
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,sla,110.14688601645123,cm2 g-1
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,leaf_thickness,0.7333333333333333,mm
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,ldmc,0.16105223315669948,g g-1
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,bgb_agb,2.0112359550561796,g g-1
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,aboveground_biomass,0.89,g
+FFU7165,12/09/2023,west,3,2400,1,Senecio glaberrimus,belowground_biomass,1.79,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,root_depth,12,cm
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,no_root_scan,5,count
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,root_wet_mass,0.0465,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,root_dry_mass,0.01905,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,total_root_length,1177.021662,cm
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,total_root_volume,66.595081,mm3
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,rd,0.252332,mm
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,bi,0.286316,count mm-1
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,srl,61.78591401574803,m g-1
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,rtd,0.28605716389172947,g cm-3
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,rdmc,409.6774193548387,mg g-1
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,tuber_wet_mass,NA,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,tuber_dry_mass,NA,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,reproductive_height,44.3,cm
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,veg_height,23,cm
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,no_leaves,5,NA
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,leaf_wet_mass,0.686,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,leaf_dry_mass,0.18022,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,leaf_area,17.963,cm2
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,sla,99.67262235046056,cm2 g-1
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,leaf_thickness,0.354,mm
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,ldmc,0.26271137026239066,g g-1
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,bgb_agb,1.2735674676524953,g g-1
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,aboveground_biomass,5.41,g
+FFW6775,12/13/2023,west,2,2200,3,Harpochloa falx,belowground_biomass,6.89,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,root_depth,23,cm
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,no_root_scan,5,count
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,root_wet_mass,0.0747,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,root_dry_mass,0.02463,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,total_root_length,1685.012395,cm
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,total_root_volume,166.889415,mm3
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,rd,0.319616,mm
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,bi,0.368543,count mm-1
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,srl,68.4130083231831,m g-1
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,rtd,0.14758275712093544,g cm-3
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,rdmc,329.718875502008,mg g-1
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,tuber_wet_mass,NA,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,tuber_dry_mass,NA,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,reproductive_height,18.6,cm
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,veg_height,10.8,cm
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,no_leaves,5,NA
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,leaf_wet_mass,0.4311,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,leaf_dry_mass,0.10177,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,leaf_area,15.554,cm2
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,sla,152.8348236218925,cm2 g-1
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,leaf_thickness,0.361,mm
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,ldmc,0.23607051728137324,g g-1
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,bgb_agb,2.0387096774193547,g g-1
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,aboveground_biomass,6.2,g
+FFX9242,12/08/2023,northwest,5,2800,3,Harpochloa falx,belowground_biomass,12.64,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,root_depth,16,cm
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,no_root_scan,5,count
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,root_wet_mass,0.0801,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,root_dry_mass,0.02,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,total_root_length,2294.106374,cm
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,total_root_volume,136.758801,mm3
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,rd,0.252074,mm
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,bi,0.420207,count mm-1
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,srl,114.7053187,m g-1
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,rtd,0.14624287324660004,g cm-3
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,rdmc,249.68789013732834,mg g-1
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,tuber_wet_mass,NA,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,tuber_dry_mass,NA,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,reproductive_height,30.2,cm
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,veg_height,10,cm
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,no_leaves,5,NA
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,leaf_wet_mass,0.235,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,leaf_dry_mass,0.08155,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,leaf_area,13.813,cm2
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,sla,169.38074800735745,cm2 g-1
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,leaf_thickness,0.17933333333333334,mm
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,ldmc,0.34702127659574467,g g-1
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,bgb_agb,7.302469135802468,g g-1
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,aboveground_biomass,1.62,g
+FFY6725,12/08/2023,west,4,2600,4,Eragrostis capensis,belowground_biomass,11.83,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,root_depth,13,cm
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,no_root_scan,5,count
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,root_wet_mass,0.1072,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,root_dry_mass,0.03386,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,total_root_length,1569.506216,cm
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,total_root_volume,216.528368,mm3
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,rd,0.357461,mm
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,bi,0.523094,count mm-1
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,srl,46.35281204961606,m g-1
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,rtd,0.15637673858974452,g cm-3
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,rdmc,315.85820895522386,mg g-1
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,tuber_wet_mass,NA,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,tuber_dry_mass,NA,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,reproductive_height,27.7,cm
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,veg_height,9.9,cm
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,no_leaves,5,NA
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,leaf_wet_mass,0.1708,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,leaf_dry_mass,0.05967,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,leaf_area,11.079,cm2
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,sla,185.6711915535445,cm2 g-1
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,leaf_thickness,0.16866666666666666,mm
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,ldmc,0.3493559718969555,g g-1
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,bgb_agb,6.015706806282723,g g-1
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,aboveground_biomass,1.91,g
+FGA6390,12/09/2023,west,3,2400,3,Eragrostis capensis,belowground_biomass,11.49,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,root_depth,14,cm
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,no_root_scan,5,count
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,root_wet_mass,0.0508,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,root_dry_mass,0.0168,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,total_root_length,622.612484,cm
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,total_root_volume,74.495702,mm3
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,rd,0.326287,mm
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,bi,0.430444,count mm-1
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,srl,37.06026690476191,m g-1
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,rtd,0.22551636603142555,g cm-3
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,rdmc,330.70866141732284,mg g-1
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,tuber_wet_mass,NA,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,tuber_dry_mass,NA,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,reproductive_height,25.1,cm
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,veg_height,13.6,cm
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,no_leaves,5,NA
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,leaf_wet_mass,0.1497,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,leaf_dry_mass,0.04887,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,leaf_area,8.502,cm2
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,sla,173.9717618170657,cm2 g-1
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,leaf_thickness,0.18166666666666667,mm
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,ldmc,0.32645290581162323,g g-1
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,bgb_agb,17.678571428571427,g g-1
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,aboveground_biomass,0.28,g
+FGB1616,12/09/2023,west,3,2400,5,Eragrostis capensis,belowground_biomass,4.95,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,root_depth,9.5,cm
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,no_root_scan,5,count
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,root_wet_mass,0.0375,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,root_dry_mass,0.01344,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,total_root_length,994.078895,cm
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,total_root_volume,71.329736,mm3
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,rd,0.272763,mm
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,bi,0.501972,count mm-1
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,srl,73.9642034970238,m g-1
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,rtd,0.18842071699241955,g cm-3
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,rdmc,358.40000000000003,mg g-1
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,tuber_wet_mass,0.789,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,tuber_dry_mass,0.12903,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,reproductive_height,30.4,cm
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,veg_height,4.7,cm
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,no_leaves,1,NA
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,leaf_wet_mass,0.6843,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,leaf_dry_mass,0.12099,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,leaf_area,11.784,cm2
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,sla,97.3964790478552,cm2 g-1
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,leaf_thickness,0.864,mm
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,ldmc,0.17680841736080666,g g-1
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,bgb_agb,7.443181818181818,g g-1
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,aboveground_biomass,0.88,g
+FGC0245,12/09/2023,west,3,2400,4,Helichrysum pilosellum,belowground_biomass,6.55,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,root_depth,14,cm
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,no_root_scan,5,count
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,root_wet_mass,0.0427,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,root_dry_mass,0.01717,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,total_root_length,860.967233,cm
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,total_root_volume,78.317388,mm3
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,rd,0.303046,mm
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,bi,0.372836,count mm-1
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,srl,50.143694408852646,m g-1
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,rtd,0.21923611650582628,g cm-3
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,rdmc,402.10772833723655,mg g-1
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,tuber_wet_mass,NA,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,tuber_dry_mass,NA,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,reproductive_height,30.5,cm
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,veg_height,9.4,cm
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,no_leaves,5,NA
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,leaf_wet_mass,0.1902,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,leaf_dry_mass,0.06281,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,leaf_area,9.654,cm2
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,sla,153.70163986626332,cm2 g-1
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,leaf_thickness,0.19166666666666665,mm
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,ldmc,0.3302313354363828,g g-1
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,bgb_agb,2.966292134831461,g g-1
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,aboveground_biomass,0.89,g
+FGE4515,12/09/2023,west,3,2400,1,Eragrostis capensis,belowground_biomass,2.64,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,root_depth,15.6,cm
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,no_root_scan,5,count
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,root_wet_mass,0.0417,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,root_dry_mass,0.01555,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,total_root_length,1196.854258,cm
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,total_root_volume,82.905509,mm3
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,rd,0.275563,mm
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,bi,0.391025,count mm-1
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,srl,76.96811948553055,m g-1
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,rtd,0.18756292781460396,g cm-3
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,rdmc,372.9016786570743,mg g-1
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,tuber_wet_mass,NA,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,tuber_dry_mass,NA,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,reproductive_height,23,cm
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,veg_height,10.4,cm
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,no_leaves,5,NA
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,leaf_wet_mass,0.5815,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,leaf_dry_mass,0.14747,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,leaf_area,19.906,cm2
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,sla,134.98338645148166,cm2 g-1
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,leaf_thickness,0.31933333333333336,mm
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,ldmc,0.2536027515047291,g g-1
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,bgb_agb,0.3333333333333333,g g-1
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,aboveground_biomass,8.88,g
+FGF3594,12/08/2023,northwest,5,2800,5,Harpochloa falx,belowground_biomass,2.96,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,root_depth,17,cm
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,no_root_scan,5,count
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,root_wet_mass,0.0752,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,root_dry_mass,0.02498,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,total_root_length,1706.601931,cm
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,total_root_volume,134.684547,mm3
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,rd,0.282291,mm
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,bi,0.358021,count mm-1
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,srl,68.31873222578062,m g-1
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,rtd,0.1854704237153502,g cm-3
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,rdmc,332.1808510638298,mg g-1
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,tuber_wet_mass,NA,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,tuber_dry_mass,NA,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,reproductive_height,13,cm
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,veg_height,17,cm
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,no_leaves,5,NA
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,leaf_wet_mass,0.1677,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,leaf_dry_mass,0.05813,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,leaf_area,9.824,cm2
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,sla,169.00051608463787,cm2 g-1
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,leaf_thickness,0.155,mm
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,ldmc,0.34663088849135365,g g-1
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,bgb_agb,3.5674603174603177,g g-1
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,aboveground_biomass,2.52,g
+FGG8281,12/08/2023,west,4,2600,5,Eragrostis capensis,belowground_biomass,8.99,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,root_depth,12,cm
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,no_root_scan,5,count
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,root_wet_mass,0.0812,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,root_dry_mass,0.03149,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,total_root_length,1176.831269,cm
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,total_root_volume,121.855568,mm3
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,rd,0.319302,mm
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,bi,0.237927,count mm-1
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,srl,37.371586821213086,m g-1
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,rtd,0.258420690304443,g cm-3
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,rdmc,387.807881773399,mg g-1
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,tuber_wet_mass,NA,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,tuber_dry_mass,NA,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,reproductive_height,18.5,cm
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,veg_height,16,cm
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,no_leaves,5,NA
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,leaf_wet_mass,0.6889,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,leaf_dry_mass,0.15852,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,leaf_area,21.095,cm2
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,sla,133.07469089073933,cm2 g-1
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,leaf_thickness,0.374,mm
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,ldmc,0.23010596603280592,g g-1
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,bgb_agb,0.8274932614555256,g g-1
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,aboveground_biomass,11.13,g
+FGI9956,12/09/2023,west,3,2400,4,Harpochloa falx,belowground_biomass,9.21,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,root_depth,11,cm
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,no_root_scan,5,count
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,root_wet_mass,0.0449,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,root_dry_mass,0.01387,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,total_root_length,2066.733494,cm
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,total_root_volume,103.190068,mm3
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,rd,0.232929,mm
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,bi,0.438857,count mm-1
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,srl,149.0074617159337,m g-1
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,rtd,0.13441216067422304,g cm-3
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,rdmc,308.9086859688196,mg g-1
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,tuber_wet_mass,NA,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,tuber_dry_mass,NA,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,reproductive_height,20.1,cm
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,veg_height,6.9,cm
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,no_leaves,5,NA
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,leaf_wet_mass,0.1831,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,leaf_dry_mass,0.06427,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,leaf_area,10.8,cm2
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,sla,168.04107670763966,cm2 g-1
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,leaf_thickness,0.187,mm
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,ldmc,0.351010376843255,g g-1
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,bgb_agb,1.7985074626865671,g g-1
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,aboveground_biomass,1.34,g
+FGJ9233,12/09/2023,west,3,2400,2,Eragrostis capensis,belowground_biomass,2.41,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,root_depth,11.2,cm
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,no_root_scan,5,count
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,root_wet_mass,0.0683,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,root_dry_mass,0.03345,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,total_root_length,1634.273812,cm
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,total_root_volume,140.464301,mm3
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,rd,0.300633,mm
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,bi,0.49135,count mm-1
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,srl,48.85721411061285,m g-1
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,rtd,0.23813879940925345,g cm-3
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,rdmc,489.7510980966326,mg g-1
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,tuber_wet_mass,NA,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,tuber_dry_mass,NA,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,reproductive_height,22.5,cm
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,veg_height,10.1,cm
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,no_leaves,5,NA
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,leaf_wet_mass,0.5442,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,leaf_dry_mass,0.13154,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,leaf_area,18.328,cm2
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,sla,139.3340428766915,cm2 g-1
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,leaf_thickness,0.39433333333333337,mm
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,ldmc,0.24171260565968392,g g-1
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,bgb_agb,2.2654867256637172,g g-1
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,aboveground_biomass,1.13,g
+FGK3505,12/08/2023,west,4,2600,3,Harpochloa falx,belowground_biomass,2.56,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,root_depth,14.2,cm
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,no_root_scan,5,count
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,root_wet_mass,0.0572,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,root_dry_mass,0.02152,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,total_root_length,1185.570983,cm
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,total_root_volume,80.235187,mm3
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,rd,0.268667,mm
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,bi,0.352573,count mm-1
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,srl,55.09158842936803,m g-1
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,rtd,0.2682115017691677,g cm-3
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,rdmc,376.2237762237762,mg g-1
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,tuber_wet_mass,NA,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,tuber_dry_mass,NA,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,reproductive_height,19.5,cm
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,veg_height,11,cm
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,no_leaves,5,NA
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,leaf_wet_mass,0.547,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,leaf_dry_mass,0.14015,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,leaf_area,16.866,cm2
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,sla,120.34249018908312,cm2 g-1
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,leaf_thickness,0.328,mm
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,ldmc,0.25621572212065813,g g-1
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,bgb_agb,3.6310043668122267,g g-1
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,aboveground_biomass,4.58,g
+FGM0803,12/08/2023,northwest,5,2800,1,Harpochloa falx,belowground_biomass,16.63,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,root_depth,21.1,cm
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,no_root_scan,5,count
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,root_wet_mass,0.0298,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,root_dry_mass,0.01037,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,total_root_length,1029.429507,cm
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,total_root_volume,69.112244,mm3
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,rd,0.268579,mm
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,bi,0.305995,count mm-1
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,srl,99.26996210221795,m g-1
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,rtd,0.15004577191850405,g cm-3
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,rdmc,347.9865771812081,mg g-1
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,tuber_wet_mass,NA,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,tuber_dry_mass,NA,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,reproductive_height,17,cm
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,veg_height,8.1,cm
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,no_leaves,5,NA
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,leaf_wet_mass,0.4848,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,leaf_dry_mass,0.12216,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,leaf_area,17.529,cm2
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,sla,143.49214145383104,cm2 g-1
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,leaf_thickness,0.284,mm
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,ldmc,0.251980198019802,g g-1
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,bgb_agb,4.921487603305786,g g-1
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,aboveground_biomass,2.42,g
+FGN0784,12/08/2023,northwest,5,2800,2,Harpochloa falx,belowground_biomass,11.91,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,root_depth,15.4,cm
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,no_root_scan,4,count
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,root_wet_mass,0.0515,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,root_dry_mass,0.0144,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,total_root_length,1098.931528,cm
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,total_root_volume,114.766749,mm3
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,rd,0.324198,mm
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,bi,0.450438,count mm-1
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,srl,76.31468944444445,m g-1
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,rtd,0.12547188210411014,g cm-3
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,rdmc,279.61165048543694,mg g-1
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,tuber_wet_mass,NA,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,tuber_dry_mass,NA,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,reproductive_height,10,cm
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,veg_height,6,cm
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,no_leaves,5,NA
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,leaf_wet_mass,0.8,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,leaf_dry_mass,0.02,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,leaf_area,5.339,cm2
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,sla,266.95,cm2 g-1
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,leaf_thickness,0.16133333333333333,mm
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,ldmc,0.024999999999999998,g g-1
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,bgb_agb,2.15,g g-1
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,aboveground_biomass,0.4,g
+FGO9191,12/08/2023,west,4,2600,2,Eragrostis capensis,belowground_biomass,0.86,g
