@@ -7,7 +7,10 @@
 # September 23, 2025
 #
 # Description
-#
+# This script performs an exploratory data analysis of functional traits data from the Drakensberg Rooties' project.
+# It includes loading necessary libraries, creating directories, loading and reshaping data, visualizing data
+# through various plots, identifying and removing outliers, recalculating certain traits, and saving the cleaned data.
+# Additionally, it generates summary tables for the cleaned data.
 ################################################################################
 
 # 1. Load libraries ----
@@ -30,7 +33,7 @@ data_RFT_wide <- data_RFT |>
   select(!unit) |> 
   pivot_wider(names_from = traits, values_from = value) #using traits as names and values as values
 data_RFT_wide 
-write.csv(data_RFT_wide, "data/raw/v_PFCT7_clean_root_traits_2023_wide.csv", row.names = FALSE)
+write_csv(data_RFT_wide, "data/raw/v_PFCT7_clean_root_traits_2023_wide.csv")
 
 # 5. Explore data ----
 
@@ -155,8 +158,8 @@ p4
 ggplotly(p4)
 
 #8. Save clean data ----
-write.csv(data_RFT_2, "data/processed/v_PFCT7_clean_functional_traits_2023.csv")
-write.csv(data_RFT_wide_2, "data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
+write_csv(data_RFT_2, "data/processed/v_PFCT7_clean_functional_traits_2023.csv")
+write_csv(data_RFT_wide_2, "data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
 
 #7. Create  summary tables for clean data ----
@@ -172,7 +175,7 @@ summary_trait_RFT_spp <- data_RFT_2 |>
     max = ifelse(all(is.na(value)), NA, max(value, na.rm = TRUE))
   ) 
 summary_trait_RFT_spp
-write.csv(summary_trait_RFT_spp, "data/output/v_PFCT7_summary_functional_traits_per_spp_2023.csv", row.names = FALSE)
+write_csv(summary_trait_RFT_spp, "data/output/v_PFCT7_summary_functional_traits_per_spp_2023.csv")
 
 ## Summary table per species per elevation
 summary_trait_RFT_spp_ele <- data_RFT_2 |> 
@@ -185,4 +188,4 @@ summary_trait_RFT_spp_ele <- data_RFT_2 |>
     max = ifelse(all(is.na(value)), NA, max(value, na.rm = TRUE))
   ) 
 summary_trait_RFT_spp_ele
-write.csv(summary_trait_RFT_spp_ele, "data/output/v_PFCT7_summary_functional_traits_per_spp_ele_2023.csv", row.names = FALSE)
+write_csv(summary_trait_RFT_spp_ele, "data/output/v_PFCT7_summary_functional_traits_per_spp_ele_2023.csv")
