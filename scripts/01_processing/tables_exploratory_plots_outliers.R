@@ -110,13 +110,17 @@ ggplotly(p2)
 
 #6. Remove outliers, update ldm and recalculate SLA and LDMC ----
 #Outliers identified visually
+#FF05284 has a very high bgb_agb value due to a very low agb value < bgb
+#FEK5954 has a very high rtd value because we could only get one fine root to be analyzed
+#FCE1581 has a very high ldmc value due to a typo in the leaf_dry_mass value
+#FBD8952 has a very high ldmc value due to a typo in the leaf_dry_mass value
 
 
 data_RFT_wide_2 <- data_RFT_wide |> 
   filter(!id %in% c("FFO5284","FEK5954")) |> 
   mutate(
     leaf_dry_mass = case_when(
-      id == "FCE1581"  ~ 0.033600,
+      id == "FCE1581"  ~ 0.033600, 
       id == "FBD8952"  ~ 0.044870,
       TRUE ~ leaf_dry_mass
     )) |> 
