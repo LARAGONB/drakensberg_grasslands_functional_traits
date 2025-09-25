@@ -26,19 +26,19 @@ remove(pkgs)
 
 # 3. Load data ----
 getwd()
-data_RFT <- read_csv("data/raw/v_PFCT7_clean_root_traits_2023.csv")
+data_RFT_raw <- read_csv("data/raw/v_PFCT7_clean_root_traits_2023.csv")
 
 # 4. Create wide table ----
-data_RFT_wide <- data_RFT |> 
+data_RFT_raw_wide <- data_RFT_raw |> 
   select(!unit) |> 
   pivot_wider(names_from = traits, values_from = value) #using traits as names and values as values
 data_RFT_wide 
-write_csv(data_RFT_wide, "data/raw/v_PFCT7_clean_root_traits_2023_wide.csv")
+write_csv(data_RFT_raw_wide, "data/raw/v_PFCT7_clean_root_traits_2023_wide.csv")
 
 # 5. Explore data ----
 
 ## Graphs o changes in FT along the elevational gradient by species
-p <- data_RFT |> 
+p <- data_RFT_raw |> 
   filter(traits %in% c("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")) |> 
   ggplot(aes(x = as.factor(elevation_m_asl), y = value, color = species)) +
   geom_boxplot(position = position_dodge(width = 0.8)) +
@@ -51,7 +51,7 @@ p <- data_RFT |>
 ggplotly(p)
 
 ## Graphs of overall differences in FT by species
-data_RFT |> 
+data_RFT_raw |> 
   filter(traits %in% c("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")) |> 
   ggplot(aes(x = species, y = value, color = species)) +
   geom_boxplot(position = position_dodge(width = 0.8)) +
@@ -62,7 +62,7 @@ data_RFT |>
   facet_wrap(~ traits, scales = "free_y") 
 
 ## Graphs o changes in FT along the elevational gradient by species w/t outilers?
-data_RFT |> 
+data_RFT_raw |> 
   filter(traits %in% c("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")) |> 
   filter(!id %in% c("FBD8952","FCE1581", "FEK5954", "FFO5284")) |> 
   ggplot(aes(x = as.factor(elevation_m_asl), y = value, color = species)) +
@@ -74,7 +74,7 @@ data_RFT |>
   facet_wrap(~ traits, scales = "free_y") 
 
 ## Graphs of overall differences in FT by species w/t outilers?
-data_RFT |> 
+data_RFT_raw |> 
   filter(traits %in% c("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")) |> 
   filter(!id %in% c("FBD8952","FCE1581", "FEK5954", "FFO5284")) |> 
   ggplot(aes(x = species, y = value, color = species)) +
@@ -86,7 +86,7 @@ data_RFT |>
   facet_wrap(~ traits, scales = "free_y") 
 
 ## Density plots per elevation
-data_RFT %>%
+data_RFT_raw %>%
   filter(traits %in% c("rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) %>%
   ggplot(aes(x = value, fill = species)) +
   geom_density(alpha = 0.6) +
@@ -94,7 +94,7 @@ data_RFT %>%
   theme_bw() 
 
 ## Density plots per trait
-data_RFT %>%
+data_RFT_raw %>%
   filter(traits %in% c("rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) %>%
   ggplot(aes(x = value, fill = species)) +
   geom_density(alpha = 0.6) +
@@ -103,15 +103,15 @@ data_RFT %>%
 
 
 ## Scatter plots to explore relationships between traits and find outliers
-p1 <- ggplot(data_RFT_wide, aes(x = leaf_wet_mass, y = leaf_dry_mass)) +
+p1 <- ggplot(data_RFT_raw_wide, aes(x = leaf_wet_mass, y = leaf_dry_mass)) +
   geom_point() 
 ggplotly(p1)
 
-p2 <- ggplot(data_RFT_wide, aes(x = aboveground_biomass, y = belowground_biomass)) +
+p2 <- ggplot(data_RFT_raw_wide, aes(x = aboveground_biomass, y = belowground_biomass)) +
   geom_point() #Scatter plots to explore relationships between traits and find outliers
 ggplotly(p2)
 
-#6. Remove outliers, update ldm and recalculate SLA and LDMC ----
+#6. Remove outliers, update ldm, recalculate SLA and LDMC, and create growth form ----
 #Outliers identified visually
 #FF05284 has a very high bgb_agb value due to a very low agb value < bgb
 #FEK5954 has a very high rtd value because we could only get one fine root to be analyzed
@@ -119,22 +119,32 @@ ggplotly(p2)
 #FBD8952 has a very high ldmc value due to a typo in the leaf_dry_mass value
 
 
-data_RFT_wide_2 <- data_RFT_wide |> 
+data_RFT_wide <- data_RFT_raw_wide |> 
   filter(!id %in% c("FFO5284","FEK5954")) |> 
   mutate(
     leaf_dry_mass = case_when(
       id == "FCE1581"  ~ 0.033600, 
       id == "FBD8952"  ~ 0.044870,
-      TRUE ~ leaf_dry_mass
-    )) |> 
+      TRUE ~ leaf_dry_mass)) |> 
   mutate(
     sla = leaf_area/leaf_dry_mass,
-    ldmc = leaf_dry_mass/leaf_wet_mass
-  )
+    ldmc = leaf_dry_mass/leaf_wet_mass) |> 
+  mutate(
+    growth_form = case_when(
+      species %in% c("Eragrostis capensis", "Harpochloa falx", "Themeda triandra") ~ "grass",
+      species %in% c("Helichrysum pilosellum", "Senecio glaberrimus") ~ "forb",
+      TRUE ~ NA),
+    family = case_when(
+      species %in% c("Eragrostis capensis", "Harpochloa falx", "Themeda triandra") ~ "Poaceae",
+      species %in% c("Helichrysum pilosellum", "Senecio glaberrimus") ~ "Asteraceae",
+      TRUE ~ NA)) |> 
+  relocate(growth_form, .after = species) |> 
+  relocate(family, .after = species)
+  
 
 
-data_RFT_2 <- data_RFT_wide_2 |> 
-  pivot_longer(cols=8:32,
+data_RFT <- data_RFT_wide |> 
+  pivot_longer(cols=10:34,
                names_to = "traits",
                values_to = "value")
 
@@ -158,14 +168,14 @@ p4
 ggplotly(p4)
 
 #8. Save clean data ----
-write_csv(data_RFT_2, "data/processed/v_PFCT7_clean_functional_traits_2023.csv")
-write_csv(data_RFT_wide_2, "data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
+write_csv(data_RFT, "data/processed/v_PFCT7_clean_functional_traits_2023.csv")
+write_csv(data_RFT_wide, "data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
 
 #7. Create  summary tables for clean data ----
 
 ## Summary table per species across all elevations
-summary_trait_RFT_spp <- data_RFT_2 |> 
+summary_trait_RFT_spp <- data_RFT |> 
   filter(traits %in% c("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")) |> 
   group_by(species,traits) |>
   summarise(
@@ -178,7 +188,7 @@ summary_trait_RFT_spp
 write_csv(summary_trait_RFT_spp, "data/output/v_PFCT7_summary_functional_traits_per_spp_2023.csv")
 
 ## Summary table per species per elevation
-summary_trait_RFT_spp_ele <- data_RFT_2 |> 
+summary_trait_RFT_spp_ele <- data_RFT |> 
   filter(traits %in% c("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")) |> 
   group_by(species,elevation_m_asl,traits) |>
   summarise(
