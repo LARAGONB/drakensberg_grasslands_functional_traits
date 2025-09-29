@@ -11,9 +11,10 @@
 
 # 1. Load libraries ----
 
-#install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis") #install if needed
+#install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
 # devtools::install_github("gavinsimpson/ggvegan")
-pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis")
+pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest",
+          "lmtest", "corrplot")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -21,14 +22,10 @@ remove(pkgs)
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
-# 3. Prepare data ----
-# Select numeric columns for PCA
-trait_data_sel <- trait_data_wide |> 
-  select("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")
 
-
+# 3. PCA Plot ----
 pca_output <- trait_data_wide |> 
-  select(rd, bi, srl, rtd, rdmc, sla, ldmc, bgb_agb) |> 
+  select(root_depth, veg_height, rd, bi, srl, rtd, rdmc, sla, ldmc, bgb_agb) |> 
   rda(scale = TRUE)
 summary(pca_output)
 
@@ -49,7 +46,7 @@ e_B <- eigenvals(pca_output)/sum(eigenvals(pca_output))
 pca_sites |> 
   ggplot(aes(x = PC1, y = PC2, 
              colour = species)) +
-  geom_point(aes(shape = elevation_m_asl), size = 3) +
+  geom_point(aes(shape = factor(elevation_m_asl)), size = 3) +
   geom_segment(data = pca_traits,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
                arrow = arrow(length = unit(0.2, "cm")),
@@ -66,3 +63,4 @@ pca_sites |>
   labs(x = glue("PCA1 ({round(e_B[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B[2] * 100, 1)}%)")) +
   theme_bw()
+
