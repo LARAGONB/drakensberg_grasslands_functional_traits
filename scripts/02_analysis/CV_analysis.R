@@ -86,18 +86,18 @@ ggplot(cv_long, aes(x = traits, y = percent, fill = source)) +
     legend.title = element_text(size = 14),
     legend.text = element_text(size = 12))
 
-# 5. Linear mixed model ----
+# 5. Linear mixed model ---- Where the variation in the trait is found 
 
-srl_trait_variation <- lmer(srl ~ (1|growth_form/species) + (1|elevation_m_asl), trait_data_wide)
-summary(srl_trait_variation)
-as_tibble(VarCorr(srl_trait_variation))
+# srl_trait_variation <- lmer(srl ~ (1|growth_form) + (1|species) + (1|elevation_m_asl), trait_data_wide)
+# summary(srl_trait_variation)
+# as_tibble(VarCorr(srl_trait_variation))
 
 lmm_trait_variation <- trait_data |> 
   filter(traits %in% c("root_depth", "rd", "bi", "srl", "rtd", "rdmc", "veg_height", "sla", "ldmc", "bgb_agb" )) |>
   group_by(traits) |>
   nest() |>
   mutate(
-    model = map(data, ~ lmer(value ~ (1|growth_form/species) + (1|elevation_m_asl), data = .x)),
+    model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|elevation_m_asl), data = .x)),
     varcomp = map(model, ~ as_tibble(VarCorr(.x)) |> 
                     select(grp,vcov, sdcor) |>
                     mutate(
@@ -110,6 +110,6 @@ lmm_trait_variation <- trait_data |>
 prop_var <- lmm_trait_variation |> 
   select(varcomp) |> 
   unnest(varcomp)
-
+print(prop_var, n = 40)
   
 
