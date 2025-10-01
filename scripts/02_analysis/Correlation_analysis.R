@@ -11,10 +11,10 @@
 
 # 1. Load libraries ----
 
-#install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
+#install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot", "skedastic") #install if needed
 # devtools::install_github("gavinsimpson/ggvegan")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest",
-          "lmtest", "corrplot")
+          "lmtest", "corrplot", "skedastic")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -35,25 +35,9 @@ matrix_traits <- trait_data_wide |>
 cor_matrix_traits <- cor(matrix_traits, use = "pairwise.complete.obs", method = "pearson")
 
 ## Compute p-value matrix ----
-cor_p_matrix <- function(x) {
-  n <- ncol(x)
-  pmat <- matrix(NA, n, n)
-  colnames(pmat) <- rownames(pmat) <- colnames (x)
-  for (i in 1:n) {
-    for(j in 1:n) {
-      if (i == j) {
-        pmat[i,j] <- NA
-      } else {
-        pmat[i,j] <- cor.test(x[[i]],x[[j]])$p.value
-      }
-    }
-  }
-  pmat
-}
+pval_matrix_traits <- cor.mtest(matrix_traits, use = "pairwise.complete.obs", method = "pearson")
 
-pval_matrix_traits <- cor_p_matrix(matrix_traits)
-
-# Visual representation
+## Visual representation ----
 corrplot(
   cor_matrix_traits,
   method = "color",
@@ -61,17 +45,20 @@ corrplot(
   tl.srt = 45,
   addCoef.col = "black",      # Show coefficients
   tl.col = "black",           # Axis text color
-  p.mat = pval_matrix_traits, # P-value matrix
+  p.mat = pval_matrix_traits$p, # P-value matrix
   sig.level = 0.05,           # Significance threshold
-  insig = "blank",            # Only blanks numbers, keeps colors for all
+  insig = "pch",
+  pch = 4,
+  pch.col = "white",
+  pch.cex = 4,
   number.digits = 2           # Number of decimals for coefficients
 )
 
-# 4. Root trait relationships across species using linear, polynomial and exponential model ----
+# 4. Correlations across species using linear, polynomial and exponential model ----
 
-# Trait pairs
+## Trait pairs ----
 pairs <- tribble(
-  ~trait1, ~trait2,
+  ~trait_x, ~trait_y,
   "rd", "srl",
   "root_depth", "rtd",
   "bi", "rtd",
@@ -82,394 +69,414 @@ pairs <- tribble(
   "root_depth", "ldmc",
   "bi", "ldmc",
   "ldmc", "sla",
-  "bgb_agb", "ldmc"
-)
+  "bgb_agb", "ldmc") |> 
+  mutate(traits = paste(trait_y,trait_x,sep = "~"))
 
 
-# Model types
+## Model types ----
 formulas <- tribble(
   ~type, ~formula_template,
-  "linear", "{trait2} ~ {trait1}",
-  "poly", "{trait2} ~ {trait1} + I({trait1}^2)",
-  "exp", "log({trait2}) ~ {trait1}"
+  "linear", "{trait_y} ~ {trait_x}",
+  "poly", "{trait_y} ~ {trait_x} + I({trait_x}^2)",
+  "exp", "log({trait_y}) ~ {trait_x}"
 )
 
-# Expand for all pairs and formulas
+## Expand for all pairs and formulas ----
 model_grid <- crossing(pairs, formulas) |> 
   mutate(
     base_formula = pmap_chr(
-      list(formula_template, trait1, trait2),
-      ~ glue(.x, trait1 = .y, trait2 = ..3)
+      list(formula_template, trait_x, trait_y),
+      ~ glue(.x, trait_x = .y, trait_y = ..3)
     ),
-    model_name = paste(trait1, trait2, type, sep = "_")
+    model_name = paste(traits, type, sep = "_")
   ) |> 
   select(!formula_template)
 
 model_grid
-# Fit all models
+
+## Fit all models and extract valuable information ----
 results <- model_grid |> 
   mutate(
-    model = map(base_formula, ~feols(as.formula(.x), data = trait_data_wide)),
-    summary = map(model, ~ summary(.x)),
-    etable = map(model, ~ etable(.x, fitstat = ~ . + f + my + rmse)))
-    )
-    AIC = map_dbl(model, AIC),
-    summary = map(model, summary),
-    residuals = map(model, resid),
-    fitted = map(model, fitted),
-    shapiro = map(residuals, ~shapiro.test(.x)),
-    shapiro_W = map_dbl(shapiro, ~ if(is.null(.x) || is.null(.x$statistic)) NA_real_ else as.numeric(.x$statistic)),
-    bp_test = map2(residuals, fitted, ~bptest(.x ~ .y)),
-    r_squared = map_dbl(model, ~fixest::r2(.x, type = "r2"))
-  )
+    model = map(base_formula, ~ feols(as.formula(.x), data = trait_data_wide)),
+    estimate = map_dbl(model, ~ coef(.x)[[2]]),
+    mean_dv = map_dbl(model, ~ fitstat(.x, "my")$my),
+    # se = map_dbl(model, ~ fixest::se(.x)[[2]]),
+    rmse = map_dbl(model, ~ fitstat(.x, "rmse")$rmse),
+    f_value = map_dbl(model, ~ fitstat(.x, "f")$f$stat),
+    p_value = map_dbl(model, ~ fitstat(.x, "f")$f$p),
+    ar2 = map_dbl(model, ~ fitstat(.x, "ar2")$ar2),
+    significant = p_value < 0.05,
+    aic = map_dbl(model, ~ fitstat(.x, "aic")$aic),
+    w_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$statistic[[1]]),
+    p_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$p.value),
+    w_shap_normal = w_shapiro > 0.9,
+    p_shap_normal = p_shapiro >= 0.05,
+    s_white = map_dbl(base_formula, ~ white(lm(as.formula(.x), data = trait_data_wide))$statistic),
+    p_white = map_dbl(base_formula, ~ white(lm(as.formula(.x), data = trait_data_wide))$p.value),
+    p_whit_normal = p_white >= 0.05,
+    p_bp = map_dbl(model, ~bptest(resid(.x) ~ fitted(.x))$p.value),
+    p_bp_normal = p_bp >= 0.05,
+    etable = map(model, ~ etable(.x, fitstat = ~ . + f + my + rmse)),
+    predicted = map2(model, type, ~ 
+                       if (.y %in% c("linear", "poly")) {
+                         predict(.x)
+                       } else if (.y == "exp") {
+                         exp(predict(.x))
+                       } else {
+                         NA  # or handle other model types
+                       })) |> 
+  relocate(model, .before = etable)
+results  
+  
+## Sort table based on aic value for each trait pair ----
+results_sort <- results |> 
+  group_by(traits) |> 
+  arrange(traits,aic)
 
+## Extract best model (lowest aic) for each trait pair ----
+results_best <- results %>%
+  group_by(traits) %>%
+  filter(aic == min(aic)) %>%
+  ungroup()
 
-# Summarize results
-
-mod <- feols(srl ~ rtd, trait_data_wide)
-summary(mod)
-summary(mod, cluster =  ~species)
-
-mod$coeftable
-
-
-summary_table <- model_grid %>%
-  mutate(
-    model = map(base_formula, ~feols(as.formula(.x), data = trait_data_wide)),
-    summary_obj = map(model, ~ if (inherits(.x, "try-error")) NA else summary(.x)),
-    # Extract non-intercept term estimates, p-values, and significance
-    coef_df = map(summary_obj, function(s) {
-      if (is.null(s) || all(is.na(s))) {
-        tibble(term = NA_character_, estimate = NA_real_, p.value = NA_real_, significant = NA)
-      } else {
-        ct <- as.data.frame(s$coeftable)
-        ct$term <- rownames(ct)
-        ct %>%
-          filter(term != "(Intercept)") %>%
-          select(term, estimate = Estimate, p.value = `Pr(>|t|)`) %>%
-          mutate(significant = if_else(!is.na(p.value) & p.value < 0.05, TRUE, FALSE))
-      }
-    }),
-    AIC = map_dbl(model, AIC),
-    BIC = map_dbl(model, BIC),
-    residuals = map(model, resid),
-    fitted = map(model, fitted),
-    shapiro = map(residuals, ~shapiro.test(.x)),
-    bp_test = map2(residuals, fitted, ~bptest(.x ~ .y)),
-    r_squared = map_dbl(model, ~if (inherits(.x, "try-error")) NA_real_ else fixest::r2(.x, type = "r2"))
-  ) %>%
-  transmute(
-    model_name,
-    formula = base_formula,
-    warning = map_chr(model, ~ifelse(any(class(.x) == "try-error"), "ERROR", "")),
-    coef_df,
-    AIC,
-    BIC,
-    shapiro_W = map_dbl(shapiro, ~ if(is.null(.x) || is.null(.x$statistic)) NA_real_ else as.numeric(.x$statistic)),
-    shapiro_p = map_dbl(shapiro, "p.value"),
-    shapiro_pass = shapiro_p > 0.05,
-    bp_p = map_dbl(bp_test, "p.value"),
-    bp_pass = bp_p > 0.05,
-    r_squared
-  ) %>%
-  unnest(coef_df)
-
-print(summary_table)
-
-summary_table <- model_grid %>%
-  mutate(
-    # Add species as a fixed effect (dummy variable coding)
-    model = map(base_formula, ~feols(as.formula(.x),, data = trait_data_wide)),
-    summary_obj = map(model, ~if (inherits(.x, "try-error")) NA else summary(.x)),
-    # Calculate overall F-statistic and p-value
-    F_value = map_dbl(summary_obj, function(s) {
-      if (is.null(s) || all(is.na(s))) return(NA_real_)
-      nparams <- s$nparams
-      nobs <- s$nobs
-      ssr_null <- s$ssr_null
-      ssr <- s$ssr
-      df1 <- nparams - 1
-      df2 <- nobs - nparams
-      num <- (ssr_null - ssr) / df1
-      den <- ssr / df2
-      Fstat <- num / den
-      if (is.na(Fstat) || is.nan(Fstat) || is.infinite(Fstat)) return(NA_real_)
-      Fstat
-    }),
-    F_p = map2_dbl(summary_obj, F_value, function(s, Fval) {
-      if (is.null(s) || all(is.na(s)) || is.na(Fval)) return(NA_real_)
-      nparams <- s$nparams
-      nobs <- s$nobs
-      df1 <- nparams - 1
-      df2 <- nobs - nparams
-      pf(Fval, df1, df2, lower.tail = FALSE)
-    }),
-    model_significant = F_p < 0.05,
-    r_squared = map_dbl(model, ~if (inherits(.x, "try-error")) NA_real_ else fixest::r2(.x, type = "r2")),
-    AIC = map_dbl(model, ~if (inherits(.x, "try-error")) NA_real_ else AIC(.x)),
-    BIC = map_dbl(model, ~if (inherits(.x, "try-error")) NA_real_ else BIC(.x))
-  ) %>%
-  transmute(
-    model_name,
-    formula = base_formula,
-    warning = map_chr(model, ~ifelse(any(class(.x) == "try-error"), "ERROR", "")),
-    F_value,
-    F_p,
-    model_significant,
-    r_squared,
-    AIC,
-    BIC
-  )
-
-summary_table_spp <- model_grid %>%
-  mutate(
-    # Add species as a fixed effect (dummy variable coding)
-    model = map(base_formula, ~feols(update(as.formula(.x), . ~ . + species), data = trait_data_wide)),
-    summary_obj = map(model, ~if (inherits(.x, "try-error")) NA else summary(.x)),
-    # Calculate overall F-statistic and p-value
-    F_value = map_dbl(summary_obj, function(s) {
-      if (is.null(s) || all(is.na(s))) return(NA_real_)
-      nparams <- s$nparams
-      nobs <- s$nobs
-      ssr_null <- s$ssr_null
-      ssr <- s$ssr
-      df1 <- nparams - 1
-      df2 <- nobs - nparams
-      num <- (ssr_null - ssr) / df1
-      den <- ssr / df2
-      Fstat <- num / den
-      if (is.na(Fstat) || is.nan(Fstat) || is.infinite(Fstat)) return(NA_real_)
-      Fstat
-    }),
-    F_p = map2_dbl(summary_obj, F_value, function(s, Fval) {
-      if (is.null(s) || all(is.na(s)) || is.na(Fval)) return(NA_real_)
-      nparams <- s$nparams
-      nobs <- s$nobs
-      df1 <- nparams - 1
-      df2 <- nobs - nparams
-      pf(Fval, df1, df2, lower.tail = FALSE)
-    }),
-    model_significant = F_p < 0.05,
-    r_squared = map_dbl(model, ~if (inherits(.x, "try-error")) NA_real_ else fixest::r2(.x, type = "r2")),
-    AIC = map_dbl(model, ~if (inherits(.x, "try-error")) NA_real_ else AIC(.x)),
-    BIC = map_dbl(model, ~if (inherits(.x, "try-error")) NA_real_ else BIC(.x))
-  ) %>%
-  transmute(
-    model_name,
-    formula = base_formula,
-    warning = map_chr(model, ~ifelse(any(class(.x) == "try-error"), "ERROR", "")),
-    F_value,
-    F_p,
-    model_significant,
-    r_squared,
-    AIC,
-    BIC
-  )
-
-## Model variations
-#variations <- tribble(
-#  ~variation, ~suffix,
-#  "none", "",
-#  "species_FE", "| species",
-#  "species_interact", "* species"
-#)
-
-## Expand for all pairs, formulas, and variations
-#model_grid <- crossing(pairs, formulas, variations) %>%
-#  mutate(
-#    base_formula = pmap_chr(
-#      list(formula_template, trait1, trait2),
-#      ~ glue(.x, trait1 = .y, trait2 = ..3)
-#    ),
-#    full_formula = case_when(
-#      variation == "species_interact" ~ 
-#        paste0(sub(" ~ ", " ~ (", base_formula, fixed = TRUE), ") * species"),
-#      TRUE ~ paste(base_formula, suffix)
-#    ),
-#    model_name = paste(trait1, trait2, type, variation, sep = "_")
-#  )
-
-## Fit all models
-#results <- model_grid %>%
-# mutate(
-#   model = map(full_formula, ~feols(as.formula(.x), data = trait_data_wide)),
-#   AIC = map_dbl(model, AIC),
-#   BIC = map_dbl(model, BIC),
-#   summary = map(model, summary),
-#   residuals = map(model, resid),
-#   fitted = map(model, fitted),
-#   shapiro = map(residuals, ~shapiro.test(.x)),
-#   bp_test = map2(residuals, fitted, ~bptest(.x ~ .y)),
-#   r_squared = map_dbl(model, ~fixest::r2(.x, type = "r2"))
+## Extract the fitted values per trait pair ----
+# pwalk(
+#   list(trait = results_best$traits, pred = results_best$predicted),
+#   function(trait, pred) {
+#     trait_clean <- gsub("[^A-Za-z0-9]", "_", trait)
+#     var_name <- paste0(trait_clean, "_fitted")
+#     assign(var_name, unlist(pred) |> as.numeric(), envir = .GlobalEnv)
+#   }
 # )
 
-
-# 4. Trait Correlation ----
-
-#Matrix of traits
-matrix_traits <- trait_data_wide |> 
-  select(root_depth, veg_height, rd, bi, srl, rtd, rdmc, sla, ldmc, bgb_agb) |>
-  mutate(across(everything(), as.numeric))
-
-#Correlation matrix
-cor_matrix_traits <- cor(matrix_traits, use = "pairwise.complete.obs", method = "pearson")
-
-#Compute p-value matrix
-cor_p_matrix <- function(x) {
-  n <- ncol(x)
-  pmat <- matrix(NA, n, n)
-  colnames(pmat) <- rownames(pmat) <- colnames (x)
-  for (i in 1:n) {
-    for(j in 1:n) {
-      if (i == j) {
-        pmat[i,j] <- NA
-      } else {
-        pmat[i,j] <- cor.test(x[[i]],x[[j]])$p.value
-      }
-    }
-  }
-  pmat
-}
-
-pval_matrix_traits <- cor_p_matrix(matrix_traits)
-
-# Diagnostics
-stopifnot(
-  identical(dim(cor_matrix_traits), dim(pval_matrix_traits)),
-  all(rownames(cor_matrix_traits) == rownames(pval_matrix_traits)),
-  all(colnames(cor_matrix_traits) == colnames(pval_matrix_traits))
+selected_cols <- c(
+  "id", "aspect", "site_id", "elevation_m_asl", "plant_id", "species", "family", "growth_form",
+  "rd", "root_depth", "bi", "rtd", "rdmc", "ldmc", "bgb_agb", "srl", "sla", "predicted"
 )
 
-diag(cor_matrix_traits) <- 1
-diag(pval_matrix_traits) <- NA
-
-
-# Visual representation
-corrplot(
-  cor_matrix_traits,
-  method = "color",
-  type = "lower",
-  tl.srt = 45,
-  addCoef.col = "black",      # Show coefficients
-  tl.col = "black",           # Axis text color
-  p.mat = pval_matrix_traits, # P-value matrix
-  sig.level = 0.05,           # Significance threshold
-  insig = "blank",            # Only blanks numbers, keeps colors for all
-  number.digits = 2           # Number of decimals for coefficients
-)
-
-
-# 4. Similar analysis to Weemstra et al 2020 Functional ecology ----
-
-# Your trait pairs
-pairs <- tribble(
-  ~trait1, ~trait2,
-  "rd", "srl",
-  "root_depth", "rtd",
-  "bi", "rtd",
-  "rtd", 'srl', 
-  "rdmc", "rtd",
-  "root_depth", "sla",
-  "bi", "sla",
-  "root_depth", "ldmc",
-  "bi", "ldmc",
-  "ldmc", "sla",
-  "bgb_agb", "ldmc"
-)
-
-# Model types
-formulas <- tribble(
-  ~type, ~formula_template,
-  "linear", "{trait2} ~ {trait1}",
-  "poly", "{trait2} ~ {trait1} + I({trait1}^2)",
-  "exp", "log({trait2}) ~ {trait1}"
-)
-
-# Model variations
-variations <- tribble(
-  ~variation, ~suffix,
-  "none", "",
-  "species_FE", "| species",
-  "species_interact", "* species"
-)
-
-# Expand for all pairs, formulas, and variations
-model_grid <- crossing(pairs, formulas, variations) %>%
+results_blong <- results_best |> 
   mutate(
-    base_formula = pmap_chr(
-      list(formula_template, trait1, trait2),
-      ~ glue(.x, trait1 = .y, trait2 = ..3)
-    ),
-    full_formula = case_when(
-      variation == "species_interact" ~ 
-        paste0(sub(" ~ ", " ~ (", base_formula, fixed = TRUE), ") * species"),
-      TRUE ~ paste(base_formula, suffix)
-    ),
-    model_name = paste(trait1, trait2, type, variation, sep = "_")
-  )
+    data = map(predicted, ~ mutate(trait_data_wide, predicted = .x))
+  )  |> 
+  select(1:6, data) |> 
+  unnest(data) |> 
+  select(1:6, all_of(selected_cols)) |> 
+  rename(predicted_all = predicted)
 
-# Fit all models
-results <- model_grid %>%
+# 5. Correlations within species ----
+
+# Nest data by species
+nested_spp <- trait_data_wide  |> 
+  group_by(species)  |> 
+  nest()
+
+## Created grid including species 
+species_grid <- crossing(
+  species = unique(trait_data_wide$species),
+  model_grid) |> 
+  left_join(nested_spp, by = "species")
+
+  
+## Fit all models and extract valuable information ----
+results_spp <- species_grid |> 
   mutate(
-    model = map(full_formula, ~feols(as.formula(.x), data = trait_data_wide)),
-    AIC = map_dbl(model, AIC),
-    BIC = map_dbl(model, BIC),
-    summary = map(model, summary),
-    residuals = map(model, resid),
-    fitted = map(model, fitted),
-    shapiro = map(residuals, ~shapiro.test(.x)),
-    bp_test = map2(residuals, fitted, ~bptest(.x ~ .y)),
-    r_squared = map_dbl(model, ~fixest::r2(.x, type = "r2"))
-  )
+    model = map2(base_formula, data, ~ feols(as.formula(.x), data = .y)),
+    estimate = map_dbl(model, ~ coef(.x)[[2]]),
+    mean_dv = map_dbl(model, ~ fitstat(.x, "my")$my),
+    se = map_dbl(model, ~ fixest::se(.x)[[2]]),
+    rmse = map_dbl(model, ~ fitstat(.x, "rmse")$rmse),
+    f_value = map_dbl(model, ~ fitstat(.x, "f")$f$stat),
+    p_value = map_dbl(model, ~ fitstat(.x, "f")$f$p),
+    ar2 = map_dbl(model, ~ fitstat(.x, "ar2")$ar2),
+    significant = p_value < 0.05,
+    aic = map_dbl(model, ~ fitstat(.x, "aic")$aic),
+    w_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$statistic[[1]]),
+    p_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$p.value),
+    w_shap_normal = w_shapiro > 0.9,
+    p_shap_normal = p_shapiro >= 0.05,
+    s_white = map_dbl(base_formula, ~ white(lm(as.formula(.x), data = trait_data_wide))$statistic),
+    p_white = map_dbl(base_formula, ~ white(lm(as.formula(.x), data = trait_data_wide))$p.value),
+    p_whit_normal = p_white >= 0.05,
+    p_bp = map_dbl(model, ~bptest(resid(.x) ~ fitted(.x))$p.value),
+    p_bp_normal = p_bp >= 0.05,
+    etable = map(model, ~ etable(.x, fitstat = ~ . + f + my + rmse)),
+    predicted = map2(model, type, ~ 
+                       if (.y %in% c("linear", "poly")) {
+                         predict(.x)
+                       } else if (.y == "exp") {
+                         exp(predict(.x))
+                       } else {
+                         NA  # or handle other model types
+                       })) |> 
+  relocate(model, .before = etable)
+results_spp  
 
-# Summarize results
-summary_table <- results %>%
-  transmute(
-    model_name,
-    formula = full_formula,
-    warning = map_chr(model, ~ifelse(any(class(.x) == "try-error"), "ERROR", "")),
-    shapiro_p = map_dbl(shapiro, "p.value"),
-    shapiro_pass = shapiro_p > 0.05,
-    bp_p = map_dbl(bp_test, "p.value"),
-    bp_pass = bp_p > 0.05,
-    r_squared
-  )
-print(summary_table)
+## Sort table based on aic value for each trait pair ----
+results_sort_spp <- results_spp |> 
+  group_by(species, traits) |> 
+  arrange(species, traits, aic)
 
-# 1. Collect all AIC/BIC values for all models
-aic_bic_table <- results %>%
-  select(trait1, trait2, model_name, full_formula, AIC, BIC)
+## Extract best model (lowest aic) for each trait pair ----
+results_best_spp <- results_spp %>%
+  group_by(species, traits) %>%
+  filter(aic == min(aic)) %>%
+  ungroup()
 
-# 2. For each trait pair, get the model with the minimum AIC and BIC
-best_models <- aic_bic_table %>%
-  group_by(trait1, trait2) %>%
-  summarise(
-    best_AIC = min(AIC, na.rm = TRUE),
-    best_AIC_model = model_name[which.min(AIC)],
-    best_BIC = min(BIC, na.rm = TRUE),
-    best_BIC_model = model_name[which.min(BIC)],
-    .groups = "drop"
-  )
+## Extracte the fitted values per species and trait pair ----
+selected_cols_spp <- c(
+  "id", "aspect", "site_id", "elevation_m_asl", "plant_id", "family", "growth_form",
+  "rd", "root_depth", "bi", "rtd", "rdmc", "ldmc", "bgb_agb", "srl", "sla", "predicted"
+)
 
-# 3. If you want a single wide table combining all info:
-final_table <- aic_bic_table %>%
-  left_join(best_models, by = c("trait1", "trait2"))
-
-# 4. If you want just the best model rows per trait pair, do:
-best_only <- best_models
-
-# Print the best model for each trait pair (by AIC and BIC)
-print(best_only)
-
-
-
-results %>%
-  group_by(trait1, trait2) %>%
+results_blong_spp <- results_best_spp %>%
   mutate(
-    aic_rank = rank(AIC, ties.method = "min"),
-    bic_rank = rank(BIC, ties.method = "min"),
-    combined_rank = aic_rank + bic_rank
+    data = map2(data, predicted, ~ mutate(.x, predicted = .y))
   ) %>%
-  filter(combined_rank == min(combined_rank, na.rm = TRUE)) %>%
-  ungroup() %>%
-  select(trait1, trait2, model_name, full_formula, AIC, BIC, combined_rank)
+  select(1:7, data) %>%   # First 7 cols + data
+  unnest(data) |> 
+  select(1:7, all_of(selected_cols_spp)) |> 
+  rename(predicted_spp = predicted)
+
+# 7. Create full results table ----
+
+join_cols <- setdiff(intersect(names(results_blong), names(results_blong_spp)), c("type", "base_formula", "model_name"))
+
+results_general <- left_join(results_blong,results_blong_spp, by = join_cols)
+
+# 6. Visualize ----
+## Using facet_wrap ----
+plot_df <- map2_dfr(pairs$trait_x, pairs$trait_y, ~ {
+  trait_data_wide |> 
+    select(x = all_of(.x), y = all_of(.y)) |> 
+    mutate(
+      traits = paste(.y, .x, sep = "~"),
+      trait_x = paste(.x),
+      trait_y = paste(.y)) |> 
+    relocate(x, .after = last_col()) |> 
+    relocate(y, .after = last_col())
+  }
+  )
+
+ggplot(plot_df, aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~ traits, scales = "free") +
+  theme_bw()
+
+## Unique plots and wrap (prefered) ----
+#### srl ~ rtd ----
+
+srl_rtd <- results_general |> 
+  filter(traits == "srl~rtd") |> 
+  ggplot(aes(x = rtd, y = srl)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+srl_rtd
+
+#### srl ~ rd ----
+
+srl_rd <- results_general |> 
+  filter(traits == "srl~rd") |> 
+  ggplot(aes(x = rd, y = srl)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+srl_rd
+
+#### sla ~ root_depth ----
+
+sla_root_depth <- results_general |> 
+  filter(traits == "sla~root_depth") |> 
+  ggplot(aes(x = root_depth, y = sla)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+
+sla_root_depth
+
+#### sla ~ ldmc ----
+
+sla_ldmc <- results_general |> 
+  filter(traits == "sla~ldmc") |> 
+  ggplot(aes(x = ldmc, y = sla)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+sla_ldmc
+
+#### sla ~ bi ----
+
+sla_bi <- results_general |> 
+  filter(traits == "sla~bi") |> 
+  ggplot(aes(x = bi, y = sla)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+sla_bi
+
+#### rtd ~ root_depth ----
+
+rtd_root_depth <- results_general |> 
+  filter(traits == "rtd~root_depth") |> 
+  ggplot(aes(x = root_depth, y = rtd)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+rtd_root_depth
+
+#### rtd ~ rdmc ----
+
+rtd_rdmc <- results_general |> 
+  filter(traits == "rtd~rdmc") |> 
+  ggplot(aes(x = rdmc, y = rtd)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+rtd_rdmc
+
+#### rtd ~ bi ----
+
+rtd_bi <- results_general |> 
+  filter(traits == "rtd~bi") |> 
+  ggplot(aes(x = bi, y = rtd)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+rtd_bi
+
+#### ldmc ~ root_depth ----
+
+ldmc_root_depth <- results_general |> 
+  filter(traits == "ldmc~root_depth") |> 
+  ggplot(aes(x = root_depth, y = ldmc)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+ldmc_root_depth
+
+#### ldmc ~ bi ----
+
+ldmc_bi <- results_general |> 
+  filter(traits == "ldmc~bi") |> 
+  ggplot(aes(x = bi, y = ldmc)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+ldmc_bi
+
+#### ldmc ~ bgb_agb ----
+
+ldmc_bgb_agb <- results_general |> 
+  filter(traits == "ldmc~bgb_agb") |> 
+  ggplot(aes(x = bgb_agb, y = ldmc)) +
+  geom_point() +
+  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
+  geom_line(aes(y = predicted_spp, color = species, group = species)) +
+  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12))
+
+ldmc_bgb_agb
+
+## Combined plot ----
+
+combined_plot <- (ldmc_bgb_agb + ldmc_bi + ldmc_root_depth +
+                  rtd_bi + rtd_rdmc + rtd_root_depth + sla_bi +
+                  sla_ldmc + sla_root_depth + srl_rd + srl_rtd) +
+  plot_layout(guides = "collect", ncol = 3) & theme(legend.position = "right")
+combined_plot
