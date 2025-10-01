@@ -53,16 +53,6 @@ cor_p_matrix <- function(x) {
 
 pval_matrix_traits <- cor_p_matrix(matrix_traits)
 
-# Diagnostics
-#stopifnot(
-#  identical(dim(cor_matrix_traits), dim(pval_matrix_traits)),
-#  all(rownames(cor_matrix_traits) == rownames(pval_matrix_traits)),
-#  all(colnames(cor_matrix_traits) == colnames(pval_matrix_traits))
-#)
-#
-#diag(cor_matrix_traits) <- 1
-#diag(pval_matrix_traits) <- NA
-
 # Visual representation
 corrplot(
   cor_matrix_traits,
@@ -105,21 +95,25 @@ formulas <- tribble(
 )
 
 # Expand for all pairs and formulas
-model_grid <- crossing(pairs, formulas) %>%
+model_grid <- crossing(pairs, formulas) |> 
   mutate(
     base_formula = pmap_chr(
       list(formula_template, trait1, trait2),
       ~ glue(.x, trait1 = .y, trait2 = ..3)
     ),
     model_name = paste(trait1, trait2, type, sep = "_")
-  )
+  ) |> 
+  select(!formula_template)
 
+model_grid
 # Fit all models
-results <- model_grid %>%
+results <- model_grid |> 
   mutate(
     model = map(base_formula, ~feols(as.formula(.x), data = trait_data_wide)),
+    summary = map(model, ~ summary(.x)),
+    etable = map(model, ~ etable(.x, fitstat = ~ . + f + my + rmse)))
+    )
     AIC = map_dbl(model, AIC),
-    BIC = map_dbl(model, BIC),
     summary = map(model, summary),
     residuals = map(model, resid),
     fitted = map(model, fitted),
