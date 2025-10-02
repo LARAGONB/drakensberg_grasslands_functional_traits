@@ -241,9 +241,19 @@ results_blong_spp <- results_best_spp %>%
 
 join_cols <- setdiff(intersect(names(results_blong), names(results_blong_spp)), c("type", "base_formula", "model_name"))
 
-results_general <- left_join(results_blong,results_blong_spp, by = join_cols)
+results_general <- left_join(results_blong,results_blong_spp, by = join_cols) |> 
+  mutate(species = fct_relevel(species, "Themeda triandra", after = 2))
 
 # 6. Visualize ----
+##Unique species colors
+unique(trait_data_wide$species)
+species_colors <- c(
+  "Helichrysum pilosellum" = "#F79143FF",
+  "Senecio glaberrimus" = "#FCCE25FF",
+  "Eragrostis capensis" = "#42049EFF",
+  "Harpochloa falx" = "#8204A7FF",
+  "Themeda triandra" = "#B6308BFF")
+
 ## Using facet_wrap ----
 plot_df <- map2_dfr(pairs$trait_x, pairs$trait_y, ~ {
   trait_data_wide |> 
@@ -268,16 +278,22 @@ ggplot(plot_df, aes(x = x, y = y)) +
 srl_rtd <- results_general |> 
   filter(traits == "srl~rtd") |> 
   ggplot(aes(x = rtd, y = srl)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Root tissue density (g cm"^-3*")"),
+    y = expression("Specific root length (m g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 srl_rtd
@@ -287,16 +303,22 @@ srl_rtd
 srl_rd <- results_general |> 
   filter(traits == "srl~rd") |> 
   ggplot(aes(x = rd, y = srl)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Root diameter (mm)"),
+    y = expression("Specific root length (m g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 srl_rd
@@ -306,16 +328,22 @@ srl_rd
 sla_root_depth <- results_general |> 
   filter(traits == "sla~root_depth") |> 
   ggplot(aes(x = root_depth, y = sla)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Root depth (cm)"),
+    y = expression("Specific leaf area (cm"^2*" g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 
@@ -326,16 +354,22 @@ sla_root_depth
 sla_ldmc <- results_general |> 
   filter(traits == "sla~ldmc") |> 
   ggplot(aes(x = ldmc, y = sla)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Leaf dry matter content (g g"^-1*")"),
+    y = expression("Specific leaf area (cm"^2*" g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 sla_ldmc
@@ -345,16 +379,22 @@ sla_ldmc
 sla_bi <- results_general |> 
   filter(traits == "sla~bi") |> 
   ggplot(aes(x = bi, y = sla)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Branching intensity (count mm"^-1*")"),
+    y = expression("Specific leaf area (cm"^2*" g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 sla_bi
@@ -364,16 +404,22 @@ sla_bi
 rtd_root_depth <- results_general |> 
   filter(traits == "rtd~root_depth") |> 
   ggplot(aes(x = root_depth, y = rtd)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Root depth (cm)"),
+    y = expression("Root tissue density (g cm"^-3*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 rtd_root_depth
@@ -383,16 +429,22 @@ rtd_root_depth
 rtd_rdmc <- results_general |> 
   filter(traits == "rtd~rdmc") |> 
   ggplot(aes(x = rdmc, y = rtd)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Root dry matter content (mg g"^-1*")"),
+    y = expression("Root tissue density (g cm"^-3*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 rtd_rdmc
@@ -402,16 +454,22 @@ rtd_rdmc
 rtd_bi <- results_general |> 
   filter(traits == "rtd~bi") |> 
   ggplot(aes(x = bi, y = rtd)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Branching intensity (count mm"^-1*")"),
+    y = expression("Root tissue density (g cm"^-3*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 rtd_bi
@@ -421,16 +479,22 @@ rtd_bi
 ldmc_root_depth <- results_general |> 
   filter(traits == "ldmc~root_depth") |> 
   ggplot(aes(x = root_depth, y = ldmc)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Root depth (cm)"),
+    y = expression("Leaf dry matter content (g g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 ldmc_root_depth
@@ -440,17 +504,24 @@ ldmc_root_depth
 ldmc_bi <- results_general |> 
   filter(traits == "ldmc~bi") |> 
   ggplot(aes(x = bi, y = ldmc)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Branching intensity (count mm"^-1*")"),
+    y = expression("Leaf dry matter content (g g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
+
 
 ldmc_bi
 
@@ -459,16 +530,22 @@ ldmc_bi
 ldmc_bgb_agb <- results_general |> 
   filter(traits == "ldmc~bgb_agb") |> 
   ggplot(aes(x = bgb_agb, y = ldmc)) +
-  geom_point() +
-  geom_line(aes(y = predicted_all), color = "blue", linewidth = 2) +
-  geom_line(aes(y = predicted_spp, color = species, group = species)) +
-  scale_color_viridis_d(option = "F", direction = -1, begin = 0.1, end = 0.9) +
-  theme_minimal(base_size = 14) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 5) +
+  geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("Belowg-ground:Above-ground biomass (g g"^-1*")"),
+    y = expression("Leaf dry matter content (g g"^-1*")")) + 
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.title = element_text(size = 14),
+    legend.title = element_blank(),
     legend.text = element_text(size = 12))
 
 ldmc_bgb_agb
