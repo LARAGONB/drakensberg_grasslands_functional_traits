@@ -1,5 +1,5 @@
 ################################################################################
-# Correation analyses
+# Trait correlation across all plants and within species
 ################################################################################
 #
 # Lina Aragón
@@ -7,22 +7,28 @@
 # September 24, 2025
 #
 # Description
+# Here we evaluated trait correlations across all the plants measured for the
+# 5 species of interest and within it species. We used AIC to find the best model
+# linear, polynomial or exponential, and create a graph including all the traits
+# combinations that showed to be significant the wether or not they indeed had a 
+# significant relationship across all plants and within species
 ################################################################################
 
 # 1. Load libraries ----
 
-#install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot", "skedastic") #install if needed
-# devtools::install_github("gavinsimpson/ggvegan")
-pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest",
-          "lmtest", "corrplot", "skedastic", "patchwork")
+# install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel",
+#                  "glue", "viridis", "fixest", "lmtest", "corrplot", "skedastic","patchwork",
+#                  "cowplot") #install if needed
+devtools::install_github("gavinsimpson/ggvegan")
+pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel",
+          "glue", "viridis", "fixest", "lmtest", "corrplot", "skedastic", "patchwork",
+          "cowplot")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
 # 2. Load data ----
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
-
-
 
 # 3. Trait Correlation ----
 
@@ -160,7 +166,11 @@ results_best <- results %>%
 sig_best <- results_best |> 
   filter(significant == TRUE)
 
-sig_best
+### Export table ----
+sig_best |> 
+  select(traits, type, estimate, f_value, p_value, ar2, w_shapiro, s_white, p_white, p_bp) |> 
+  arrange(traits) |> 
+  write_csv("results/tab/trait_relationship_across.csv")
 
 ## Extract the fitted values per trait pair ----
 selected_cols <- c(
@@ -241,9 +251,14 @@ results_best_spp <- results_spp %>%
 sig_best_spp <- results_best_spp |> 
   filter(significant == TRUE)
 
-sig_best_spp
+### Export table ----
+sig_best_spp |> 
+  select(species, traits, type, estimate, f_value, p_value, ar2, w_shapiro, s_white, p_white, p_bp) |> 
+  arrange(species, traits) |> 
+  write_csv("results/tab/trait_relationship_within.csv")
 
-## Extracte the fitted values per species and trait pair ----
+
+## Extract the fitted values per species and trait pair ----
 selected_cols_spp <- c(
   "id", "aspect", "site_id", "elevation_m_asl", "plant_id", "family", "growth_form",
   "rd", "root_depth", "bi", "rtd", "rdmc", "ldmc", "bgb_agb", "srl", "sla", "predicted"
@@ -320,6 +335,9 @@ srl_rtd <- results_general |>
 srl_rtd
 
 #### srl ~ rd ----
+
+# build a grpah with srl and rtd
+
 
 srl_rd <- results_general |> 
   filter(traits == "srl~rd") |> 
