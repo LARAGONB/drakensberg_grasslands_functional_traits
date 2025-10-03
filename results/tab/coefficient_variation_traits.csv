@@ -1,0 +1,331 @@
+traits,source,cv,growth_form,species,elevation_m_asl
+bgb_agb,all_plants,95.10278313834193,NA,NA,NA
+bgb_agb,growth_form,63.56801065612135,forb,NA,NA
+bgb_agb,growth_form,91.33928093941839,grass,NA,NA
+bgb_agb,between_species,48.965166802862186,NA,NA,NA
+bgb_agb,within_species,79.38045255544299,NA,Eragrostis capensis,NA
+bgb_agb,within_species,98.30227118285273,NA,Harpochloa falx,NA
+bgb_agb,within_species,55.24091421296189,NA,Helichrysum pilosellum,NA
+bgb_agb,within_species,54.6640828651108,NA,Senecio glaberrimus,NA
+bgb_agb,within_species,81.98605570804041,NA,Themeda triandra,NA
+bgb_agb,itv_between,20.299973385952118,NA,Eragrostis capensis,NA
+bgb_agb,itv_between,80.9472961455063,NA,Harpochloa falx,NA
+bgb_agb,itv_between,13.437517155317943,NA,Helichrysum pilosellum,NA
+bgb_agb,itv_between,31.458473684495836,NA,Senecio glaberrimus,NA
+bgb_agb,itv_between,50.911553727416845,NA,Themeda triandra,NA
+bgb_agb,itv_within,108.47604844057746,NA,Eragrostis capensis,2200
+bgb_agb,itv_within,85.42797526962623,NA,Eragrostis capensis,2400
+bgb_agb,itv_within,53.47979029168517,NA,Eragrostis capensis,2600
+bgb_agb,itv_within,58.47955108887347,NA,Harpochloa falx,2200
+bgb_agb,itv_within,48.139726526754664,NA,Harpochloa falx,2400
+bgb_agb,itv_within,56.421020735733464,NA,Harpochloa falx,2600
+bgb_agb,itv_within,85.05886816568643,NA,Harpochloa falx,2800
+bgb_agb,itv_within,35.51136293468877,NA,Helichrysum pilosellum,2200
+bgb_agb,itv_within,84.40760239463066,NA,Helichrysum pilosellum,2400
+bgb_agb,itv_within,31.46057329868988,NA,Helichrysum pilosellum,2600
+bgb_agb,itv_within,59.17874725370602,NA,Helichrysum pilosellum,2800
+bgb_agb,itv_within,22.345197817499045,NA,Senecio glaberrimus,2200
+bgb_agb,itv_within,65.3325996669766,NA,Senecio glaberrimus,2400
+bgb_agb,itv_within,23.89296096123828,NA,Senecio glaberrimus,2600
+bgb_agb,itv_within,35.28996353174327,NA,Senecio glaberrimus,2800
+bgb_agb,itv_within,49.0989162969451,NA,Themeda triandra,2200
+bgb_agb,itv_within,75.53176888552801,NA,Themeda triandra,2400
+bgb_agb,itv_within,68.14975035455613,NA,Themeda triandra,2600
+bgb_agb,itv_within,62.70108003990771,NA,Themeda triandra,2800
+bi,all_plants,20.75485568425748,NA,NA,NA
+bi,growth_form,23.92797590377095,forb,NA,NA
+bi,growth_form,18.356745337881197,grass,NA,NA
+bi,between_species,7.3054306969136436,NA,NA,NA
+bi,within_species,15.170438061639421,NA,Eragrostis capensis,NA
+bi,within_species,19.85333258135598,NA,Harpochloa falx,NA
+bi,within_species,27.86034377904333,NA,Helichrysum pilosellum,NA
+bi,within_species,19.969690778083603,NA,Senecio glaberrimus,NA
+bi,within_species,16.00457545474375,NA,Themeda triandra,NA
+bi,itv_between,8.657910271654021,NA,Eragrostis capensis,NA
+bi,itv_between,9.414109420823733,NA,Harpochloa falx,NA
+bi,itv_between,8.982456079074858,NA,Helichrysum pilosellum,NA
+bi,itv_between,1.7639726522274242,NA,Senecio glaberrimus,NA
+bi,itv_between,10.97111774569183,NA,Themeda triandra,NA
+bi,itv_within,14.419249089379688,NA,Eragrostis capensis,2200
+bi,itv_within,15.805985989270113,NA,Eragrostis capensis,2400
+bi,itv_within,12.133313632818902,NA,Eragrostis capensis,2600
+bi,itv_within,11.166911408715363,NA,Harpochloa falx,2200
+bi,itv_within,21.543406194850412,NA,Harpochloa falx,2400
+bi,itv_within,26.62458676087066,NA,Harpochloa falx,2600
+bi,itv_within,10.62228831165753,NA,Harpochloa falx,2800
+bi,itv_within,28.706582668664645,NA,Helichrysum pilosellum,2200
+bi,itv_within,29.54038683219688,NA,Helichrysum pilosellum,2400
+bi,itv_within,16.984250879593073,NA,Helichrysum pilosellum,2600
+bi,itv_within,35.47881387204633,NA,Helichrysum pilosellum,2800
+bi,itv_within,22.559309480151875,NA,Senecio glaberrimus,2200
+bi,itv_within,25.335397326162546,NA,Senecio glaberrimus,2400
+bi,itv_within,17.648062896698054,NA,Senecio glaberrimus,2600
+bi,itv_within,20.850537447696425,NA,Senecio glaberrimus,2800
+bi,itv_within,13.995361154913239,NA,Themeda triandra,2200
+bi,itv_within,9.023492875336858,NA,Themeda triandra,2400
+bi,itv_within,5.992806522186365,NA,Themeda triandra,2600
+bi,itv_within,20.827501225488163,NA,Themeda triandra,2800
+ldmc,all_plants,32.940868445934676,NA,NA,NA
+ldmc,growth_form,15.635895517812715,forb,NA,NA
+ldmc,growth_form,24.15218042442021,grass,NA,NA
+ldmc,between_species,30.262137967376685,NA,NA,NA
+ldmc,within_species,29.32924044135704,NA,Eragrostis capensis,NA
+ldmc,within_species,10.419014973147176,NA,Harpochloa falx,NA
+ldmc,within_species,14.293557381445499,NA,Helichrysum pilosellum,NA
+ldmc,within_species,15.062220104951221,NA,Senecio glaberrimus,NA
+ldmc,within_species,12.668330043329767,NA,Themeda triandra,NA
+ldmc,itv_between,10.249894942734576,NA,Eragrostis capensis,NA
+ldmc,itv_between,8.279508025345287,NA,Harpochloa falx,NA
+ldmc,itv_between,6.9773852053250245,NA,Helichrysum pilosellum,NA
+ldmc,itv_between,11.49346690119191,NA,Senecio glaberrimus,NA
+ldmc,itv_between,9.987973778297972,NA,Themeda triandra,NA
+ldmc,itv_within,23.90311385258489,NA,Eragrostis capensis,2200
+ldmc,itv_within,7.823873038213092,NA,Eragrostis capensis,2400
+ldmc,itv_within,51.1595931736358,NA,Eragrostis capensis,2600
+ldmc,itv_within,5.68282015086469,NA,Harpochloa falx,2200
+ldmc,itv_within,15.261899249127358,NA,Harpochloa falx,2400
+ldmc,itv_within,5.435092041915727,NA,Harpochloa falx,2600
+ldmc,itv_within,3.27413500617476,NA,Harpochloa falx,2800
+ldmc,itv_within,9.365490113327484,NA,Helichrysum pilosellum,2200
+ldmc,itv_within,3.8643610116330813,NA,Helichrysum pilosellum,2400
+ldmc,itv_within,22.665836691953473,NA,Helichrysum pilosellum,2600
+ldmc,itv_within,13.538114065086987,NA,Helichrysum pilosellum,2800
+ldmc,itv_within,13.918617788004232,NA,Senecio glaberrimus,2200
+ldmc,itv_within,11.085011376978438,NA,Senecio glaberrimus,2400
+ldmc,itv_within,13.314870248660085,NA,Senecio glaberrimus,2600
+ldmc,itv_within,9.755569797746105,NA,Senecio glaberrimus,2800
+ldmc,itv_within,11.294056063536175,NA,Themeda triandra,2200
+ldmc,itv_within,3.994285995546724,NA,Themeda triandra,2400
+ldmc,itv_within,17.92532328782545,NA,Themeda triandra,2600
+ldmc,itv_within,4.546984875872962,NA,Themeda triandra,2800
+rd,all_plants,11.838327490724474,NA,NA,NA
+rd,growth_form,12.805151344103018,forb,NA,NA
+rd,growth_form,11.18921688479839,grass,NA,NA
+rd,between_species,1.7850892501139515,NA,NA,NA
+rd,within_species,13.659655105615217,NA,Eragrostis capensis,NA
+rd,within_species,10.986671179180743,NA,Harpochloa falx,NA
+rd,within_species,11.785952273518603,NA,Helichrysum pilosellum,NA
+rd,within_species,13.604519600360343,NA,Senecio glaberrimus,NA
+rd,within_species,9.818347580337011,NA,Themeda triandra,NA
+rd,itv_between,2.839618826768856,NA,Eragrostis capensis,NA
+rd,itv_between,8.750237051711233,NA,Harpochloa falx,NA
+rd,itv_between,6.106718554801322,NA,Helichrysum pilosellum,NA
+rd,itv_between,4.84658218734851,NA,Senecio glaberrimus,NA
+rd,itv_between,6.589011602762472,NA,Themeda triandra,NA
+rd,itv_within,12.155111416022567,NA,Eragrostis capensis,2200
+rd,itv_within,18.843335242608557,NA,Eragrostis capensis,2400
+rd,itv_within,10.779281998473943,NA,Eragrostis capensis,2600
+rd,itv_within,8.006271339381144,NA,Harpochloa falx,2200
+rd,itv_within,8.096234962050548,NA,Harpochloa falx,2400
+rd,itv_within,9.933368486136514,NA,Harpochloa falx,2600
+rd,itv_within,7.6089271602213255,NA,Harpochloa falx,2800
+rd,itv_within,12.739109424545958,NA,Helichrysum pilosellum,2200
+rd,itv_within,10.696438535808314,NA,Helichrysum pilosellum,2400
+rd,itv_within,9.350304742358245,NA,Helichrysum pilosellum,2600
+rd,itv_within,12.122228615857395,NA,Helichrysum pilosellum,2800
+rd,itv_within,15.954146448255266,NA,Senecio glaberrimus,2200
+rd,itv_within,17.85530262109242,NA,Senecio glaberrimus,2400
+rd,itv_within,2.458265419671606,NA,Senecio glaberrimus,2600
+rd,itv_within,14.3422311226158,NA,Senecio glaberrimus,2800
+rd,itv_within,7.991579851270217,NA,Themeda triandra,2200
+rd,itv_within,6.899257493601072,NA,Themeda triandra,2400
+rd,itv_within,5.646838803603103,NA,Themeda triandra,2600
+rd,itv_within,11.389675845848307,NA,Themeda triandra,2800
+rdmc,all_plants,31.167114254196843,NA,NA,NA
+rdmc,growth_form,34.81251768654542,forb,NA,NA
+rdmc,growth_form,27.66479895266266,grass,NA,NA
+rdmc,between_species,12.285667352931808,NA,NA,NA
+rdmc,within_species,44.20733388933011,NA,Eragrostis capensis,NA
+rdmc,within_species,24.163365609554408,NA,Harpochloa falx,NA
+rdmc,within_species,25.626143889948928,NA,Helichrysum pilosellum,NA
+rdmc,within_species,42.39597423623115,NA,Senecio glaberrimus,NA
+rdmc,within_species,15.168891138182458,NA,Themeda triandra,NA
+rdmc,itv_between,10.121147243755885,NA,Eragrostis capensis,NA
+rdmc,itv_between,16.491738508819985,NA,Harpochloa falx,NA
+rdmc,itv_between,11.91947530523981,NA,Helichrysum pilosellum,NA
+rdmc,itv_between,34.92020553031866,NA,Senecio glaberrimus,NA
+rdmc,itv_between,8.626939738792366,NA,Themeda triandra,NA
+rdmc,itv_within,70.74580481291981,NA,Eragrostis capensis,2200
+rdmc,itv_within,11.242324614351736,NA,Eragrostis capensis,2400
+rdmc,itv_within,17.32100405851387,NA,Eragrostis capensis,2600
+rdmc,itv_within,18.44293269289879,NA,Harpochloa falx,2200
+rdmc,itv_within,19.94774809675965,NA,Harpochloa falx,2400
+rdmc,itv_within,30.766313815017437,NA,Harpochloa falx,2600
+rdmc,itv_within,7.244682490772957,NA,Harpochloa falx,2800
+rdmc,itv_within,15.365824254664014,NA,Helichrysum pilosellum,2200
+rdmc,itv_within,5.335233528000797,NA,Helichrysum pilosellum,2400
+rdmc,itv_within,37.599161970907815,NA,Helichrysum pilosellum,2600
+rdmc,itv_within,23.1063558663788,NA,Helichrysum pilosellum,2800
+rdmc,itv_within,24.508695292705088,NA,Senecio glaberrimus,2200
+rdmc,itv_within,72.00128217781558,NA,Senecio glaberrimus,2400
+rdmc,itv_within,18.01322572124874,NA,Senecio glaberrimus,2600
+rdmc,itv_within,23.085091707798178,NA,Senecio glaberrimus,2800
+rdmc,itv_within,3.127324275174035,NA,Themeda triandra,2200
+rdmc,itv_within,7.612575108410037,NA,Themeda triandra,2400
+rdmc,itv_within,8.678102567446649,NA,Themeda triandra,2600
+rdmc,itv_within,27.97011987764282,NA,Themeda triandra,2800
+root_depth,all_plants,29.63763211046016,NA,NA,NA
+root_depth,growth_form,34.51504764232351,forb,NA,NA
+root_depth,growth_form,24.51101251739254,grass,NA,NA
+root_depth,between_species,17.21992496387531,NA,NA,NA
+root_depth,within_species,14.31265976313115,NA,Eragrostis capensis,NA
+root_depth,within_species,26.5016596756589,NA,Harpochloa falx,NA
+root_depth,within_species,35.8112580367357,NA,Helichrysum pilosellum,NA
+root_depth,within_species,29.846923153855258,NA,Senecio glaberrimus,NA
+root_depth,within_species,20.216115749694595,NA,Themeda triandra,NA
+root_depth,itv_between,8.88715070909257,NA,Eragrostis capensis,NA
+root_depth,itv_between,22.1893015201914,NA,Harpochloa falx,NA
+root_depth,itv_between,28.198713398278798,NA,Helichrysum pilosellum,NA
+root_depth,itv_between,22.83568639725372,NA,Senecio glaberrimus,NA
+root_depth,itv_between,13.942369202519453,NA,Themeda triandra,NA
+root_depth,itv_within,10.856877697028311,NA,Eragrostis capensis,2200
+root_depth,itv_within,9.651084959681187,NA,Eragrostis capensis,2400
+root_depth,itv_within,16.477037050623466,NA,Eragrostis capensis,2600
+root_depth,itv_within,5.748991075267956,NA,Harpochloa falx,2200
+root_depth,itv_within,18.181818181818183,NA,Harpochloa falx,2400
+root_depth,itv_within,22.367968984033773,NA,Harpochloa falx,2600
+root_depth,itv_within,20.516388089203804,NA,Harpochloa falx,2800
+root_depth,itv_within,29.750271589177256,NA,Helichrysum pilosellum,2200
+root_depth,itv_within,8.695652173913043,NA,Helichrysum pilosellum,2400
+root_depth,itv_within,14.903269373413636,NA,Helichrysum pilosellum,2600
+root_depth,itv_within,31.650457549812415,NA,Helichrysum pilosellum,2800
+root_depth,itv_within,31.886102672559346,NA,Senecio glaberrimus,2200
+root_depth,itv_within,35.157314325918136,NA,Senecio glaberrimus,2400
+root_depth,itv_within,4.204090492824769,NA,Senecio glaberrimus,2600
+root_depth,itv_within,22.432827811481445,NA,Senecio glaberrimus,2800
+root_depth,itv_within,17.03299848962426,NA,Themeda triandra,2200
+root_depth,itv_within,10.671835400453551,NA,Themeda triandra,2400
+root_depth,itv_within,14.987045034913631,NA,Themeda triandra,2600
+root_depth,itv_within,22.136277756194882,NA,Themeda triandra,2800
+rtd,all_plants,31.968350160014943,NA,NA,NA
+rtd,growth_form,31.945822352919112,forb,NA,NA
+rtd,growth_form,32.26810664842887,grass,NA,NA
+rtd,between_species,11.776716086326699,NA,NA,NA
+rtd,within_species,16.813224460769842,NA,Eragrostis capensis,NA
+rtd,within_species,34.66599624800101,NA,Harpochloa falx,NA
+rtd,within_species,29.486064629768677,NA,Helichrysum pilosellum,NA
+rtd,within_species,32.15319680195826,NA,Senecio glaberrimus,NA
+rtd,within_species,31.67067377697668,NA,Themeda triandra,NA
+rtd,itv_between,6.861338251224209,NA,Eragrostis capensis,NA
+rtd,itv_between,29.164739532371726,NA,Harpochloa falx,NA
+rtd,itv_between,7.9189868636129574,NA,Helichrysum pilosellum,NA
+rtd,itv_between,15.705962311571032,NA,Senecio glaberrimus,NA
+rtd,itv_between,26.641305605291027,NA,Themeda triandra,NA
+rtd,itv_within,12.27070977973144,NA,Eragrostis capensis,2200
+rtd,itv_within,21.564125020318638,NA,Eragrostis capensis,2400
+rtd,itv_within,15.655082745530427,NA,Eragrostis capensis,2600
+rtd,itv_within,16.504212156509706,NA,Harpochloa falx,2200
+rtd,itv_within,28.22914004198131,NA,Harpochloa falx,2400
+rtd,itv_within,27.13335227893697,NA,Harpochloa falx,2600
+rtd,itv_within,29.379996035326965,NA,Harpochloa falx,2800
+rtd,itv_within,35.34514418787788,NA,Helichrysum pilosellum,2200
+rtd,itv_within,26.11815216356327,NA,Helichrysum pilosellum,2400
+rtd,itv_within,34.578613913689665,NA,Helichrysum pilosellum,2600
+rtd,itv_within,26.68959061163606,NA,Helichrysum pilosellum,2800
+rtd,itv_within,27.285115712157292,NA,Senecio glaberrimus,2200
+rtd,itv_within,50.41626643610232,NA,Senecio glaberrimus,2400
+rtd,itv_within,16.99226623760513,NA,Senecio glaberrimus,2600
+rtd,itv_within,25.34281772166469,NA,Senecio glaberrimus,2800
+rtd,itv_within,22.880028769513427,NA,Themeda triandra,2200
+rtd,itv_within,27.689635384151543,NA,Themeda triandra,2400
+rtd,itv_within,10.546714341665044,NA,Themeda triandra,2600
+rtd,itv_within,15.004571597705294,NA,Themeda triandra,2800
+sla,all_plants,36.06804487983344,NA,NA,NA
+sla,growth_form,14.91070278403625,forb,NA,NA
+sla,growth_form,27.801267620268135,grass,NA,NA
+sla,between_species,35.011481495437295,NA,NA,NA
+sla,within_species,20.013195940138505,NA,Eragrostis capensis,NA
+sla,within_species,19.667251853551388,NA,Harpochloa falx,NA
+sla,within_species,9.663678585910885,NA,Helichrysum pilosellum,NA
+sla,within_species,13.43780875594206,NA,Senecio glaberrimus,NA
+sla,within_species,13.980907153318508,NA,Themeda triandra,NA
+sla,itv_between,9.237083455776553,NA,Eragrostis capensis,NA
+sla,itv_between,13.720588598637576,NA,Harpochloa falx,NA
+sla,itv_between,3.7656241535398607,NA,Helichrysum pilosellum,NA
+sla,itv_between,7.790290293288035,NA,Senecio glaberrimus,NA
+sla,itv_between,6.364583782378892,NA,Themeda triandra,NA
+sla,itv_within,26.696724546658157,NA,Eragrostis capensis,2200
+sla,itv_within,7.332117799542195,NA,Eragrostis capensis,2400
+sla,itv_within,20.845855035554234,NA,Eragrostis capensis,2600
+sla,itv_within,6.916121750042088,NA,Harpochloa falx,2200
+sla,itv_within,21.698340056629867,NA,Harpochloa falx,2400
+sla,itv_within,19.474995420004344,NA,Harpochloa falx,2600
+sla,itv_within,9.724573707701389,NA,Harpochloa falx,2800
+sla,itv_within,4.93832557840187,NA,Helichrysum pilosellum,2200
+sla,itv_within,9.755717789999984,NA,Helichrysum pilosellum,2400
+sla,itv_within,12.670018401577455,NA,Helichrysum pilosellum,2600
+sla,itv_within,10.425760877028212,NA,Helichrysum pilosellum,2800
+sla,itv_within,8.836999025646502,NA,Senecio glaberrimus,2200
+sla,itv_within,14.620024715298447,NA,Senecio glaberrimus,2400
+sla,itv_within,12.499344270729129,NA,Senecio glaberrimus,2600
+sla,itv_within,13.120303302410743,NA,Senecio glaberrimus,2800
+sla,itv_within,9.716187144622184,NA,Themeda triandra,2200
+sla,itv_within,23.61483327470651,NA,Themeda triandra,2400
+sla,itv_within,9.94888740153464,NA,Themeda triandra,2600
+sla,itv_within,6.579638588859712,NA,Themeda triandra,2800
+srl,all_plants,42.414726456863896,NA,NA,NA
+srl,growth_form,45.50150662636811,forb,NA,NA
+srl,growth_form,40.41199446649864,grass,NA,NA
+srl,between_species,8.19388007512037,NA,NA,NA
+srl,within_species,38.75030167146052,NA,Eragrostis capensis,NA
+srl,within_species,46.131410119701584,NA,Harpochloa falx,NA
+srl,within_species,40.224905322184895,NA,Helichrysum pilosellum,NA
+srl,within_species,49.138515444463735,NA,Senecio glaberrimus,NA
+srl,within_species,36.02593392247592,NA,Themeda triandra,NA
+srl,itv_between,8.510378793721934,NA,Eragrostis capensis,NA
+srl,itv_between,35.46616694515722,NA,Harpochloa falx,NA
+srl,itv_between,17.325876311620263,NA,Helichrysum pilosellum,NA
+srl,itv_between,14.254184333090839,NA,Senecio glaberrimus,NA
+srl,itv_between,29.159135491167447,NA,Themeda triandra,NA
+srl,itv_within,34.182831682104116,NA,Eragrostis capensis,2200
+srl,itv_within,61.95100988545814,NA,Eragrostis capensis,2400
+srl,itv_within,20.339403698621155,NA,Eragrostis capensis,2600
+srl,itv_within,30.993472045324566,NA,Harpochloa falx,2200
+srl,itv_within,47.04520932920872,NA,Harpochloa falx,2400
+srl,itv_within,40.76405061037082,NA,Harpochloa falx,2600
+srl,itv_within,21.53508554080485,NA,Harpochloa falx,2800
+srl,itv_within,36.65039742468624,NA,Helichrysum pilosellum,2200
+srl,itv_within,38.16290692443457,NA,Helichrysum pilosellum,2400
+srl,itv_within,32.20119295464773,NA,Helichrysum pilosellum,2600
+srl,itv_within,47.204863491110174,NA,Helichrysum pilosellum,2800
+srl,itv_within,72.35286149412609,NA,Senecio glaberrimus,2200
+srl,itv_within,29.17540041039315,NA,Senecio glaberrimus,2400
+srl,itv_within,18.638278765705177,NA,Senecio glaberrimus,2600
+srl,itv_within,61.632963310426234,NA,Senecio glaberrimus,2800
+srl,itv_within,27.74593615694652,NA,Themeda triandra,2200
+srl,itv_within,27.865082090443806,NA,Themeda triandra,2400
+srl,itv_within,11.6620415259481,NA,Themeda triandra,2600
+srl,itv_within,32.710934623708475,NA,Themeda triandra,2800
+veg_height,all_plants,46.16693169232438,NA,NA,NA
+veg_height,growth_form,56.61799674990804,forb,NA,NA
+veg_height,growth_form,38.83535465764347,grass,NA,NA
+veg_height,between_species,35.225183891473336,NA,NA,NA
+veg_height,within_species,34.43259767969566,NA,Eragrostis capensis,NA
+veg_height,within_species,46.67304765642879,NA,Harpochloa falx,NA
+veg_height,within_species,50.28079535872209,NA,Helichrysum pilosellum,NA
+veg_height,within_species,24.060928994230128,NA,Senecio glaberrimus,NA
+veg_height,within_species,23.852551501152938,NA,Themeda triandra,NA
+veg_height,itv_between,2.1286018490173104,NA,Eragrostis capensis,NA
+veg_height,itv_between,39.36076903733407,NA,Harpochloa falx,NA
+veg_height,itv_between,46.1273685440939,NA,Helichrysum pilosellum,NA
+veg_height,itv_between,13.317680005697746,NA,Senecio glaberrimus,NA
+veg_height,itv_between,15.898889880195618,NA,Themeda triandra,NA
+veg_height,itv_within,42.569778248223734,NA,Eragrostis capensis,2200
+veg_height,itv_within,24.371538721432007,NA,Eragrostis capensis,2400
+veg_height,itv_within,42.27883631321941,NA,Eragrostis capensis,2600
+veg_height,itv_within,42.46321937865758,NA,Harpochloa falx,2200
+veg_height,itv_within,7.689787613568592,NA,Harpochloa falx,2400
+veg_height,itv_within,17.590146641763944,NA,Harpochloa falx,2600
+veg_height,itv_within,18.623446848684335,NA,Harpochloa falx,2800
+veg_height,itv_within,31.96301949729743,NA,Helichrysum pilosellum,2200
+veg_height,itv_within,22.23619375660399,NA,Helichrysum pilosellum,2400
+veg_height,itv_within,20.35382342512415,NA,Helichrysum pilosellum,2600
+veg_height,itv_within,23.94966075703179,NA,Helichrysum pilosellum,2800
+veg_height,itv_within,13.084025264993993,NA,Senecio glaberrimus,2200
+veg_height,itv_within,7.264659194081659,NA,Senecio glaberrimus,2400
+veg_height,itv_within,20.56621291877989,NA,Senecio glaberrimus,2600
+veg_height,itv_within,45.45375477858401,NA,Senecio glaberrimus,2800
+veg_height,itv_within,10.825288409509831,NA,Themeda triandra,2200
+veg_height,itv_within,16.48737285219298,NA,Themeda triandra,2400
+veg_height,itv_within,42.30111910576289,NA,Themeda triandra,2600
+veg_height,itv_within,11.66382979293526,NA,Themeda triandra,2800
