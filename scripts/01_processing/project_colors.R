@@ -25,7 +25,12 @@ for(i in 1:5) {
 
 
 #Colors for biologically hierarchical levels
-viridis::viridis(4, option = "F", direction = -1, begin = 0.1, end = 0.9)
+viridis::viridis(10, option = "F", direction = -1, begin = 0.1, end = 0.9)
+[1] "#F7C5A5FF" "#ED4F3EFF" "#931C5BFF" "#261433FF"
+[1] "#F7C5A5FF" "#F4835BFF" "#E33641FF" "#AA185AFF" "#641F54FF" "#261433FF"
+[1] "#F7C5A5FF" "#F5966DFF" "#F16244FF" "#DD2C45FF" "#B41658FF" "#821E5AFF" "#521E4DFF" "#261433FF"
+[1] "#F7C5A5FF" "#F6A178FF" "#F47A54FF" "#ED4F3EFF" "#D92847FF" "#B91657FF" "#931C5BFF" "#6D1F56FF" "#481C48FF" "#261433FF"
+
 my_colors <- c("#F7C5A5FF", "#ED4F3EFF", "#931C5BFF", "#261433FF")
 par(mar = c(0, 0, 0, 0))
 plot(1, type = "n", xlim = c(0, 1), ylim = c(0, 4), axes = FALSE, xlab = "", ylab = "")
