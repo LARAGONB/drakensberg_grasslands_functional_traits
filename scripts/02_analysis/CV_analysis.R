@@ -226,7 +226,7 @@ lmm_trait_variation <- trait_data |>
   group_by(traits) |>
   nest() |>
   mutate(
-    model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|elevation_m_asl), data = .x)),
+    model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|species:elevation_m_asl), data = .x)),
     varcomp = map(model, ~ as_tibble(VarCorr(.x)) |> 
                     select(grp,vcov, sdcor) |>
                     mutate(
@@ -238,7 +238,7 @@ lmm_trait_variation <- trait_data |>
     grp = case_when(
       grp == "growth_form" ~ "Growth form",
       grp == "species" ~ "Species",
-      grp == "elevation_m_asl" ~ "ITV_between",
+      grp == "species:elevation_m_asl" ~ "ITV_between",
       grp == "Residual" ~ "ITV_within"
     ),
     traits = factor(traits, levels = c("ldmc", "sla", "bi", "rd", "rdmc", "rtd", "srl",
