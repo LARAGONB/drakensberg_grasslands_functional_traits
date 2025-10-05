@@ -22,7 +22,6 @@ remove(pkgs)
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
-
 # 3. PCA Plot ----
 pca_output <- trait_data_wide |> 
   select(root_depth, veg_height, rd, bi, srl, rtd, rdmc, sla, ldmc, bgb_agb) |> 
@@ -92,4 +91,49 @@ pca_sites |>
     axis.line = element_line(linewidth = 1, colour = "black"),
     # legend.title = element_blank(),
     legend.text = element_text(size = 16))
+ 
+
+
+
+# 4. MFA Analysis ----
+
+data_ordered <- trait_data_wide |> 
+  select(ldmc, sla, bi, rd, rdmc, rtd, srl, veg_height, root_depth, bgb_agb) |> 
+  rename(LDMC = ldmc, SLA = sla, BI = bi, RD = rd, RDMC = rdmc, RTD = rtd, 
+         SRL = srl, VHeight = veg_height, RDepth = root_depth, `BG:AG` = bgb_agb)
+  
+ncp_max <- min(nrow(data_ordered), ncol(data_ordered))
+
+mfa_all <- MFA(
+  data_ordered,
+  group = c(2,5,3),
+  type  = c("s", "s", "s"),                 # per-group types
+  name.group = c("leaf", "roots", "plant_size"),
+  ncp = 10,
+  graph = FALSE
+)
+
+# Contribution to the first dimension
+fviz_contrib(mfa_all, "group", axes = 1)
+# Contribution to the second dimension
+fviz_contrib(mfa_all, "group", axes = 2)
+# Coordinates
+quanti.var <- get_mfa_var(mfa_all, "quanti.var")
+head(quanti.var$coord)
+# Cos2: quality on the factore map
+head(quanti.var$cos2)
+# Contributions to the dimensions
+head(quanti.var$contrib)
+# Contributions to dimension 1
+fviz_contrib(mfa_all, choice = "quanti.var", axes = 2, top = 20,
+             palette = "jco")
+
+
+fviz_screeplot(mfa_all)
+
+fviz_mfa_var(mfa_all, "quanti.var", palette = "jco", 
+             col.var.sup = "violet", repel = TRUE)
+
+fviz_mfa_ind(mfa_all, partial = "all")
+
 
