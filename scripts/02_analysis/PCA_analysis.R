@@ -14,7 +14,7 @@
 #install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
 # devtools::install_github("gavinsimpson/ggvegan")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis",
-          "fixest", "lmtest", "corrplot")
+          "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -98,19 +98,27 @@ pca_sites |>
 # 4. MFA Analysis ----
 
 data_ordered <- trait_data_wide |> 
-  select(ldmc, sla, bi, rd, rdmc, rtd, srl, veg_height, root_depth, bgb_agb) |> 
-  rename(LDMC = ldmc, SLA = sla, BI = bi, RD = rd, RDMC = rdmc, RTD = rtd, 
+  select(leaf_thickness, ldmc, sla, 
+         bi, rd, rdmc, rtd, srl, 
+         veg_height, root_depth, bgb_agb, 
+         species, growth_form, elevation_m_asl) |> 
+  rename(LT = leaf_thickness, LDMC = ldmc, SLA = sla, BI = bi, RD = rd, RDMC = rdmc, RTD = rtd, 
          SRL = srl, VHeight = veg_height, RDepth = root_depth, `BG:AG` = bgb_agb)
-  
-ncp_max <- min(nrow(data_ordered), ncol(data_ordered))
 
-mfa_all <- MFA(
+grp_sizes <- c(3, 5, 3, 1, 1, 1) #3 leaf traits, 5 root traits, 3 plant size traits
+num.sup <- c(4,5)
+ncp_max <- min(nrow(data_ordered) - 1L, sum(c(3,5,3)))
+quali_idx <- c(ncol(data_ordered) - 1L, ncol(data_ordered)) 
+
+
+mfa_all <- FactoMineR::MFA(
   data_ordered,
-  group = c(2,5,3),
-  type  = c("s", "s", "s"),                 # per-group types
-  name.group = c("leaf", "roots", "plant_size"),
-  ncp = 10,
-  graph = FALSE
+  group = grp_sizes,
+  type  = c("s", "s", "s", "n", "n"),                 # per-group types
+  name.group = c("Leaf", "Roots", "Plant size", "Species"),
+  num.group.sup = num.sup,
+  ncp           = ncp_max,
+  graph         = FALSE
 )
 
 # Contribution to the first dimension
