@@ -19,7 +19,7 @@
 # install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel",
 #                  "glue", "viridis", "fixest", "lmtest", "corrplot", "skedastic","patchwork",
 #                  "cowplot") #install if needed
-devtools::install_github("gavinsimpson/ggvegan")
+# devtools::install_github("gavinsimpson/ggvegan")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel",
           "glue", "viridis", "fixest", "lmtest", "corrplot", "skedastic", "patchwork",
           "cowplot")
@@ -34,7 +34,7 @@ trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023
 
 ## Matrix of traits ----
 matrix_traits <- trait_data_wide |> 
-  select(root_depth, veg_height, rd, bi, srl, rtd, rdmc, sla, ldmc, bgb_agb) |>
+  select(root_depth, bgb_agb, rd, bi, srl, rtd, rdmc, sla, ldmc, leaf_thickness, bgb_agb) |>
   mutate(across(everything(), as.numeric))
 
 ## Correlation matrix ----
@@ -91,6 +91,11 @@ pairs <- tribble(
   "root_depth", "ldmc",
   "bi", "ldmc",
   "ldmc", "sla",
+  "root_depth", "leaf_thickness",
+  "bgb_agb", "leaf_thickness",
+  "leaf_thickness", "sla",
+  "leaf_thickness", "ldmc",
+  "bgb_agb","leaf_thickness",
   "bgb_agb", "ldmc") |> 
   mutate(traits = paste(trait_y,trait_x,sep = "~"))
 
@@ -175,7 +180,8 @@ sig_best |>
 ## Extract the fitted values per trait pair ----
 selected_cols <- c(
   "id", "aspect", "site_id", "elevation_m_asl", "plant_id", "species", "family", "growth_form",
-  "rd", "root_depth", "bi", "rtd", "rdmc", "ldmc", "bgb_agb", "srl", "sla", "predicted"
+  "rd", "root_depth", "bi", "rtd", "rdmc", "leaf_thickness", "ldmc", "bgb_agb", "srl",
+  "bgb_agb", "sla", "predicted"
 )
 
 results_blong <- results_best |> 
@@ -261,7 +267,8 @@ sig_best_spp |>
 ## Extract the fitted values per species and trait pair ----
 selected_cols_spp <- c(
   "id", "aspect", "site_id", "elevation_m_asl", "plant_id", "family", "growth_form",
-  "rd", "root_depth", "bi", "rtd", "rdmc", "ldmc", "bgb_agb", "srl", "sla", "predicted"
+  "rd", "root_depth", "bi", "rtd", "rdmc", "leaf_thickness", "ldmc", "bgb_agb", "srl",
+  "sla", "bgb_agb", "predicted"
 )
 
 results_blong_spp <- results_best_spp %>%
@@ -318,7 +325,13 @@ srl_rtd <- results_general |>
   geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 1) +
   geom_line(aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
             linetype = 1) +
-  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  scale_color_manual(values = c("All plants" = "black", species_colors),
+                     labels = c(
+                       "Eragrostis capensis" = "ERCA",
+                       "Harpochloa falx" = "HAFA",
+                       "Themeda triandra" = "THTR",
+                       "Helichrysum pilosellum" = "HEPI",
+                       "Senecio glaberrimus" = "SEGL")) +
   labs(
     x = expression("RTD (g cm"^-3*")"),
     y = expression("SRL (m g"^-1*")")) + 
@@ -335,9 +348,6 @@ srl_rtd <- results_general |>
 srl_rtd
 
 #### srl ~ rd ----
-
-# build a grpah with srl and rtd
-
 
 srl_rd <- results_general |> 
   filter(traits == "srl~rd") |> 
@@ -443,6 +453,34 @@ sla_bi <- results_general |>
     legend.text = element_text(size = 16))
 
 sla_bi
+
+#### sla ~ leaf_thickness ----
+
+sla_leaf_thickness <- results_general |> 
+  filter(traits == "sla~leaf_thickness") |> 
+  ggplot(aes(x = leaf_thickness, y = sla)) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 1) +
+  geom_line(data = results_general |> 
+              filter(traits == "sla~leaf_thickness",
+                     species %in% c("Themeda triandra","Eragrostis capensis")),
+            aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("LT (mm)"),
+    y = expression("SLA (cm"^2*" g"^-1*")")) + 
+  theme_bw(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 16))
+
+sla_leaf_thickness
 
 #### rtd ~ root_depth ----
 
@@ -607,6 +645,118 @@ ldmc_bgb_agb <- results_general |>
 
 ldmc_bgb_agb
 
+#### ldmc ~ leaf_thickness ----
+
+ldmc_leaf_thickness <- results_general |> 
+  filter(traits == "ldmc~leaf_thickness") |> 
+  ggplot(aes(x = leaf_thickness, y = ldmc)) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 1) +
+  # geom_line(data = results_general |> 
+  #             filter(traits == "ldmc~leaf_thickness",
+  #                    species %in% "Senecio glaberrimus"),
+            # aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            # linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("LT (mm)"),
+    y = expression("LDMC (g g"^-1*")")) + 
+  theme_bw(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 16))
+
+ldmc_leaf_thickness
+
+#### leaf_thickness ~ root_depth ----
+
+lt_root_depth <- results_general |> 
+  filter(traits == "leaf_thickness~root_depth") |> 
+  ggplot(aes(x = root_depth, y = leaf_thickness)) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 1) +
+  geom_line(data = results_general |> 
+              filter(traits == "leaf_thickness~root_depth",
+                     species %in% "Harpochloa falx"),
+            aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("RDepth (cm)"),
+    y = expression("LT (mm)")) + 
+  theme_bw(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 16))
+
+lt_root_depth
+
+#### leaf_thickness ~ bgb_agb ----
+
+lt_bgb_agb <- results_general |> 
+  filter(traits == "leaf_thickness~bgb_agb") |> 
+  ggplot(aes(x = bgb_agb, y = leaf_thickness)) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 1) +
+  geom_line(data = results_general |> 
+              filter(traits == "leaf_thickness~bgb_agb",
+                     species %in% c("Themeda triandra","Helichrysum pilosellum")),
+            aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("VHeight (cm)"),
+    y = expression("LT (mm)")) + 
+  theme_bw(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 16))
+
+lt_bgb_agb
+
+#### leaf_thickness ~ bgb_agb ----
+
+lt_bgb_agb <- results_general |> 
+  filter(traits == "leaf_thickness~bgb_agb") |> 
+  ggplot(aes(x = bgb_agb, y = leaf_thickness)) +
+  geom_point(color = "grey") +
+  geom_line(aes(y = predicted_all, color = "All plants"), linewidth = 2, linetype = 1) +
+  geom_line(data = results_general |> 
+              filter(traits == "leaf_thickness~bgb_agb",
+                     species %in% c("Themeda triandra")),
+            aes(y = predicted_spp, color = species, group = species), linewidth = 1.5,
+            linetype = 1) +
+  scale_color_manual(values = c("All plants" = "black", species_colors)) +
+  labs(
+    x = expression("BG:AG (g g"^-1*")"),
+    y = expression("LT (mm)")) + 
+  theme_bw(base_size = 14) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    panel.border = element_blank(), 
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 16))
+
+lt_bgb_agb
+
 # 7. Combined plot ----
 
 ## Remove legends ----
@@ -614,29 +764,51 @@ ldmc_bgb_agb
 ldmc_bgb_agb_n <- ldmc_bgb_agb + theme(legend.position = "none")
 ldmc_bi_n <- ldmc_bi + theme(legend.position = "none")
 ldmc_root_depth_n <- ldmc_root_depth + theme(legend.position = "none")
+ldmc_leaf_thickness_n <- ldmc_leaf_thickness + theme(legend.position = "none")
 rtd_bi_n <- rtd_bi + theme(legend.position = "none")
 rtd_rdmc_n <- rtd_rdmc + theme(legend.position = "none")
 rtd_root_depth_n <- rtd_root_depth + theme(legend.position = "none")
 sla_bi_n <- sla_bi + theme(legend.position = "none")
 sla_ldmc_n <- sla_ldmc + theme(legend.position = "none")
 sla_root_depth_n <- sla_root_depth + theme(legend.position = "none")
+sla_leaf_thickness_n <- sla_leaf_thickness + theme(legend.position = "none")
 srl_rd_n <- srl_rd + theme(legend.position = "none")
 srl_rtd_n <- srl_rtd + theme(legend.position = "none")
-legend <- cowplot::get_legend(srl_rtd)
+lt_root_depth_n <- lt_root_depth + theme(legend.position = "none")
+lt_veg_height_n <- lt_veg_height + theme(legend.position = "none")
+lt_bgb_agb_n <- lt_bgb_agb + theme(legend.position = "none")
+legend <- cowplot::get_legend(srl_rtd + theme(legend.position = "top",
+                                              legend.justification = "right",
+                                              legend.direction = "vertical"))
 
 ## Combine plot ----
 
 combined_plot <- plot_grid(
-  ldmc_bgb_agb_n, ldmc_bi_n, ldmc_root_depth_n,
-  rtd_bi_n, rtd_rdmc_n, rtd_root_depth_n, sla_bi_n,
-  sla_ldmc_n, sla_root_depth_n, srl_rd_n, srl_rtd_n, legend,
-  ncol = 3)
+  lt_veg_height_n, lt_root_depth_n, lt_bgb_agb_n,
+  ldmc_leaf_thickness_n, ldmc_bi_n, ldmc_root_depth_n, ldmc_bgb_agb_n,
+  rtd_bi_n, rtd_rdmc_n, rtd_root_depth_n, sla_leaf_thickness_n, sla_bi_n,
+  sla_ldmc_n, sla_root_depth_n, srl_rd_n, srl_rtd_n,
+  ncol = 4,
+  labels = c('A.', 'B.', 'C.', 'D.', 
+             'E.', 'F.', 'G.', 'H.',
+             'I.', 'J.', 'K.', 'L.',
+             'M.', 'N.', 'O.', 'P.'))
 combined_plot
+
+final_plot <- ggdraw() +
+  draw_plot(combined_plot, x = 0, y = 0, width = 1, height = 1) +
+  draw_plot(legend, x = 0.75, y = 0.85, width = 0.25, height = 0.15)
+
+final_plot
+
+final_plot <- ggdraw() +
+  draw_plot(combined_plot, x = 0, y = 0, width = 0.90, height = 1) +
+  draw_plot(legend, x = 0.90, y = 0.85, width = 0.1, height = 0.1)
 
 ## Save plots ----
 
-ggsave("results/img/traits_regressions_plot_tiff.tiff", combined_plot,
-       width = 30, height = 30, units = "cm", dpi = 300)
-ggsave("results/img/traits_regressions_plot_png.png", combined_plot,
-       width = 30, height = 30, units = "cm", dpi = 300)
+ggsave("results/img/traits_regressions_plot_tiff.tiff", final_plot,
+       width = 45, height = 35, units = "cm", dpi = 300)
+ggsave("results/img/traits_regressions_plot_png.png", final_plot,
+       width = 45, height = 35, units = "cm", dpi = 300)
 
