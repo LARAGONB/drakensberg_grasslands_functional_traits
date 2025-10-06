@@ -98,6 +98,39 @@ ldmc,itv_within,11.294056063536175,NA,Themeda triandra,2200
 ldmc,itv_within,3.994285995546724,NA,Themeda triandra,2400
 ldmc,itv_within,17.92532328782545,NA,Themeda triandra,2600
 ldmc,itv_within,4.546984875872962,NA,Themeda triandra,2800
+leaf_thickness,all_plants,67.4868953054799,NA,NA,NA
+leaf_thickness,growth_form,27.497423105380086,forb,NA,NA
+leaf_thickness,growth_form,41.35068243694224,grass,NA,NA
+leaf_thickness,between_species,73.4048296531005,NA,NA,NA
+leaf_thickness,within_species,21.50284299571959,NA,Eragrostis capensis,NA
+leaf_thickness,within_species,8.501168730810797,NA,Harpochloa falx,NA
+leaf_thickness,within_species,18.240757735372387,NA,Helichrysum pilosellum,NA
+leaf_thickness,within_species,13.837814482167445,NA,Senecio glaberrimus,NA
+leaf_thickness,within_species,30.903846560576024,NA,Themeda triandra,NA
+leaf_thickness,itv_between,13.493465925770371,NA,Eragrostis capensis,NA
+leaf_thickness,itv_between,5.632642715066144,NA,Harpochloa falx,NA
+leaf_thickness,itv_between,16.28317689250051,NA,Helichrysum pilosellum,NA
+leaf_thickness,itv_between,6.298193574512198,NA,Senecio glaberrimus,NA
+leaf_thickness,itv_between,16.238674111259012,NA,Themeda triandra,NA
+leaf_thickness,itv_within,28.561229146597313,NA,Eragrostis capensis,2200
+leaf_thickness,itv_within,8.54612541982858,NA,Eragrostis capensis,2400
+leaf_thickness,itv_within,5.978839183966513,NA,Eragrostis capensis,2600
+leaf_thickness,itv_within,3.043045347298577,NA,Harpochloa falx,2200
+leaf_thickness,itv_within,8.166900402929283,NA,Harpochloa falx,2400
+leaf_thickness,itv_within,8.679355338501502,NA,Harpochloa falx,2600
+leaf_thickness,itv_within,8.479385661623716,NA,Harpochloa falx,2800
+leaf_thickness,itv_within,7.280699822879451,NA,Helichrysum pilosellum,2200
+leaf_thickness,itv_within,6.353759096972633,NA,Helichrysum pilosellum,2400
+leaf_thickness,itv_within,8.444034341665969,NA,Helichrysum pilosellum,2600
+leaf_thickness,itv_within,21.536956878516506,NA,Helichrysum pilosellum,2800
+leaf_thickness,itv_within,16.684536260359824,NA,Senecio glaberrimus,2200
+leaf_thickness,itv_within,17.823248472183447,NA,Senecio glaberrimus,2400
+leaf_thickness,itv_within,10.109462567190224,NA,Senecio glaberrimus,2600
+leaf_thickness,itv_within,3.765186227129257,NA,Senecio glaberrimus,2800
+leaf_thickness,itv_within,10.516928606650081,NA,Themeda triandra,2200
+leaf_thickness,itv_within,36.52687059925102,NA,Themeda triandra,2400
+leaf_thickness,itv_within,34.594840721771,NA,Themeda triandra,2600
+leaf_thickness,itv_within,20.549160941495952,NA,Themeda triandra,2800
 rd,all_plants,11.838327490724474,NA,NA,NA
 rd,growth_form,12.805151344103018,forb,NA,NA
 rd,growth_form,11.18921688479839,grass,NA,NA

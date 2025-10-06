@@ -19,7 +19,7 @@
 
 #install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
 # devtools::install_github("gavinsimpson/ggvegan")
-pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "viridis", "fixest", "lmtest", "lme4")
+pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "viridis", "fixest", "lmtest", "lme4", "ggh4x")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -33,19 +33,19 @@ trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023
 ##cv for all plants ----
 
 cv_all_plants <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
   group_by(traits) |> 
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
 
 ## cv for growth form ----
 cv_growth_form <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
   group_by(growth_form, traits) |> 
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
 
 ## cv between species ----
 cv_between_spp <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
   group_by(species, traits) |> 
   summarise(mean_spp = mean(value, na.rm = TRUE), .groups = "drop") |> #traits species means for each species
   group_by(traits) |> 
@@ -53,13 +53,13 @@ cv_between_spp <- trait_data |>
 
 ## cv within species overall ----
 cv_within_spp <- trait_data |>
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
   group_by(species, traits) |>
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
 
 ## cv within species along the elevational gradiente (itv between) ----
 cv_itv_between <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
   group_by(species, elevation_m_asl, traits) |> 
   summarise(mean_spp_ele = mean(value, na.rm = TRUE), .groups = "drop") |>  # traits elevations means for each species
   group_by(species, traits) |> 
@@ -67,7 +67,7 @@ cv_itv_between <- trait_data |>
 
 ## cv within species within each elevational gradient ----
 cv_itv_within <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
   group_by(species, elevation_m_asl, traits) |> 
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
   
@@ -93,7 +93,8 @@ write_csv(cv_long, "results/tab/coefficient_variation_traits.csv")
 all_within_cv <- cv_long |> 
   filter(source %in% c("all_plants","within_species")) |>
   mutate(
-    traits = factor(traits, levels = c("ldmc", "sla", "bi", "rd", "rdmc", "rtd", "srl",
+    traits = factor(traits, levels = c("leaf_thickness", "ldmc", "sla", 
+                                       "bi", "rd", "rdmc", "rtd", "srl",
                                        "veg_height","root_depth", "bgb_agb")),
     growth_form = case_when(
       species %in% c("Eragrostis capensis", "Harpochloa falx", "Themeda triandra") ~ "Grass",
@@ -135,8 +136,9 @@ all_within_cv <- cv_long |>
     legend.text = element_text(size = 16),
     strip.background = element_rect(fill = "#E0E0E0", color = "black"), # gray background, black border
     strip.text = element_text(color = "black", size = 14)) +
-  facet_wrap2(vars(traits), ncol = 5, scales = "free_y", axes = "all", remove_labels = "all",
+  facet_wrap2(vars(traits), ncol = 3, scales = "free_y", axes = "all", remove_labels = "all",
               labeller = as_labeller(c(
+                "leaf_thickness" = "LT",
                 "ldmc" = "LDMC",
                 "sla" = "SLA",
                 "bi" = "BI",
@@ -147,19 +149,21 @@ all_within_cv <- cv_long |>
                 "veg_height" = "VHeight",
                 "root_depth" = "RDepth",
                 "bgb_agb" = "BG:AG")))
+all_within_cv 
 
 #### Save plot ----
 ggsave("results/img/all_within_cv_tiff.tiff", all_within_cv,
-       width = 40, height = 20, units = "cm", dpi = 300)
+       width = 35, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/all_within_cv_png.png", all_within_cv,
-       width = 40, height = 20, units = "cm", dpi = 300)
+       width = 35, height = 20, units = "cm", dpi = 300)
 
 ### whitin_itvb_itvw ----
 
 whitin_itvb_itvw <- cv_long |> 
   filter(source %in% c("within_species", "itv_between", "itv_within")) |>
   mutate(
-    traits = factor(traits, levels = c("ldmc", "sla", "bi", "rd", "rdmc", "rtd", "srl",
+    traits = factor(traits, levels = c("leaf_thickness", "ldmc", "sla",
+                                       "bi", "rd", "rdmc", "rtd", "srl",
                                        "veg_height","root_depth", "bgb_agb")),
     species = fct_relevel(species, "Themeda triandra", after = 2),
     source = factor(source, levels = c("within_species", "itv_between", "itv_within"))) |> 
@@ -198,8 +202,9 @@ whitin_itvb_itvw <- cv_long |>
     legend.text = element_text(size = 16),
     strip.background = element_rect(fill = "#E0E0E0", color = "black"), # gray background, black border
     strip.text = element_text(color = "black", size = 14)) +
-  facet_wrap2(vars(traits), ncol = 5, scales = "free_y", axes = "all", remove_labels = "all",
+  facet_wrap2(vars(traits), ncol = 3, scales = "free_y", axes = "all", remove_labels = "all",
               labeller = as_labeller(c(
+                "leaf_thickness" = "LT",
                 "ldmc" = "LDMC",
                 "sla" = "SLA",
                 "bi" = "BI",
@@ -211,18 +216,19 @@ whitin_itvb_itvw <- cv_long |>
                 "root_depth" = "RDepth",
                 "bgb_agb" = "BG:AG")))
 
+whitin_itvb_itvw
 #### Save plot ----
 ggsave("results/img/whitin_itvb_itvw_cv_tiff.tiff", whitin_itvb_itvw,
-       width = 40, height = 20, units = "cm", dpi = 300)
+       width = 35, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/whitin_itvb_itvw_cv_png.png", whitin_itvb_itvw,
-       width = 40, height = 20, units = "cm", dpi = 300)
+       width = 35, height = 20, units = "cm", dpi = 300)
 
 
 # 4. Linear mixed model ---- Where the variation in the trait is found ----
 
 ## Table with proportion of variance per growth_form, species, elevation, residual ----
 lmm_trait_variation <- trait_data |> 
-  filter(traits %in% c("root_depth", "rd", "bi", "srl", "rtd", "rdmc", "veg_height", "sla", "ldmc", "bgb_agb" )) |>
+  filter(traits %in% c("root_depth", "rd", "bi", "srl", "rtd", "rdmc", "veg_height", "sla", "ldmc", "leaf_thickness", "bgb_agb" )) |>
   group_by(traits) |>
   nest() |>
   mutate(
@@ -241,7 +247,8 @@ lmm_trait_variation <- trait_data |>
       grp == "species:elevation_m_asl" ~ "ITV_between",
       grp == "Residual" ~ "ITV_within"
     ),
-    traits = factor(traits, levels = c("ldmc", "sla", "bi", "rd", "rdmc", "rtd", "srl",
+    traits = factor(traits, levels = c("leaf_thickness", "ldmc", "sla",
+                                       "bi", "rd", "rdmc", "rtd", "srl",
                                        "veg_height","root_depth", "bgb_agb")),
     grp = factor(grp, levels = c("Growth form", "Species", "ITV_between", "ITV_within"))) |>
   arrange(traits, grp)
@@ -269,6 +276,7 @@ perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = 
       "ITV_within" = expression("ITV"["within"]))) +
   scale_x_discrete(
     labels = c(
+      "leaf_thickness" = "LT",
       "ldmc" = "LDMC",
       "sla" = "SLA",
       "bi" = "BI",
@@ -292,7 +300,7 @@ perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = 
     legend.text = element_text(size = 12),
     legend.justification = c("right", "top"))
 
-
+perc_plot
 ## Save plots ----
 
 ggsave("results/img/perc_total_variance_tiff.tiff", perc_plot,
