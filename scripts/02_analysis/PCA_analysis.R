@@ -81,8 +81,14 @@ pca_sites |>
   # stat_ellipse(aes(group = species),
   #              type = "norm", level = 0.95,
   #              linewidth = 1, show.legend = FALSE) +
-  scale_colour_manual(values = species_colors, name = "Species") +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (masl)") +  # Adjust the number of shapes to match your elevation count
+  scale_colour_manual(values = species_colors, name = "Species",
+                      labels = c(
+                        "Eragrostis capensis" = "ERCA",
+                        "Harpochloa falx" = "HAFA",
+                        "Themeda triandra" = "THTR",
+                        "Helichrysum pilosellum" = "HEPI",
+                        "Senecio glaberrimus" = "SEGL")) +
+  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   labs(x = glue("PCA1 ({round(e_B[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B[2] * 100, 1)}%)")) +
   theme_bw(base_size = 14) +
@@ -95,6 +101,13 @@ pca_sites |>
     # legend.title = element_blank(),
     legend.text = element_text(size = 16))
  
+PCAsignificance(pca_output)
+plot1 <- ordiplot(pca_output, choices=c(1,2), scaling=1)
+ordiequilibriumcircle(pca_output,plot1)
+
+vegan::
+anova.cca(pca_output, step = 1000)
+
 
 
 
