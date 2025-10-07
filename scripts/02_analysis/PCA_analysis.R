@@ -78,6 +78,9 @@ pca_sites |>
                   colour = "black") +
   coord_equal() +
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
+  # stat_ellipse(aes(group = species),
+  #              type = "norm", level = 0.95,
+  #              linewidth = 1, show.legend = FALSE) +
   scale_colour_manual(values = species_colors, name = "Species") +
   scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (masl)") +  # Adjust the number of shapes to match your elevation count
   labs(x = glue("PCA1 ({round(e_B[1] * 100, 1)}%)"),
