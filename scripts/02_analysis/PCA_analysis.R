@@ -14,7 +14,7 @@
 #install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
 # devtools::install_github("gavinsimpson/ggvegan")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis",
-          "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra")
+          "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra", "BiodiversityR")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -22,7 +22,9 @@ remove(pkgs)
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
-# 3. PCA Plot ----
+# 3. PCA ----
+## PCA using vegan (rda with no constraints = PCA) ----
+## Remember to scale to unit variance
 pca_output <- trait_data_wide |> 
   select(root_depth, veg_height, rd, bi, srl, rtd, rdmc, sla, ldmc, leaf_thickness, bgb_agb) |> 
   rename(
@@ -39,20 +41,125 @@ pca_output <- trait_data_wide |>
   rda(scale = TRUE)
 summary(pca_output)
 
-pca_sites <- bind_cols(
+## How many PCs should we keep? ----
+### Extract eigenvalues and their percentage
+ev <- eigenvals(pca_output)
+e_B <- eigenvals(pca_output)/sum(eigenvals(pca_output))
+### Extract PCs that explain 90% of the variation in the data
+k <- which(cumsum(ev) / sum(ev) >= 0.9)[1]
+
+## Tables for ind. loadings and traits loadings ----
+## Create a table containing the loading of each invidual (sites) in each PC
+
+pca_sites <- as_tibble(bind_cols(
   trait_data_wide |> 
     mutate(species = fct_relevel(species, "Themeda triandra", after = 2)) |> 
-    select(elevation_m_asl, species), 
-  fortify(pca_output, display = "sites"))
+    select(id, species, family, growth_form, elevation_m_asl),
+  scores(pca_output, display = "sites", choices = 1:k, scaling = 2)))
+
+pca_traits <- scores(pca_output, display = "species", choices = 1:k, scaling = 2) |> 
+  as.data.frame() |> 
+  rownames_to_column(var = "traits") 
+
+## PCA significance
+PCAsignificance(pca_output)
+plot1 <- ordiplot(pca_output, choices=c(1,2), scaling=1)
+ordiequilibriumcircle(pca_output,plot1) #Which traits are more important in each PC
 
 
-pca_traits <- ggvegan::fortify(pca_output, display = "species") |> 
-  mutate(Trait = label)
+## PERMANOVA  ----
+### Matrix of distances ----
+all_distance <- dist(pca_sites |> 
+                       select(starts_with("PC")))
+### Species alone ----
+set.seed(1)
+adonis2(all_distance ~ species, data = pca_sites, permutations = 4999)
 
-# get eigenvalues
-e_B <- eigenvals(pca_output)/sum(eigenvals(pca_output))
+# Multivarite homogeneity
+all_sp_bd <- betadisper(all_distance, pca_sites$species)
+anova(all_sp_bd)
+permutest(all_sp_bd, 999)
+plot(all_sp_bd)
+
+# Plot showing differences among spp
+score_spp <- scores(pca_output, display = "sites", scaling = 1, choices = 1:2)
+plot(s1, type = "n") 
+points(s1, col = as.integer(pca_sites$species), pch = 19)
+ordiellipse(s1, pca_sites$species, kind = "se", conf = 0.95, draw = "polygon",
+            col = 1:5, border = 1:5, label = TRUE)
+
+#### Pairwise comparisons among species ----
+set.seed(1)
+pairwise.adonis2(all_distance ~ species, 
+                 data = as.data.frame(pca_sites),
+                 permutations = 4999, 
+                 p.adjust.m = "holm")
+
+### Elevation alone ----
+set.seed(1)
+adonis2(all_distance ~ elevation_m_asl, data = pca_sites, permutations = 4999)
+
+# Multivarite homogeneity
+all_ele_bd <- betadisper(all_distance, pca_sites$elevation_m_asl)
+perm_all_ele_bd  <- permutest(all_ele_bd, permutations = 4999)
+anova(all_ele_bd)
+permutest(all_ele_bd, 999)
+plot(all_ele_bd)
+
+# Plot showing differences among elevations
+score_ele <- scores(pca_output, display = "sites", scaling = 1, choices = 1:2)
+plot(s1, type = "n") 
+points(s1, col = as.integer(pca_sites$elevation_m_asl), pch = 19)
+ordiellipse(s1, pca_sites$elevation_m_asl, kind = "se", conf = 0.95, draw = "polygon",
+            col = 1:5, border = 1:5, label = TRUE)
+
+#### Pairwise comparisons among elevations ----
+set.seed(1)
+pairwise.adonis2(all_distance ~ elevation_m_asl, 
+                 data = as.data.frame(pca_sites),
+                 permutations = 4999, 
+                 p.adjust.m = "holm")
+
+### Marginal differences species + elevation ----
+set.seed(1)
+adonis2(all_distance ~ species + elevation_m_asl, data = as.data.frame(pca_sites), 
+        permutations = 4999,
+        by = "margin")
 
 
+pairwise.adonis2(all_distance ~ species + elevation_m_asl, 
+                 data = as.data.frame(pca_sites),
+                 p.adjust.m = "holm")
+
+
+### Species pooled “within-elevation” test ----
+set.seed(1)
+adonis2(all_distance ~ species, data = as.data.frame(pca_sites), permutations = 4999,
+        strata = pca_sites$elevation_m_asl)
+
+#### Pairwise comparisons among species ----
+set.seed(1)
+pairwise.adonis2(all_distance ~ species, 
+                 data = as.data.frame(pca_sites),
+                 strata = "elevation_m_asl", 
+                 p.adjust.m = "holm")
+
+
+### Elevation pooled “within-species” test ----
+set.seed(1)
+adonis2(all_distance ~ elevation_m_asl, data = as.data.frame(pca_sites), 
+        permutations = 4999,
+        strata = pca_sites$species)
+
+#### Pairwise comparisons among elevations within species ----
+set.seed(1)
+pairwise.adonis2(all_distance ~ elevation_m_asl, 
+                 data = as.data.frame(pca_sites),
+                 strata = "species", 
+                 p.adjust.m = "holm")
+
+## PCA Plot ----
+## Color for species
 species_colors <- c(
   "Eragrostis capensis" = "#42049EFF",
   "Harpochloa falx" = "#8204A7FF",
@@ -60,10 +167,15 @@ species_colors <- c(
   "Helichrysum pilosellum" = "#F79143FF",
   "Senecio glaberrimus" = "#FCCE25FF")
 
-pca_sites |> 
+pca_all <- pca_sites |> 
   ggplot(aes(x = PC1, y = PC2, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
+  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  stat_ellipse(aes(group = species, colour = species), size = 0.8) +
+  # stat_ellipse(aes(group = species),
+  #              type = "euclid", level = 0.95,
+  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -71,16 +183,12 @@ pca_sites |>
                colour = "grey20",
                inherit.aes = FALSE) +
   geom_text_repel(data = pca_traits,
-                  aes(x = PC1 * 1.1, y = PC2 * 1.1, label = Trait),
+                  aes(x = PC1 * 1.1, y = PC2 * 1.1, label = traits),
                   size = 4,
                   fontface = "bold",
                   inherit.aes = FALSE, 
                   colour = "black") +
   coord_equal() +
-  stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "norm", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   scale_colour_manual(values = species_colors, name = "Species",
                       labels = c(
                         "Eragrostis capensis" = "ERCA",
@@ -88,7 +196,6 @@ pca_sites |>
                         "Themeda triandra" = "THTR",
                         "Helichrysum pilosellum" = "HEPI",
                         "Senecio glaberrimus" = "SEGL")) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   labs(x = glue("PCA1 ({round(e_B[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B[2] * 100, 1)}%)")) +
   theme_bw(base_size = 14) +
@@ -101,15 +208,14 @@ pca_sites |>
     # legend.title = element_blank(),
     legend.text = element_text(size = 16))
  
-PCAsignificance(pca_output)
-plot1 <- ordiplot(pca_output, choices=c(1,2), scaling=1)
-ordiequilibriumcircle(pca_output,plot1)
-
-vegan::
-anova.cca(pca_output, step = 1000)
+pca_all
 
 
 
+ggsave("results/img/pca_all_tiff.tiff", pca_all,
+       width = 20, height = 20, units = "cm", dpi = 300)
+ggsave("results/img/pca_all_png.png", pca_all,
+       width = 20, height = 20, units = "cm", dpi = 300)
 
 # 4. MFA Analysis ----
 
