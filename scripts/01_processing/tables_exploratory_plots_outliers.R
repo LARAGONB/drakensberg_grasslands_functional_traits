@@ -15,17 +15,22 @@
 
 # 1. Load libraries ----
 
-#install.packages("devtools", "EVR628tools", "tidyverse", "ggplot2", "plotly") #install if needed
-#devtools::install_github("jcvdav/EVR628tools")
-pkgs <- c("devtools", "EVR628tools", "tidyverse", "ggplot2", "plotly")
+# install.packages("devtools", "EVR628tools", "tidyverse", "ggplot2", "plotly", "osfr") #install if needed
+# devtools::install_github("jcvdav/EVR628tools")
+pkgs <- c("devtools", "EVR628tools", "tidyverse", "ggplot2", "plotly", "osfr")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
 # 2. Create directories ----
 #create_dirs() # (This should only be done once by the owner of the repository)
 
-# 3. Load data ----
-getwd()
+# 3. Download and load data ----
+# retrieve raw data files from the OSF project page
+osf_retrieve_node('hk2cy') %>%
+  osf_ls_files(path = 'v_root_traits/') %>%
+  osf_download(path = 'data/raw/', conflicts = 'overwrite')
+  
+# load data
 data_RFT_raw <- read_csv("data/raw/v_PFCT7_clean_root_traits_2023.csv")
 
 # 4. Create wide table ----

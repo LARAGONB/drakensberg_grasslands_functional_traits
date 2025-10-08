@@ -47,3 +47,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# large files
+data/raw/xi_PFTC7_clean_elevationgradient_microclimate_2023.csv
