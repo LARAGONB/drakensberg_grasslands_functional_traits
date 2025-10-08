@@ -1,0 +1,6 @@
+system:index,ann_p,aspect,elevation_m_asl,mean_ann_t,plot_id,site_id,.geo
+00000000000000000000_0,844.0,west,2000,129.0,1,1,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000001_0,869.0,west,2200,119.0,1,2,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000002_0,895.0,west,2400,102.0,1,3,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000003_0,895.0,west,2600,101.0,1,4,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000004_0,922.0,west,2800,83.0,1,5,"{""type"":""MultiPoint"",""coordinates"":[]}"
