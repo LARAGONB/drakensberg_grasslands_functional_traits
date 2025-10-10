@@ -12,10 +12,10 @@
 # 1. Load libraries ----
 
 #install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
-# devtools::install_github("gavinsimpson/ggvegan")
+# devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis",
           "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra", "BiodiversityR",
-          "cowplot")
+          "cowplot", "pairwiseAdonis")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -161,31 +161,18 @@ pairwise.adonis2(all_distance ~ elevation_m_asl,
                  p.adjust.m = "holm")
 
 ## PCA Plot ----
-## Color for species
-species_colors <- c(
-  "Eragrostis capensis" = "#42049EFF",
-  "Harpochloa falx" = "#8204A7FF",
-  "Themeda triandra" = "#B6308BFF",
-  "Helichrysum pilosellum" = "#F79143FF",
-  "Senecio glaberrimus" = "#FCCE25FF")
-
 xlim_equal <- c(pca_sites$PC2, pca_sites$PC3) |> 
   abs() |> 
   max(na.rm = TRUE) |> 
   (\(m) c(-m, m))()
-
-
 
 ### PC1 & PC2 ----
 pca12_all <- pca_sites |> 
   ggplot(aes(x = PC1, y = PC2, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -200,22 +187,15 @@ pca12_all <- pca_sites |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B[2] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -224,8 +204,8 @@ pca12_all <- pca_sites |>
 pca12_all
 
 #### Save plots ----
-ggsave("results/img/pca12_all_tiff.tiff", pca12_all,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca12_all_tiff.tiff", pca12_all,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca12_all_png.png", pca12_all,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -234,11 +214,8 @@ pca13_all <- pca_sites |>
   ggplot(aes(x = PC1, y = PC3, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits,
                aes(x = 0, y = 0, xend = PC1, yend = PC3),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -253,22 +230,15 @@ pca13_all <- pca_sites |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B[1] * 100, 1)}%)"),
        y = glue("PCA3 ({round(e_B[3] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -277,8 +247,8 @@ pca13_all <- pca_sites |>
 pca13_all
 
 #### Save plots ----
-ggsave("results/img/pca13_all_tiff.tiff", pca13_all,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca13_all_tiff.tiff", pca13_all,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca13_all_png.png", pca13_all,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -287,11 +257,8 @@ pca23_all <- pca_sites |>
   ggplot(aes(x = PC2, y = PC3, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits,
                aes(x = 0, y = 0, xend = PC2, yend = PC3),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -306,22 +273,15 @@ pca23_all <- pca_sites |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA2 ({round(e_B[2] * 100, 1)}%)"),
        y = glue("PCA3 ({round(e_B[3] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -330,8 +290,8 @@ pca23_all <- pca_sites |>
 pca23_all
 
 #### Save plots ----
-ggsave("results/img/pca23_all_tiff.tiff", pca23_all,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca23_all_tiff.tiff", pca23_all,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca23_all_png.png", pca23_all,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -490,14 +450,6 @@ pairwise.adonis2(roots_distance ~ elevation_m_asl,
                  p.adjust.m = "holm")
 
 ## PCA Plot ----
-## Color for species
-species_colors <- c(
-  "Eragrostis capensis" = "#42049EFF",
-  "Harpochloa falx" = "#8204A7FF",
-  "Themeda triandra" = "#B6308BFF",
-  "Helichrysum pilosellum" = "#F79143FF",
-  "Senecio glaberrimus" = "#FCCE25FF")
-
 xlim_equal_roots <- c(pca_traits_roots$PC1, pca_traits_roots$PC2) |> 
   abs() |> 
   max(na.rm = TRUE) |> 
@@ -510,11 +462,8 @@ pca12_roots <- pca_sites_roots |>
   ggplot(aes(x = PC1, y = PC2, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits_roots,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -529,22 +478,15 @@ pca12_roots <- pca_sites_roots |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B_roots[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B_roots[2] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -553,8 +495,8 @@ pca12_roots <- pca_sites_roots |>
 pca12_roots
 
 #### Save plots ----
-ggsave("results/img/pca12_roots_tiff.tiff", pca12_roots,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca12_roots_tiff.tiff", pca12_roots,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca12_roots_png.png", pca12_roots,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -563,11 +505,8 @@ pca13_roots <- pca_sites_roots |>
   ggplot(aes(x = PC1, y = PC3, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits_roots,
                aes(x = 0, y = 0, xend = PC1, yend = PC3),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -582,22 +521,15 @@ pca13_roots <- pca_sites_roots |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B_roots[1] * 100, 1)}%)"),
        y = glue("PCA3 ({round(e_B_roots[3] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -606,8 +538,8 @@ pca13_roots <- pca_sites_roots |>
 pca13_roots
 
 #### Save plots ----
-ggsave("results/img/pca13_roots_tiff.tiff", pca13_roots,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca13_roots_tiff.tiff", pca13_roots,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca13_roots_png.png", pca13_roots,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -616,11 +548,8 @@ pca23_roots <- pca_sites_roots |>
   ggplot(aes(x = PC2, y = PC3, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits_roots,
                aes(x = 0, y = 0, xend = PC2, yend = PC3),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -635,22 +564,15 @@ pca23_roots <- pca_sites_roots |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA2 ({round(e_B_roots[2] * 100, 1)}%)"),
        y = glue("PCA3 ({round(e_B_roots[3] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -659,8 +581,8 @@ pca23_roots <- pca_sites_roots |>
 pca23_roots
 
 #### Save plots ----
-ggsave("results/img/pca23_roots_tiff.tiff", pca23_roots,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca23_roots_tiff.tiff", pca23_roots,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca23_roots_png.png", pca23_roots,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -817,14 +739,6 @@ pairwise.adonis2(leaf_distance ~ elevation_m_asl,
                  p.adjust.m = "holm")
 
 ## PCA Plot ----
-## Color for species
-species_colors <- c(
-  "Eragrostis capensis" = "#42049EFF",
-  "Harpochloa falx" = "#8204A7FF",
-  "Themeda triandra" = "#B6308BFF",
-  "Helichrysum pilosellum" = "#F79143FF",
-  "Senecio glaberrimus" = "#FCCE25FF")
-
 xlim_equal_leaf <- c(pca_traits_leaf$PC1, pca_traits_leaf$PC2) |> 
   abs() |> 
   max(na.rm = TRUE) |> 
@@ -835,11 +749,8 @@ pca12_leaf <- pca_sites_leaf |>
   ggplot(aes(x = PC1, y = PC2, 
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits_leaf,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -854,22 +765,15 @@ pca12_leaf <- pca_sites_leaf |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B_leaf[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B_leaf[2] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(), 
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -878,140 +782,11 @@ pca12_leaf <- pca_sites_leaf |>
 pca12_leaf
 
 #### Save plots ----
-ggsave("results/img/pca12_leaf_tiff.tiff", pca12_leaf,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca12_leaf_tiff.tiff", pca12_leaf,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca12_leaf_png.png", pca12_leaf,
        width = 20, height = 20, units = "cm", dpi = 300)
 
-### PC1 & PC3 ----
-# pca13_leaf <- pca_sites_leaf |> 
-#   ggplot(aes(x = PC1, y = PC3, 
-#              colour = species)) +
-#   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-#   scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
-#   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-#   #stat_ellipse(aes(group = species),
-#   #              type = "euclid", level = 0.95,
-#   #              linewidth = 1, show.legend = FALSE) +
-#   geom_segment(data = pca_traits_leaf,
-#                aes(x = 0, y = 0, xend = PC1, yend = PC3),
-#                arrow = arrow(length = unit(0.5, "cm")),
-#                size = 1,
-#                colour = "grey20",
-#                inherit.aes = FALSE) +
-#   geom_text_repel(data = pca_traits_leaf,
-#                   aes(x = PC1 * 1.1, y = PC3 * 1.1, label = traits),
-#                   size = 4,
-#                   fontface = "bold",
-#                   inherit.aes = FALSE, 
-#                   colour = "black") +
-#   coord_equal() +
-#   scale_colour_manual(values = species_colors, name = "Species",
-#                       labels = c(
-#                         "Eragrostis capensis" = "ERCA",
-#                         "Harpochloa falx" = "HAFA",
-#                         "Themeda triandra" = "THTR",
-#                         "Helichrysum pilosellum" = "HEPI",
-#                         "Senecio glaberrimus" = "SEGL")) +
-#   labs(x = glue("PCA1 ({round(e_B_leaf[1] * 100, 1)}%)"),
-#        y = glue("PCA3 ({round(e_B_leaf[3] * 100, 1)}%)")) +
-#   theme_bw(base_size = 14) +
-#   theme(
-#     axis.title = element_text(size = 16),
-#     axis.text = element_text(size = 16, color = "black"),
-#     axis.ticks = element_line(linewidth = 1),
-#     # panel.border = element_blank(), 
-#     axis.line = element_line(linewidth = 1, colour = "black"),
-#     # legend.title = element_blank(),
-#     legend.text = element_text(size = 16),
-#     plot.margin = margin(2,2,2,2),
-#     aspect.ratio = 1) +
-#   coord_cartesian(xlim = xlim_equal_leaf)
-# 
-# pca13_leaf
-#
-#### Save plots ----
-# ggsave("results/img/pca13_leaf_tiff.tiff", pca13_leaf,
-#        width = 20, height = 20, units = "cm", dpi = 300)
-# ggsave("results/img/pca13_leaf_png.png", pca13_leaf,
-#        width = 20, height = 20, units = "cm", dpi = 300)
-# 
-### PC2 & PC3 ----
-# pca23_leaf <- pca_sites_leaf |> 
-#   ggplot(aes(x = PC2, y = PC3, 
-#              colour = species)) +
-#   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-#   scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
-#   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-#   # stat_ellipse(aes(group = species),
-#   #              type = "euclid", level = 0.95,
-#   #              linewidth = 1, show.legend = FALSE) +
-#   geom_segment(data = pca_traits_leaf,
-#                aes(x = 0, y = 0, xend = PC2, yend = PC3),
-#                arrow = arrow(length = unit(0.5, "cm")),
-#                size = 1,
-#                colour = "grey20",
-#                inherit.aes = FALSE) +
-#   geom_text_repel(data = pca_traits_leaf,
-#                   aes(x = PC2 * 1.1, y = PC3 * 1.1, label = traits),
-#                   size = 4,
-#                   fontface = "bold",
-#                   inherit.aes = FALSE, 
-#                   colour = "black") +
-#   coord_equal() +
-#   scale_colour_manual(values = species_colors, name = "Species",
-#                       labels = c(
-#                         "Eragrostis capensis" = "ERCA",
-#                         "Harpochloa falx" = "HAFA",
-#                         "Themeda triandra" = "THTR",
-#                         "Helichrysum pilosellum" = "HEPI",
-#                         "Senecio glaberrimus" = "SEGL")) +
-#   labs(x = glue("PCA2 ({round(e_B_leaf[2] * 100, 1)}%)"),
-#        y = glue("PCA3 ({round(e_B_leaf[3] * 100, 1)}%)")) +
-#   theme_bw(base_size = 14) +
-#   theme(
-#     axis.title = element_text(size = 16),
-#     axis.text = element_text(size = 16, color = "black"),
-#     axis.ticks = element_line(linewidth = 1),
-#     # panel.border = element_blank(), 
-#     axis.line = element_line(linewidth = 1, colour = "black"),
-#     # legend.title = element_blank(),
-#     legend.text = element_text(size = 16),
-#     plot.margin = margin(2,2,2,2),
-#     aspect.ratio = 1) +
-#   coord_cartesian(xlim = xlim_equal_leaf)
-# 
-# pca23_leaf
-#
-#### Save plots ----
-# ggsave("results/img/pca23_leaf_tiff.tiff", pca23_leaf,
-#        width = 20, height = 20, units = "cm", dpi = 300)
-# ggsave("results/img/pca23_leaf_png.png", pca23_leaf,
-#        width = 20, height = 20, units = "cm", dpi = 300)
-# 
-# 
-# plots_pca_leaf <- c(pca12_leaf, pca13_leaf, pca23_leaf)
-# pca_leaf_legend <- get_legend(plots_pca_leaf[[1]] + theme(legend.position = "right"))
-# plots_pca_leaf_nolegend <- lapply(plots_pca_leaf, function(p) p + theme(legend.position = "none"))
-# 
-# 
-# plot_leaf_pca <- plot_grid(plots_pca_leaf_nolegend[[1]], plots_pca_leaf_nolegend[[2]],
-#                             plots_pca_leaf_nolegend[[3]], pca_leaf_legend,
-#                             ncol = 2,
-#                             rel_widths = c(1, 1), 
-#                             rel_heights = c(1, 1),
-#                             labels = c("A.", "B.", "C.", ""),
-#                             align = "hv",
-#                             axis = "tblr") + 
-#   theme(plot.background = element_rect(fill = "white", colour = NA))
-# 
-# plot_leaf_pca 
-#
-#### Save all plots ----
-# ggsave("results/img/plot_leaf_pca_tiff.tiff", plot_leaf_pca,
-#        width = 25, height = 25, units = "cm", dpi = 300)
-# 
-# 
 # 6. PCA plant size ----
 ## PCA using vegan (rda with no constraints = PCA) ----
 ## Remember to scale to unit variance
@@ -1142,30 +917,18 @@ pairwise.adonis2(plants_distance ~ elevation_m_asl,
 
 ## PCA Plot ----
 ## Color for species
-species_colors <- c(
-  "Eragrostis capensis" = "#42049EFF",
-  "Harpochloa falx" = "#8204A7FF",
-  "Themeda triandra" = "#B6308BFF",
-  "Helichrysum pilosellum" = "#F79143FF",
-  "Senecio glaberrimus" = "#FCCE25FF")
-
 xlim_equal_plants <- c(pca_traits_plants$PC2, pca_traits_plants$PC3) |>
   abs() |>
   max(na.rm = TRUE) |>
   (\(m) c(-m, m))()
-
-
 
 ### PC1 & PC2 ----
 pca12_plants <- pca_sites_plants |>
   ggplot(aes(x = PC1, y = PC2,
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits_plants,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -1180,22 +943,15 @@ pca12_plants <- pca_sites_plants |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B_plants[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B_plants[2] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(),
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -1204,8 +960,8 @@ pca12_plants <- pca_sites_plants |>
 pca12_plants
 
 #### Save plots ----
-ggsave("results/img/pca12_plants_tiff.tiff", pca12_plants,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca12_plants_tiff.tiff", pca12_plants,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca12_plants_png.png", pca12_plants,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -1214,11 +970,8 @@ pca13_plants <- pca_sites_plants |>
   ggplot(aes(x = PC1, y = PC3,
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits_plants,
                aes(x = 0, y = 0, xend = PC1, yend = PC3),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -1233,22 +986,15 @@ pca13_plants <- pca_sites_plants |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B_plants[1] * 100, 1)}%)"),
        y = glue("PCA3 ({round(e_B_plants[3] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(),
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -1257,8 +1003,8 @@ pca13_plants <- pca_sites_plants |>
 pca13_plants
 
 #### Save plots ----
-ggsave("results/img/pca13_plants_tiff.tiff", pca13_plants,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca13_plants_tiff.tiff", pca13_plants,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca13_plants_png.png", pca13_plants,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -1267,11 +1013,8 @@ pca23_plants <- pca_sites_plants |>
   ggplot(aes(x = PC2, y = PC3,
              colour = species)) +
   geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
   stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  # stat_ellipse(aes(group = species),
-  #              type = "euclid", level = 0.95,
-  #              linewidth = 1, show.legend = FALSE) +
   geom_segment(data = pca_traits_plants,
                aes(x = 0, y = 0, xend = PC2, yend = PC3),
                arrow = arrow(length = unit(0.5, "cm")),
@@ -1286,22 +1029,15 @@ pca23_plants <- pca_sites_plants |>
                   colour = "black") +
   coord_equal() +
   scale_colour_manual(values = species_colors, name = "Species",
-                      labels = c(
-                        "Eragrostis capensis" = "ERCA",
-                        "Harpochloa falx" = "HAFA",
-                        "Themeda triandra" = "THTR",
-                        "Helichrysum pilosellum" = "HEPI",
-                        "Senecio glaberrimus" = "SEGL")) +
+                      labels = species_labels) +
   labs(x = glue("PCA2 ({round(e_B_plants[2] * 100, 1)}%)"),
        y = glue("PCA3 ({round(e_B_plants[3] * 100, 1)}%)")) +
-  theme_bw(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
     axis.text = element_text(size = 16, color = "black"),
     axis.ticks = element_line(linewidth = 1),
-    # panel.border = element_blank(),
     axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_blank(),
     legend.text = element_text(size = 16),
     plot.margin = margin(2,2,2,2),
     aspect.ratio = 1) +
@@ -1311,8 +1047,8 @@ pca23_plants
 
 
 #### Save plots ----
-ggsave("results/img/pca23_plants_tiff.tiff", pca23_plants,
-       width = 20, height = 20, units = "cm", dpi = 300)
+# ggsave("results/img/pca23_plants_tiff.tiff", pca23_plants,
+#        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca23_plants_png.png", pca23_plants,
        width = 20, height = 20, units = "cm", dpi = 300)
 
@@ -1335,8 +1071,8 @@ plot_plants_pca <- plot_grid(plots_pca_plants_nolegend[[1]], plots_pca_plants_no
 plot_plants_pca
 
 ### Save all plots ----
-ggsave("results/img/plot_plants_pca_tiff.tiff", plot_plants_pca,
-       width = 25, height = 25, units = "cm", dpi = 300)
+# ggsave("results/img/plot_plants_pca_tiff.tiff", plot_plants_pca,
+#        width = 25, height = 25, units = "cm", dpi = 300)
 ggsave("results/img/plot_plants_pca_png.png", plot_plants_pca,
        width = 25, height = 25, units = "cm", dpi = 300)
 
@@ -1387,6 +1123,13 @@ fviz_contrib(mfa_all, choice = "quanti.var", axes = 2, top = 20,
 fviz_mfa_var(mfa_all, "quanti.var", palette = "jco", 
              col.var.sup = "violet", repel = TRUE)
 
+fviz_mfa_ind(mfa_all, palette = "jco", 
+             col.var.sup = "violet", repel = TRUE)
+
+
+grp <- as.factor(trait_data_wide$species)
+fviz_mfa_quali_biplot(mfa_all, repel = FALSE, col.var = "#E7B800",
+                      habillage = grp, addEllipses = TRUE, ellipse.level = 0.95)
 
 ### MFA Contribution table ----
 all_contrib <- enframe(mfa_all$quanti.var$contrib,
@@ -1411,12 +1154,12 @@ all_contrib_dim1 <- all_contrib |>
   mutate(group = fct_relevel(group, "Leaf", "Roots", "Plant size"))|> 
   ggplot(aes(x = traits, y = Dim.1)) +
   geom_col(aes(fill = group)) +
-  scale_fill_manual(values = c(Leaf = "#117733", Roots = "#7F3B08", "Plant size" = "#0072B2")) +
+  scale_fill_manual(values = group_colors) +
   geom_hline(yintercept = mean(all_contrib$Dim.1), linetype = "dashed") +
   labs(y = "Contributions to Dim-1 (%)",
        x = "",
        fill = "") +
-  theme_classic(base_size = 14) +
+  theme_classic(base_size = 16) +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     axis.title = element_text(size = 16),
@@ -1429,8 +1172,8 @@ all_contrib_dim1 <- all_contrib |>
 all_contrib_dim1
 
 #### Save plots ----
-ggsave("results/img/all_contrib_dim1_tiff.tiff", all_contrib_dim1,
-       width = 20, height = 10, units = "cm", dpi = 300)
+# ggsave("results/img/all_contrib_dim1_tiff.tiff", all_contrib_dim1,
+#        width = 20, height = 10, units = "cm", dpi = 300)
 ggsave("results/img/all_contrib_dim1_png.png", all_contrib_dim1,
        width = 20, height = 10, units = "cm", dpi = 300)
 
@@ -1440,12 +1183,12 @@ all_contrib_dim2 <- all_contrib |>
   mutate(group = fct_relevel(group, "Leaf", "Roots", "Plant size"))|> 
   ggplot(aes(x = traits, y = Dim.2)) +
   geom_col(aes(fill = group)) +
-  scale_fill_manual(values = c(Leaf = "#117733", Roots = "#7F3B08", "Plant size" = "#0072B2")) +
+  scale_fill_manual(values = group_colors) +
   geom_hline(yintercept = mean(all_contrib$Dim.1), linetype = "dashed") +
   labs(y = "Contributions to Dim-2 (%)",
        x = "",
        fill = "") +
-  theme_classic(base_size = 14) +
+  theme_classic(base_size = 16) +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     axis.title = element_text(size = 16),
@@ -1459,8 +1202,8 @@ all_contrib_dim2
 
 
 #### Save plots ----
-ggsave("results/img/all_contrib_dim2_tiff.tiff", all_contrib_dim2,
-       width = 20, height = 10, units = "cm", dpi = 300)
+# ggsave("results/img/all_contrib_dim2_tiff.tiff", all_contrib_dim2,
+#        width = 20, height = 10, units = "cm", dpi = 300)
 ggsave("results/img/all_contrib_dim2_png.png", all_contrib_dim2,
        width = 20, height = 10, units = "cm", dpi = 300)
 
@@ -1473,67 +1216,190 @@ all_contrib_12 <- plot_grid(all_contrib_dim1, all_contrib_dim2  + theme(legend.p
 
 all_contrib_12
 
-ggsave("results/img/all_contrib_12_tiff.tiff", all_contrib_12,
-       width = 20, height = 22, units = "cm", dpi = 300)
+# ggsave("results/img/all_contrib_12_tiff.tiff", all_contrib_12,
+#        width = 20, height = 22, units = "cm", dpi = 300)
 ggsave("results/img/all_contrib_12_png.png", all_contrib_12,
        width = 20, height = 22, units = "cm", dpi = 300)
 
+## Steps for plot ----
 
-# A. Extract ind. coordinate from MFA ----
-ind_coord <- as_tibble(mfa_all$ind$coord)
-ind_coord$Row <- row.names(ind_coord)
+### Ind. coords table ----
+mfa_table <- trait_data_wide |>
+  select(id, species, family, growth_form, elevation_m_asl) |> 
+  rowid_to_column() |> 
+  left_join(x = _,
+            y = as_tibble(mfa_all$ind$coord) |> 
+              rowid_to_column(),
+            by = join_by(rowid == rowid)) |> 
+  select(-rowid)
 
-# B. Create meta data table
-meta_data <- trait_data_wide |>
-  mutate(Row = as.character(dplyr::row_number())) |> 
-  select(Row, id, species, family, growth_form, elevation_m_asl)
+### Traits loadings (arrows) + scale ----
 
-# C. Join tables 
-
-mfa_table <- meta_data |> 
-  left_join(ind_coord, by = "Row")
-
-# D. Variable loadings (traits arrows)
-var <- as_tibble(rownames_to_column(as.data.frame(mfa_all$quanti.var$coord),
-                                    var = "traits"))
-
-# E. Axis labels
-ev <- mfa_all$eig[,2]
-ax1 <- sprintf("Dim 1 (%.1f%%)", ev[1])
-ax2 <- sprintf("Dim 2 (%.1f%%)", ev[2])
-
-# F. Scale arrows to fit panel
+#Scale arrows to fit panel
 rng_ind1 <- range(mfa_table$Dim.1)
 rng_ind2 <- range(mfa_table$Dim.2)
 
-rng_var1 <- range(var$Dim.1)
-rng_var2 <- range(var$Dim.2)
+rng_var1 <- range(mfa_all$quanti.var$coord[,1])
+rng_var2 <- range(mfa_all$quanti.var$coord[,2])
 
 sf <- 0.9 * min(diff(rng_ind1)/diff(rng_var1),
                 diff(rng_ind2)/diff(rng_var2))
 
-var_scaled <- transform(var, 
-                        xend = Dim.1 * sf, 
-                        yend = Dim.2 * sf)
-# D. Plot ----
 
-ggplot(mfa_table, aes(x = Dim.1, y = Dim.2, 
+mfa_traits <- mfa_all$quanti.var$coord |> 
+  as.data.frame() |> 
+  rownames_to_column(var = "traits") |> 
+  as_tibble() |> 
+  mutate(
+    xend = Dim.1 * sf,
+    yend = Dim.2 * sf) |> 
+  left_join(x = _,
+            y = mfa_all$summary.quanti |> 
+              select(group, variable),
+            by = join_by(traits == variable)) |> 
+  mutate(
+    group = case_when(
+      group == "1" ~ "Leaf",
+      group == "2" ~ "Roots",
+      group == "3" ~ "Plant size"),
+    group = fct_relevel(group, "Roots", after = 1))
+  
+### Eigenvalues ----
+ev <- mfa_all$eig[,2]
+
+### Plot ----
+#Plot limits
+xlim_equal_mfa_all <- c(mfa_table$Dim.1, mfa_table$Dim.2) |>
+  abs() |>
+  max(na.rm = TRUE) |>
+  (\(m) c(-m, m))()
+
+pmfa_all_spp_ele <- ggplot(mfa_table, aes(x = Dim.1, y = Dim.2, 
                       color = species)) +
   geom_point(aes(shape = as.factor(elevation_m_asl)), size = 3, alpha = 0.9) +
-  stat_ellipse(aes(group = species),
-               type = "norm", level = 0.95, 
-               linewidth = 1, show.legend = FALSE) +
-  geom_segment(data = var_scaled,
+  stat_ellipse(aes(group = species, colour = species), size = 0.8) +
+  geom_segment(data = mfa_traits,
                aes(x = 0, y = 0, xend = xend, yend = yend),
                inherit.aes = FALSE,
                arrow = arrow(length = unit(0.18, "cm")),
                color = "gray30", linewidth = 0.6) +
-  ggrepel::geom_text_repel(
-    data = var_scaled, inherit.aes = FALSE,
+  geom_text_repel(
+    data = mfa_traits, inherit.aes = FALSE,
     aes(x = xend, y = yend, label = traits),
     color = "gray20", size = 3) +
   coord_equal() +
-  scale_colour_manual(values = species_colors, name = "Species") +
-  scale_shape_manual(values = c(19, 15, 17, 3), name = "Elevation (masl)") +
-  labs(x = ax1,
-       y = ax2)
+  scale_colour_manual(values = species_colors, name = "Species",
+                      labels = species_labels) +
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (masl)") +
+  labs(x = sprintf("Dim 1 (%.1f%%)", ev[1]),
+       y = sprintf("Dim 2 (%.1f%%)", ev[2])) +
+  theme_bw(base_size = 16) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.text = element_text(size = 16),
+    plot.margin = margin(2,2,2,2),
+    aspect.ratio = 1) +
+  coord_cartesian(xlim = c(-3, 3))
+
+pmfa_all_spp_ele
+
+pmfa_all_spp_grp <- ggplot(mfa_table, aes(x = Dim.1, y = Dim.2)) +
+  geom_point(aes(shape = species), 
+             size = 3, color = "grey70") +
+  stat_ellipse(aes(linetype = species), 
+               size = 0.8, show.legend = TRUE, color = "grey30") +
+  geom_segment(data = mfa_traits,
+               aes(x = 0, xend = xend,
+                   y = 0,  yend = yend,
+                   color = group),
+               inherit.aes = FALSE,
+               arrow = arrow(length = unit(0.18, "cm")),
+               linewidth = 1.2) +
+  geom_text_repel(
+    data = mfa_traits, inherit.aes = FALSE,
+    aes(x = xend * 1.1, y = yend * 1.2, label = traits, color = group), 
+    size = 5, fontface = "bold") +
+  coord_equal() +
+  scale_shape_manual(values = species_shapes, name = "Species",
+                     labels = species_labels) +
+  scale_linetype_manual(values = species_ellipses, 
+                        name = "Species",
+                        labels = species_labels) +
+  scale_color_manual(values = group_colors, name = "Trait group") +
+  guides(
+    shape = guide_legend(
+      title = "Species",
+      override.aes = list(
+        linetype = species_ellipses,
+        size = 4,
+        color = "grey30"),
+      ncol = 1,
+      byrow = TRUE,
+      keywidth = unit(1.5, "cm"),
+      keyheight = unit(0.8, "cm")),
+    linetype = "none",
+    color = guide_legend(
+      title = "Trait group",
+      override.aes = list(
+        linetype = "solid",
+        alpha = 1,
+        size = 1))) +
+  labs(x = sprintf("Dim 1 (%.1f%%)", ev[1]),
+       y = sprintf("Dim 2 (%.1f%%)", ev[2])) +
+  theme_bw(base_size = 16) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.text = element_text(size = 16),
+    plot.margin = margin(2,2,2,2),
+    aspect.ratio = 1) +
+  coord_cartesian(xlim = c(-3,3))
+
+pmfa_all_spp_grp
+
+#### Save plots ----
+# ggsave("results/img/pmfa_all_spp_grp.tiff", pmfa_all_spp_grp,
+#        width = 20, height = 10, units = "cm", dpi = 300)
+ggsave("results/img/pmfa_all_spp_grp.png", pmfa_all_spp_grp,
+       width = 20, height = 15, units = "cm", dpi = 300)
+
+
+## PCA significance
+PCAsignificance(pca_roots)
+plot1_roots <- ordiplot(pca_roots, choices=c(1,2), scaling=1)
+ordiequilibriumcircle(pca_roots,plot1_roots) #Which traits are more important in each PC
+
+## PERMANOVA  ----
+### Matrix of distances ----
+mfa_all_distance <- dist(mfa_table |> 
+                         select(starts_with("Dim")))
+### Species alone ----
+set.seed(1)
+adonis2(mfa_all_distance ~ species, data = mfa_table, permutations = 4999)
+
+# Multivarite homogeneity
+mfa_all_sp_bd <- betadisper(mfa_all_distance, mfa_table$species)
+anova(mfa_all_sp_bd)
+permutest(mfa_all_sp_bd, 999)
+plot(mfa_all_sp_bd)
+
+# Plot showing differences among spp
+score_roots_spp <- scores(pca_roots, display = "sites", scaling = 1, choices = 1:2)
+plot(score_roots_spp, type = "n") 
+points(score_roots_spp, col = as.integer(pca_sites_roots$species), pch = 19)
+ordiellipse(score_roots_spp, pca_sites_roots$species, kind = "se", conf = 0.95, draw = "polygon",
+            col = 1:5, border = 1:5, label = TRUE)
+
+#### Pairwise comparisons among species ----
+set.seed(1)
+pairwise.adonis2(mfa_all_distance ~ species, 
+                 data = as.data.frame(mfa_table),
+                 permutations = 4999, 
+                 p.adjust.m = "holm")
+
+
