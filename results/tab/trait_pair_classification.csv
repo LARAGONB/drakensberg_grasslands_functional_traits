@@ -1,0 +1,86 @@
+traits,sig_general,sig_species,n_sig_species,category
+ldmc~bgb_agb,TRUE,TRUE,1,Both
+leaf_thickness~bgb_agb,TRUE,TRUE,1,Both
+rd~bgb_agb,TRUE,TRUE,1,Both
+sla~bgb_agb,TRUE,TRUE,1,Both
+srl~bgb_agb,TRUE,TRUE,2,Both
+ldmc~bi,TRUE,FALSE,0,General only
+leaf_thickness~bi,TRUE,TRUE,1,Both
+rtd~bi,TRUE,TRUE,1,Both
+bgb_agb~ldmc,TRUE,TRUE,1,Both
+bi~ldmc,TRUE,FALSE,0,General only
+leaf_thickness~ldmc,TRUE,FALSE,0,General only
+rdmc~ldmc,TRUE,FALSE,0,General only
+root_depth~ldmc,TRUE,FALSE,0,General only
+sla~ldmc,TRUE,TRUE,3,Both
+ldmc~leaf_thickness,TRUE,FALSE,0,General only
+root_depth~leaf_thickness,TRUE,TRUE,1,Both
+sla~leaf_thickness,TRUE,TRUE,2,Both
+veg_height~leaf_thickness,TRUE,TRUE,2,Both
+bgb_agb~rd,TRUE,TRUE,1,Both
+srl~rd,TRUE,TRUE,4,Both
+ldmc~rdmc,TRUE,FALSE,0,General only
+rtd~rdmc,TRUE,TRUE,1,Both
+ldmc~root_depth,TRUE,FALSE,0,General only
+leaf_thickness~root_depth,TRUE,TRUE,1,Both
+rtd~root_depth,TRUE,TRUE,1,Both
+sla~root_depth,TRUE,FALSE,0,General only
+bgb_agb~rtd,TRUE,TRUE,1,Both
+bi~rtd,TRUE,TRUE,1,Both
+rd~rtd,TRUE,TRUE,1,Both
+rdmc~rtd,TRUE,TRUE,1,Both
+root_depth~rtd,TRUE,TRUE,1,Both
+srl~rtd,TRUE,TRUE,5,Both
+bi~sla,TRUE,TRUE,1,Both
+ldmc~sla,TRUE,TRUE,4,Both
+leaf_thickness~sla,TRUE,TRUE,2,Both
+root_depth~sla,TRUE,FALSE,0,General only
+veg_height~sla,TRUE,FALSE,0,General only
+bgb_agb~srl,TRUE,TRUE,2,Both
+rd~srl,TRUE,TRUE,4,Both
+rtd~srl,TRUE,TRUE,5,Both
+ldmc~veg_height,TRUE,FALSE,0,General only
+leaf_thickness~veg_height,TRUE,TRUE,2,Both
+rd~veg_height,TRUE,TRUE,1,Both
+veg_height~bgb_agb,FALSE,TRUE,2,Species only
+bi~leaf_thickness,FALSE,TRUE,1,Species only
+leaf_thickness~rdmc,FALSE,TRUE,1,Species only
+sla~rdmc,FALSE,TRUE,1,Species only
+rd~root_depth,FALSE,TRUE,2,Species only
+veg_height~rtd,FALSE,TRUE,2,Species only
+rtd~veg_height,FALSE,TRUE,2,Species only
+rtd~bgb_agb,FALSE,TRUE,1,Species only
+rd~ldmc,FALSE,TRUE,1,Species only
+srl~ldmc,FALSE,TRUE,2,Species only
+ldmc~rd,FALSE,TRUE,1,Species only
+sla~rd,FALSE,TRUE,1,Species only
+srl~root_depth,FALSE,TRUE,1,Species only
+veg_height~root_depth,FALSE,TRUE,2,Species only
+rd~sla,FALSE,TRUE,1,Species only
+ldmc~srl,FALSE,TRUE,2,Species only
+root_depth~srl,FALSE,TRUE,1,Species only
+veg_height~srl,FALSE,TRUE,2,Species only
+bi~bgb_agb,FALSE,TRUE,2,Species only
+bgb_agb~bi,FALSE,TRUE,2,Species only
+rd~leaf_thickness,FALSE,TRUE,2,Species only
+leaf_thickness~rd,FALSE,TRUE,2,Species only
+sla~rtd,FALSE,TRUE,1,Species only
+rtd~sla,FALSE,TRUE,2,Species only
+rdmc~bgb_agb,FALSE,TRUE,1,Species only
+veg_height~bi,FALSE,TRUE,1,Species only
+rtd~rd,FALSE,TRUE,1,Species only
+bgb_agb~sla,FALSE,TRUE,1,Species only
+bi~veg_height,FALSE,TRUE,1,Species only
+root_depth~bgb_agb,FALSE,TRUE,1,Species only
+rd~bi,FALSE,TRUE,1,Species only
+rdmc~bi,FALSE,TRUE,1,Species only
+srl~bi,FALSE,TRUE,1,Species only
+rtd~ldmc,FALSE,TRUE,1,Species only
+bgb_agb~leaf_thickness,FALSE,TRUE,1,Species only
+bi~rdmc,FALSE,TRUE,1,Species only
+bgb_agb~root_depth,FALSE,TRUE,1,Species only
+bi~root_depth,FALSE,TRUE,1,Species only
+ldmc~rtd,FALSE,TRUE,1,Species only
+srl~sla,FALSE,TRUE,1,Species only
+bi~srl,FALSE,TRUE,1,Species only
+sla~srl,FALSE,TRUE,1,Species only
