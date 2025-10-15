@@ -20,7 +20,6 @@ lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
 # 2. Load data ----
-trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
 # 3. MFA for all species ----
@@ -102,8 +101,7 @@ fviz_contrib(mfa_all, choice = "quanti.var", axes = 2, top = 20,
 fviz_mfa_var(mfa_all, "quanti.var", palette = "jco", 
              col.var.sup = "violet", repel = TRUE)
 
-fviz_mfa_ind(mfa_all, palette = "jco", 
-             col.var.sup = "violet", repel = TRUE)
+
 
 ## MFA Contribution table ----
 all_contrib <- mfa_all$quanti.var$contrib |> 
@@ -448,6 +446,54 @@ pw_ss_table <- map_dfr(pw_spp_results, \(x) {
   .id = "Comparison")
 
 print(pw_ss_table)
+
+### Elevation alone ----
+set.seed(1)
+adonis2(mfa_all_distance ~ elevation_m_asl, data = mfa_table, permutations = 4999)
+
+# Multivarite homogeneity
+mfa_all_ele_bd <- betadisper(mfa_all_distance, mfa_table$elevation_m_asl)
+anova(mfa_all_ele_bd)
+permutest(mfa_all_ele_bd, 4999)
+plot(mfa_all_ele_bd)
+
+#### Pairwise comparisons among species ----
+set.seed(1)
+pw_ele_results <- pairwise.adonis2(mfa_all_distance ~ elevation_m_asl, 
+                                   data = as.data.frame(mfa_table),
+                                   permutations = 4999, 
+                                   p.adjust.m = "BH")
+
+pw_ele_table <- map_dfr(pw_ele_results, \(x) {
+  #Check if x is a data.frame/matrix
+  if(!is.data.frame(x) && !is.matrix(x)) {
+    return(tibble())
+  }
+  
+  if (nrow(x) < 3) {
+    return(tibble())
+  }
+  
+  #Extract Model row which contains the statistics
+  model_row <- x[1,]
+  total_row <- x[3,]
+  
+  #Create a tibble with the relevant statistics
+  tibble(
+    F = model_row$F,
+    R2 = model_row$R2,
+    p.value = model_row$`Pr(>F)`,
+    SS = model_row$SumOfSqs,
+    DF = paste0(model_row$Df, "/", total_row$Df),
+    significance = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01 ~ "**",
+      p.value < 0.05 ~ "*",
+      p.value < 0.1 ~ ".",
+      TRUE ~ "ns"))},
+  .id = "Comparison")
+
+print(pw_ele_table)
 
 
 ### Dimensions as variables ----
