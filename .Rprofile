@@ -1,4 +1,8 @@
-#Species colors
+#Species order
+species_order <- c("Eragrostis capensis", "Harpochloa falx", 
+                   "Themeda triandra", "Helichrysum pilosellum", 
+                   "Senecio glaberrimus")
+#Species labels
 species_labels <- c(
   "Eragrostis capensis" = "ERCA",
   "Harpochloa falx" = "HAFA",
