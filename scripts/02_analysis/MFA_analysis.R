@@ -79,29 +79,11 @@ process_all <- function(data) {
   return(result)
 }
 
-# Run the function
+### Run the function ----
 mfa_all <- process_all(trait_data_wide)
 
-# Access the coordinates with metadata
+# Access the loadings with metadata
 mfa_table <- mfa_all$coord_with_metadata
-
-## FactoExtra plots ----
-### Screeplot ----
-fviz_screeplot(mfa_all)
-
-### Fviz contributions Dim 1 ----
-fviz_contrib(mfa_all, choice = "quanti.var", axes = 1, top = 20,
-             palette = "jco")
-
-### Fviz contributions Dim 2 ----
-fviz_contrib(mfa_all, choice = "quanti.var", axes = 2, top = 20,
-             palette = "jco")
-
-### Fviz MFA plot ----
-fviz_mfa_var(mfa_all, "quanti.var", palette = "jco", 
-             col.var.sup = "violet", repel = TRUE)
-
-
 
 ## MFA Contribution table ----
 all_contrib <- mfa_all$quanti.var$contrib |> 
@@ -281,8 +263,10 @@ ev <- mfa_all$eig[,2]
 #### Per elevation ----
 pmfa_all_spp_ele <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2, 
                                           color = species)) +
+  geom_hline(yintercept = 0, color = "grey90", linewidth = 1) +     
+  geom_vline(xintercept = 0, color = "grey90", linewidth = 1) + 
   geom_point(aes(shape = as.factor(elevation_m_asl)), size = 3, alpha = 0.9) +
-  stat_ellipse(aes(group = species, colour = species), size = 0.8) +
+  stat_ellipse(aes(group = species, colour = species), linewidth = 0.8) +
   geom_segment(data = mfa_all_traits,
                aes(x = 0, y = 0, xend = Dim1_scaled_12, yend = Dim2_scaled_12),
                inherit.aes = FALSE,
@@ -315,23 +299,25 @@ pmfa_all_spp_ele <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2,
     axis.line = element_line(linewidth = 1, colour = "black"),
     legend.title = element_text(face = "bold"),
     legend.text = element_text(size = 16),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
     plot.margin = margin(1,1,1,1, "mm"),
     aspect.ratio = 1)
 
 pmfa_all_spp_ele
 
 ##### Save plots ----
-# ggsave("results/img/pmfa_all_spp_ele.tiff", pmfa_all_spp_ele,
-#        width = 20, height = 10, units = "cm", dpi = 300)
 ggsave("results/img/pmfa_all_spp_ele.png", pmfa_all_spp_ele,
        width = 20, height = 15, units = "cm", dpi = 300)
 
 #### Per species ----
 pmfa_all_spp_grp <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
+  geom_hline(yintercept = 0, color = "grey90", linewidth = 1) +     
+  geom_vline(xintercept = 0, color = "grey90", linewidth = 1) + 
   geom_point(aes(shape = species), 
              size = 3, color = "grey70") +
   stat_ellipse(aes(linetype = species), 
-               size = 0.8, show.legend = TRUE, color = "grey30") +
+               linewidth = 0.8, show.legend = TRUE, color = "grey30") +
   geom_segment(data = mfa_all_traits,
                aes(x = 0, xend = Dim1_scaled_12,y = 0, yend = Dim2_scaled_12, color = group),
                inherit.aes = FALSE,
@@ -384,16 +370,219 @@ pmfa_all_spp_grp <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
     axis.line = element_line(linewidth = 1, colour = "black"),
     legend.title = element_text(face = "bold"),
     legend.text = element_text(size = 16),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
     plot.margin = margin(1,1,1,1, "mm"),
     aspect.ratio = 1)
 
 pmfa_all_spp_grp
 
 ##### Save plots ----
-# ggsave("results/img/pmfa_all_spp_grp.tiff", pmfa_all_spp_grp,
-#        width = 20, height = 10, units = "cm", dpi = 300)
 ggsave("results/img/pmfa_all_spp_grp.png", pmfa_all_spp_grp,
        width = 20, height = 15, units = "cm", dpi = 300)
+
+#### Per Spp & Ele Dim 12 ----
+pmfa_all_spp_ele_dim12 <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
+  geom_hline(yintercept = 0, color = "grey90", linewidth = 1) +     
+  geom_vline(xintercept = 0, color = "grey90", linewidth = 1) + 
+  geom_point(aes(shape = as.factor(elevation_m_asl)), 
+             size = 3, color = "grey70") +
+  stat_ellipse(aes(linetype = species), 
+               linewidth = 0.8, show.legend = TRUE, color = "grey30") +
+  geom_segment(data = mfa_all_traits,
+               aes(x = 0, xend = Dim1_scaled_12,y = 0, yend = Dim2_scaled_12, color = group),
+               inherit.aes = FALSE,
+               arrow = arrow(length = unit(0.18, "cm")),
+               linewidth = 1.2) +
+  geom_text_repel(
+    data = mfa_all_traits, inherit.aes = FALSE,
+    aes(x = Dim1_scaled_12, y = Dim2_scaled_12, label = traits, color = group),
+    size = 5,
+    max.overlaps = Inf,
+    force = 1,           
+    force_pull = 1,      
+    min.segment.length = 0,  
+    segment.size = 0.3,  
+    box.padding = 0.5,
+    show.legend = FALSE,
+    fontface = "bold") +
+  coord_equal() +
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +
+  scale_linetype_manual(values = species_ellipses, 
+                        name = "Species",
+                        labels = species_labels) +
+  scale_color_manual(values = group_colors, name = "Trait group") +
+  guides(
+    shape = guide_legend(
+      override.aes = list(linetype = "blank"),
+      order = 1),
+    linetype = guide_legend(
+      override.aes = list(shape = NA),
+      order = 2),
+    color = guide_legend(order = 3)) +
+  labs(x = sprintf("Dim 1 (%.1f%%)", ev[1]),
+       y = sprintf("Dim 2 (%.1f%%)", ev[2])) +
+  theme_bw(base_size = 16) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(face = "bold"),
+    legend.text = element_text(size = 16),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(1,1,1,1, "mm"),
+    aspect.ratio = 1)
+
+pmfa_all_spp_ele_dim12
+
+#### Per Spp & Ele Dim 13 ----
+pmfa_all_spp_ele_dim13 <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.3)) +
+  geom_hline(yintercept = 0, color = "grey90", linewidth = 1) +     
+  geom_vline(xintercept = 0, color = "grey90", linewidth = 1) + 
+  geom_point(aes(shape = as.factor(elevation_m_asl)), 
+             size = 3, color = "grey70") +
+  stat_ellipse(aes(linetype = species), 
+               linewidth = 0.8, show.legend = TRUE, color = "grey30") +
+  geom_segment(data = mfa_all_traits,
+               aes(x = 0, xend = Dim1_scaled_13,y = 0, yend = Dim3_scaled_13, color = group),
+               inherit.aes = FALSE,
+               arrow = arrow(length = unit(0.18, "cm")),
+               linewidth = 1.2) +
+  geom_text_repel(
+    data = mfa_all_traits, inherit.aes = FALSE,
+    aes(x = Dim1_scaled_13, y = Dim3_scaled_13, label = traits, color = group),
+    size = 5,
+    max.overlaps = Inf,
+    force = 1,           
+    force_pull = 1,      
+    min.segment.length = 0,  
+    segment.size = 0.3,  
+    box.padding = 0.5,
+    show.legend = FALSE,
+    fontface = "bold") +
+  coord_equal() +
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +
+  scale_linetype_manual(values = species_ellipses, 
+                        name = "Species",
+                        labels = species_labels) +
+  scale_color_manual(values = group_colors, name = "Trait group") +
+  guides(
+    shape = guide_legend(
+      override.aes = list(linetype = "blank"),
+      order = 1),
+    linetype = guide_legend(
+      override.aes = list(shape = NA),
+      order = 2),
+    color = guide_legend(order = 3)) +
+  labs(x = sprintf("Dim 1 (%.1f%%)", ev[1]),
+       y = sprintf("Dim 3 (%.1f%%)", ev[3])) +
+  theme_bw(base_size = 16) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(face = "bold"),
+    legend.text = element_text(size = 16),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(1,1,1,1, "mm"),
+    aspect.ratio = 1)
+
+pmfa_all_spp_ele_dim13
+
+#### Per Spp & Ele Dim 23 ----
+pmfa_all_spp_ele_dim23 <- ggplot(mfa_all_ind, aes(x = Dim.2, y = Dim.3)) +
+  geom_hline(yintercept = 0, color = "grey90", linewidth = 1) +     
+  geom_vline(xintercept = 0, color = "grey90", linewidth = 1) + 
+  geom_point(aes(shape = as.factor(elevation_m_asl)), 
+             size = 3, color = "grey70") +
+  stat_ellipse(aes(linetype = species), 
+               linewidth = 0.8, show.legend = TRUE, color = "grey30") +
+  geom_segment(data = mfa_all_traits,
+               aes(x = 0, xend = Dim2_scaled_23,y = 0, yend = Dim3_scaled_23, color = group),
+               inherit.aes = FALSE,
+               arrow = arrow(length = unit(0.18, "cm")),
+               linewidth = 1.2) +
+  geom_text_repel(
+    data = mfa_all_traits, inherit.aes = FALSE,
+    aes(x = Dim2_scaled_23, y = Dim3_scaled_23, label = traits, color = group),
+    size = 5,
+    max.overlaps = Inf,
+    force = 1,           
+    force_pull = 1,      
+    min.segment.length = 0,  
+    segment.size = 0.3,  
+    box.padding = 0.5,
+    show.legend = FALSE,
+    fontface = "bold") +
+  coord_equal() +
+  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +
+  scale_linetype_manual(values = species_ellipses, 
+                        name = "Species",
+                        labels = species_labels) +
+  scale_color_manual(values = group_colors, name = "Trait group") +
+  guides(
+    shape = guide_legend(
+      override.aes = list(linetype = "blank"),
+      order = 1),
+    linetype = guide_legend(
+      override.aes = list(shape = NA),
+      order = 2),
+    color = guide_legend(order = 3)) +
+  labs(x = sprintf("Dim 2 (%.1f%%)", ev[2]),
+       y = sprintf("Dim 3 (%.1f%%)", ev[3])) +
+  theme_bw(base_size = 16) +
+  theme(
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
+    axis.ticks = element_line(linewidth = 1),
+    axis.line = element_line(linewidth = 1, colour = "black"),
+    legend.title = element_text(face = "bold"),
+    legend.text = element_text(size = 16),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(1,1,1,1, "mm"),
+    aspect.ratio = 1)
+
+pmfa_all_spp_ele_dim23
+
+##### Save plots ----
+ggsave("results/img/pmfa_all_spp_ele_dim12.png", pmfa_all_spp_ele_dim12,
+       width = 20, height = 15, units = "cm", dpi = 300)
+
+### Combined plot for Dim12, Dim13, Dim23 ----
+# Get individual legends
+elevation_legend <- get_legend(pmfa_all_spp_ele_dim12 + 
+                                 guides(linetype = "none", color = "none") +
+                                 theme(legend.key.height = unit(0.5, "cm")))
+
+species_legend <- get_legend(pmfa_all_spp_ele_dim12 + 
+                               guides(shape = "none", color = "none") +
+                               theme(legend.key.height = unit(0.5, "cm")))
+
+trait_legend <- get_legend(pmfa_all_spp_ele_dim12 + 
+                             guides(shape = "none", linetype = "none"))
+
+
+legend_combined <- plot_grid(elevation_legend, species_legend, trait_legend,
+                             ncol = 2,
+                             align = "v", axis = "t")
+
+mfa_all_combined_plot1 <- plot_grid(pmfa_all_spp_ele_dim12 + theme(legend.position="none"), 
+                                   pmfa_all_spp_ele_dim13 + theme(legend.position="none"), 
+                                   pmfa_all_spp_ele_dim23 + theme(legend.position="none"),
+                                   legend_combined,
+                                   align = c("hv")) +
+  theme(plot.background = element_rect(fill = "white"))
+
+mfa_all_combined_plot1
+
+##### Save plots ----
+ggsave("results/img/mfa_all_combined_plot2.png", mfa_all_combined_plot1,
+       width = 30, height = 30, units = "cm", dpi = 300)
 
 ## PERMANOVA  ----
 ### Matrix of distances ----
@@ -680,6 +869,23 @@ mfa_dim1_2_plot <- mfa_all_dim1_p + mfa_all_dim2_p +
 
 ggsave("results/img/mfa_dim1_2_plot.png", mfa_dim1_2_plot, 
        width = 10, height = 5, dpi = 300)
+
+
+## FactoExtra plots ----
+### Screeplot ----
+fviz_screeplot(mfa_all)
+
+### Fviz contributions Dim 1 ----
+fviz_contrib(mfa_all, choice = "quanti.var", axes = 1, top = 20,
+             palette = "jco")
+
+### Fviz contributions Dim 2 ----
+fviz_contrib(mfa_all, choice = "quanti.var", axes = 2, top = 20,
+             palette = "jco")
+
+### Fviz MFA plot ----
+fviz_mfa_var(mfa_all, "quanti.var", palette = "jco", 
+             col.var.sup = "violet", repel = TRUE)
 
 
 # 4. MFA for each species ----
