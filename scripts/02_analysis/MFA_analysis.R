@@ -167,6 +167,8 @@ ggsave("results/img/all_contrib_12_png.png", all_contrib_12,
 mfa_all_ind <- mfa_table |> 
   mutate(species = fct_relevel(species, "Themeda triandra", after = 2))
 
+write_csv(mfa_all_ind, "data/output/mfa_all_ind.csv")
+
 ### Traits loadings (arrows) + scale ----
 mfa_all_traits <- {
   
@@ -256,8 +258,12 @@ mfa_all_traits <- {
     relocate(traits, group, .before = everything()) 
 }
 
+write_csv(mfa_all_traits, "data/output/mfa_all_traits.csv")
+
 ### Eigenvalues ----
 ev <- mfa_all$eig[,2]
+
+saveRDS(ev, "data/output/mfa_all_ev.rds")
 
 ### Plot ----
 #### Per elevation ----
@@ -1051,6 +1057,9 @@ mfa_spp_ind <- trait_data_wide |>
             by = join_by(id == id, species == species)) |> 
   mutate(species = factor(species, levels = species_order))  
 
+
+write_csv(mfa_spp_ind, "data/output/mfa_spp_ind.csv")
+
 ### Traits loadings (arrows) + scale ----
 
 mfa_spp_traits <- imap_dfr(mfa_by_species, \(mfa_obj, sp_name) {
@@ -1145,9 +1154,10 @@ mfa_spp_traits <- imap_dfr(mfa_by_species, \(mfa_obj, sp_name) {
     relocate(species, .before = "traits")
 })
 
+write_csv(mfa_spp_traits, "data/output/mfa_spp_traits.csv")
 
 ### Plot ----
-# Extract eigenvalues for each species
+#### Extract eigenvalues for each species ----
 eigenvalues_by_species <- map_dfr(mfa_by_species, \(mfa_obj) {
   ev <- mfa_obj$eig[,2]  # Get percentage of variance explained
   tibble(
@@ -1162,6 +1172,7 @@ eigenvalues_by_species <- map_dfr(mfa_by_species, \(mfa_obj) {
   )}, .id = "species") |> 
   mutate(species = factor(species, levels = species_order))
 
+write_rds(eigenvalues_by_species, "data/output/mfa_spp_ev.rds")
 
 species_labels_2 <- eigenvalues_by_species |> 
   mutate(
@@ -1184,7 +1195,7 @@ mfa_spp_plot12 <- ggplot(mfa_spp_ind |>
   geom_text_repel(
     data = mfa_spp_traits, inherit.aes = FALSE,
     aes(x = Dim1_scaled_12, y = Dim2_scaled_12, label = traits, color = group),
-    size = 5,
+    size = 7,
     max.overlaps = Inf,
     force = 1,           
     force_pull = 1,      

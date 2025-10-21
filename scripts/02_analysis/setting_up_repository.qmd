@@ -1,0 +1,20 @@
+---
+title: "First Assignment"
+author: "Lina Aragón"
+format: html
+editor: visual
+---
+
+## 1. Load packages
+
+```{r}
+pkgs <- c("EVR628tools", "ggplot2")
+lapply(pkgs, library, character.only = T)
+remove(pkgs)
+```
+
+## 2. Create folders using EVR628tools pkg
+
+```{r}
+create_dirs()
+```

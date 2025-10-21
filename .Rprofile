@@ -25,7 +25,15 @@ species_colors <- c(
   "Senecio glaberrimus" = "#FCCE25FF")
 
 #Elevation shapes
-elevation_shapes <- c(19, 15, 17, 3)
+elevation_shapes <- c("2200" = 19, "2400" = 15, "2600" = 17, "2800" = 3)
+
+elevation_labels <- c("2200" = "2200", "2400" = "2400", "2600" = "2600", "2800" = "2800")
+
+#Elevation labels
+elevation_labels <- c("2200", "2400", "2600", "2800")
+
+#Elevation ellipses 
+elevation_ellipses <- c("2200" = "solid", "2400" = "dashed", "2600" = "dotted", "2800" = "dotdash")
 
 #Group colors
 group_colors <- c("Leaf" = "#117733", 
