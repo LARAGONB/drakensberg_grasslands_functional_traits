@@ -19,7 +19,7 @@ pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggr
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
-# 2. Load data ----
+# 2. Load data and create groups ----
 mfa_all_ind <- read_csv("data/output/mfa_all_ind.csv")
 mfa_all_traits <- read_csv("data/output/mfa_all_traits.csv")
 mfa_all_ev <- read_rds("data/output/mfa_all_ev.rds")
@@ -28,7 +28,24 @@ mfa_spp_ind <- read_csv("data/output/mfa_spp_ind.csv")
 mfa_spp_traits <- read_csv("data/output/mfa_spp_traits.csv")
 mfa_spp_ev <- read_rds("data/output/mfa_spp_ev.rds")
 
-# MFA ALL ----
+
+leaf_vars <- mfa_all_traits |> 
+  select(traits, group) |> 
+  filter(group %in% "Leaf") |> 
+  pull(traits)
+
+root_vars <- mfa_all_traits |> 
+  select(traits, group) |> 
+  filter(group %in% "Roots") |> 
+  pull(traits)
+
+plant_size_vars <- mfa_all_traits |> 
+  select(traits, group) |> 
+  filter(group %in% "Plant size") |> 
+  pull(traits)
+
+all_vars <- c(leaf_vars, root_vars, plant_size_vars)
+
 # 3. Functions to analyze data ----
 ## Rv function of variable-coordinate matrices ----
 rv_coords <- function(A, B) {
@@ -143,29 +160,13 @@ plot_perm <- function(res, title = NULL) {
       plot.margin = margin(1,1,1,1, "mm"))
 }
 
-# 4. Elements required for rv_perm_on_varcoords ---
+
+# MFA ALL ----
+# 4. Analyses for MFA across all individual ----
 varcoords <- mfa_all_traits |> 
   select(traits, starts_with("Dim.")) |> 
   column_to_rownames(var = "traits")
 
-leaf_vars <- mfa_all_traits |> 
-  select(traits, group) |> 
-  filter(group %in% "Leaf") |> 
-  pull(traits)
-
-root_vars <- mfa_all_traits |> 
-  select(traits, group) |> 
-  filter(group %in% "Roots") |> 
-  pull(traits)
-
-plant_size_vars <- mfa_all_traits |> 
-  select(traits, group) |> 
-  filter(group %in% "Plant size") |> 
-  pull(traits)
-
-all_vars <- c(leaf_vars, root_vars, plant_size_vars)
-
-# 4. Analyses for MFA across all individual ----
 results_all_species <- list(
     leaf_vs_root = rv_perm_on_varcoords(varcoords, all_vars, leaf_vars, root_vars, "Leaf", "Roots", nperm = 10000, seed = 42),
     leaf_vs_plant_size = rv_perm_on_varcoords(varcoords, all_vars, leaf_vars, plant_size_vars, "Leaf", "Plant size", nperm = 10000, seed = 42),
@@ -331,11 +332,6 @@ summary_by_species <- results_by_species |>
   list_rbind()
 
 print(summary_by_species)
-
-# Full table summary
-
-summary_rv_complete <- rbind(summary_all_species, summary_by_species)
-
 
 ## Plots ----
 plots_by_species <- lapply(results_by_species, function(p) {
@@ -547,3 +543,9 @@ full_plot_SEGL
 ggsave("results/img/full_plot_SEGL.png", full_plot_SEGL, 
        width = 18, height = 8, dpi = 300)
 
+
+# 9.Full table summary ----
+
+summary_rv_complete <- rbind(summary_all_species, summary_by_species)
+summary_rv_complete |> 
+  filter(P_orthogonal <= 0.1)

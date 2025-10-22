@@ -1224,3 +1224,73 @@ mfa_spp_plot12 <- ggplot(mfa_spp_ind |>
 ### Save the plot ----
 ggsave("results/img/mfa_spp_plot12.png", mfa_spp_plot12, 
        width = 14, height = 10, dpi = 300)
+
+## PERMANOVA  ----
+### Matrix of distances ----
+
+adonis_mfa_spp <- mfa_spp_ind |> 
+  nest(.by = species) |> 
+  mutate(dist_matrix = lapply(data, function(nest_data) 
+    dist(nest_data |> 
+           select(starts_with("Dim"))))) |> 
+  mutate(
+    #Run adonis model for each species to evaluate if there are differences among elevations
+    adonis_models = map2(dist_matrix, data, \(x, y) {
+      set.seed(12345)
+      adonis2(x ~ elevation_m_asl, data = y, permutations = 4999)}),
+    #Run betadisper to test for homogenity of variances among elevations
+    betadisper = map2(dist_matrix, data, \(x, y) {
+      bd <- betadisper(x, y$elevation_m_asl)
+      set.seed(12345)
+      perm.test <- permutest(bd, permutations = 999)
+            test <- perm.test$tab}),
+    #Run pairwise comparisons 
+    pairwise = map2(dist_matrix, data, \(x, y) {
+      set.seed(12345)
+      pairwise.adonis2(x ~ elevation_m_asl, data = y,
+                       permutations = 4999, 
+                       p.adjust.m = "BH")}),
+    #Extract adonis results
+    adonis_summary = map(adonis_models, \(x) {
+      table <- tibble(x)
+      tibble(
+        F = table$F[1],
+        DF = paste0(table$Df[1],"/",table$Df[3]),
+        R2 = table$R2[1],
+        p = table$"Pr(>F)"[1])}),
+    #Extract betadisper results
+    betadisper_summary = map(betadisper, \(x) {
+      table = tibble(x)
+      tibble(
+        F_bd = table$F[1],
+        DF_bd = paste0(table$Df[1],"/", table$Df[2]),
+        P_bd = table$"Pr(>F)"[1])})),
+  #Extract pairwise results
+  pairwise_results = map(pairwise, \(x) {
+    table <- tibble(x)
+    #Create a tibble with the relevant statistics
+    tibble(
+      F = table$F[1],
+      R2 = table$R2[1],
+      p.value = table$"Pr(>F)"[1],
+      SS = table$SumOfSqs,
+      DF = paste0(table$Df[1],"/",table$Df[3]))}))
+
+  unnest(c(adonis_summary, betadisper_summary)) |> 
+  relocate(data, dist_matrix, adonis_models, betadisper, .after = last_col())
+
+adonis_mfa_spp_2 <- adonis_mfa_spp |> 
+  select(1:8)
+
+adonis_mfa_spp |> 
+  unnest(pairwise)
+adonis_mfa_spp$pairwise[1]
+
+
+pairwise.adonis2(mfa_all_distance ~ species, 
+                 data = as.data.frame(mfa_table),
+                 permutations = 4999, 
+                 p.adjust.m = "BH") 
+
+adonis_mfa_spp$pairwise[[1]]$`2200_vs_2400`$`Pr(>F)`[1]
+
