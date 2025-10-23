@@ -93,9 +93,7 @@ write_csv(cv_long, "results/tab/coefficient_variation_traits.csv")
 all_within_cv <- cv_long |> 
   filter(source %in% c("all_plants","within_species")) |>
   mutate(
-    traits = factor(traits, levels = c("leaf_thickness", "ldmc", "sla", 
-                                       "bi", "rd", "rdmc", "rtd", "srl",
-                                       "veg_height","root_depth", "bgb_agb")),
+    traits = factor(traits, levels = traits_levels),
     growth_form = case_when(
       species %in% c("Eragrostis capensis", "Harpochloa falx", "Themeda triandra") ~ "Grass",
       species %in% c("Helichrysum pilosellum", "Senecio glaberrimus") ~ "Forb",
@@ -114,13 +112,7 @@ all_within_cv <- cv_long |>
                "Grass" = "Grass",
                "NA" = "")) +
   scale_x_discrete(
-    labels = c(
-      "Eragrostis capensis" = "ERCA",
-      "Harpochloa falx" = "HAFA",
-      "Themeda triandra" = "THTR",
-      "Helichrysum pilosellum" = "HEPI",
-      "Senecio glaberrimus" = "SEGL",
-      "ALL" = "ALL")) +
+    labels = c(species_labels, "ALL" = "ALL")) +
   labs(
     y = "Coefficient of Variation (%)",
     x = "") + 
@@ -137,18 +129,7 @@ all_within_cv <- cv_long |>
     strip.background = element_rect(fill = "#E0E0E0", color = "black"), # gray background, black border
     strip.text = element_text(color = "black", size = 14)) +
   facet_wrap2(vars(traits), ncol = 3, scales = "free_y", axes = "all", remove_labels = "all",
-              labeller = as_labeller(c(
-                "leaf_thickness" = "LT",
-                "ldmc" = "LDMC",
-                "sla" = "SLA",
-                "bi" = "BI",
-                "rd" = "RD",
-                "rdmc" = "RDMC",
-                "rtd" = "RTD",
-                "srl" = "SRL",
-                "veg_height" = "VHeight",
-                "root_depth" = "RDepth",
-                "bgb_agb" = "BG:AG")))
+              labeller = as_labeller(traits_labels))
 all_within_cv 
 
 #### Save plot ----
@@ -159,76 +140,104 @@ ggsave("results/img/all_within_cv_png.png", all_within_cv,
 
 ### whitin_itvb_itvw ----
 
+# New ordered levels with a placeholder in the 9th position
+new_levels <- c(
+  "leaf_thickness", "ldmc", "sla",      
+  "bi", "rd", "rdmc",                   
+  "rtd", "srl",                         
+  "EMPTY_PANEL",                        
+  "veg_height", "root_depth", "bgb_agb")
+
+# Extend traits_labels so the placeholder has an empty strip label
+traits_labels_extended <- traits_labels
+traits_labels_extended["EMPTY_PANEL"] <- ""  # no text for the placeholder strip
+
+# Build a fill vector matching the 12 panels.
+fills <- c(
+  rep(group_colors[1], 3),   
+  rep(group_colors[2], 3),   
+  rep(group_colors[2], 2),   
+  "white",                   
+  rep(group_colors[3], 3))
+fills_named <- setNames(fills, new_levels)
+
+# Make strip border color mapping and set EMPTY_PANEL strip border to transparent
+strip_border_colors <- rep("black", length(new_levels))
+names(strip_border_colors) <- new_levels
+strip_border_colors["EMPTY_PANEL"] <- "transparent"   # no strip border for empty panel
+
+# build helper df with one row PER FACET (traits column must match facet variable)
+border_traits_df <- data.frame(
+  traits = setdiff(new_levels, "EMPTY_PANEL"),
+  xmin = -Inf, xmax = Inf,
+  ymin = -Inf, ymax = Inf,
+  stringsAsFactors = FALSE
+)
+
+# ensure traits column has same factor levels as in the main data (helps matching)
+border_traits_df$traits <- factor(border_traits_df$traits, levels = new_levels)
+
 whitin_itvb_itvw <- cv_long |> 
   filter(source %in% c("within_species", "itv_between", "itv_within")) |>
   mutate(
-    traits = factor(traits, levels = c("leaf_thickness", "ldmc", "sla",
-                                       "bi", "rd", "rdmc", "rtd", "srl",
-                                       "veg_height","root_depth", "bgb_agb")),
+    traits = factor(traits, levels = new_levels),
     species = fct_relevel(species, "Themeda triandra", after = 2),
-    source = factor(source, levels = c("within_species", "itv_between", "itv_within"))) |> 
-  arrange(traits, source) |> 
+    source = factor(source, levels = c("within_species", "itv_between", "itv_within"))) |>
+  arrange(traits, source) |>
   ggplot(aes(x = species, y = cv, fill = source)) +
   geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap2(
+    vars(traits),
+    ncol = 3,
+    scales = "fixed",
+    axes = "all",
+    remove_labels = "all",
+    drop = FALSE,
+    labeller = as_labeller(traits_labels_extended),
+    strip = strip_themed(
+      background_x = elem_list_rect(
+        fill = scales::alpha(fills_named, 1),
+        color = NA))) +
   scale_fill_manual(
     values = c(
-      "within_species" = "#ED4F3EFF",
-      "itv_between" = "#931C5BFF",
-      "itv_within" = "#261433FF"),
+      "within_species" = "gray0",
+      "itv_between" = "gray40",
+      "itv_within" = "gray80"),
     labels = c(
       "within_species" = "Within species",
       "itv_between" = expression("ITV"["between"]),
       "itv_within" = expression("ITV"["within"]))) +
   scale_x_discrete(
-    labels = c(
-      "Eragrostis capensis" = "ERCA",
-      "Harpochloa falx" = "HAFA",
-      "Themeda triandra" = "THTR",
-      "Helichrysum pilosellum" = "HEPI",
-      "Senecio glaberrimus" = "SEGL",
-      "ALL" = "ALL")) +
+    labels = c(species_labels, "ALL" = "ALL")) +
   labs(
     y = "Coefficient of Variation (%)",
     x = "") + 
-  theme_classic(base_size = 14) +
+  theme_bw(base_size = 16) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 16, color = "black"),
+    strip.text = element_text(color = "white", size = 14),
+    strip.background = element_rect(colour = NA),
+    axis.line = element_line(colour = "black"),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
     axis.text.x = element_text(angle = 45, hjust = 1),
-    axis.ticks = element_line(linewidth = 1),
-    panel.border = element_rect(color = "black", fill = NA, linewidth = 1),
-    axis.line = element_line(linewidth = 1, colour = "black"),
+    axis.ticks = element_line(colour = "black"),
+    panel.grid = element_blank(),
+    panel.border = element_rect(color = "black", fill = NA),
     legend.title = element_blank(),
-    legend.text = element_text(size = 16),
-    strip.background = element_rect(fill = "#E0E0E0", color = "black"), # gray background, black border
-    strip.text = element_text(color = "black", size = 14)) +
-  facet_wrap2(vars(traits), ncol = 3, scales = "free_y", axes = "all", remove_labels = "all",
-              labeller = as_labeller(c(
-                "leaf_thickness" = "LT",
-                "ldmc" = "LDMC",
-                "sla" = "SLA",
-                "bi" = "BI",
-                "rd" = "RD",
-                "rdmc" = "RDMC",
-                "rtd" = "RTD",
-                "srl" = "SRL",
-                "veg_height" = "VHeight",
-                "root_depth" = "RDepth",
-                "bgb_agb" = "BG:AG")))
+    legend.text = element_text(size = 14))
+
 
 whitin_itvb_itvw
 #### Save plot ----
-ggsave("results/img/whitin_itvb_itvw_cv_tiff.tiff", whitin_itvb_itvw,
-       width = 35, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/whitin_itvb_itvw_cv_png.png", whitin_itvb_itvw,
-       width = 35, height = 20, units = "cm", dpi = 300)
+       width = 25, height = 30, units = "cm", dpi = 300)
 
 
 # 4. Linear mixed model ---- Where the variation in the trait is found ----
 
 ## Table with proportion of variance per growth_form, species, elevation, residual ----
 lmm_trait_variation <- trait_data |> 
-  filter(traits %in% c("root_depth", "rd", "bi", "srl", "rtd", "rdmc", "veg_height", "sla", "ldmc", "leaf_thickness", "bgb_agb" )) |>
+  filter(traits %in% traits_levels) |>
   group_by(traits) |>
   nest() |>
   mutate(
@@ -247,15 +256,13 @@ lmm_trait_variation <- trait_data |>
       grp == "species:elevation_m_asl" ~ "ITV_between",
       grp == "Residual" ~ "ITV_within"
     ),
-    traits = factor(traits, levels = c("leaf_thickness", "ldmc", "sla",
-                                       "bi", "rd", "rdmc", "rtd", "srl",
-                                       "veg_height","root_depth", "bgb_agb")),
+    traits = factor(traits, levels = traits_levels),
     grp = factor(grp, levels = c("Growth form", "Species", "ITV_between", "ITV_within"))) |>
   arrange(traits, grp)
 
 ### Export table  ----
 write_csv(lmm_trait_variation, "results/tab/proportion_total_trait_variance.csv")
-
+write_rds(lmm_trait_variation, "data/output/proportion_total_trait_variance.csv")
 # 5. Visualize model results ----
 
 perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = grp)) +
@@ -275,18 +282,7 @@ perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = 
       "ITV_between" = expression("ITV"["between"]),
       "ITV_within" = expression("ITV"["within"]))) +
   scale_x_discrete(
-    labels = c(
-      "leaf_thickness" = "LT",
-      "ldmc" = "LDMC",
-      "sla" = "SLA",
-      "bi" = "BI",
-      "rd" = "RD",
-      "rdmc" = "RDMC",
-      "rtd" = "RTD",
-      "srl" = "SRL",
-      "veg_height" = "VHeight",
-      "root_depth" = "RDepth",
-      "bgb_agb" = "BG:AG")) +
+    labels = traits_labels) +
   labs(
     x = "",
     y = "% of total variance",
@@ -301,6 +297,210 @@ perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = 
     legend.justification = c("right", "top"))
 
 perc_plot
+
+
+
+perc_plot_leaf <- ggplot(lmm_trait_variation |> 
+                           filter(traits %in% c("leaf_thickness", "ldmc", "sla")), aes(x = traits, y = proportion, fill = grp)) +
+  geom_bar(stat = "identity", position = "stack", width = 0.8) +
+  scale_y_continuous(
+    breaks = seq(0, 100, by = 20),   
+    expand = c(0,0)) +                
+  scale_fill_manual(
+    values = group_colors_leaf,
+    labels = c(
+      "Growth form" = "Growth form",
+      "Species" = "Species",
+      "ITV_between" = expression("ITV"["between"]),
+      "ITV_within" = expression("ITV"["within"]))) +
+  scale_x_discrete(
+    labels = traits_labels) +
+  labs(
+    x = "",
+    y = "% of total variance",
+    fill = "") +
+  theme_classic(base_size = 14) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    legend.box.spacing = unit(0, "cm"),
+    legend.box.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.title = element_text(angle = 45, vjust = 0.05, hjust = 0.1),
+    legend.text = element_text(size = 12),
+    legend.justification = c("right", "top"),
+    plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))
+
+perc_plot_leaf
+
+perc_plot_roots <- ggplot(lmm_trait_variation |> 
+                           filter(traits %in% c("bi", "rd", "rdmc", "rtd", "srl")), aes(x = traits, y = proportion, fill = grp)) +
+  geom_bar(stat = "identity", position = "stack", width = 0.9) +
+  scale_y_continuous(
+    breaks = seq(0, 100, by = 20),   
+    expand = c(0,0)) +                
+  scale_fill_manual(
+    values = group_colors_roots,
+    labels = c(
+      "Growth form" = "Growth form",
+      "Species" = "Species",
+      "ITV_between" = expression("ITV"["between"]),
+      "ITV_within" = expression("ITV"["within"]))) +
+  scale_x_discrete(
+    labels = traits_labels) +
+  labs(
+    x = "",
+    y = "% of total variance",
+    fill = "") +
+  theme_classic(base_size = 14) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    legend.box.spacing = unit(0, "cm"),
+    legend.box.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.title = element_text(angle = 45, vjust = 0.05, hjust = 0.1),
+    legend.text = element_text(size = 12),
+    legend.justification = c("right", "top"),
+    plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))
+
+perc_plot_roots
+
+perc_plot_plant_size <- ggplot(lmm_trait_variation |> 
+                           filter(traits %in% c("veg_height", "root_depth", "bgb_agb")), aes(x = traits, y = proportion, fill = grp)) +
+  geom_bar(stat = "identity", position = "stack", width = 0.8) +
+  scale_y_continuous(
+    breaks = seq(0, 100, by = 20),   
+    expand = c(0,0)) +                
+  scale_fill_manual(
+    values = group_colors_plant_size,
+    labels = c(
+      "Growth form" = "Growth form",
+      "Species" = "Species",
+      "ITV_between" = expression("ITV"["between"]),
+      "ITV_within" = expression("ITV"["within"]))) +
+  scale_x_discrete(
+    labels = traits_labels) +
+  labs(
+    x = "",
+    y = "% of total variance",
+    fill = "") +
+  theme_classic(base_size = 14) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    legend.box.spacing = unit(0, "cm"),
+    legend.box.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.title = element_text(angle = 45, vjust = 0.05, hjust = 0.1),
+    legend.text = element_text(size = 12),
+    legend.justification = c("right", "top"),
+    plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))
+
+perc_plot_plant_size
+
+
+ggplot(lmm_trait_variation |> 
+         mutate(
+           trait_group = factor(traits_groups[as.character(traits)], levels = c("Leaf", "Roots", "Plant size")),
+           traits = factor(traits, levels = traits_levels),
+           grp = factor(grp, levels = c("Growth form", "Species", "ITV_between", "ITV_within")),
+           fill_color = case_when(
+             trait_group == "Leaf" & grp == "ITV_within" ~ group_colors_leaf["ITV_within"],
+             trait_group == "Leaf" & grp == "ITV_between" ~ group_colors_leaf["ITV_between"],
+             trait_group == "Leaf" & grp == "Species" ~ group_colors_leaf["Species"],
+             trait_group == "Leaf" & grp == "Growth form" ~ group_colors_leaf["Growth form"],
+             trait_group == "Roots" & grp == "ITV_within" ~ group_colors_roots["ITV_within"],
+             trait_group == "Roots" & grp == "ITV_between" ~ group_colors_roots["ITV_between"],
+             trait_group == "Roots" & grp == "Species" ~ group_colors_roots["Species"],
+             trait_group == "Roots" & grp == "Growth form" ~ group_colors_roots["Growth form"],
+             trait_group == "Plant size" & grp == "ITV_within" ~ group_colors_plant_size["ITV_within"],
+             trait_group == "Plant size" & grp == "ITV_between" ~ group_colors_plant_size["ITV_between"],
+             trait_group == "Plant size" & grp == "Species" ~ group_colors_plant_size["Species"],
+             trait_group == "Plant size" & grp == "Growth form" ~ group_colors_plant_size["Growth form"],
+             TRUE ~ NA_character_)) |> 
+         arrange(traits, grp), 
+       aes(x = traits, y = proportion, fill = fill_color)) +
+  geom_bar(stat = "identity", position = "stack", width = 0.8) +
+  scale_y_continuous(
+    breaks = seq(0, 100, by = 20),   
+    expand = c(0,0)) +                
+  scale_fill_identity() +
+  scale_x_discrete(
+    labels = traits_labels) +
+  labs(
+    x = "",
+    y = "% of total variance",
+    fill = "") +
+  theme_classic(base_size = 14) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    legend.box.spacing = unit(0, "cm"),
+    legend.box.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
+    legend.title = element_text(angle = 45, vjust = 0.05, hjust = 0.1),
+    legend.text = element_text(size = 12),
+    legend.justification = c("right", "top"),
+    plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))
+
+make_legend_section_3col <- function(palette_leaf, palette_root, palette_plant_size, 
+                                     levels_order = c("ITV_within", "ITV_between", "Species", "Growth form")) {
+  
+  # Create data for all three groups
+  df_leg <- data.frame(
+    grp = rep(factor(levels_order, levels = levels_order), 3),
+    group = rep(c("Leaf", "Roots", "Plant size"), each = length(levels_order)),
+    val = 1
+  )
+  
+  # Create a combined palette (concatenate all three)
+  combined_palette <- c(
+    setNames(palette_leaf[levels_order], paste0(levels_order, "_Leaf")),
+    setNames(palette_root[levels_order], paste0(levels_order, "_Roots")),
+    setNames(palette_plant_size[levels_order], paste0(levels_order, "_Plant size"))
+  )
+  
+  # Add fill_key to df_leg
+  df_leg <- df_leg %>%
+    mutate(fill_key = paste0(grp, "_", group))
+  
+  p_leg <- ggplot(df_leg, aes(x = group, y = grp, fill = fill_key)) +
+    geom_tile(width = 0.9, height = 0.9, color = "white", size = 0.5) +
+    scale_fill_manual(
+      values = combined_palette,
+      guide = "none"
+    ) +
+    scale_x_discrete(position = "top") +
+    scale_y_discrete(limits = rev(levels_order)) +
+    labs(x = "", y = "") +
+    theme_minimal() +
+    theme(
+      axis.text.x = element_text(size = 11, face = "bold", hjust = 0.5),
+      axis.text.y = element_text(size = 11, hjust = 1),
+      axis.ticks = element_blank(),
+      panel.grid = element_blank(),
+      plot.margin = margin(t = 5, r = 5, b = 5, l = 5, unit = "pt")
+    )
+  
+  return(p_leg)
+}
+
+# Usage:
+legend_3col <- make_legend_section_3col(
+  palette_leaf = group_colors_leaf,
+  palette_root = group_colors_roots,
+  palette_plant_size = group_colors_plant_size
+)
+
+print(legend_3col)
+
+
+
 ## Save plots ----
 
 ggsave("results/img/perc_total_variance_tiff.tiff", perc_plot,

@@ -39,4 +39,21 @@ for(i in 1:5) {
   text(0.5, i-0.5, my_colors[i], col = "white", cex=1.5)
 }
 
+group_colors <- c("Leaf" = "#117733", 
+                  "Roots" = "#7F3B08", 
+                  "Plant size" = "#0072B2") 
 
+base_leaf <- "#117733"
+
+leaf_colors <- c(base_leaf, lighten(base_leaf, amount = c(0.35, 0.75, 0.95)))
+colorspace::swatchplot(leaf_colors)
+
+base_roots <- "#7F3B08"
+
+roots_colors <- c(base_roots, lighten(base_roots, amount = c(0.25, 0.55, 0.80)))
+colorspace::swatchplot(roots_colors)
+
+base_plant_size <- "#0072B2"
+
+plant_size_colors <- c(base_plant_size, lighten(base_plant_size, amount = c(0.25, 0.55, 0.80)))
+colorspace::swatchplot(plant_size_colors)
