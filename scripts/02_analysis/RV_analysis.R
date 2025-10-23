@@ -147,6 +147,7 @@ plot_perm <- function(res, title = NULL) {
     labs(x = paste("Absolute value of correlation\n", 
                    res$group1_name, 'and', res$group2_name),
          y = "Density", title = title) +
+    coord_cartesian(xlim = c(0, max_x)) +
     theme_minimal(base_size = 16) +
     theme(
       axis.title = element_text(size = 16),
