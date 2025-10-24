@@ -582,7 +582,7 @@ mfa_all_combined_plot1 <- plot_grid(pmfa_all_spp_ele_dim12 + theme(legend.positi
                                    pmfa_all_spp_ele_dim23 + theme(legend.position="none"),
                                    legend_combined,
                                    align = c("hv")) +
-  theme(plot.background = element_rect(fill = "white"))
+  theme(plot.background = element_rect(fill = "white", color = NA))
 
 mfa_all_combined_plot1
 
@@ -1264,33 +1264,17 @@ adonis_mfa_spp <- mfa_spp_ind |>
       tibble(
         F_bd = table$F[1],
         DF_bd = paste0(table$Df[1],"/", table$Df[2]),
-        P_bd = table$"Pr(>F)"[1])})),
+        P_bd = table$"Pr(>F)"[1])}),
   #Extract pairwise results
   pairwise_results = map(pairwise, \(x) {
-    table <- tibble(x)
-    #Create a tibble with the relevant statistics
-    tibble(
-      F = table$F[1],
-      R2 = table$R2[1],
-      p.value = table$"Pr(>F)"[1],
-      SS = table$SumOfSqs,
-      DF = paste0(table$Df[1],"/",table$Df[3]))}))
-
+    as.data.frame(x) |> 
+      rownames_to_column() |>  
+      pivot_longer(
+        cols = -c(parent_call,rowname),
+        names_to = c("Comparison", ".value"),
+        names_pattern = "([^\\.]+)\\.(.*)")})) |> 
   unnest(c(adonis_summary, betadisper_summary)) |> 
-  relocate(data, dist_matrix, adonis_models, betadisper, .after = last_col())
+  relocate(pairwise_results,data, dist_matrix, adonis_models, betadisper, pairwise, .after = last_col())
 
 adonis_mfa_spp_2 <- adonis_mfa_spp |> 
   select(1:8)
-
-adonis_mfa_spp |> 
-  unnest(pairwise)
-adonis_mfa_spp$pairwise[1]
-
-
-pairwise.adonis2(mfa_all_distance ~ species, 
-                 data = as.data.frame(mfa_table),
-                 permutations = 4999, 
-                 p.adjust.m = "BH") 
-
-adonis_mfa_spp$pairwise[[1]]$`2200_vs_2400`$`Pr(>F)`[1]
-
