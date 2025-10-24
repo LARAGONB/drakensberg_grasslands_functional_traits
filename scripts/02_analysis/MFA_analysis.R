@@ -695,7 +695,7 @@ print(pw_ele_table)
 #### Dim.1 ---- 
 mfa_all_dim1 <- feols(Dim.1 ~ species, mfa_all_ind)
 summary(mfa_all_dim1)
-etable(mfa_all_dim1)
+car::Anova(mfa_all_dim1, type = 2)
 
 # Perform Tukey HSD using emmeans
 tukey_all_dim1 <- emmeans(mfa_all_dim1, pairwise ~ species, adjust = "tukey")

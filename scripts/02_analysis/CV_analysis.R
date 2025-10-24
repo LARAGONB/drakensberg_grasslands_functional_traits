@@ -217,20 +217,20 @@ whitin_itvb_itvw <- cv_long |>
     strip.text = element_text(color = "white", size = 14),
     strip.background = element_rect(colour = NA),
     axis.line = element_line(colour = "black"),
-    axis.title = element_text(size = 14),
-    axis.text = element_text(size = 14, color = "black"),
+    axis.title = element_text(size = 16),
+    axis.text = element_text(size = 16, color = "black"),
     axis.text.x = element_text(angle = 45, hjust = 1),
     axis.ticks = element_line(colour = "black"),
     panel.grid = element_blank(),
     panel.border = element_rect(color = "black", fill = NA),
     legend.title = element_blank(),
-    legend.text = element_text(size = 14))
+    legend.text = element_text(size = 16))
 
 
 whitin_itvb_itvw
 #### Save plot ----
 ggsave("results/img/whitin_itvb_itvw_cv_png.png", whitin_itvb_itvw,
-       width = 25, height = 30, units = "cm", dpi = 300)
+       width = 35, height = 30, units = "cm", dpi = 300)
 
 
 # 4. Linear mixed model ---- Where the variation in the trait is found ----
@@ -403,7 +403,7 @@ perc_plot_plant_size <- ggplot(lmm_trait_variation |>
 perc_plot_plant_size
 
 
-ggplot(lmm_trait_variation |> 
+perc_plot_all_groups <- ggplot(lmm_trait_variation |> 
          mutate(
            trait_group = factor(traits_groups[as.character(traits)], levels = c("Leaf", "Roots", "Plant size")),
            traits = factor(traits, levels = traits_levels),
@@ -426,84 +426,73 @@ ggplot(lmm_trait_variation |>
        aes(x = traits, y = proportion, fill = fill_color)) +
   geom_bar(stat = "identity", position = "stack", width = 0.8) +
   scale_y_continuous(
+    limits = c(0, 105),
     breaks = seq(0, 100, by = 20),   
-    expand = c(0,0)) +                
+    expand = c(0,0)) +
   scale_fill_identity() +
   scale_x_discrete(
     labels = traits_labels) +
+  geom_text(data = cv_all_plants |> mutate(traits = factor(traits, levels = traits_levels)),
+            aes(x = traits, y = 102, label = sprintf("%.1f", cv)),
+            size = 5, vjust = 0, inherit.aes = FALSE) +
   labs(
     x = "",
-    y = "% of total variance",
+    y = "Percentage (%) of total variance",
     fill = "") +
-  theme_classic(base_size = 14) +
+  theme_classic(base_size = 16) +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     axis.title = element_text(size = 16),
-    axis.text = element_text(size = 14),
-    legend.box.spacing = unit(0, "cm"),
-    legend.box.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
-    legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
-    legend.title = element_text(angle = 45, vjust = 0.05, hjust = 0.1),
-    legend.text = element_text(size = 12),
-    legend.justification = c("right", "top"),
-    plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))
+    axis.text = element_text(size = 16),
+    plot.title = element_blank(),
+    plot.margin = unit(c(0, 0, 0, 0), "cm"))
 
-make_legend_section_3col <- function(palette_leaf, palette_root, palette_plant_size, 
-                                     levels_order = c("ITV_within", "ITV_between", "Species", "Growth form")) {
-  
-  # Create data for all three groups
-  df_leg <- data.frame(
-    grp = rep(factor(levels_order, levels = levels_order), 3),
-    group = rep(c("Leaf", "Roots", "Plant size"), each = length(levels_order)),
-    val = 1
-  )
-  
-  # Create a combined palette (concatenate all three)
-  combined_palette <- c(
-    setNames(palette_leaf[levels_order], paste0(levels_order, "_Leaf")),
-    setNames(palette_root[levels_order], paste0(levels_order, "_Roots")),
-    setNames(palette_plant_size[levels_order], paste0(levels_order, "_Plant size"))
-  )
-  
-  # Add fill_key to df_leg
-  df_leg <- df_leg %>%
-    mutate(fill_key = paste0(grp, "_", group))
-  
-  p_leg <- ggplot(df_leg, aes(x = group, y = grp, fill = fill_key)) +
-    geom_tile(width = 0.9, height = 0.9, color = "white", size = 0.5) +
-    scale_fill_manual(
-      values = combined_palette,
-      guide = "none"
-    ) +
-    scale_x_discrete(position = "top") +
-    scale_y_discrete(limits = rev(levels_order)) +
-    labs(x = "", y = "") +
-    theme_minimal() +
-    theme(
-      axis.text.x = element_text(size = 11, face = "bold", hjust = 0.5),
-      axis.text.y = element_text(size = 11, hjust = 1),
-      axis.ticks = element_blank(),
-      panel.grid = element_blank(),
-      plot.margin = margin(t = 5, r = 5, b = 5, l = 5, unit = "pt")
-    )
-  
-  return(p_leg)
-}
+perc_plot_all_groups
 
-# Usage:
-legend_3col <- make_legend_section_3col(
-  palette_leaf = group_colors_leaf,
-  palette_root = group_colors_roots,
-  palette_plant_size = group_colors_plant_size
-)
+#Build the legend
+color_table <- enframe(c(group_colors_leaf, group_colors_roots, group_colors_plant_size), 
+                       name = "source",
+                       value = "fill_color") |> 
+  mutate(grp = rep(c("Leaf", "Roots", "Plant size"), each = 4),
+         grp = factor(grp, levels = c("Leaf", "Roots", "Plant size")),
+         source = factor(source, levels = c("ITV_within", "ITV_between", "Species", "Growth form")))
 
-print(legend_3col)
+legend_plot <- ggplot(color_table, aes(x = grp, y = source, fill = fill_color)) +
+  geom_tile(width = 0.8, height = 0.8) +
+  scale_fill_identity() +
+  scale_x_discrete(position = "top") +
+  scale_y_discrete(position = "right",
+                   labels = c(
+                       "Growth form" = "Growth form",
+                       "Species" = "Species",
+                       "ITV_between" = expression("ITV"["between"]),
+                       "ITV_within" = expression("ITV"["within"]))) +
+  labs(x = "", y = "") +
+  coord_fixed(ratio = 1, expand = FALSE) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, size = 14, face = "bold", hjust = 0, vjust = 0,
+                               margin = margin(0, 0, 0, 0, unit = "pt")),
+    axis.text.y = element_text(size = 14, hjust = 0, margin = margin(0, 0, 0, 0, unit = "pt")),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank(),
+    panel.border = element_blank(),
+    plot.title = element_blank(),
+    plot.margin = margin(t = 0, r = 0.5, b = 0, l = 0, unit = "pt"))
 
+legend_plot
 
+perc_plot_all_groups_f <- plot_grid(perc_plot_all_groups, legend_plot,
+          ncol = 2,
+          rel_widths = c(1, 0.3),  # make legend column narrower
+          align = "h",
+          axis = "tb") +
+  theme(panel.border = element_blank(),
+        plot.background = element_rect(fill = "white", colour = NA),
+        plot.margin = margin(0, 0, 0, 0, unit = "cm"))
+
+perc_plot_all_groups_f
 
 ## Save plots ----
-
-ggsave("results/img/perc_total_variance_tiff.tiff", perc_plot,
-       width = 18, height = 10, units = "cm", dpi = 300)
-ggsave("results/img/perc_total_variance_png.png", perc_plot,
-       width = 18, height = 10, units = "cm", dpi = 300)
+ggsave("results/img/perc_plot_all_groups_f_png.png", perc_plot_all_groups_f,
+       width = 30, height = 20, units = "cm", dpi = 300)
