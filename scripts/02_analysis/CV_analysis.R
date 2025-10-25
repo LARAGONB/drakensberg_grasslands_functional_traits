@@ -249,20 +249,84 @@ lmm_trait_variation <- trait_data |>
                       proportion = (vcov/total_var) * 100))) |> 
   select(traits, varcomp) |> 
   unnest(varcomp) |> 
+  rename(source = grp) |> 
   mutate(
-    grp = case_when(
-      grp == "growth_form" ~ "Growth form",
-      grp == "species" ~ "Species",
-      grp == "species:elevation_m_asl" ~ "ITV_between",
-      grp == "Residual" ~ "ITV_within"
+    source = case_when(
+      source == "growth_form" ~ "Growth form",
+      source == "species" ~ "Species",
+      source == "species:elevation_m_asl" ~ "ITV_between",
+      source == "Residual" ~ "ITV_within"
     ),
     traits = factor(traits, levels = traits_levels),
-    grp = factor(grp, levels = c("Growth form", "Species", "ITV_between", "ITV_within"))) |>
-  arrange(traits, grp)
+    source = factor(source, levels = c("Growth form", "Species", "ITV_between", "ITV_within"))) |>
+  arrange(traits, source)
 
-### Export table  ----
+#Comparisons across general (3) hierarchical levels
+source_general_model <- lmm_trait_variation |>  
+  ungroup() |> 
+  mutate(trait_group = factor(traits_groups[as.character(traits)], levels = c("Leaf", "Roots", "Plant size")),
+         source_general = case_when(
+           source == "ITV_between" ~ "ITV",
+           source == "ITV_within" ~ "ITV",
+           .default = as.character(source)), .before = source) |> 
+  nest(.by = source_general) |>
+  mutate(
+    model = map(data, \(df) lm(proportion ~ trait_group, data = df)),
+    summary = map(model, \(df) summary(df)),
+    anova = map(model, \(df) car::Anova(df, type = 3)),
+    emmeans = map(model, \(df) emmeans(df, pairwise ~ trait_group, adjust = "bh")))
+
+#Comparisons across all (4) hierarchical levels
+source_model <- lmm_trait_variation |>  
+  ungroup() |> 
+  mutate(trait_group = factor(traits_groups[as.character(traits)], 
+                              levels = c("Leaf", "Roots", "Plant size"))) |> 
+  nest(.by = source) |>
+  mutate(
+    model = map(data, \(df) lm(proportion ~ trait_group, data = df)),
+    summary = map(model, \(df) summary(df)),
+    anova = map(model, \(df) car::Anova(df, type = 3)),
+    emmeans = map(model, \(df) emmeans(df, pairwise ~ trait_group, adjust = "bh")))
+
+#Summary across general (3) hierarchical levels
+source_summary <- lmm_trait_variation |>  mutate(
+  trait_group = factor(traits_groups[as.character(traits)], 
+                       levels = c("Leaf", "Roots", "Plant size")),
+  source_general = case_when(
+    source == "ITV_between" ~ "ITV",
+    source == "ITV_within" ~ "ITV",
+    .default = as.character(source)), .before = source) |> 
+  group_by(trait_group, source_general, source) |> 
+  summarise(mean_prop = mean(proportion),
+            min_prop = min(proportion),
+            max_prop = max(proportion)) |> 
+  arrange(trait_group, mean_prop)
+
+
+#Summary across all (4) hierarchical levels
+source_general_summary <- lmm_trait_variation |>  mutate(
+  trait_group = factor(traits_groups[as.character(traits)], 
+                       levels = c("Leaf", "Roots", "Plant size")),
+  source_general = case_when(
+    source == "ITV_between" ~ "ITV",
+    source == "ITV_within" ~ "ITV",
+    .default = as.character(source)), .before = source) |> 
+  group_by(trait_group, source_general) |> 
+  summarise(mean_prop = mean(proportion),
+            min_prop = min(proportion),
+            max_prop = max(proportion)) |> 
+  arrange(trait_group, mean_prop)
+
+
+### Export tables  ----
 write_csv(lmm_trait_variation, "results/tab/proportion_total_trait_variance.csv")
-write_rds(lmm_trait_variation, "data/output/proportion_total_trait_variance.csv")
+write_rds(lmm_trait_variation, "data/output/proportion_total_trait_variance.rds")
+
+write_rds(source_model, "data/output/source_model.rds")  
+write_rds(source_general_model, "data/output/source_general_model.rds")
+
+write_csv(source_summary, "results/tab/source_summary_trait_variation.csv")
+write_csv(source_general_summary, "results/tab/source_general_summary_trait_variation.csv")
 # 5. Visualize model results ----
 
 perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = grp)) +
