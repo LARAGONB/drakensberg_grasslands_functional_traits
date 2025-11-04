@@ -1076,3 +1076,10 @@ plot_plants_pca
 ggsave("results/img/plot_plants_pca_png.png", plot_plants_pca,
        width = 25, height = 25, units = "cm", dpi = 300)
 
+
+#### Save PCA outputs for all, roots, leaves, size
+write_csv(pca_sites, 'data/output/PCA_all_traits.csv')
+write_csv(pca_sites_roots, 'data/output/PCA_root_traits.csv')
+write_csv(pca_sites_leaf, 'data/output/PCA_leaf_traits.csv')
+write_csv(pca_sites_plants, 'data/output/PCA_size_traits.csv')
+
