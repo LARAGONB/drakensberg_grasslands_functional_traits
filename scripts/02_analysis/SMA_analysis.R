@@ -50,7 +50,7 @@ preds <- pca_comb %>%
   # add fitted value of actual unbootstrapped model
   mutate(., rootPC1 = coef(sma_output_1)[1] + coef(sma_output_1)[2]*allPC1)
 
-# extract summary values from the SMA to plot
+# extract summary values from the SMA to plot: r, p-val, slope
 annotate_summary <- paste0('r = ', ifelse(sma_output_1$groupsummary$Slope < 0, '-', ''), round(sqrt(sma_output_1$groupsummary$r2), 2), 
                            if(sma_output_1$groupsummary$pval < 0.05 & sma_output_1$groupsummary$pval >= 0.01){
                              '*'
@@ -60,7 +60,9 @@ annotate_summary <- paste0('r = ', ifelse(sma_output_1$groupsummary$Slope < 0, '
                              '***'
                            } else{
                              ''
-                           })
+                           },
+                           ' (',
+                           round(sma_output_1$groupsummary$Slope), ')')
 
 # plot points, regression, R val
 ggplot(pca_comb, aes(allPC1, rootPC1)) +
@@ -106,7 +108,7 @@ preds <- pca_comb %>%
   # add fitted value of actual unbootstrapped model
   mutate(., leafPC1 = coef(sma_output_2)[1] + coef(sma_output_2)[2]*allPC1)
 
-# extract summary values from the SMA to plot
+# extract summary values from the SMA to plot: r, p-val, slope
 annotate_summary <- paste0('r = ', ifelse(sma_output_2$groupsummary$Slope < 0, '-', ''), round(sqrt(sma_output_2$groupsummary$r2), 2), 
                            if(sma_output_2$groupsummary$pval < 0.05 & sma_output_2$groupsummary$pval >= 0.01){
                              '*'
@@ -116,7 +118,9 @@ annotate_summary <- paste0('r = ', ifelse(sma_output_2$groupsummary$Slope < 0, '
                              '***'
                            } else{
                              ''
-                           })
+                           },
+                           ' (',
+                           round(sma_output_2$groupsummary$Slope), ')')
 
 # plot points, regression, R val
 ggplot(pca_comb, aes(allPC1, leafPC1)) +
@@ -161,7 +165,7 @@ preds <- pca_comb %>%
   # add fitted value of actual unbootstrapped model
   mutate(., sizePC1 = coef(sma_output_3)[1] + coef(sma_output_3)[2]*allPC1)
 
-# extract summary values from the SMA to plot
+# extract summary values from the SMA to plot: r, p-val, slope
 annotate_summary <- paste0('r = ', ifelse(sma_output_3$groupsummary$Slope < 0, '-', ''), round(sqrt(sma_output_3$groupsummary$r2), 2), 
                            if(sma_output_3$groupsummary$pval < 0.05 & sma_output_3$groupsummary$pval >= 0.01){
                              '*'
@@ -171,7 +175,9 @@ annotate_summary <- paste0('r = ', ifelse(sma_output_3$groupsummary$Slope < 0, '
                              '***'
                            } else{
                              ''
-                           })
+                           },
+                           ' (',
+                           round(sma_output_3$groupsummary$Slope), ')')
 
 # plot points, regression, R val
 ggplot(pca_comb, aes(allPC1, sizePC1)) +
@@ -216,7 +222,7 @@ preds <- pca_comb %>%
   # add fitted value of actual unbootstrapped model
   mutate(., leafPC1 = coef(sma_output_4)[1] + coef(sma_output_4)[2]*rootPC1)
 
-# extract summary values from the SMA to plot
+# extract summary values from the SMA to plot: r, p-val, slope
 annotate_summary <- paste0('r = ', ifelse(sma_output_4$groupsummary$Slope < 0, '-', ''), round(sqrt(sma_output_4$groupsummary$r2), 2), 
                            if(sma_output_4$groupsummary$pval < 0.05 & sma_output_4$groupsummary$pval >= 0.01){
                              '*'
@@ -226,7 +232,9 @@ annotate_summary <- paste0('r = ', ifelse(sma_output_4$groupsummary$Slope < 0, '
                              '***'
                            } else{
                              ''
-                           })
+                           },
+                           ' (',
+                           round(sma_output_4$groupsummary$Slope), ')')
 
 # plot points, regression, R val
 ggplot(pca_comb, aes(rootPC1, leafPC1)) +
