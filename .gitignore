@@ -21,6 +21,7 @@
 # RStudio files
 .Rproj.user/
 *.Rproj
+drakensberg_grasslands_functional_traits.Rproj
 
 # produced vignettes
 vignettes/*.html
