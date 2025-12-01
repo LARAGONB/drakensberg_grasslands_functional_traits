@@ -14,7 +14,11 @@ species_labels <- c(
 species_shapes <- c(15, 16, 17, 8, 25)
 
 #Species ellipses 
-species_ellipses <- c("solid", "dashed", "dotted", "dotdash", "longdash")
+species_ellipses <- c("solid", 
+                      "1414",
+                      "1111", 
+                      "111112F2",
+                      "13C3")       
 
 ## Species colors
 species_colors <- c(
@@ -82,3 +86,4 @@ group_colors_plant_size <- c(
   "Species" = "#4E94D4",
   "ITV_between" = "#83BFFF",
   "ITV_within" = "#CDE2FF")
+
