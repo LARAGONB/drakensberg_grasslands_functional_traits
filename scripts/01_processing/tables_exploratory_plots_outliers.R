@@ -26,8 +26,8 @@ remove(pkgs)
 
 # 3. Download and load data ----
 # retrieve raw data files from the OSF project page
-osf_retrieve_node('hk2cy') %>%
-  osf_ls_files(path = 'v_root_traits/') %>%
+osf_retrieve_node('hk2cy') |>
+  osf_ls_files(path = 'v_root_traits/') |>
   osf_download(path = 'data/raw/', conflicts = 'overwrite')
   
 # load data
@@ -37,7 +37,7 @@ data_RFT_raw <- read_csv("data/raw/v_PFCT7_clean_root_traits_2023.csv")
 data_RFT_raw_wide <- data_RFT_raw |> 
   select(!unit) |> 
   pivot_wider(names_from = traits, values_from = value) #using traits as names and values as values
-data_RFT_wide 
+data_RFT_raw_wide 
 write_csv(data_RFT_raw_wide, "data/raw/v_PFCT7_clean_root_traits_2023_wide.csv")
 
 # 5. Explore data ----
@@ -91,16 +91,16 @@ data_RFT_raw |>
   facet_wrap(~ traits, scales = "free_y") 
 
 ## Density plots per elevation
-data_RFT_raw %>%
-  filter(traits %in% c("rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) %>%
+data_RFT_raw |>
+  filter(traits %in% c("rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |>
   ggplot(aes(x = value, fill = species)) +
   geom_density(alpha = 0.6) +
   facet_wrap(~ elevation_m_asl + traits, scales = "free", ncol = 8, nrow = 4) +
   theme_bw() 
 
 ## Density plots per trait
-data_RFT_raw %>%
-  filter(traits %in% c("rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) %>%
+data_RFT_raw |>
+  filter(traits %in% c("rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "bgb_agb")) |>
   ggplot(aes(x = value, fill = species)) +
   geom_density(alpha = 0.6) +
   facet_wrap(~ traits, scales = "free") +
@@ -154,12 +154,12 @@ data_RFT <- data_RFT_wide |>
                values_to = "value")
 
 #7. Check graphs after changes in dataset ----
-p3 <- ggplot(data_RFT_wide_2, aes(x = leaf_wet_mass, y = leaf_dry_mass)) +
+p3 <- ggplot(data_RFT_wide, aes(x = leaf_wet_mass, y = leaf_dry_mass)) +
   geom_point()
 p3
 
 
-p4 <- data_RFT_2 |> 
+p4 <- data_RFT |> 
   filter(traits %in% c("rd","bi","srl","rtd","rdmc","sla","ldmc","bgb_agb")) |> 
   ggplot(aes(x = as.factor(elevation_m_asl), y = value, color = species)) +
   geom_boxplot(position = position_dodge(width = 0.8)) +

@@ -1,0 +1,16 @@
+traits,sig_general,sig_species,n_sig_species,category
+rtd~bi,TRUE,TRUE,1,Both
+srl~rd,TRUE,TRUE,4,Both
+rtd~rdmc,TRUE,TRUE,1,Both
+bi~rtd,TRUE,TRUE,1,Both
+rd~rtd,TRUE,TRUE,1,Both
+rdmc~rtd,TRUE,TRUE,1,Both
+srl~rtd,TRUE,TRUE,5,Both
+rd~srl,TRUE,TRUE,4,Both
+rtd~srl,TRUE,TRUE,5,Both
+rtd~rd,FALSE,TRUE,1,Species only
+rd~bi,FALSE,TRUE,1,Species only
+rdmc~bi,FALSE,TRUE,1,Species only
+srl~bi,FALSE,TRUE,1,Species only
+bi~rdmc,FALSE,TRUE,1,Species only
+bi~srl,FALSE,TRUE,1,Species only
