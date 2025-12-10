@@ -51,7 +51,7 @@ e_B <- eigenvals(pca_output)/sum(eigenvals(pca_output))
 k <- which(cumsum(ev) / sum(ev) >= 0.9)[1]
 
 ## Tables for ind. loadings and traits loadings ----
-## Create a table containing the loading of each invidual (sites) in each PC
+## Create a table containing the loading of each individual (sites) in each PC
 
 pca_sites <- as_tibble(bind_cols(
   trait_data_wide |> 
@@ -65,8 +65,8 @@ pca_traits <- scores(pca_output, display = "species", choices = 1:k, scaling = 2
 
 ## PCA significance
 PCAsignificance(pca_output)
-plot1 <- ordiplot(pca_output, choices=c(1,2), scaling=1)
-ordiequilibriumcircle(pca_output,plot1) #Which traits are more important in each PC
+plot1 <- ordiplot(pca_output, choices = c(1,2), scaling = 1)
+ordiequilibriumcircle(pca_output, plot1) #Which traits are more important in each PC
 
 
 ## PERMANOVA  ----
@@ -322,23 +322,47 @@ ggsave("results/img/plot_all_pca_png.png", plot_all_pca,
 # 4. PCA Roots ----
 ## PCA using vegan (rda with no constraints = PCA) ----
 ## Remember to scale to unit variance
-pca_roots <- trait_data_wide |> 
+roots_traits <- trait_data_wide |> 
   select(rd, bi, srl, rtd, rdmc) |> 
-  rename(
-    BI = bi,
-    RD = rd,
-    RDMC = rdmc,
-    RTD = rtd,
-    SRL = srl) |> 
-  rda(scale = TRUE)
+  rename(BI = bi, RD = rd, RDMC = rdmc, RTD = rtd, SRL = srl)
+
+roots_sum <- roots_traits |> 
+  pivot_longer(everything(), names_to = "trait", values_to = "value") |> 
+  group_by(trait) |> 
+  summarise(min = min(value),
+            max = max(value),
+            mean = mean(value),
+            median = median(value),
+            zero = sum(value == 0),
+            skewness = e1071::skewness(value)) ; roots_sum
+
+roots_trans <- roots_traits %>%
+  mutate(
+    SRL_log = log(SRL),
+    RTD_log = log(RTD)) |> 
+  select(-SRL, -RTD)
+
+roots_sum_trans <- roots_trans |> 
+  pivot_longer(everything(), names_to = "trait", values_to = "value") |> 
+  group_by(trait) |> 
+  summarise(min = min(value),
+            max = max(value),
+            mean = mean(value),
+            median = median(value),
+            zero = sum(value == 0),
+            skewness = e1071::skewness(value)); roots_sum_trans
+
+pca_roots <- roots_trans |> 
+  rda(scale = TRUE, center = TRUE)
+
 summary(pca_roots)
 
 ## How many PCs should we keep? ----
 ### Extract eigenvalues and their percentage
-ev_roots <- eigenvals(pca_roots)
-e_B_roots <- eigenvals(pca_roots)/sum(eigenvals(pca_roots))
+ev_roots <- eigenvals(pca_roots); ev_roots
+e_B_roots <- eigenvals(pca_roots)/sum(eigenvals(pca_roots)); e_B_roots
 ### Extract PCs that explain 90% of the variation in the data
-k_roots <- which(cumsum(ev_roots) / sum(ev_roots) >= 0.9)[1]
+k_roots <- which(cumsum(ev_roots) / sum(ev_roots) >= 0.9)[1]; k_roots
 
 ## Tables for ind. loadings and traits loadings ----
 ## Create a table containing the loading of each invidual (sites) in each PC
@@ -354,100 +378,48 @@ pca_traits_roots <- scores(pca_roots, display = "species", choices = 1:k_roots, 
   rownames_to_column(var = "traits") 
 
 ## PCA significance
-PCAsignificance(pca_roots)
-plot1_roots <- ordiplot(pca_roots, choices=c(1,2), scaling=1)
+sig_roots_pca <- PCAsignificance(pca_roots)
+plot1_roots <- ordiplot(pca_roots, choices = c(1,2), scaling = 1)
 ordiequilibriumcircle(pca_roots,plot1_roots) #Which traits are more important in each PC
+
+
+barplot (sig_roots_pca[c('percentage of variance', 'broken-stick percentage'), ], beside = T, 
+         xlab = 'PCA axis', ylab = 'explained variation [%]', col = c('grey', 'black'), 
+         legend = TRUE)
 
 ## PERMANOVA  ----
 ### Matrix of distances ----
 roots_distance <- dist(pca_sites_roots |> 
-                       select(starts_with("PC")))
-### Species alone ----
-set.seed(1)
-adonis2(roots_distance ~ species, data = pca_sites_roots, permutations = 4999)
+                       select(starts_with("PC")), method = "euclidean")
 
-# Multivarite homogeneity
-roots_sp_bd <- betadisper(roots_distance, pca_sites_roots$species)
-anova(roots_sp_bd)
-permutest(roots_sp_bd, 999)
-plot(roots_sp_bd)
-
-# Plot showing differences among spp
-score_roots_spp <- scores(pca_roots, display = "sites", scaling = 1, choices = 1:2)
-plot(score_roots_spp, type = "n") 
-points(score_roots_spp, col = as.integer(pca_sites_roots$species), pch = 19)
-ordiellipse(score_roots_spp, pca_sites_roots$species, kind = "se", conf = 0.95, draw = "polygon",
-            col = 1:5, border = 1:5, label = TRUE)
-
-#### Pairwise comparisons among species ----
-set.seed(1)
-pairwise.adonis2(roots_distance ~ species, 
-                 data = as.data.frame(pca_sites_roots),
-                 permutations = 4999, 
-                 p.adjust.m = "holm")
-
-### Elevation alone ----
-set.seed(1)
-adonis2(roots_distance ~ elevation_m_asl, data = pca_sites_roots, permutations = 4999)
-
-# Multivarite homogeneity
+#### Multivarite homogeneity ----
+# elevation
 roots_ele_bd <- betadisper(roots_distance, pca_sites_roots$elevation_m_asl)
 perm_roots_ele_bd  <- permutest(roots_ele_bd, permutations = 4999)
-anova(roots_ele_bd)
-permutest(roots_ele_bd, 999)
+print(perm_roots_ele_bd)
 plot(roots_ele_bd)
 
-# Plot showing differences among elevations
-score_roots_ele <- scores(pca_roots, display = "sites", scaling = 1, choices = 1:2)
-plot(score_roots_ele, type = "n") 
-points(score_roots_ele, col = as.integer(pca_sites_roots$elevation_m_asl), pch = 19)
-ordiellipse(score_roots_ele, pca_sites_roots$elevation_m_asl, kind = "se", conf = 0.95, draw = "polygon",
-            col = 1:5, border = 1:5, label = TRUE)
+# species
+roots_spp_bd <- betadisper(roots_distance, pca_sites_roots$species)
+perm_roots_spp_bd  <- permutest(roots_spp_bd, permutations = 4999)
+print(perm_roots_spp_bd)
+plot(roots_spp_bd)
 
-#### Pairwise comparisons among elevations ----
-set.seed(1)
-pairwise.adonis2(roots_distance ~ elevation_m_asl, 
-                 data = as.data.frame(pca_sites_roots),
-                 permutations = 4999, 
-                 p.adjust.m = "holm")
-
-### Marginal differences species + elevation ----
-set.seed(1)
-adonis2(roots_distance ~ species + elevation_m_asl, data = as.data.frame(pca_sites_roots), 
-        permutations = 4999,
+#### Permanova Marginal differences species + elevation ----
+set.seed(4321)
+permanova_roots <- adonis2(roots_distance ~ species + elevation_m_asl, 
+        data = as.data.frame(pca_sites_roots), 
+        permutations = 10000,
         by = "margin")
+print(permanova_roots)
 
 
-pairwise.adonis2(roots_distance ~ species + elevation_m_asl, 
-                 data = as.data.frame(pca_sites_roots),
-                 p.adjust.m = "holm")
-
-
-### Species pooled “within-elevation” test ----
-set.seed(1)
-adonis2(roots_distance ~ species, data = as.data.frame(pca_sites_roots), permutations = 4999,
-        strata = pca_sites_roots$elevation_m_asl)
-
-#### Pairwise comparisons among species ----
-set.seed(1)
+set.seed(4321)
 pairwise.adonis2(roots_distance ~ species, 
                  data = as.data.frame(pca_sites_roots),
-                 strata = "elevation_m_asl", 
-                 p.adjust.m = "holm")
-
-
-### Elevation pooled “within-species” test ----
-set.seed(1)
-adonis2(roots_distance ~ elevation_m_asl, data = as.data.frame(pca_sites_roots), 
-        permutations = 4999,
-        strata = pca_sites_roots$species)
-
-#### Pairwise comparisons among elevations within species ----
-set.seed(1)
-pairwise.adonis2(roots_distance ~ elevation_m_asl, 
-                 data = as.data.frame(pca_sites_roots),
-                 strata = "species", 
-                 p.adjust.m = "holm")
+                 strata = "elevation_m_asl",
+                 nperm = 10000,
+                 p.adjust.m = "BH")
 
 ## PCA Plot ----
 xlim_equal_roots <- c(pca_traits_roots$PC1, pca_traits_roots$PC2) |> 
@@ -455,42 +427,56 @@ xlim_equal_roots <- c(pca_traits_roots$PC1, pca_traits_roots$PC2) |>
   max(na.rm = TRUE) |> 
   (\(m) c(-m, m))()
 
-
-
 ### PC1 & PC2 ----
 pca12_roots <- pca_sites_roots |> 
-  ggplot(aes(x = PC1, y = PC2, 
-             colour = species)) +
-  geom_point(aes(shape = factor(elevation_m_asl)), size = 4) +
-  scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)") +  # Adjust the number of shapes to match your elevation count
-  stat_ellipse(aes(group = species, colour = species), size = 0.8) +
-  geom_segment(data = pca_traits_roots,
+  ggplot(aes(x = PC1, y = PC2)) +
+  geom_hline(yintercept = 0, color = "grey90", linewidth = 0.5, linetype = "dashed") +     
+  geom_vline(xintercept = 0, color = "grey90", linewidth = 0.5, linetype = "dashed") + 
+  geom_point(aes(shape = as.factor(elevation_m_asl)), 
+             size = 3, color = "grey70") +
+  stat_ellipse(aes(linetype = species), 
+               linewidth = 0.8, show.legend = TRUE, color = "grey30") +
+  geom_segment(data = pca_traits_roots |> 
+                 filter(!traits %in% "BI"),
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
-               arrow = arrow(length = unit(0.5, "cm")),
-               size = 1,
-               colour = "grey20",
-               inherit.aes = FALSE) +
-  geom_text_repel(data = pca_traits_roots,
-                  aes(x = PC1 * 1.1, y = PC2 * 1.1, label = traits),
-                  size = 4,
-                  fontface = "bold",
-                  inherit.aes = FALSE, 
-                  colour = "black") +
+               arrow = arrow(length = unit(0.18, "cm")),
+               linewidth = 1.2,
+               inherit.aes = FALSE,
+               color = group_colors["Roots"]) +
+  geom_text_repel(data = pca_traits_roots |> 
+                    filter(!traits %in% "BI"),
+                  aes(x = PC1, y = PC2, label = traits),
+                  nudge_x = 0.4,
+                  size = 5,
+                  show.legend = FALSE,
+                  fontface = "bold", 
+                  color = group_colors["Roots"]) +
   coord_equal() +
-  scale_colour_manual(values = species_colors, name = "Species",
-                      labels = species_labels) +
+  scale_shape_manual(values = elevation_shapes, name = "Elevation",
+                    labels = elevation_labels) +
+  scale_linetype_manual(values = species_ellipses, 
+                        name = "Species",
+                        labels = species_labels) +
   labs(x = glue("PCA1 ({round(e_B_roots[1] * 100, 1)}%)"),
        y = glue("PCA2 ({round(e_B_roots[2] * 100, 1)}%)")) +
-  theme_bw(base_size = 16) +
+  guides(
+    shape = guide_legend(override.aes = list(linetype = "blank", 
+                                             colour = "grey70")),
+    linetype = guide_legend(override.aes = list(shape = NA))) +
+  theme_bw(base_size = 14) +
   theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 16, color = "black"),
-    axis.ticks = element_line(linewidth = 1),
+    axis.title = element_text(),
+    axis.text = element_text(color = "black"),
+    axis.ticks = element_line(linewidth = 0.5),
     axis.line = element_line(linewidth = 1, colour = "black"),
-    legend.text = element_text(size = 16),
-    plot.margin = margin(2,2,2,2),
-    aspect.ratio = 1) +
-  coord_cartesian(xlim = xlim_equal_roots)
+    legend.title = element_text(face = "bold"),
+    legend.text = element_text(),
+    legend.key.width = unit(1.2, "cm"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(1,1,1,1, "mm"),
+    aspect.ratio = 1)
+ 
 
 pca12_roots
 
@@ -498,7 +484,7 @@ pca12_roots
 # ggsave("results/img/pca12_roots_tiff.tiff", pca12_roots,
 #        width = 20, height = 20, units = "cm", dpi = 300)
 ggsave("results/img/pca12_roots_png.png", pca12_roots,
-       width = 20, height = 20, units = "cm", dpi = 300)
+       width = 15, height = 15, units = "cm", dpi = 300)
 
 ### PC1 & PC3 ----
 pca13_roots <- pca_sites_roots |> 

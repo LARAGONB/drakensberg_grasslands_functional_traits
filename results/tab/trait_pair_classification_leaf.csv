@@ -1,0 +1,7 @@
+traits,sig_general,sig_species,n_sig_species,category
+leaf_thickness~ldmc,TRUE,FALSE,0,General only
+sla~ldmc,TRUE,TRUE,3,Both
+ldmc~leaf_thickness,TRUE,FALSE,0,General only
+sla~leaf_thickness,TRUE,TRUE,2,Both
+ldmc~sla,TRUE,TRUE,4,Both
+leaf_thickness~sla,TRUE,TRUE,2,Both

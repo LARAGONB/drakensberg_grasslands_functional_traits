@@ -1,5 +1,5 @@
 ################################################################################
-# Trait correlation across all plants and within species
+# Roots Trait correlation across all plants and within species
 ################################################################################
 #
 # Lina Aragón
@@ -31,8 +31,7 @@ trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv"
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
 # 3. Define traits ----
-traits <- c("leaf_thickness", "sla", "ldmc", "rd", "bi", "srl", "rtd", "rdmc", 
-            "veg_height", "root_depth", "bgb_agb")
+traits <- c("rd", "bi", "srl", "rtd", "rdmc")
 
 metadata <- c("id", "aspect", "site_id", "elevation_m_asl", "plant_id", "species", "family", "growth_form")
 
@@ -49,7 +48,7 @@ formulas <- tribble(
   "exp", "log({trait_y} + 1e-10) ~ {trait_x}"
 )
 
-# 6. Expand for all pairs and formulas ----
+# 5. Expand for all pairs and formulas ----
 model_grid <- crossing(pairs, formulas) |> 
   mutate(
     base_formula = pmap_chr(
@@ -62,29 +61,29 @@ model_grid <- crossing(pairs, formulas) |>
 
 model_grid
 
-# 7. Fit all models and extract valuable information ----
+# 6. Fit all models and extract valuable information ----
 results <- model_grid |> 
   mutate(
     model = map(base_formula, ~ feols(as.formula(.x), data = trait_data_wide)),
-    estimate = map_dbl(model, ~ coef(.x)[[2]]),
-    mean_dv = map_dbl(model, ~ fitstat(.x, "my")$my),
+    estimate = map_dbl(model, ~ coef(.x)[[2]], se = "hc3",),
+    mean_dv = map_dbl(model, ~ fitstat(.x, "my")$my, se = "hc3",),
     # se = map_dbl(model, ~ fixest::se(.x)[[2]]),
-    rmse = map_dbl(model, ~ fitstat(.x, "rmse")$rmse),
-    f_value = map_dbl(model, ~ fitstat(.x, "f")$f$stat),
-    p_value = map_dbl(model, ~ fitstat(.x, "f")$f$p),
-    ar2 = map_dbl(model, ~ fitstat(.x, "ar2")$ar2),
+    rmse = map_dbl(model, ~ fitstat(.x, "rmse")$rmse, se = "hc3",),
+    f_value = map_dbl(model, ~ fitstat(.x, "f")$f$stat, se = "hc3",),
+    p_value = map_dbl(model, ~ fitstat(.x, "f")$f$p, se = "hc3",),
+    ar2 = map_dbl(model, ~ fitstat(.x, "ar2")$ar2, se = "hc3",),
     significant = p_value < 0.05,
-    aic = map_dbl(model, ~ fitstat(.x, "aic")$aic),
+    aic = map_dbl(model, ~ fitstat(.x, "aic")$aic, se = "hc3",),
     w_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$statistic[[1]]),
     p_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$p.value),
     w_shap_normal = w_shapiro > 0.9,
     p_shap_normal = p_shapiro >= 0.05,
     s_white = map_dbl(base_formula, ~ white(lm(as.formula(.x), data = trait_data_wide))$statistic),
     p_white = map_dbl(base_formula, ~ white(lm(as.formula(.x), data = trait_data_wide))$p.value),
-    p_whit_normal = p_white >= 0.05,
-    p_bp = map_dbl(model, ~bptest(resid(.x) ~ fitted(.x))$p.value),
-    p_bp_normal = p_bp >= 0.05,
-    etable = map(model, ~ etable(.x, fitstat = ~ . + f + my + rmse)),
+    p_whit_homosked = p_white >= 0.05,
+    p_bp = map_dbl(model, ~ bptest(resid(.x) ~ fitted(.x))$p.value),
+    p_bp_homosked = p_bp >= 0.05,
+    etable = map(model, ~ etable(.x, se = "hc3", fitstat = ~ . + f + my + rmse)),
     predicted = map2(model, type, ~ 
                        if (.y %in% c("linear", "poly")) {
                          predict(.x)
@@ -116,7 +115,7 @@ sig_best <- results_best |>
 sig_best |> 
   select(traits, type, estimate, f_value, p_value, ar2, w_shapiro, s_white, p_white, p_bp) |> 
   arrange(traits) |> 
-  write_csv("results/tab/trait_relationship_across.csv")
+  write_csv("results/tab/trait_relationship_across_roots.csv")
 
 ## Extract the fitted values per trait pair ----
 selected_cols <- c(metadata, traits, "predicted")
@@ -130,9 +129,9 @@ results_blong <- results_best |>
   select(1:6, all_of(selected_cols)) |> 
   rename(predicted_all = predicted)
 
-# 5. Correlations within species ----
+# 7. Within species correlations ----
 
-# Nest data by species
+## Nest data by species
 nested_spp <- trait_data_wide  |> 
   group_by(species)  |> 
   nest()
@@ -148,15 +147,15 @@ species_grid <- crossing(
 results_spp <- species_grid |> 
   mutate(
     model = map2(base_formula, data, ~ feols(as.formula(.x), data = .y)),
-    estimate = map_dbl(model, ~ coef(.x)[[2]]),
-    mean_dv = map_dbl(model, ~ fitstat(.x, "my")$my),
-    se = map_dbl(model, ~ fixest::se(.x)[[2]]),
-    rmse = map_dbl(model, ~ fitstat(.x, "rmse")$rmse),
-    f_value = map_dbl(model, ~ fitstat(.x, "f")$f$stat),
-    p_value = map_dbl(model, ~ fitstat(.x, "f")$f$p),
-    ar2 = map_dbl(model, ~ fitstat(.x, "ar2")$ar2),
+    estimate = map_dbl(model, ~ coef(.x)[[2]], se = "hc3",),
+    mean_dv = map_dbl(model, ~ fitstat(.x, "my")$my, se = "hc3"),
+    se = map_dbl(model, ~ fixest::se(.x)[[2]], se = "hc3"),
+    rmse = map_dbl(model, ~ fitstat(.x, "rmse")$rmse, se = "hc3"),
+    f_value = map_dbl(model, ~ fitstat(.x, "f")$f$stat, se = "hc3"),
+    p_value = map_dbl(model, ~ fitstat(.x, "f")$f$p, se = "hc3"),
+    ar2 = map_dbl(model, ~ fitstat(.x, "ar2")$ar2, se = "hc3"),
     significant = p_value < 0.05,
-    aic = map_dbl(model, ~ fitstat(.x, "aic")$aic),
+    aic = map_dbl(model, ~ fitstat(.x, "aic")$aic, se = "hc3"),
     w_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$statistic[[1]]),
     p_shapiro = map_dbl(model, ~ shapiro.test(resid(.x))$p.value),
     w_shap_normal = w_shapiro > 0.9,
@@ -166,7 +165,7 @@ results_spp <- species_grid |>
     p_whit_normal = p_white >= 0.05,
     p_bp = map_dbl(model, ~bptest(resid(.x) ~ fitted(.x))$p.value),
     p_bp_normal = p_bp >= 0.05,
-    etable = map(model, ~ etable(.x, fitstat = ~ . + f + my + rmse)),
+    etable = map(model, ~ etable(.x, se = "hc3", fitstat = ~ . + f + my + rmse)),
     predicted = map2(model, type, ~ 
                        if (.y %in% c("linear", "poly")) {
                          predict(.x)
@@ -198,7 +197,7 @@ sig_best_spp <- results_best_spp |>
 sig_best_spp |> 
   select(species, traits, type, estimate, f_value, p_value, ar2, w_shapiro, s_white, p_white, p_bp) |> 
   arrange(species, traits) |> 
-  write_csv("results/tab/trait_relationship_within.csv")
+  write_csv("results/tab/trait_relationship_within_roots.csv")
 
 
 ## Extract the fitted values per species and trait pair ----
@@ -213,7 +212,7 @@ results_blong_spp <- results_best_spp %>%
   select(1:7, all_of(selected_cols_spp)) |> 
   rename(predicted_spp = predicted)
 
-# 7. Create full results table ----
+# 8. Full results table ----
 
 join_cols <- setdiff(intersect(names(results_blong), names(results_blong_spp)), c("type", "base_formula", "model_name"))
 
@@ -225,7 +224,40 @@ results_general <- results_blong |>
   mutate(species = fct_relevel(species, "Themeda triandra", after = 2))
 
 
-# 1. Enhanced plotting function ----
+# 9. Trait pairs significant in EITHER analysis ----
+sig_trait_pairs_general <- sig_best |> 
+  pull(traits) |> 
+  unique()
+
+sig_trait_pairs_species <- sig_best_spp |> 
+  pull(traits) |> 
+  unique()
+
+all_sig_trait_pairs <- c(sig_trait_pairs_general, sig_trait_pairs_species) |> 
+  unique()
+
+## Create classification of trait pairs ----
+trait_pair_classification <- tibble(
+  traits = all_sig_trait_pairs) |> 
+  mutate(
+    sig_general = traits %in% sig_trait_pairs_general,
+    sig_species = traits %in% sig_trait_pairs_species,
+    n_sig_species = map_int(traits, ~ {
+      sig_best_spp |> filter(traits == .x) |> nrow()}),
+    category = case_when(
+      sig_general & sig_species ~ "Both",
+      sig_general & !sig_species ~ "General only",
+      !sig_general & sig_species ~ "Species only",
+      TRUE ~ "Neither"))
+
+## View summary
+trait_pair_classification |> 
+  count(category, name = "n_trait_pairs")
+
+write_csv(trait_pair_classification, "results/tab/trait_pair_classification_roots.csv")
+
+
+# 10. Plotting function ----
 plot_trait_relationship <- function(data, trait_pair, sig_general, sig_species, 
                                     species_colors, excluded_species = NULL) {
   
@@ -251,14 +283,7 @@ plot_trait_relationship <- function(data, trait_pair, sig_general, sig_species,
     "rd" = "RD (mm)",
     "rtd" = "RTD (g cm^-3)",
     "rdmc" = "RDMC (mg g^-1)",
-    "bi" = "BI",
-    "root_depth" = "Root depth (cm)",
-    "sla" = "SLA (cm² g^-1)",
-    "ldmc" = "LDMC (mg g^-1)",
-    "leaf_thickness" = "Leaf thickness (mm)",
-    "bgb_agb" = "BGB:AGB",
-    "veg_height" = "Vegetation height (cm)"
-  )
+    "bi" = "BI")
   
   x_label <- label_lookup[x_var]
   y_label <- label_lookup[y_var]
@@ -313,12 +338,12 @@ plot_trait_relationship <- function(data, trait_pair, sig_general, sig_species,
     labs(x = x_label, y = y_label, 
          title = trait_pair,
          subtitle = subtitle_text) +
-    theme_bw(base_size = 14) +
+    theme_bw(base_size = 12) +
     theme(
-      plot.title = element_text(size = 18, face = "bold"),
-      plot.subtitle = element_text(size = 12, color = "gray30"),
-      axis.title = element_text(size = 16),
-      axis.text = element_text(size = 16, color = "black"),
+      plot.title = element_text(size = 14, face = "bold"),
+      plot.subtitle = element_text(size = 13, color = "gray30"),
+      axis.title = element_text(size = 12),
+      axis.text = element_text(size = 12, color = "black"),
       axis.ticks = element_line(linewidth = 1),
       panel.border = element_blank(),
       axis.line = element_line(linewidth = 1, colour = "black"),
@@ -330,49 +355,8 @@ plot_trait_relationship <- function(data, trait_pair, sig_general, sig_species,
   return(p)
 }
 
-# 2. Get ALL trait pairs that are significant in EITHER analysis ----
-sig_trait_pairs_general <- sig_best |> 
-  pull(traits) |> 
-  unique()
 
-sig_trait_pairs_species <- sig_best_spp |> 
-  pull(traits) |> 
-  unique()
-
-# Combine both - get unique trait pairs
-all_sig_trait_pairs <- union(sig_trait_pairs_general, sig_trait_pairs_species)
-
-cat("Total significant trait pairs:\n")
-cat("  General analysis:", length(sig_trait_pairs_general), "\n")
-cat("  Species analysis:", length(sig_trait_pairs_species), "\n")
-cat("  Combined (unique):", length(all_sig_trait_pairs), "\n")
-
-# 3. Create classification of trait pairs ----
-trait_pair_classification <- tibble(
-  traits = all_sig_trait_pairs
-) |> 
-  mutate(
-    sig_general = traits %in% sig_trait_pairs_general,
-    sig_species = traits %in% sig_trait_pairs_species,
-    n_sig_species = map_int(traits, ~ {
-      sig_best_spp |> filter(traits == .x) |> nrow()
-    }),
-    category = case_when(
-      sig_general & sig_species ~ "Both",
-      sig_general & !sig_species ~ "General only",
-      !sig_general & sig_species ~ "Species only",
-      TRUE ~ "Neither"
-    )
-  )
-
-# View summary
-trait_pair_classification |> 
-  count(category, name = "n_trait_pairs")
-
-# Save classification
-write_csv(trait_pair_classification, "results/tab/trait_pair_classification.csv")
-
-# 4. Create all plots ----
+## Create all plots ----
 all_plots <- map(
   all_sig_trait_pairs,
   ~ plot_trait_relationship(
@@ -381,65 +365,45 @@ all_plots <- map(
     sig_general = sig_best,
     sig_species = sig_best_spp,
     species_colors = species_colors,
-    excluded_species = NULL # or NULL
+    excluded_species = NULL
   )
 )
 
 # Name the list elements
 names(all_plots) <- all_sig_trait_pairs
 
-# 5. Save all plots organized by category ----
-dir.create("results/plots/trait_relationships/both", recursive = TRUE, showWarnings = FALSE)
-dir.create("results/plots/trait_relationships/general_only", recursive = TRUE, showWarnings = FALSE)
-dir.create("results/plots/trait_relationships/species_only", recursive = TRUE, showWarnings = FALSE)
-
-# Save with iwalk using classification
-iwalk(all_plots, ~ {
-  trait_cat <- trait_pair_classification |> 
-    filter(traits == .y) |> 
-    pull(category)
-  
-  subfolder <- case_when(
-    trait_cat == "Both" ~ "both",
-    trait_cat == "General only" ~ "general_only",
-    trait_cat == "Species only" ~ "species_only"
-  )
-  
-  ggsave(
-    filename = paste0("results/plots/trait_relationships/", subfolder, "/", .y, ".png"),
-    plot = .x,
-    width = 8,
-    height = 6,
-    dpi = 300
-  )
-})
-
-# 6. Create summary plots by category ----
-
-# View examples from each category
-cat("\n=== BOTH (General + Species) ===\n")
-both_traits <- trait_pair_classification |> filter(category == "Both") |> pull(traits)
-if(length(both_traits) > 0) print(all_plots[[both_traits[1]]])
-
-cat("\n=== GENERAL ONLY ===\n")
-general_only_traits <- trait_pair_classification |> filter(category == "General only") |> pull(traits)
-if(length(general_only_traits) > 0) print(all_plots[[general_only_traits[1]]])
-
-cat("\n=== SPECIES ONLY ===\n")
-species_only_traits <- trait_pair_classification |> filter(category == "Species only") |> pull(traits)
-if(length(species_only_traits) > 0) print(all_plots[[species_only_traits[1]]])
-
-
-
-# 1. Create separate plot lists by category ----
+## Create separate plot lists by category ----
 plots_both <- all_plots[trait_pair_classification |> 
                           filter(category == "Both") |> 
                           pull(traits)]
 
-plots_general_only <- all_plots[trait_pair_classification |> 
-                                  filter(category == "General only") |> 
-                                  pull(traits)]
+# plots_general_only <- all_plots[trait_pair_classification |> 
+#                                   filter(category == "General only") |> 
+#                                   pull(traits)]
 
 plots_species_only <- all_plots[trait_pair_classification |> 
                                   filter(category == "Species only") |> 
                                   pull(traits)]
+
+## 11. Export plots -----
+
+#both
+roots_pairwise_both <- plot_grid(plots_both$`rtd~bi`, plots_both$`bi~rtd`,
+                                 plots_both$`srl~rd`, plots_both$`rd~srl`,
+                                 plots_both$`rtd~rdmc`, plots_both$`rdmc~rtd`,
+                                 plots_both$`srl~rtd`, plots_both$`rtd~srl`,
+                                 plots_both$`rd~rtd`,
+                           ncol = 2)
+
+ggsave("results/img/pairwise/roots_pairwise_both.png", roots_pairwise_both, dpi = 300,
+       width = 30, height = 30, units = "cm")
+
+##species
+
+roots_pairwise_spp <- plot_grid(plots_species_only$`rdmc~bi`, plots_species_only$`bi~rdmc`,
+                                 plots_species_only$`srl~bi`, plots_species_only$`bi~srl`,
+                                 plots_species_only$`rtd~rd`, plots_species_only$`rd~bi`,
+                                 ncol = 2)
+
+ggsave("results/img/pairwise/roots_pairwise_spp.png", roots_pairwise_spp, dpi = 300,
+       width = 30, height = 30, units = "cm")
