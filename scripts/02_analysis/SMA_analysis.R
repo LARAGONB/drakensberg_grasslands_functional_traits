@@ -253,3 +253,29 @@ sma(allPC1 ~ rootPC1*species, data=pca_comb)
 plot(sma(allPC1 ~ rootPC1*species, data=pca_comb))
 
 
+# diagnostics tests ----
+sma_diagn <- function(sma_obj, title_prefix = "") {
+  res <- residuals(sma_obj)
+  fit <- fitted(sma_obj)
+  par(mfrow = c(1, 3))
+  
+  # qq
+  qqnorm(res, main = paste(title_prefix, "QQ plot"))
+  qqline(res, col = "red")
+  
+  # hist
+  hist(res, breaks = 20, main = paste(title_prefix, "Residual histogram"),
+       xlab = "Residuals", col = "grey")
+  
+  # res vs fitted
+  plot(fit, res, xlab = "Fitted values", ylab = "Residuals",
+       main = paste(title_prefix, "Residuals vs Fitted"))
+  abline(h = 0, col = "red", lty = 2)
+  
+  par(mfrow = c(1, 1))
+}
+
+sma_diagn(sma_output_1, "Roots vs All")
+sma_diagn(sma_output_2, "Leaves vs All")
+sma_diagn(sma_output_3, "Size vs All")
+sma_diagn(sma_output_4, "Roots vs Leaves")
