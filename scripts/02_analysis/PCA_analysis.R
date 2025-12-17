@@ -23,11 +23,19 @@ remove(pkgs)
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
+trait_data_wide <- trait_data_wide |> 
+  mutate(
+    srl = log(srl),
+    rtd = log(rtd),
+    leaf_thickness = log(leaf_thickness),
+    sla = log(sla),
+    bgb_agb = log(bgb_agb))
+
 # 3. PCA all traits ----
 ## PCA using vegan (rda with no constraints = PCA) ----
 ## Remember to scale to unit variance
 pca_output <- trait_data_wide |> 
-  select(root_depth, veg_height, rd, bi, srl, rtd, rdmc, sla, ldmc, leaf_thickness, bgb_agb) |> 
+  dplyr::select(root_depth, veg_height, rd, bi, srl, rtd, rdmc, sla, ldmc, leaf_thickness, bgb_agb) |> 
   rename(
     LT = leaf_thickness, 
     LDMC = ldmc,
@@ -56,7 +64,7 @@ k <- which(cumsum(ev) / sum(ev) >= 0.9)[1]
 pca_sites <- as_tibble(bind_cols(
   trait_data_wide |> 
     mutate(species = fct_relevel(species, "Themeda triandra", after = 2)) |> 
-    select(id, species, family, growth_form, elevation_m_asl),
+    dplyr::select(id, species, family, growth_form, elevation_m_asl),
   scores(pca_output, display = "sites", choices = 1:k, scaling = 2)))
 
 pca_traits <- scores(pca_output, display = "species", choices = 1:k, scaling = 2) |> 
@@ -72,7 +80,7 @@ ordiequilibriumcircle(pca_output, plot1) #Which traits are more important in eac
 ## PERMANOVA  ----
 ### Matrix of distances ----
 all_distance <- dist(pca_sites |> 
-                       select(starts_with("PC")))
+                       dplyr::select(starts_with("PC")))
 ### Species alone ----
 set.seed(1)
 adonis2(all_distance ~ species, data = pca_sites, permutations = 4999)
@@ -204,9 +212,9 @@ pca12_all <- pca_sites |>
 pca12_all
 
 #### Save plots ----
-# ggsave("results/img/pca12_all_tiff.tiff", pca12_all,
+# ggsave("results/img/pca/pca12_all_tiff.tiff", pca12_all,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca12_all_png.png", pca12_all,
+ggsave("results/img/pca/pca12_all_png.png", pca12_all,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 ### PC1 & PC3 ----
@@ -247,9 +255,9 @@ pca13_all <- pca_sites |>
 pca13_all
 
 #### Save plots ----
-# ggsave("results/img/pca13_all_tiff.tiff", pca13_all,
+# ggsave("results/img/pca/pca13_all_tiff.tiff", pca13_all,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca13_all_png.png", pca13_all,
+ggsave("results/img/pca/pca13_all_png.png", pca13_all,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 ### PC2 & PC3 ----
@@ -290,9 +298,9 @@ pca23_all <- pca_sites |>
 pca23_all
 
 #### Save plots ----
-# ggsave("results/img/pca23_all_tiff.tiff", pca23_all,
+# ggsave("results/img/pca/pca23_all_tiff.tiff", pca23_all,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca23_all_png.png", pca23_all,
+ggsave("results/img/pca/pca23_all_png.png", pca23_all,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 
@@ -314,16 +322,16 @@ plot_all_pca <- plot_grid(plots_pca_all_nolegend[[1]], plots_pca_all_nolegend[[2
 plot_all_pca 
 
 #### Save all plots ----
-ggsave("results/img/plot_all_pca_tiff.tiff", plot_all_pca,
+ggsave("results/img/pca/plot_all_pca_tiff.tiff", plot_all_pca,
        width = 25, height = 25, units = "cm", dpi = 300)
-ggsave("results/img/plot_all_pca_png.png", plot_all_pca,
+ggsave("results/img/pca/plot_all_pca_png.png", plot_all_pca,
        width = 25, height = 25, units = "cm", dpi = 300)
 
 # 4. PCA Roots ----
 ## PCA using vegan (rda with no constraints = PCA) ----
 ## Remember to scale to unit variance
 roots_traits <- trait_data_wide |> 
-  select(rd, bi, srl, rtd, rdmc) |> 
+  dplyr::select(rd, bi, srl, rtd, rdmc) |> 
   rename(BI = bi, RD = rd, RDMC = rdmc, RTD = rtd, SRL = srl)
 
 roots_sum <- roots_traits |> 
@@ -340,7 +348,7 @@ roots_trans <- roots_traits %>%
   mutate(
     SRL_log = log(SRL),
     RTD_log = log(RTD)) |> 
-  select(-SRL, -RTD)
+  dplyr::select(-SRL, -RTD)
 
 roots_sum_trans <- roots_trans |> 
   pivot_longer(everything(), names_to = "trait", values_to = "value") |> 
@@ -370,7 +378,7 @@ k_roots <- which(cumsum(ev_roots) / sum(ev_roots) >= 0.9)[1]; k_roots
 pca_sites_roots <- as_tibble(bind_cols(
   trait_data_wide |> 
     mutate(species = fct_relevel(species, "Themeda triandra", after = 2)) |> 
-    select(id, species, family, growth_form, elevation_m_asl),
+    dplyr::select(id, species, family, growth_form, elevation_m_asl),
   scores(pca_roots, display = "sites", choices = 1:k_roots, scaling = 2)))
 
 pca_traits_roots <- scores(pca_roots, display = "species", choices = 1:k_roots, scaling = 2) |> 
@@ -390,7 +398,7 @@ barplot (sig_roots_pca[c('percentage of variance', 'broken-stick percentage'), ]
 ## PERMANOVA  ----
 ### Matrix of distances ----
 roots_distance <- dist(pca_sites_roots |> 
-                       select(starts_with("PC")), method = "euclidean")
+                       dplyr::select(starts_with("PC")), method = "euclidean")
 
 #### Multivarite homogeneity ----
 # elevation
@@ -481,9 +489,9 @@ pca12_roots <- pca_sites_roots |>
 pca12_roots
 
 #### Save plots ----
-# ggsave("results/img/pca12_roots_tiff.tiff", pca12_roots,
+# ggsave("results/img/pca/pca12_roots_tiff.tiff", pca12_roots,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca12_roots_png.png", pca12_roots,
+ggsave("results/img/pca/pca12_roots_png.png", pca12_roots,
        width = 15, height = 15, units = "cm", dpi = 300)
 
 ### PC1 & PC3 ----
@@ -524,9 +532,9 @@ pca13_roots <- pca_sites_roots |>
 pca13_roots
 
 #### Save plots ----
-# ggsave("results/img/pca13_roots_tiff.tiff", pca13_roots,
+# ggsave("results/img/pca/pca13_roots_tiff.tiff", pca13_roots,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca13_roots_png.png", pca13_roots,
+ggsave("results/img/pca/pca13_roots_png.png", pca13_roots,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 ### PC2 & PC3 ----
@@ -567,9 +575,9 @@ pca23_roots <- pca_sites_roots |>
 pca23_roots
 
 #### Save plots ----
-# ggsave("results/img/pca23_roots_tiff.tiff", pca23_roots,
+# ggsave("results/img/pca/pca23_roots_tiff.tiff", pca23_roots,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca23_roots_png.png", pca23_roots,
+ggsave("results/img/pca/pca23_roots_png.png", pca23_roots,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 
@@ -591,16 +599,16 @@ plot_roots_pca <- plot_grid(plots_pca_roots_nolegend[[1]], plots_pca_roots_noleg
 plot_roots_pca 
 
 #### Save all plots ----
-ggsave("results/img/plot_roots_pca_tiff.tiff", plot_roots_pca,
+ggsave("results/img/pca/plot_roots_pca_tiff.tiff", plot_roots_pca,
        width = 25, height = 25, units = "cm", dpi = 300)
-ggsave("results/img/plot_roots_pca_png.png", plot_roots_pca,
+ggsave("results/img/pca/plot_roots_pca_png.png", plot_roots_pca,
        width = 25, height = 25, units = "cm", dpi = 300)
 
 # 5. PCA Leaf ----
 ## PCA using vegan (rda with no constraints = PCA) ----
 ## Remember to scale to unit variance
 pca_leaf <- trait_data_wide |> 
-  select(sla, ldmc, leaf_thickness) |> 
+  dplyr::select(sla, ldmc, leaf_thickness) |> 
   rename(
     LT = leaf_thickness, 
     LDMC = ldmc,
@@ -621,7 +629,7 @@ k_leaf <- which(cumsum(ev_leaf) / sum(ev_leaf) >= 0.9)[1]
 pca_sites_leaf <- as_tibble(bind_cols(
   trait_data_wide |> 
     mutate(species = fct_relevel(species, "Themeda triandra", after = 2)) |> 
-    select(id, species, family, growth_form, elevation_m_asl),
+    dplyr::select(id, species, family, growth_form, elevation_m_asl),
   scores(pca_leaf, display = "sites", choices = 1:k_leaf, scaling = 2)))
 
 pca_traits_leaf <- scores(pca_leaf, display = "species", choices = 1:k_leaf, scaling = 2) |> 
@@ -636,7 +644,7 @@ ordiequilibriumcircle(pca_leaf,plot1_leaf) #Which traits are more important in e
 ## PERMANOVA  ----
 ### Matrix of distances ----
 leaf_distance <- dist(pca_sites_leaf |> 
-                         select(starts_with("PC")))
+                         dplyr::select(starts_with("PC")))
 ### Species alone ----
 set.seed(1)
 adonis2(leaf_distance ~ species, data = pca_sites_leaf, permutations = 4999)
@@ -768,16 +776,16 @@ pca12_leaf <- pca_sites_leaf |>
 pca12_leaf
 
 #### Save plots ----
-# ggsave("results/img/pca12_leaf_tiff.tiff", pca12_leaf,
+# ggsave("results/img/pca/pca12_leaf_tiff.tiff", pca12_leaf,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca12_leaf_png.png", pca12_leaf,
+ggsave("results/img/pca/pca12_leaf_png.png", pca12_leaf,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 # 6. PCA plant size ----
 ## PCA using vegan (rda with no constraints = PCA) ----
 ## Remember to scale to unit variance
 pca_plants <- trait_data_wide |>
-  select(root_depth, veg_height, bgb_agb) |>
+  dplyr::select(root_depth, veg_height, bgb_agb) |>
   rename(
     VHeight = veg_height,
     RDepth = root_depth,
@@ -798,7 +806,7 @@ k_plants <- which(cumsum(ev_plants) / sum(ev_plants) >= 0.9)[1]
 pca_sites_plants <- as_tibble(bind_cols(
   trait_data_wide |>
     mutate(species = fct_relevel(species, "Themeda triandra", after = 2)) |>
-    select(id, species, family, growth_form, elevation_m_asl),
+    dplyr::select(id, species, family, growth_form, elevation_m_asl),
   scores(pca_plants, display = "sites", choices = 1:k_plants, scaling = 2)))
 
 pca_traits_plants <- scores(pca_plants, display = "species", choices = 1:k_plants, scaling = 2) |>
@@ -813,7 +821,7 @@ ordiequilibriumcircle(pca_plants,plot1_plants) #Which traits are more important 
 ## PERMANOVA  ----
 ### Matrix of distances ----
 plants_distance <- dist(pca_sites_plants |>
-                        select(starts_with("PC")))
+                        dplyr::select(starts_with("PC")))
 ### Species alone ----
 set.seed(1)
 adonis2(plants_distance ~ species, data = pca_sites_plants, permutations = 4999)
@@ -946,9 +954,9 @@ pca12_plants <- pca_sites_plants |>
 pca12_plants
 
 #### Save plots ----
-# ggsave("results/img/pca12_plants_tiff.tiff", pca12_plants,
+# ggsave("results/img/pca/pca12_plants_tiff.tiff", pca12_plants,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca12_plants_png.png", pca12_plants,
+ggsave("results/img/pca/pca12_plants_png.png", pca12_plants,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 ### PC1 & PC3 ----
@@ -989,9 +997,9 @@ pca13_plants <- pca_sites_plants |>
 pca13_plants
 
 #### Save plots ----
-# ggsave("results/img/pca13_plants_tiff.tiff", pca13_plants,
+# ggsave("results/img/pca/pca13_plants_tiff.tiff", pca13_plants,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca13_plants_png.png", pca13_plants,
+ggsave("results/img/pca/pca13_plants_png.png", pca13_plants,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 ### PC2 & PC3 ----
@@ -1033,9 +1041,9 @@ pca23_plants
 
 
 #### Save plots ----
-# ggsave("results/img/pca23_plants_tiff.tiff", pca23_plants,
+# ggsave("results/img/pca/pca23_plants_tiff.tiff", pca23_plants,
 #        width = 20, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/pca23_plants_png.png", pca23_plants,
+ggsave("results/img/pca/pca23_plants_png.png", pca23_plants,
        width = 20, height = 20, units = "cm", dpi = 300)
 
 
@@ -1057,9 +1065,9 @@ plot_plants_pca <- plot_grid(plots_pca_plants_nolegend[[1]], plots_pca_plants_no
 plot_plants_pca
 
 ### Save all plots ----
-# ggsave("results/img/plot_plants_pca_tiff.tiff", plot_plants_pca,
+# ggsave("results/img/pca/plot_plants_pca_tiff.tiff", plot_plants_pca,
 #        width = 25, height = 25, units = "cm", dpi = 300)
-ggsave("results/img/plot_plants_pca_png.png", plot_plants_pca,
+ggsave("results/img/pca/plot_plants_pca_png.png", plot_plants_pca,
        width = 25, height = 25, units = "cm", dpi = 300)
 
 
