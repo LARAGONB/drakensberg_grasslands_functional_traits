@@ -30,17 +30,17 @@ mfa_spp_ev <- read_rds("data/output/mfa_spp_ev.rds")
 
 
 leaf_vars <- mfa_all_traits |> 
-  select(traits, group) |> 
+  dplyr::select(traits, group) |> 
   filter(group %in% "Leaf") |> 
   pull(traits)
 
 root_vars <- mfa_all_traits |> 
-  select(traits, group) |> 
+  dplyr::select(traits, group) |> 
   filter(group %in% "Roots") |> 
   pull(traits)
 
 plant_size_vars <- mfa_all_traits |> 
-  select(traits, group) |> 
+  dplyr::select(traits, group) |> 
   filter(group %in% "Plant size") |> 
   pull(traits)
 
@@ -165,7 +165,7 @@ plot_perm <- function(res, title = NULL) {
 # MFA ALL ----
 # 4. Analyses for MFA across all individual ----
 varcoords <- mfa_all_traits |> 
-  select(traits, starts_with("Dim.")) |> 
+  dplyr::select(traits, starts_with("Dim.")) |> 
   column_to_rownames(var = "traits")
 
 results_all_species <- list(
@@ -216,25 +216,46 @@ pres_roots_plant_size <- plots_all_species$root_vs_plant_size +
 rv_all_plots <- plot_grid(pres_leaf_roots,
                       pres_leaf_plant_size,
                       pres_roots_plant_size,
-                      ncol = 1)
-rv_all_plots
+                      ncol = 1) 
+
+arrow_plot <- ggplot() +
+  annotate("segment", 
+           x = 0.15, xend = 2, y = 0, yend = 0,
+           arrow = arrow(ends = "both", length = unit(0.2, "cm")),
+           size = 0.8) +
+  annotate("text", x = 0.22, y = -5, label = "Decoupled", size = 5) +
+  annotate("text", x = 1.9, y = -5, label = "Coordinated", size = 5) +
+  xlim(0, 2) +
+  ylim(-9, 9) +
+  theme_void() +
+  theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
+
+rv_all_plots_final <- plot_grid(rv_all_plots, 
+                                arrow_plot,
+                                ncol = 1,
+                                align = "h",
+                                axis = "l",
+                                rel_heights = c(10,1))
+
+rv_all_plots_final
 
 # 7. Create full plot ----
 pmfa_all_spp_ele_dim12 <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
   geom_hline(yintercept = 0, color = "grey90", linewidth = 1) +     
   geom_vline(xintercept = 0, color = "grey90", linewidth = 1) + 
   geom_point(aes(shape = as.factor(elevation_m_asl)), 
-             size = 3, color = "grey70") +
+             size = 4, color = "grey70") +
   stat_ellipse(aes(linetype = species), 
                linewidth = 0.8, show.legend = TRUE, color = "grey30", ) +
   geom_segment(data = mfa_all_traits,
                aes(x = 0, xend = Dim1_scaled_12,y = 0, yend = Dim2_scaled_12, color = group),
                inherit.aes = FALSE,
-               arrow = arrow(length = unit(0.18, "cm")),
+               arrow = arrow(length = unit(0.2, "cm")),
                linewidth = 1.2) +
   geom_text_repel(
     data = mfa_all_traits, inherit.aes = FALSE,
-    aes(x = Dim1_scaled_12, y = Dim2_scaled_12, label = traits, color = group),
+    aes(x = Dim1_scaled_12, y = Dim2_scaled_12, 
+        label = traits, color = group),
     size = 9,
     max.overlaps = Inf,
     force = 1,           
@@ -252,7 +273,7 @@ pmfa_all_spp_ele_dim12 <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
   scale_color_manual(values = group_colors, name = "Trait group") +
   guides(
     shape = guide_legend(
-      override.aes = list(linetype = "blank"),
+      override.aes = list(linetype = "blank", size = 4),
       order = 1),
     linetype = guide_legend(
       override.aes = list(shape = NA),
@@ -268,6 +289,7 @@ pmfa_all_spp_ele_dim12 <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
     axis.line = element_line(linewidth = 1, colour = "black"),
     legend.title = element_text(size = 16, face = "bold"),
     legend.text = element_text(size = 16),
+    legend.key.width = unit(1.2, "cm"),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     plot.margin = margin(1,1,1,1, "mm"),
@@ -276,9 +298,9 @@ pmfa_all_spp_ele_dim12 <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
 pmfa_all_spp_ele_dim12
 
 full_plot <- plot_grid(pmfa_all_spp_ele_dim12,
-                       rv_all_plots,
+                       rv_all_plots_final,
                        ncol = 2,
-                       rel_widths = c(4, 2.5),
+                       rel_widths = c(4, 3),
                        nrow = 1,
                        rel_heights = c(1, 1),
                        labels = "A.",
@@ -289,7 +311,7 @@ full_plot <- plot_grid(pmfa_all_spp_ele_dim12,
 full_plot
 
 ### Save the plot ----
-ggsave("results/img/full_plot.png", full_plot, 
+ggsave("results/img/mfa/mfa_all.png", full_plot, 
        width = 18, height = 8, dpi = 300)
 
 # MFA BY SPP ----
@@ -301,7 +323,7 @@ results_by_species <- lapply(species_names, function(sp) {
   res_mfa_sp <- mfa_spp_traits |> 
     filter(species == sp)
   varcoords_sp <- res_mfa_sp |> 
-    select(traits, starts_with("Dim.")) |> 
+    dplyr::select(traits, starts_with("Dim.")) |> 
     column_to_rownames(var = "traits")
   
   # Check variables exist in this species' MFA
@@ -360,8 +382,15 @@ combined_plots_by_species <- lapply(names(plots_by_species), function(sp_idx) {
       theme(
         plot.title = element_text(size = 14, face = "bold")),
     ncol = 1)
+  combined2 <- plot_grid(combined,
+                         arrow_plot,
+                         ncol = 1,
+                         align = "h",
+                         axis = "l",
+                         rel_heights = c(10,1)) +
+    theme(plot.background = element_rect(fill = "white", color = NA))
   
-  return(combined)
+  return(combined2)
 })
 
 names(combined_plots_by_species) <- species_names
@@ -389,7 +418,7 @@ pmfa_by_species <- lapply(species_names, function(sp) {
     geom_hline(yintercept = 0, color = "grey90", linewidth = 1) +     
     geom_vline(xintercept = 0, color = "grey90", linewidth = 1) + 
     geom_point(aes(shape = as.factor(elevation_m_asl)), 
-               size = 3, color = "grey70") +
+               size = 4, color = "grey70") +
     stat_ellipse(aes(linetype = as.factor(elevation_m_asl)), 
                  linewidth = 0.8, show.legend = TRUE, color = "grey30") +
     geom_segment(data = mfa_spp_traits_sp,
@@ -410,11 +439,11 @@ pmfa_by_species <- lapply(species_names, function(sp) {
       show.legend = FALSE,
       fontface = "bold") +
     coord_equal() +
-    scale_shape_manual(values = shapes_sp, name = "Elevation (m asl)",
-                       labels = labels_sp) +
-    scale_linetype_manual(values = ellipses_sp, 
+    scale_shape_manual(values = elevation_shapes, name = "Elevation (m asl)",
+                       labels = elevation_labels) +
+    scale_linetype_manual(values = elevation_ellipses, 
                           name = "Elevation (m asl)",
-                          labels = labels_sp) +
+                          labels = elevation_labels) +
     scale_color_manual(values = group_colors, name = "Trait group") +
     guides(
       shape = guide_legend(
@@ -444,6 +473,7 @@ pmfa_by_species <- lapply(species_names, function(sp) {
       axis.line = element_line(linewidth = 1, colour = "black"),
       legend.title = element_text(size = 16, face = "bold"),
       legend.text = element_text(size = 16),
+      legend.key.width = unit(1.2, "cm"),
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
       plot.margin = margin(1,1,1,1, "mm"),
@@ -464,10 +494,11 @@ full_plot_ERCA <- plot_grid(pmfa_by_species$`Eragrostis capensis`,
                        align = "v",
                        axis = "l") +
   theme(plot.background = element_rect(fill = "white", color = NA))
-full_plot_ERCA
+
+
 
 #### Save the plot ----
-ggsave("results/img/full_plot_ERCA.png", full_plot_ERCA, 
+ggsave("results/img/mfa/mfa_ERCA.png", full_plot_ERCA, 
        width = 18, height = 8, dpi = 300)
 
 ### HAFA ----
@@ -485,7 +516,7 @@ full_plot_HAFA <- plot_grid(pmfa_by_species$`Harpochloa falx`,
 full_plot_HAFA
 
 #### Save the plot ----
-ggsave("results/img/full_plot_HAFA.png", full_plot_HAFA, 
+ggsave("results/img/mfa/mfa_HAFA.png", full_plot_HAFA, 
        width = 18, height = 8, dpi = 300)
 
 ### THTR ----
@@ -503,7 +534,7 @@ full_plot_THTR <- plot_grid(pmfa_by_species$`Themeda triandra`,
 full_plot_THTR
 
 #### Save the plot ----
-ggsave("results/img/full_plot_THTR.png", full_plot_THTR, 
+ggsave("results/img/mfa/mfa_THTR.png", full_plot_THTR, 
        width = 18, height = 8, dpi = 300)
 
 
@@ -522,7 +553,7 @@ full_plot_HEPI <- plot_grid(pmfa_by_species$`Helichrysum pilosellum`,
 full_plot_HEPI
 
 #### Save the plot ----
-ggsave("results/img/full_plot_HEPI.png", full_plot_HEPI, 
+ggsave("results/img/mfa/mfa_HEPI.png", full_plot_HEPI, 
        width = 18, height = 8, dpi = 300)
 
 
@@ -541,7 +572,7 @@ full_plot_SEGL <- plot_grid(pmfa_by_species$`Senecio glaberrimus`,
 full_plot_SEGL
 
 #### Save the plot ----
-ggsave("results/img/full_plot_SEGL.png", full_plot_SEGL, 
+ggsave("results/img/mfa/mfa_SEGL.png", full_plot_SEGL, 
        width = 18, height = 8, dpi = 300)
 
 

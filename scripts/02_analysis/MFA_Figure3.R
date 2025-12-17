@@ -15,7 +15,8 @@
 # devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis",
           "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra", "BiodiversityR",
-          "cowplot", "pairwiseAdonis", "patchwork", "emmeans", "ggExtra")
+          "cowplot", "pairwiseAdonis", "patchwork", "emmeans", "ggExtra", "multcomp",
+          "multcompView")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -23,12 +24,21 @@ remove(pkgs)
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
 # 3. MFA for all species ----
+trait_data_wide <- trait_data_wide |> 
+  mutate(
+    srl = log(srl),
+    rtd = log(rtd),
+    leaf_thickness = log(leaf_thickness),
+    sla = log(sla),
+    bgb_agb = log(bgb_agb))
+  
+
 ## Function ----
 process_all <- function(data) {
   
   # Get data for current species (without species column)
   ordered_data <- data |> 
-    select(id, species, family, growth_form, elevation_m_asl,  # Keep metadata
+    dplyr::select(id, species, family, growth_form, elevation_m_asl,  # Keep metadata
            leaf_thickness, ldmc, sla, 
            bi, rd, rdmc, rtd, srl, 
            veg_height, root_depth, bgb_agb) |> 
@@ -46,11 +56,11 @@ process_all <- function(data) {
   
   # Extract metadata for the remaining rows (after na.omit)
   metadata <- all_clean |> 
-    select(id, species, family, growth_form, elevation_m_asl)
+    dplyr::select(id, species, family, growth_form, elevation_m_asl)
   
   # Extract only trait data for MFA
   trait_data <- all_clean |> 
-    select(LT:last_col())  # From LT to BG:AG
+    dplyr::select(LT:last_col())  # From LT to BG:AG
   
   # Calculate ncp
   grp_sizes <- c(3, 5, 3)
@@ -91,7 +101,7 @@ all_contrib <- mfa_all$quanti.var$contrib |>
   rownames_to_column(var = "traits") |> 
   left_join(x = _, 
             y = mfa_all$summary.quanti |> 
-              select(group, variable),
+              dplyr::select(group, variable),
             by = join_by(traits == variable)) |> 
   mutate(
     group = case_when(
@@ -157,9 +167,9 @@ all_contrib_12 <- plot_grid(all_contrib_dim1, all_contrib_dim2  + theme(legend.p
 
 all_contrib_12
 
-# ggsave("results/img/all_contrib_12_tiff.tiff", all_contrib_12,
+# ggsave("results/img/mfa/all_contrib_12_tiff.tiff", all_contrib_12,
 #        width = 20, height = 22, units = "cm", dpi = 300)
-ggsave("results/img/all_contrib_12_png.png", all_contrib_12,
+ggsave("results/img/mfa/all_contrib_12_png.png", all_contrib_12,
        width = 15, height = 22, units = "cm", dpi = 300)
 
 ## MFA Results ----
@@ -246,7 +256,7 @@ mfa_all_traits <- {
   scaled_dims |>  
     bind_cols(var) |>  # Add the original variable coordinates
     left_join(
-      mfa_all$summary.quanti |> select(group, variable),
+      mfa_all$summary.quanti |> dplyr::select(group, variable),
       by = join_by(traits == variable)
     ) |> 
     mutate(
@@ -313,7 +323,7 @@ pmfa_all_spp_ele <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2,
 pmfa_all_spp_ele
 
 ##### Save plots ----
-ggsave("results/img/pmfa_all_spp_ele.png", pmfa_all_spp_ele,
+ggsave("results/img/mfa/pmfa_all_spp_ele.png", pmfa_all_spp_ele,
        width = 20, height = 15, units = "cm", dpi = 300)
 
 #### Per species ----
@@ -384,7 +394,7 @@ pmfa_all_spp_grp <- ggplot(mfa_all_ind, aes(x = Dim.1, y = Dim.2)) +
 pmfa_all_spp_grp
 
 ##### Save plots ----
-ggsave("results/img/pmfa_all_spp_grp.png", pmfa_all_spp_grp,
+ggsave("results/img/mfa/pmfa_all_spp_grp.png", pmfa_all_spp_grp,
        width = 20, height = 15, units = "cm", dpi = 300)
 
 #### Per Spp & Ele Dim 12 ----
@@ -556,7 +566,7 @@ pmfa_all_spp_ele_dim23 <- ggplot(mfa_all_ind, aes(x = Dim.2, y = Dim.3)) +
 pmfa_all_spp_ele_dim23
 
 ##### Save plots ----
-ggsave("results/img/pmfa_all_spp_ele_dim12.png", pmfa_all_spp_ele_dim12,
+ggsave("results/img/mfa/pmfa_all_spp_ele_dim12.png", pmfa_all_spp_ele_dim12,
        width = 20, height = 15, units = "cm", dpi = 300)
 
 ### Combined plot for Dim12, Dim13, Dim23 ----
@@ -587,13 +597,13 @@ mfa_all_combined_plot1 <- plot_grid(pmfa_all_spp_ele_dim12 + theme(legend.positi
 mfa_all_combined_plot1
 
 ##### Save plots ----
-ggsave("results/img/mfa_all_combined_plot2.png", mfa_all_combined_plot1,
+ggsave("results/img/mfa/mfa_all_combined_plot2.png", mfa_all_combined_plot1,
        width = 30, height = 30, units = "cm", dpi = 300)
 
 ## PERMANOVA  ----
 ### Matrix of distances ----
 mfa_all_distance <- dist(mfa_table |> 
-                           select(starts_with("Dim")))
+                           dplyr::select(starts_with("Dim")))
 ### Species alone ----
 set.seed(1)
 adonis2(mfa_all_distance ~ species, data = mfa_table, permutations = 4999)
@@ -691,190 +701,189 @@ pw_ele_table <- map_dfr(pw_ele_results, \(x) {
 print(pw_ele_table)
 
 
-### Dimensions as variables ----
-#### Dim.1 ---- 
-mfa_all_dim1 <- feols(Dim.1 ~ species, mfa_all_ind)
-summary(mfa_all_dim1)
-car::Anova(mfa_all_dim1, type = 2)
-
-# Perform Tukey HSD using emmeans
-tukey_all_dim1 <- emmeans(mfa_all_dim1, pairwise ~ species, adjust = "tukey")
-
-# View the results
-tukey_all_dim1$contrasts
-tukey_all_dim1$emmeans
-
-# Create a nice table
-tukey_t_all_dim1<- tukey_all_dim1$contrasts |> 
-  as.data.frame() |> 
-  mutate(
-    estimate = round(estimate, 2),
-    SE = round(SE, 2),
-    t.ratio = round(t.ratio, 2),
-    p.value = round(p.value, 4),
-    significance = case_when(
-      p.value < 0.001 ~ "***",
-      p.value < 0.01 ~ "**",
-      p.value < 0.05 ~ "*",
-      p.value < 0.1 ~ ".",
-      TRUE ~ "ns"
-    )
-  )
-
-print(tukey_t_all_dim1)
-
-# Get compact letter display
-cld_all_dim1 <- cld(tukey_all_dim1$emmeans, alpha = 0.05, Letters = letters)
-
-print(cld_all_dim1)
-
-# Calculate individual y-positions for each species (more precise)
-species_max_dim1 <- mfa_all_ind |> 
-  group_by(species) |> 
-  summarise(
-    max_value = max(Dim.1, na.rm = TRUE),
-    q75 = quantile(Dim.1, 0.75, na.rm = TRUE),
-    .groups = "drop"
-  ) |> 
-  mutate(
-    letter_y = pmax(max_value, q75) + 0.3  # Position above max or Q3, whichever is higher
-  )
-
-# Merge with cld_results
-letters_all_dim1 <- cld_all_dim1 |> 
-  as.data.frame() |> 
-  mutate(
-    species = factor(species, levels = species_order),
-    .group = str_trim(.group)
-  ) |> 
-  left_join(species_max_dim1, by = "species")
-
-##### Plot ----
-mfa_all_dim1_p <- ggplot(mfa_all_ind, aes(x = species, y = Dim.1, color = species)) +
-  geom_point(aes(y = Dim.1)) +
-  geom_boxplot(aes(fill = species), alpha = 0.5) +
-  geom_text(data = letters_all_dim1, 
-            aes(x = species, y = letter_y, label = .group),
-            color = "black", size = 6, fontface = "bold",
-            inherit.aes = FALSE) +
-  scale_color_manual(values = species_colors, labels = species_labels, name = "Species") +
-  scale_fill_manual(values = species_colors, labels = species_labels, , name = "Species") +
-  scale_x_discrete(labels = species_labels) +
-  labs(
-    x = "",
-    y = "MFA Dimension 1"
-  ) +
-  theme_bw(base_size = 16) +
-  theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 16, color = "black"),
-    axis.ticks = element_line(linewidth = 1),
-    axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_text(face = "bold"),
-    # legend.text = element_text(size = 16),
-    plot.margin = margin(1,1,1,1, "mm"),
-    legend.position = "none",
-    aspect.ratio = NULL)
-
-mfa_all_dim1_p
-
-#### Dim.2 ---- 
-mfa_all_dim2 <- feols(Dim.2 ~ species, mfa_all_ind)
-summary(mfa_all_dim2)
-etable(mfa_all_dim2)
-
-# Perform Tukey HSD using emmeans
-tukey_all_dim2 <- emmeans(mfa_all_dim2, pairwise ~ species, adjust = "tukey")
-
-# View the results
-tukey_all_dim2$contrasts
-tukey_all_dim2$emmeans
-
-# Create a nice table
-tukey_t_all_dim2<- tukey_all_dim2$contrasts |> 
-  as.data.frame() |> 
-  mutate(
-    estimate = round(estimate, 2),
-    SE = round(SE, 2),
-    t.ratio = round(t.ratio, 2),
-    p.value = round(p.value, 4),
-    significance = case_when(
-      p.value < 0.001 ~ "***",
-      p.value < 0.01 ~ "**",
-      p.value < 0.05 ~ "*",
-      p.value < 0.1 ~ ".",
-      TRUE ~ "ns"
-    )
-  )
-
-print(tukey_t_all_dim2)
-
-# Get compact letter display
-cld_all_dim2 <- cld(tukey_all_dim2$emmeans, alpha = 0.05, Letters = letters)
-
-print(cld_all_dim2)
-
-# Calculate individual y-positions for each species (more precise)
-species_max_dim2 <- mfa_all_ind |> 
-  group_by(species) |> 
-  summarise(
-    max_value = max(Dim.2, na.rm = TRUE),
-    q75 = quantile(Dim.2, 0.75, na.rm = TRUE),
-    .groups = "drop"
-  ) |> 
-  mutate(
-    letter_y = pmax(max_value, q75) + 0.3  # Position above max or Q3, whichever is higher
-  )
-
-# Merge with cld_results
-letters_all_dim2 <- cld_all_dim2 |> 
-  as.data.frame() |> 
-  mutate(
-    species = factor(species, levels = species_order),
-    .group = str_trim(.group)
-  ) |> 
-  left_join(species_max_dim2, by = "species")
-
-##### Plot ----
-mfa_all_dim2_p <- ggplot(mfa_all_ind, aes(x = species, y = Dim.2, color = species)) +
-  geom_point(aes(y = Dim.2)) +
-  geom_boxplot(aes(fill = species), alpha = 0.5) +
-  geom_text(data = letters_all_dim2, 
-            aes(x = species, y = letter_y, label = .group),
-            color = "black", size = 6, fontface = "bold",
-            inherit.aes = FALSE) +
-  scale_color_manual(values = species_colors, labels = species_labels, name = "Species") +
-  scale_fill_manual(values = species_colors, labels = species_labels, , name = "Species") +
-  scale_x_discrete(labels = species_labels) +
-  labs(
-    x = "",
-    y = "MFA Dimension 2"
-  ) +
-  theme_bw(base_size = 16) +
-  theme(
-    axis.title = element_text(size = 16),
-    axis.text = element_text(size = 16, color = "black"),
-    axis.ticks = element_line(linewidth = 1),
-    axis.line = element_line(linewidth = 1, colour = "black"),
-    # legend.title = element_text(face = "bold"),
-    # legend.text = element_text(size = 16),
-    plot.margin = margin(1,1,1,1, "mm"),
-    legend.position = "none",
-    aspect.ratio = NULL)
-
-mfa_all_dim2_p
-
-##### Save combined plot ----
-
-mfa_dim1_2_plot <- mfa_all_dim1_p + mfa_all_dim2_p +
-  plot_annotation(tag_levels = list(c("A.", "B."))) +
-  plot_layout(ncol = 2) &
-  theme(plot.background = element_rect(fill = "white", color = NA),
-        plot.margin = margin(2, 2, 2, 2, "mm"),
-        plot.tag = element_text(size = 16, face = "bold"))
-
-ggsave("results/img/mfa_dim1_2_plot.png", mfa_dim1_2_plot, 
-       width = 10, height = 5, dpi = 300)
+# ### Dimensions as variables ----
+# #### Dim.1 ---- 
+# mfa_all_dim1 <- lm(Dim.1 ~ species, mfa_all_ind)
+# summary(mfa_all_dim1)
+# car::Anova(mfa_all_dim1, type = 2)
+# 
+# # Perform Tukey HSD using emmeans
+# tukey_all_dim1 <- emmeans(mfa_all_dim1, pairwise ~ species, adjust = "tukey")
+# 
+# # View the results
+# tukey_all_dim1$contrasts
+# tukey_all_dim1$emmeans
+# 
+# # Create a nice table
+# tukey_t_all_dim1<- tukey_all_dim1$contrasts |> 
+#   as.data.frame() |> 
+#   mutate(
+#     estimate = round(estimate, 2),
+#     SE = round(SE, 2),
+#     t.ratio = round(t.ratio, 2),
+#     p.value = round(p.value, 4),
+#     significance = case_when(
+#       p.value < 0.001 ~ "***",
+#       p.value < 0.01 ~ "**",
+#       p.value < 0.05 ~ "*",
+#       p.value < 0.1 ~ ".",
+#       TRUE ~ "ns"
+#     )
+#   )
+# 
+# print(tukey_t_all_dim1)
+# 
+# # Get compact letter display
+# cld_all_dim1 <- cld(tukey_all_dim1$emmeans, alpha = 0.05, Letters = letters)
+# 
+# 
+# # Calculate individual y-positions for each species (more precise)
+# species_max_dim1 <- mfa_all_ind |> 
+#   group_by(species) |> 
+#   summarise(
+#     max_value = max(Dim.1, na.rm = TRUE),
+#     q75 = quantile(Dim.1, 0.75, na.rm = TRUE),
+#     .groups = "drop"
+#   ) |> 
+#   mutate(
+#     letter_y = pmax(max_value, q75) + 0.3  # Position above max or Q3, whichever is higher
+#   )
+# 
+# # Merge with cld_results
+# letters_all_dim1 <- cld_all_dim1 |> 
+#   as.data.frame() |> 
+#   mutate(
+#     species = factor(species, levels = species_order),
+#     .group = str_trim(.group)
+#   ) |> 
+#   left_join(species_max_dim1, by = "species")
+# 
+# ##### Plot ----
+# mfa_all_dim1_p <- ggplot(mfa_all_ind, aes(x = species, y = Dim.1, color = species)) +
+#   geom_point(aes(y = Dim.1)) +
+#   geom_boxplot(aes(fill = species), alpha = 0.5) +
+#   geom_text(data = letters_all_dim1, 
+#             aes(x = species, y = letter_y, label = .group),
+#             color = "black", size = 6, fontface = "bold",
+#             inherit.aes = FALSE) +
+#   scale_color_manual(values = species_colors, labels = species_labels, name = "Species") +
+#   scale_fill_manual(values = species_colors, labels = species_labels, , name = "Species") +
+#   scale_x_discrete(labels = species_labels) +
+#   labs(
+#     x = "",
+#     y = "MFA Dimension 1"
+#   ) +
+#   theme_bw(base_size = 16) +
+#   theme(
+#     axis.title = element_text(size = 16),
+#     axis.text = element_text(size = 16, color = "black"),
+#     axis.ticks = element_line(linewidth = 1),
+#     axis.line = element_line(linewidth = 1, colour = "black"),
+#     # legend.title = element_text(face = "bold"),
+#     # legend.text = element_text(size = 16),
+#     plot.margin = margin(1,1,1,1, "mm"),
+#     legend.position = "none",
+#     aspect.ratio = NULL)
+# 
+# mfa_all_dim1_p
+# 
+# #### Dim.2 ---- 
+# mfa_all_dim2 <- feols(Dim.2 ~ species, mfa_all_ind)
+# summary(mfa_all_dim2)
+# etable(mfa_all_dim2)
+# 
+# # Perform Tukey HSD using emmeans
+# tukey_all_dim2 <- emmeans(mfa_all_dim2, pairwise ~ species, adjust = "tukey")
+# 
+# # View the results
+# tukey_all_dim2$contrasts
+# tukey_all_dim2$emmeans
+# 
+# # Create a nice table
+# tukey_t_all_dim2<- tukey_all_dim2$contrasts |> 
+#   as.data.frame() |> 
+#   mutate(
+#     estimate = round(estimate, 2),
+#     SE = round(SE, 2),
+#     t.ratio = round(t.ratio, 2),
+#     p.value = round(p.value, 4),
+#     significance = case_when(
+#       p.value < 0.001 ~ "***",
+#       p.value < 0.01 ~ "**",
+#       p.value < 0.05 ~ "*",
+#       p.value < 0.1 ~ ".",
+#       TRUE ~ "ns"
+#     )
+#   )
+# 
+# print(tukey_t_all_dim2)
+# 
+# # Get compact letter display
+# cld_all_dim2 <- cld(tukey_all_dim2$emmeans, alpha = 0.05, Letters = letters)
+# 
+# print(cld_all_dim2)
+# 
+# # Calculate individual y-positions for each species (more precise)
+# species_max_dim2 <- mfa_all_ind |> 
+#   group_by(species) |> 
+#   summarise(
+#     max_value = max(Dim.2, na.rm = TRUE),
+#     q75 = quantile(Dim.2, 0.75, na.rm = TRUE),
+#     .groups = "drop"
+#   ) |> 
+#   mutate(
+#     letter_y = pmax(max_value, q75) + 0.3  # Position above max or Q3, whichever is higher
+#   )
+# 
+# # Merge with cld_results
+# letters_all_dim2 <- cld_all_dim2 |> 
+#   as.data.frame() |> 
+#   mutate(
+#     species = factor(species, levels = species_order),
+#     .group = str_trim(.group)
+#   ) |> 
+#   left_join(species_max_dim2, by = "species")
+# 
+# ##### Plot ----
+# mfa_all_dim2_p <- ggplot(mfa_all_ind, aes(x = species, y = Dim.2, color = species)) +
+#   geom_point(aes(y = Dim.2)) +
+#   geom_boxplot(aes(fill = species), alpha = 0.5) +
+#   geom_text(data = letters_all_dim2, 
+#             aes(x = species, y = letter_y, label = .group),
+#             color = "black", size = 6, fontface = "bold",
+#             inherit.aes = FALSE) +
+#   scale_color_manual(values = species_colors, labels = species_labels, name = "Species") +
+#   scale_fill_manual(values = species_colors, labels = species_labels, , name = "Species") +
+#   scale_x_discrete(labels = species_labels) +
+#   labs(
+#     x = "",
+#     y = "MFA Dimension 2"
+#   ) +
+#   theme_bw(base_size = 16) +
+#   theme(
+#     axis.title = element_text(size = 16),
+#     axis.text = element_text(size = 16, color = "black"),
+#     axis.ticks = element_line(linewidth = 1),
+#     axis.line = element_line(linewidth = 1, colour = "black"),
+#     # legend.title = element_text(face = "bold"),
+#     # legend.text = element_text(size = 16),
+#     plot.margin = margin(1,1,1,1, "mm"),
+#     legend.position = "none",
+#     aspect.ratio = NULL)
+# 
+# mfa_all_dim2_p
+# 
+# ##### Save combined plot ----
+# 
+# mfa_dim1_2_plot <- mfa_all_dim1_p + mfa_all_dim2_p +
+#   plot_annotation(tag_levels = list(c("A.", "B."))) +
+#   plot_layout(ncol = 2) &
+#   theme(plot.background = element_rect(fill = "white", color = NA),
+#         plot.margin = margin(2, 2, 2, 2, "mm"),
+#         plot.tag = element_text(size = 16, face = "bold"))
+# 
+# ggsave("results/img/mfa/mfa_dim1_2_plot.png", mfa_dim1_2_plot, 
+#        width = 10, height = 5, dpi = 300)
 
 
 ## FactoExtra plots ----
@@ -902,7 +911,7 @@ process_species <- function(sp, trait_data_wide) {
   # Get data for current species (without species column)
   sp_data <- trait_data_wide |> 
     filter(species == sp) |> 
-    select(id, leaf_thickness, ldmc, sla, 
+    dplyr::select(id, leaf_thickness, ldmc, sla, 
            bi, rd, rdmc, rtd, srl, 
            veg_height, root_depth, bgb_agb) |> 
     rename(LT = leaf_thickness, LDMC = ldmc, SLA = sla, 
@@ -921,7 +930,7 @@ process_species <- function(sp, trait_data_wide) {
   kept_rowids <- sp_clean$id
   
   # Remove rowid column for MFA
-  mfa_data <- sp_clean |> select(-id)
+  mfa_data <- sp_clean |> dplyr::select(-id)
   
   # Calculate ncp for this species
   grp_sizes <- c(3, 5, 3)
@@ -965,7 +974,7 @@ spp_contrib <- imap_dfr(mfa_by_species, \(x, y) {
     mutate(species = y) |> 
   left_join(x = _, 
             y = x$summary.quanti |> 
-              select(group, variable),
+              dplyr::select(group, variable),
             by = join_by(traits == variable)) |> 
     mutate(
       group = case_when(
@@ -1039,7 +1048,7 @@ spp_contrib_com_plot <- wrap_plots(
 print(spp_contrib_com_plot)
 
 ### Save the plot ----
-ggsave("results/img/spp_contrib_dim1_dim2.png", spp_contrib_com_plot, 
+ggsave("results/img/mfa/spp_contrib_dim1_dim2.png", spp_contrib_com_plot, 
        width = 20, height = 10, dpi = 300)
 
 
@@ -1047,7 +1056,7 @@ ggsave("results/img/spp_contrib_dim1_dim2.png", spp_contrib_com_plot,
 
 ### Ind. coords table ----
 mfa_spp_ind <- trait_data_wide |>
-  select(id, species, family, growth_form, elevation_m_asl) |> 
+  dplyr::select(id, species, family, growth_form, elevation_m_asl) |> 
   left_join(x = _,
             y = imap_dfr(mfa_by_species, \(x, y) {
               spp_mfa_matrix <- x$ind$coord |> 
@@ -1140,7 +1149,7 @@ mfa_spp_traits <- imap_dfr(mfa_by_species, \(mfa_obj, sp_name) {
     scaled_dims
   ) |> 
     left_join(
-      mfa_obj$summary.quanti |> select(group, variable),
+      mfa_obj$summary.quanti |> dplyr::select(group, variable),
       by = join_by(traits == variable)
     ) |> 
     mutate(
@@ -1178,7 +1187,7 @@ species_labels_2 <- eigenvalues_by_species |>
   mutate(
     label = sprintf("%s\nDim 1: %.1f%% | Dim 2: %.1f%%", 
                     species, Dim.1, Dim.2)) |> 
-  select(species, label) |>  # Two columns for deframe()
+  dplyr::select(species, label) |>  # Two columns for deframe()
   deframe()
 
 
@@ -1222,17 +1231,17 @@ mfa_spp_plot12 <- ggplot(mfa_spp_ind |>
 
 
 ### Save the plot ----
-ggsave("results/img/mfa_spp_plot12.png", mfa_spp_plot12, 
+ggsave("results/img/mfa/mfa_spp_plot12.png", mfa_spp_plot12, 
        width = 14, height = 10, dpi = 300)
 
 ## PERMANOVA  ----
 ### Matrix of distances ----
-
+#### Species
 adonis_mfa_spp <- mfa_spp_ind |> 
   nest(.by = species) |> 
   mutate(dist_matrix = lapply(data, function(nest_data) 
     dist(nest_data |> 
-           select(starts_with("Dim"))))) |> 
+           dplyr::select(starts_with("Dim"))))) |> 
   mutate(
     #Run adonis model for each species to evaluate if there are differences among elevations
     adonis_models = map2(dist_matrix, data, \(x, y) {
@@ -1277,4 +1286,5 @@ adonis_mfa_spp <- mfa_spp_ind |>
   relocate(pairwise_results,data, dist_matrix, adonis_models, betadisper, pairwise, .after = last_col())
 
 adonis_mfa_spp_2 <- adonis_mfa_spp |> 
-  select(1:8)
+  dplyr::select(1:8)
+

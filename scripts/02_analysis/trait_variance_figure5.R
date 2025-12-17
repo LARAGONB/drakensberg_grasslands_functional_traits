@@ -133,9 +133,9 @@ all_within_cv <- cv_long |>
 all_within_cv 
 
 #### Save plot ----
-ggsave("results/img/all_within_cv_tiff.tiff", all_within_cv,
+ggsave("results/img/trait_variance/all_within_cv_tiff.tiff", all_within_cv,
        width = 35, height = 20, units = "cm", dpi = 300)
-ggsave("results/img/all_within_cv_png.png", all_within_cv,
+ggsave("results/img/trait_variance/all_within_cv_png.png", all_within_cv,
        width = 35, height = 20, units = "cm", dpi = 300)
 
 ### whitin_itvb_itvw ----
@@ -229,7 +229,7 @@ whitin_itvb_itvw <- cv_long |>
 
 whitin_itvb_itvw
 #### Save plot ----
-ggsave("results/img/whitin_itvb_itvw_cv_png.png", whitin_itvb_itvw,
+ggsave("results/img/trait_variance/whitin_itvb_itvw_cv_png.png", whitin_itvb_itvw,
        width = 35, height = 30, units = "cm", dpi = 300)
 
 
@@ -243,11 +243,11 @@ lmm_trait_variation <- trait_data |>
   mutate(
     model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|species:elevation_m_asl), data = .x)),
     varcomp = map(model, ~ as_tibble(VarCorr(.x)) |> 
-                    select(grp,vcov, sdcor) |>
+                    dplyr::select(grp,vcov, sdcor) |>
                     mutate(
                       total_var = sum(vcov),
                       proportion = (vcov/total_var) * 100))) |> 
-  select(traits, varcomp) |> 
+  dplyr::select(traits, varcomp) |> 
   unnest(varcomp) |> 
   rename(source = grp) |> 
   mutate(
@@ -329,7 +329,7 @@ write_csv(source_summary, "results/tab/source_summary_trait_variation.csv")
 write_csv(source_general_summary, "results/tab/source_general_summary_trait_variation.csv")
 # 5. Visualize model results ----
 
-perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = grp)) +
+perc_plot <- ggplot(lmm_trait_variation, aes(x = traits, y = proportion, fill = source)) +
   geom_bar(stat = "identity", position = "stack") +
   scale_y_continuous(
     breaks = seq(0, 100, by = 20),   # breaks every 20 percent: 0, 20, ..., 100
@@ -365,7 +365,7 @@ perc_plot
 
 
 perc_plot_leaf <- ggplot(lmm_trait_variation |> 
-                           filter(traits %in% c("leaf_thickness", "ldmc", "sla")), aes(x = traits, y = proportion, fill = grp)) +
+                           filter(traits %in% c("leaf_thickness", "ldmc", "sla")), aes(x = traits, y = proportion, fill = source)) +
   geom_bar(stat = "identity", position = "stack", width = 0.8) +
   scale_y_continuous(
     breaks = seq(0, 100, by = 20),   
@@ -399,7 +399,7 @@ perc_plot_leaf <- ggplot(lmm_trait_variation |>
 perc_plot_leaf
 
 perc_plot_roots <- ggplot(lmm_trait_variation |> 
-                           filter(traits %in% c("bi", "rd", "rdmc", "rtd", "srl")), aes(x = traits, y = proportion, fill = grp)) +
+                           filter(traits %in% c("bi", "rd", "rdmc", "rtd", "srl")), aes(x = traits, y = proportion, fill = source)) +
   geom_bar(stat = "identity", position = "stack", width = 0.9) +
   scale_y_continuous(
     breaks = seq(0, 100, by = 20),   
@@ -433,7 +433,7 @@ perc_plot_roots <- ggplot(lmm_trait_variation |>
 perc_plot_roots
 
 perc_plot_plant_size <- ggplot(lmm_trait_variation |> 
-                           filter(traits %in% c("veg_height", "root_depth", "bgb_agb")), aes(x = traits, y = proportion, fill = grp)) +
+                           filter(traits %in% c("veg_height", "root_depth", "bgb_agb")), aes(x = traits, y = proportion, fill = source)) +
   geom_bar(stat = "identity", position = "stack", width = 0.8) +
   scale_y_continuous(
     breaks = seq(0, 100, by = 20),   
@@ -471,22 +471,22 @@ perc_plot_all_groups <- ggplot(lmm_trait_variation |>
          mutate(
            trait_group = factor(traits_groups[as.character(traits)], levels = c("Leaf", "Roots", "Plant size")),
            traits = factor(traits, levels = traits_levels),
-           grp = factor(grp, levels = c("Growth form", "Species", "ITV_between", "ITV_within")),
+           source = factor(source, levels = c("Growth form", "Species", "ITV_between", "ITV_within")),
            fill_color = case_when(
-             trait_group == "Leaf" & grp == "ITV_within" ~ group_colors_leaf["ITV_within"],
-             trait_group == "Leaf" & grp == "ITV_between" ~ group_colors_leaf["ITV_between"],
-             trait_group == "Leaf" & grp == "Species" ~ group_colors_leaf["Species"],
-             trait_group == "Leaf" & grp == "Growth form" ~ group_colors_leaf["Growth form"],
-             trait_group == "Roots" & grp == "ITV_within" ~ group_colors_roots["ITV_within"],
-             trait_group == "Roots" & grp == "ITV_between" ~ group_colors_roots["ITV_between"],
-             trait_group == "Roots" & grp == "Species" ~ group_colors_roots["Species"],
-             trait_group == "Roots" & grp == "Growth form" ~ group_colors_roots["Growth form"],
-             trait_group == "Plant size" & grp == "ITV_within" ~ group_colors_plant_size["ITV_within"],
-             trait_group == "Plant size" & grp == "ITV_between" ~ group_colors_plant_size["ITV_between"],
-             trait_group == "Plant size" & grp == "Species" ~ group_colors_plant_size["Species"],
-             trait_group == "Plant size" & grp == "Growth form" ~ group_colors_plant_size["Growth form"],
+             trait_group == "Leaf" & source == "ITV_within" ~ group_colors_leaf["ITV_within"],
+             trait_group == "Leaf" & source == "ITV_between" ~ group_colors_leaf["ITV_between"],
+             trait_group == "Leaf" & source == "Species" ~ group_colors_leaf["Species"],
+             trait_group == "Leaf" & source == "Growth form" ~ group_colors_leaf["Growth form"],
+             trait_group == "Roots" & source == "ITV_within" ~ group_colors_roots["ITV_within"],
+             trait_group == "Roots" & source == "ITV_between" ~ group_colors_roots["ITV_between"],
+             trait_group == "Roots" & source == "Species" ~ group_colors_roots["Species"],
+             trait_group == "Roots" & source == "Growth form" ~ group_colors_roots["Growth form"],
+             trait_group == "Plant size" & source == "ITV_within" ~ group_colors_plant_size["ITV_within"],
+             trait_group == "Plant size" & source == "ITV_between" ~ group_colors_plant_size["ITV_between"],
+             trait_group == "Plant size" & source == "Species" ~ group_colors_plant_size["Species"],
+             trait_group == "Plant size" & source == "Growth form" ~ group_colors_plant_size["Growth form"],
              TRUE ~ NA_character_)) |> 
-         arrange(traits, grp), 
+         arrange(traits, source), 
        aes(x = traits, y = proportion, fill = fill_color)) +
   geom_bar(stat = "identity", position = "stack", width = 0.8) +
   scale_y_continuous(
@@ -527,10 +527,10 @@ legend_plot <- ggplot(color_table, aes(x = grp, y = source, fill = fill_color)) 
   scale_x_discrete(position = "top") +
   scale_y_discrete(position = "right",
                    labels = c(
-                       "Growth form" = "Growth form",
-                       "Species" = "Species",
-                       "ITV_between" = expression("ITV"["between"]),
-                       "ITV_within" = expression("ITV"["within"]))) +
+                     "Growth form" = "Growth form",
+                     "Species" = "Species",
+                     "ITV_between" = expression("ITV"["between"]),
+                     "ITV_within" = expression("ITV"["within"]))) +
   labs(x = "", y = "") +
   coord_fixed(ratio = 1, expand = FALSE) +
   theme_minimal() +
@@ -558,5 +558,5 @@ perc_plot_all_groups_f <- plot_grid(perc_plot_all_groups, legend_plot,
 perc_plot_all_groups_f
 
 ## Save plots ----
-ggsave("results/img/perc_plot_all_groups_f_png.png", perc_plot_all_groups_f,
+ggsave("results/img/trait_variance/perc_plot_all_groups_f_png.png", perc_plot_all_groups_f,
        width = 30, height = 20, units = "cm", dpi = 300)

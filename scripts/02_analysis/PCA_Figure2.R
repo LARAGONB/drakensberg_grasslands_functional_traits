@@ -16,7 +16,7 @@
 ## devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis",
           "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra", "BiodiversityR",
-          "cowplot", "pairwiseAdonis", "car", "tidytext")
+          "cowplot", "pairwiseAdonis", "car", "tidytext", "rstatix", "emmeans")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -149,12 +149,9 @@ PCAsignificance(pca_roots)
 plot1_roots <- ordiplot(pca_roots, choices = c(1,2), scaling = 1)
 ordiequilibriumcircle(pca_roots,plot1_roots) #Which traits are more important in each PC
 
-set.seed(4321)
-ef_roots <- envfit(pca_roots, roots_trans, permutations = 10000); ef_roots
-
 ### Tables for ind. loadings and traits loadings
 #### Create a table containing the loading of each invidual (sites) in each PC
-pca_sites_roots <- as_tibble(bind_cols(
+pca_ind_roots <- as_tibble(bind_cols(
   trait_data_wide |> 
     mutate(species = fct_relevel(species, "Themeda triandra", after = 2)) |> 
     select(id, species, family, growth_form, elevation_m_asl),
@@ -167,18 +164,18 @@ pca_traits_roots <- scores(pca_roots, display = "species", choices = 1:k_roots, 
 
 ### PERMANOVA  ----
 #### Matrix of distances
-roots_distance <- dist(pca_sites_roots |> 
+roots_distance <- dist(pca_ind_roots |> 
                          select(starts_with("PC")), method = "euclidean")
 
 #### Multivarite homogeneity
 # elevation
-roots_ele_bd <- betadisper(roots_distance, pca_sites_roots$elevation_m_asl)
+roots_ele_bd <- betadisper(roots_distance, pca_ind_roots$elevation_m_asl)
 perm_roots_ele_bd  <- permutest(roots_ele_bd, permutations = 10000)
 print(perm_roots_ele_bd)
 plot(roots_ele_bd)
 
 # species
-roots_spp_bd <- betadisper(roots_distance, pca_sites_roots$species)
+roots_spp_bd <- betadisper(roots_distance, pca_ind_roots$species)
 perm_roots_spp_bd  <- permutest(roots_spp_bd, permutations = 10000)
 print(perm_roots_spp_bd)
 plot(roots_spp_bd)
@@ -186,21 +183,21 @@ plot(roots_spp_bd)
 #### Permanova Marginal differences species + elevation
 set.seed(4321)
 permanova_roots <- adonis2(roots_distance ~ species + elevation_m_asl, 
-                           data = as.data.frame(pca_sites_roots), 
+                           data = as.data.frame(pca_ind_roots), 
                            permutations = 10000,
                            by = "margin")
 print(permanova_roots)
 
 set.seed(4321)
 pairwise.adonis2(roots_distance ~ species, 
-                 data = as.data.frame(pca_sites_roots),
+                 data = as.data.frame(pca_ind_roots),
                  strata = "elevation_m_asl",
                  nperm = 10000,
                  p.adjust.m = "BH")
 
 set.seed(4321)
 pairwise.adonis2(roots_distance ~ elevation_m_asl, 
-                 data = as.data.frame(pca_sites_roots),
+                 data = as.data.frame(pca_ind_roots),
                  strata = "species",
                  nperm = 10000,
                  p.adjust.m = "BH")
@@ -218,7 +215,7 @@ pca_traits_roots_load <- pca_traits_roots |>
   pivot_longer(cols = c(CPC1, CPC2, CPC3), names_to = "PC", names_prefix = "C", values_to = "contrib") 
 
 #### Differences among species based on PC scores
-model_spp_roots <- pca_sites_roots |> 
+model_spp_roots <- pca_ind_roots |> 
   pivot_longer(cols = starts_with("PC"), names_to = "PC", values_to = "scores") |> 
   group_by(PC) |> 
   nest() |> 
@@ -239,17 +236,18 @@ model_spp_roots <- pca_sites_roots |>
     tukey = map(lm_mod, \(x) emmeans(x, pairwise ~ species, adjust = "BH"))) |> 
   relocate(data, levene, lm_mod, oneway_mod, .after = tukey)
 
+summary(model_spp_roots$lm_mod[[2]])
 model_spp_roots$tukey[[2]]
 
 ##### Letter for PC1 ~ species plot
-letters_pc2_roots <- pca_sites_roots |> 
+letters_pc2_roots <- pca_ind_roots |> 
   group_by(species) |> 
   summarise(y = max(PC2) + 0.25) |> 
   mutate(
     letter = c("ab", "ab", "b", "ab", "a"))
 
 #### Differences among elevation based on PC scores
-model_ele_roots <- pca_sites_roots |> 
+model_ele_roots <- pca_ind_roots |> 
   pivot_longer(cols = starts_with("PC"), names_to = "PC", values_to = "scores") |> 
   group_by(PC) |> 
   nest() |> 
@@ -284,10 +282,6 @@ k_leaf <- which(cumsum(ev_leaf) / sum(ev_leaf) >= 0.9)[1]; k_leaf
 PCAsignificance(pca_leaf)
 plot1_leaf <- ordiplot(pca_leaf, choices = c(1,2), scaling = 1)
 ordiequilibriumcircle(pca_leaf,plot1_leaf) #Which traits are more important in each PC
-
-set.seed(4321)
-ef_leaf <- envfit(pca_leaf, leaf_trans, permutations = 10000); ef_leaf
-
 
 ### Tables for ind. loadings and traits loadings
 #### Create a table containing the loading of each invidual (sites) in each PC
@@ -426,9 +420,6 @@ k_plant_size <- which(cumsum(ev_plant_size) / sum(ev_plant_size) >= 0.9)[1]; k_p
 PCAsignificance(pca_plant_size)
 plot1_plant_size <- ordiplot(pca_plant_size, choices = c(1,2), scaling = 1)
 ordiequilibriumcircle(pca_plant_size,plot1_plant_size) #Which traits are more important in each PC
-
-set.seed(4321)
-ef_plant_size <- envfit(pca_plant_size, plant_size_trans, permutations = 10000); ef_plant_size 
 
 ### Tables for ind. loadings and traits loadings
 #### Create a table containing the loading of each invidual (sites) in each PC
@@ -582,7 +573,7 @@ contrib_roots <- ggplot(pca_traits_roots_load, aes(x = reorder_within(traits, -c
 contrib_roots
 
 ### PCs 1 and 2 ----
-pcs12_roots <- pca_sites_roots |> 
+pcs12_roots <- pca_ind_roots |> 
   ggplot(aes(x = PC1, y = PC2)) +
   geom_hline(yintercept = 0, color = "grey90", linewidth = 0.5, linetype = "dashed") +     
   geom_vline(xintercept = 0, color = "grey90", linewidth = 0.5, linetype = "dashed") + 
@@ -633,7 +624,7 @@ pcs12_roots <- pca_sites_roots |>
 pcs12_roots
 
 ### Boxplot PC2 scores ~ species ----
-boxplot_roots <- ggplot(aes(y = PC2, x = species, color = species), data = pca_sites_roots) +
+boxplot_roots <- ggplot(aes(y = PC2, x = species, color = species), data = pca_ind_roots) +
   geom_hline(yintercept = 0, color = "grey90", linewidth = 0.5, linetype = "dashed") + 
   geom_point(aes(y = PC2)) +
   geom_boxplot(aes(fill = species), alpha = 0.5) +
@@ -664,7 +655,7 @@ boxplot_roots <- ggplot(aes(y = PC2, x = species, color = species), data = pca_s
 boxplot_roots
 
 ### Regression PC1 scores ~ elevation ----
-regression_roots <- ggplot(aes(y = PC1, x = elevation_m_asl), data = pca_sites_roots) +
+regression_roots <- ggplot(aes(y = PC1, x = elevation_m_asl), data = pca_ind_roots) +
   geom_point(aes(y = PC1, color = species), size = 3) +
   geom_smooth(method = "lm", color = "black") +
   scale_color_manual(values = species_colors, labels = species_labels, name = "Species") +
