@@ -66,20 +66,19 @@ ggsave(filename = 'sma_trait_trait_all_leaves.png',
        path = 'results/img/',
        width = 9.59, height = 2.80, dpi = 320)
 
-#### test this dataset against Vile (2005) predictions
-key_leaf_t_vile <- key_leaf_t %>%
-  mutate(inv_prod_sla_x_ldmc = 1/(SLA*LDMC),
-         log_LT = log(1+LT),
-         log_inv_prod = log(1+inv_prod_sla_x_ldmc))
-
-key_leaf_t_vile %>%
-  filter(inv_prod_sla_x_ldmc < 0.15) %>%
-  ggplot(aes(x = inv_prod_sla_x_ldmc, y = LT)) +
-  geom_point()
-
-key_leaf_t_vile %>%
-  filter(inv_prod_sla_x_ldmc < 0.15) %>%
-  ggplot(aes(x = log_inv_prod, y = log_LT)) +
-  geom_point()
-
+# #### test this dataset against Vile (2005) predictions
+# key_leaf_t_vile <- key_leaf_t %>%
+#   mutate(inv_prod_sla_x_ldmc = 1/(SLA*LDMC),
+#          log_LT = log(1+LT),
+#          log_inv_prod = log(1+inv_prod_sla_x_ldmc))
+# 
+# key_leaf_t_vile %>%
+#   filter(inv_prod_sla_x_ldmc < 0.15) %>%
+#   ggplot(aes(x = inv_prod_sla_x_ldmc, y = LT)) +
+#   geom_point()
+# 
+# key_leaf_t_vile %>%
+#   filter(inv_prod_sla_x_ldmc < 0.15) %>%
+#   ggplot(aes(x = log_inv_prod, y = log_LT)) +
+#   geom_point()
 
