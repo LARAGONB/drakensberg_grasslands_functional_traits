@@ -57,35 +57,9 @@ results$stats_table
 combo_plot <- results$plots[[1]] + results$plots[[2]] + results$plots[[3]] + 
   results$plots[[4]] + results$plots[[5]] + results$plots[[6]] +
   results$plots[[7]] + results$plots[[8]] + results$plots[[9]] +
-  plot_layout(guides = 'collect') 
-  # plot_annotation(tag_levels = 'A', tag_suffix = '.')
+  plot_layout(guides = 'collect') &
+  plot_annotation(tag_levels = 'A', tag_suffix = '.')
 combo_plot
-
-source('scripts/functions/run_sma_multitraits.R')
-# run the SMA test
-results <- run_sma_multitraits(
-  data = trait_data_wide,
-  species_col = "species",
-  trait_pairs = trait_list,
-  nperm = 1
-)
-# access the results table
-results$stats_table
-
-results$plots[[1]] + plot_spacer() + results$plots[[2]] + plot_spacer() + results$plots[[3]] +
-  plot_layout(guides = 'collect', widths = c(4,-1.05,4,-1.05,4), nrow = 1, ncol = 5)
-
-results$plots[[1]] + custom_spacer + results$plots[[2]] + custom_spacer + results$plots[[3]]+
-  plot_layout(guides = 'collect', widths = c(4,-1.05,4,-1.05,4), nrow = 1, ncol = 5)
-
-results$plots[[1]] + results$plots[[2]] + results$plots[[3]] +
-  results$plots[[4]] + results$plots[[5]] + results$plots[[6]] +
-  results$plots[[7]] + results$plots[[8]] + results$plots[[9]] +
-  plot_layout(guides = 'collect')
-
-custom_spacer <- plot_spacer()+
-  theme(plot.margin = unit(c(0, 0, 0, 0),"lines"))
-
 
 ggsave(filename = 'sma_trait_trait.png',
        path = 'results/img/',
