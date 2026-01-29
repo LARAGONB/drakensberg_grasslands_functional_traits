@@ -9,10 +9,10 @@ library(patchwork)
 
 ### 2. Load and format data ----
 ### retrieve raw data files from the OSF project page
-osf_retrieve_node('hk2cy') %>%
-  osf_ls_files(path = 'iv_aboveground_traits/') %>%
-  filter(!str_detect(name, 'experiment')) %>% # don't download the raw scan files
-  osf_download(path = 'data/raw/all_leaf_traits/', conflicts = 'overwrite')
+# osf_retrieve_node('hk2cy') %>%
+#   osf_ls_files(path = 'iv_aboveground_traits/') %>%
+#   filter(!str_detect(name, 'experiment')) %>% # don't download the raw scan files
+#   osf_download(path = 'data/raw/all_leaf_traits/', conflicts = 'overwrite')
 
 ### load in leaf trait field data
 leaf <- read_csv('data/raw/all_leaf_traits/iv_PFTC7_clean_elevationgradient_traits_2023.csv')
@@ -35,8 +35,6 @@ sla_cutoff <- min(boxplot.stats(test$sla)$out)
 ldmc_cutoff <- min(boxplot.stats(test$ldmc)$out)
 leaf_thickness_cutoff <- min(boxplot.stats(test$leaf_thickness)$out)
 
-
-
 ### filter to select traits 
 key_leaf_t <- leaf %>%
   filter(traits %in% c('ldmc', 'leaf_thickness', 'sla')) %>%
@@ -46,7 +44,11 @@ key_leaf_t <- leaf %>%
   drop_na(c(sla, leaf_thickness, ldmc)) %>% # drop nas
   filter(sla < sla_cutoff) %>%
   filter(ldmc < ldmc_cutoff) %>%
-  filter(leaf_thickness < leaf_thickness_cutoff)
+  filter(leaf_thickness < leaf_thickness_cutoff) #%>%
+  # mutate(sla = as.numeric(scale(sla)),
+  #        ldmc = as.numeric(scale(ldmc)),
+  #        leaf_thickness = as.numeric(scale(leaf_thickness))) 
+#### NOTE: TESTING WHETHER SCALING CAN PROVIDE CONDITIONAL R2 FOR MODELS, BUT CRASHES R SESSION.
 
 ### find species with > 20 measurements
 spp_with_10plus <- key_leaf_t %>%
