@@ -20,12 +20,6 @@ names(leaf)
 table(leaf$traits)
 table(leaf$species)
 
-test <- leaf %>%
-  filter(traits %in% c('ldmc', 'leaf_thickness', 'sla')) %>%
-  dplyr::select(-unit) %>%
-  pivot_wider(names_from = 'traits', values_from = 'value') %>% filter(is.na(problem_flag)) %>%
-  drop_na(c(sla, leaf_thickness, ldmc)) # drop nas
-
 ### To remove outliers, find values that sit outside of the IQR:
 # https://statsandr.com/blog/outliers-detection-in-r/
 boxplot(test$sla)
@@ -45,9 +39,7 @@ key_leaf_t <- leaf %>%
   filter(sla < sla_cutoff) %>%
   filter(ldmc < ldmc_cutoff) %>%
   filter(leaf_thickness < leaf_thickness_cutoff) #%>%
-  # mutate(sla = as.numeric(scale(sla)),
-  #        ldmc = as.numeric(scale(ldmc)),
-  #        leaf_thickness = as.numeric(scale(leaf_thickness))) 
+  # mutate(across(all_of(c('sla', 'ldmc', 'leaf_thickness')), ~ as.numeric(scale(.x))))
 #### NOTE: TESTING WHETHER SCALING CAN PROVIDE CONDITIONAL R2 FOR MODELS, BUT CRASHES R SESSION.
 
 ### find species with > 20 measurements
