@@ -1,3 +1,5 @@
+#Since there is measurement error in all trait measurements (Warton et al., 2006), we used standardised major axis regression (SMA) models in the lmodel2 package (Legendre, 2024). We modelled both the inter- (i.e. global patterns) and intra-specific (i.e. species-level) covariation between trait pairs using 10,000 permutations.
+
 library(patchwork)
 library(tidyverse)
 library(lmodel2)

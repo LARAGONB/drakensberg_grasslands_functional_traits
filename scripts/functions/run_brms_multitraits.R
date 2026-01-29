@@ -183,8 +183,14 @@ run_trait_models <- function(data, trait_list, group = "species", random_slope =
   return(results)
 }
 
+# group = "species"
+# random_slope = TRUE
+# chains = 4
+# cores = 4
+# ndraws = 1000
+# data = key_leaf_t
 
-# Main function to run models over multiple trait pairs
+# Main function to run models over multiple trait pairs across big leaf dataset
 run_trait_models2 <- function(data, trait_list, group = "species", random_slope = TRUE,
                              chains = 4, cores = 4, ndraws = 1000) {
   
@@ -282,7 +288,8 @@ run_trait_models2 <- function(data, trait_list, group = "species", random_slope 
       if(quantile(sp_post, 0.025) <= 0 & quantile(sp_post, 0.975) >= 0) "dashed" else "solid"
     })
     
-    species_linetypes <- data.frame(species = species_names, linetype = species_credible[2:6])
+    species_names <- unique(data$species)
+    species_linetypes <- data.frame(species = sort(species_names), linetype = species_credible[2:length(species_credible)])
     
     species_ranges <- data %>%
       group_by(.data[[group]]) %>%
@@ -314,21 +321,17 @@ run_trait_models2 <- function(data, trait_list, group = "species", random_slope 
     p <- ggplot(data, aes_string(x = predictor, y = response)) +
       geom_point(alpha = 0.55, color = 'gray80') +
       
-      # # Population-level 95% CI ribbon
-      # stat_lineribbon(data = pred_global_summary,
-      #             aes_string(x = predictor, ymin = ".lower", ymax = ".upper"),
-      #             fill = "grey70", alpha = 0.4) +
-      # Population-level line
+      # Species lines
+      geom_line(data = pred_species_summary,
+                aes_string(x = predictor, y = ".epred", linetype = "linetype", group = 'species'),
+                color = 'gray80',
+                linewidth = 1) +
       geom_line(data = pred_global_summary,
                 aes_string(x = predictor, y = ".epred", linetype = 'linetype'),
                 linewidth = 1.2, color = "black") +
-      # Species lines
-      geom_line(data = pred_species_summary,
-                aes_string(x = predictor, y = ".epred", linetype = "linetype"),
-                color = 'gray80',
-                linewidth = 1) +
       
-      # scale_color_manual(values = c("#42049EFF","#8204A7FF","#B6308BFF","#F79143FF","#FCCE25FF"), labels = species_labels) +
+      coord_cartesian(ylim = c(0, NA)) +
+      
       scale_linetype_identity(guide = 'none') +
       theme_classic()
     
