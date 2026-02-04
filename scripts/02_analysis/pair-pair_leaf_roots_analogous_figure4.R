@@ -206,6 +206,7 @@ ggsave(filename = 'mixed_models_trait_trait.png',
        width = 9.59, height = 8.00, dpi = 320)
 
 #### Tidy up model summaries ----
+#### a) Global model summaries ----
 model_outputs <- modelsummary(results_best$model, 
              estimate = "{estimate} [{conf.low}, {conf.high}] {stars}",
              output = 'data.frame')
@@ -223,7 +224,7 @@ model_outputs_clean <- model_outputs %>%
     value == '' ~ NA_character_,
     TRUE ~ value
   )) %>%
-  filter(!is.na(value)) %>%
+  filter(!is.na(value)) %>% # remove empty cells
   pivot_wider(names_from = 'name', values_from = 'value') %>%
   mutate(part = case_when(
     part == 'gof' ~ 'goodness-of-fit',
@@ -231,8 +232,10 @@ model_outputs_clean <- model_outputs %>%
   ),
   term = case_when(
     term == '(Intercept)' ~ 'Intercept',
+    term == 'I(trait_x^2)' ~ 'trait_x^2',
     TRUE ~ term
-  ))
+  )) %>%
+  filter(statistic != 'SD') # filter out SD as we have CI
 
 # remove underscores
 names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
@@ -243,12 +246,86 @@ names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'exp', '(e
 
 # change column orders, drop part
 model_outputs_clean <- model_outputs_clean %>%
-  select(term:statistic, 9, 8, 4, 10, 11, 6, 12, 5, 7)
+  select(term, 9, 8, 4, 10, 11, 6, 12, 5, 7)
 
 # Add letters on that match to the figure
-names(model_outputs_clean)[3:11] <- paste0(LETTERS[1:9], '. ', names(model_outputs_clean)[3:11])
+names(model_outputs_clean)[2:10] <- paste0(LETTERS[1:9], '. ', names(model_outputs_clean)[2:10])
 
-writexl::write_xlsx(model_outputs_clean, 'results/tab/trait_trait_mixed_model_outputs_raw.xlsx')
+# Transpose format
+model_outputs_wide <- model_outputs_clean %>%
+  pivot_longer(cols = 2:10, names_to = 'model') %>%
+  pivot_wider(names_from = 'term', values_from = 'value')
+
+writexl::write_xlsx(model_outputs_wide, 'results/tab/trait_trait_mixed_model_outputs_raw_GLOBAL.xlsx')
+
+#### b) Species model summaries ----
+spp_model_outputs <- modelsummary(results_best_spp$model, 
+                              estimate = "{estimate} [{conf.low}, {conf.high}] {stars}",
+                              output = 'data.frame')
+names(spp_model_outputs)[4:48] <- paste(results_best_spp$model_name, results_best_spp$species)
+
+spp_model_outputs_clean <- spp_model_outputs %>%
+  mutate(term = str_replace_all(term, paste(traits, collapse = '|'), 'trait_x')) %>% # replace trait names with trait_x
+  pivot_longer(cols = !c('part', 'term', 'statistic')) %>%
+  mutate(statistic = case_when(
+    part == 'gof' ~ 'statistic',
+    statistic == 'std.error' ~ 'SD',
+    TRUE ~ statistic
+  ),
+  value = case_when(
+    value == '' ~ NA_character_,
+    TRUE ~ value
+  )) %>%
+  filter(!is.na(value)) %>% # remove empty cells
+  pivot_wider(names_from = 'name', values_from = 'value') %>%
+  mutate(part = case_when(
+    part == 'gof' ~ 'goodness-of-fit',
+    TRUE ~ part
+  ),
+  term = case_when(
+    term == '(Intercept)' ~ 'Intercept',
+    term == 'I(I(trait_x^2))' ~ 'trait_x^2',
+    TRUE ~ term
+  )) %>%
+  filter(statistic != 'SD') %>%
+  filter(term != 'Std.Errors')
+
+# remove underscores
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), '_', ' ')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), '_', ' ')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), 'poly', '(polynomial)')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), 'linear', '(linear)')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), 'exp', '(exponential)')
+
+# change column orders, drop part
+names(spp_model_outputs_clean)
+
+spp_model_outputs_clean <- spp_model_outputs_clean %>%
+  select(term, 
+         3+6, 3+9+6, 3+9+9+6, 3+9+9+9+6, 3+9+9+9+9+6, # lt~sla
+         3+5, 3+9+5, 3+9+9+5, 3+9+9+9+5, 3+9+9+9+9+5, # ldmc~sla
+         3+1, 3+9+1, 3+9+9+1, 3+9+9+9+1, 3+9+9+9+9+1, # ldmc~lt
+         3+7, 3+9+7, 3+9+9+7, 3+9+9+9+7, 3+9+9+9+9+7, # rd~srl
+         3+8, 3+9+8, 3+9+9+8, 3+9+9+9+8, 3+9+9+9+9+8, # rtd~srl
+         3+3, 3+9+3, 3+9+9+3, 3+9+9+9+3, 3+9+9+9+9+3, # rtd~rd
+         3+9, 3+9+9, 3+9+9+9, 3+9+9+9+9, 3+9+9+9+9+9, # sla~srl
+         3+2, 3+9+2, 3+9+9+2, 3+9+9+9+2, 3+9+9+9+9+2, # lt~rd
+         3+4, 3+9+4, 3+9+9+4, 3+9+9+9+4, 3+9+9+9+9+4, # ldmc~rtd
+  )
+
+# Add letters on that match to the figure
+names(spp_model_outputs_clean)[2:46] <- paste0(rep(LETTERS[1:9], each = 5), '. ', names(spp_model_outputs_clean)[2:46])
+
+# Transpose format
+spp_model_outputs_wide <- spp_model_outputs_clean %>%
+  pivot_longer(cols = 2:46, names_to = 'model') %>%
+  pivot_wider(names_from = 'term', values_from = 'value') %>%
+  mutate(species = str_extract(model, "\\S+\\s+\\S+$"),
+    model = str_remove(model, "\\s*\\S+\\s+\\S+$")) %>%
+  dplyr::select(1, 11, 2:10)
+
+writexl::write_xlsx(spp_model_outputs_wide, 'results/tab/trait_trait_mixed_model_outputs_raw_SPECIES.xlsx')
+
 
 #### reasons for lack of ICC or R2 conditional:
 # - Some trait pairs have little within-species variation
