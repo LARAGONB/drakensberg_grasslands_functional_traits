@@ -8,16 +8,16 @@ library(fixest)
 library(patchwork)
 
 # 2. Load data ----
-trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
-trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
-names(trait_data_wide)
-
-# filter out large AG measure
-trait_data_wide <- filter(trait_data_wide, aboveground_biomass < 40)
-
-# 3. Define traits ----
+range01 <- function(x){(x-min(x))/(max(x)-min(x))}
 traits <- c("belowground_biomass", "aboveground_biomass", "root_depth", "veg_height", "srl", "sla")
 
+trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
+trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv") %>%
+  filter(aboveground_biomass < 40) %>% # filter out large AG measure
+  mutate(across(all_of(traits), ~ as.numeric(range01(.x)))) # scale all vars
+names(trait_data_wide)
+
+# 3. Define traits ----
 metadata <- c("id", "aspect", "site_id", "elevation_m_asl", "plant_id", "species", "family", "growth_form")
 
 # 4. Generate ALL possible pairs----
@@ -210,4 +210,43 @@ model_outputs <- modelsummary(results_best$model,
                               estimate = "{estimate} [{conf.low}, {conf.high}] {stars}",
                               output = 'data.frame')
 names(model_outputs)[4:11] <- results_best$model_name
-writexl::write_xlsx(model_outputs, 'results/tab/trait_trait_PS_mixed_model_outputs_raw.xlsx')
+
+model_outputs_clean <- model_outputs %>%
+  mutate(term = str_replace_all(term, paste(traits, collapse = '|'), 'trait_x')) %>% # replace trait names with trait_x
+  pivot_longer(cols = !c('part', 'term', 'statistic')) %>%
+  mutate(statistic = case_when(
+    part == 'gof' ~ 'statistic',
+    statistic == 'std.error' ~ 'SD',
+    TRUE ~ statistic
+  ),
+  value = case_when(
+    value == '' ~ NA_character_,
+    TRUE ~ value
+  )) %>%
+  filter(!is.na(value)) %>%
+  pivot_wider(names_from = 'name', values_from = 'value') %>%
+  mutate(part = case_when(
+    part == 'gof' ~ 'goodness-of-fit',
+    TRUE ~ part
+  ),
+  term = case_when(
+    term == '(Intercept)' ~ 'Intercept',
+    TRUE ~ term
+  ))
+
+# remove underscores
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'poly', '(polynomial)')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'linear', '(linear)')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'exp', '(exponential)')
+
+# change column orders, drop part
+model_outputs_clean <- model_outputs_clean %>%
+  select(term:statistic, 7, 11, 8, 10, 9, 6, 5, 4)
+
+# Add letters on that match to the figure
+names(model_outputs_clean)[3:10] <- paste0(LETTERS[1:8], '. ', names(model_outputs_clean)[3:10])
+
+writexl::write_xlsx(model_outputs_clean, 'results/tab/trait_trait_PS_mixed_model_outputs_raw.xlsx')

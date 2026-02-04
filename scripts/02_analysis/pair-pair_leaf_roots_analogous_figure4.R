@@ -8,12 +8,14 @@ library(fixest)
 library(patchwork)
 
 # 2. Load data ----
-trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
-trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
-
-# 3. Define traits ----
+range01 <- function(x){(x-min(x))/(max(x)-min(x))}
 traits <- c("leaf_thickness", "sla", "ldmc", "rd", "srl", "rtd")
 
+trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
+trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv") %>%
+  mutate(across(all_of(traits), ~ as.numeric(range01(.x)))) # scale all vars
+
+# 3. Define traits ----
 metadata <- c("id", "aspect", "site_id", "elevation_m_asl", "plant_id", "species", "family", "growth_form")
 
 # 4. Generate ALL possible pairs----
@@ -32,7 +34,8 @@ formulas <- tribble(
   ~type, ~formula_template,
   "linear", "{trait_y} ~ {trait_x} + (1 + {trait_x} | {group})",
   "poly", "{trait_y} ~ {trait_x} + I({trait_x}^2) + (1 + {trait_x} | {group})",
-  "exp", "log({trait_y} + 1e-10) ~ {trait_x} + (1 + {trait_x} | {group})"
+  "exp", "sign({trait_y}) * log(abs({trait_y}) + 1e-10) ~ {trait_x} + (1 + {trait_x} | {group})"
+  # "exp", "log({trait_y} + 1e-10) ~ {trait_x} + (1 + {trait_x} | {group})"
 )
 
 # POPULATION/GLOBAL LEVEL ----
@@ -59,7 +62,12 @@ results <- model_grid |>
       base_formula,
       ~ lmer(as.formula(.x),
              data = trait_data_wide,
-             REML = FALSE)),
+             REML = FALSE,  control = lmerControl(
+               optimizer = "bobyqa",
+               optCtrl = list(maxfun = 2e5),
+               check.conv.singular = "ignore"
+             )
+             )),
     p_value = map2_dbl(model, trait_x, ~ summary(.x)$coefficients[.y, "Pr(>|t|)"]),
     significant = p_value < 0.05,
     aic  = map_dbl(model, AIC),
@@ -202,4 +210,48 @@ model_outputs <- modelsummary(results_best$model,
              estimate = "{estimate} [{conf.low}, {conf.high}] {stars}",
              output = 'data.frame')
 names(model_outputs)[4:12] <- results_best$model_name
-writexl::write_xlsx(model_outputs, 'results/tab/trait_trait_mixed_model_outputs_raw.xlsx')
+
+model_outputs_clean <- model_outputs %>%
+  mutate(term = str_replace_all(term, paste(traits, collapse = '|'), 'trait_x')) %>% # replace trait names with trait_x
+  pivot_longer(cols = !c('part', 'term', 'statistic')) %>%
+  mutate(statistic = case_when(
+    part == 'gof' ~ 'statistic',
+    statistic == 'std.error' ~ 'SD',
+    TRUE ~ statistic
+  ),
+  value = case_when(
+    value == '' ~ NA_character_,
+    TRUE ~ value
+  )) %>%
+  filter(!is.na(value)) %>%
+  pivot_wider(names_from = 'name', values_from = 'value') %>%
+  mutate(part = case_when(
+    part == 'gof' ~ 'goodness-of-fit',
+    TRUE ~ part
+  ),
+  term = case_when(
+    term == '(Intercept)' ~ 'Intercept',
+    TRUE ~ term
+  ))
+
+# remove underscores
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'poly', '(polynomial)')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'linear', '(linear)')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'exp', '(exponential)')
+
+# change column orders, drop part
+model_outputs_clean <- model_outputs_clean %>%
+  select(term:statistic, 9, 8, 4, 10, 11, 6, 12, 5, 7)
+
+# Add letters on that match to the figure
+names(model_outputs_clean)[3:11] <- paste0(LETTERS[1:9], '. ', names(model_outputs_clean)[3:11])
+
+writexl::write_xlsx(model_outputs_clean, 'results/tab/trait_trait_mixed_model_outputs_raw.xlsx')
+
+#### reasons for lack of ICC or R2 conditional:
+# - Some trait pairs have little within-species variation
+# - SLA–LDMC slopes are similar across species
+# - Random slope variance is genuinely ≈ 0
+
