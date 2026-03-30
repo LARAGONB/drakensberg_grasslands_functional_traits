@@ -12,13 +12,16 @@
 # SET UP #######################################################################
 
 # Load packages ----------------------------------------------------------------
-## install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
-## devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+# install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
+# devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+# remotes::install_github("gavinsimpson/ggvegan")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis",
           "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra", "BiodiversityR",
           "cowplot", "pairwiseAdonis", "car", "tidytext", "rstatix", "emmeans")
+# lapply(pkgs, install.packages, character.only = TRUE)
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
+
 
 # Load data --------------------------------------------------------------------
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
@@ -164,8 +167,7 @@ pca_traits_roots <- scores(pca_roots, display = "species", choices = 1:k_roots, 
 
 ### PERMANOVA  ----
 #### Matrix of distances
-roots_distance <- dist(pca_ind_roots |> 
-                         select(starts_with("PC")), method = "euclidean")
+roots_distance <- dist(scale(roots_trans), method = "euclidean")
 
 #### Multivarite homogeneity
 # elevation
@@ -187,6 +189,12 @@ permanova_roots <- adonis2(roots_distance ~ species + elevation_m_asl,
                            permutations = 10000,
                            by = "margin")
 print(permanova_roots)
+
+spp_per_roots_r2 <- permanova_roots$R2[1] * 100
+ele_per_roots_r2 <- permanova_roots$R2[2] * 100
+spp_per_roots_p <- format.pval(permanova_roots$`Pr(>F)`[1], eps = 0.05, digits = 3) 
+ele_per__p <- format.pval(permanova_roots$`Pr(>F)`[2], eps = 0.05, digits = 3) 
+
 
 set.seed(4321)
 pairwise.adonis2(roots_distance ~ species, 
@@ -298,8 +306,7 @@ pca_traits_leaf <- scores(pca_leaf, display = "species", choices = 1:k_leaf, sca
 
 ### PERMANOVA  ----
 #### Matrix of distances
-leaf_distance <- dist(pca_sites_leaf |> 
-                         select(starts_with("PC")), method = "euclidean")
+leaf_distance <- dist(scale(leaf_trans), method = "euclidean")
 
 #### Multivarite homogeneity
 # elevation
@@ -436,8 +443,7 @@ pca_traits_plant_size <- scores(pca_plant_size, display = "species", choices = 1
 
 ### PERMANOVA  ----
 #### Matrix of distances
-plant_size_distance <- dist(pca_sites_plant_size |> 
-                         select(starts_with("PC")), method = "euclidean")
+plant_size_distance <- dist(scale(plant_size_trans), method = "euclidean")
 
 #### Multivarite homogeneity
 # elevation
