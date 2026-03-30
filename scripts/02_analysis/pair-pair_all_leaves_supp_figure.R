@@ -28,27 +28,33 @@ key_leaf_t <- leaf %>%
   pivot_wider(names_from = 'traits', values_from = 'value') %>%
   filter(is.na(problem_flag)) 
 
-boxplot(key_leaf_t$sla)
-boxplot(key_leaf_t$ldmc)
-boxplot(key_leaf_t$leaf_thickness)
-sla_cutoff <- min(boxplot.stats(key_leaf_t$sla)$out)
-ldmc_cutoff <- min(boxplot.stats(key_leaf_t$ldmc)$out)
-leaf_thickness_cutoff <- min(boxplot.stats(key_leaf_t$leaf_thickness)$out)
-
 ### filter to select traits 
-key_leaf_t <- leaf %>%
+clean_leaf <- leaf %>%
   filter(traits %in% c('ldmc', 'leaf_thickness', 'sla')) %>%
   dplyr::select(-unit) %>%
   pivot_wider(names_from = 'traits', values_from = 'value') %>%
   filter(is.na(problem_flag)) %>%
-  drop_na(c(sla, leaf_thickness, ldmc)) %>% # drop nas
+  drop_na(c(sla, leaf_thickness, ldmc)) # drop nas
+
+### To remove outliers, find values that sit outside of the IQR:
+# https://statsandr.com/blog/outliers-detection-in-r/
+boxplot(clean_leaf$sla)
+boxplot(clean_leaf$ldmc)
+boxplot(clean_leaf$leaf_thickness)
+sla_cutoff <- min(boxplot.stats(clean_leaf$sla)$out)
+ldmc_cutoff <- min(boxplot.stats(clean_leaf$ldmc)$out)
+leaf_thickness_cutoff <- min(boxplot.stats(clean_leaf$leaf_thickness)$out)
+
+# filter out outliers (and scale)
+range01 <- function(x){(x-min(x))/(max(x)-min(x))} # scale between 0 and 1
+
+key_leaf_t <- clean_leaf %>%
   filter(sla < sla_cutoff) %>%
   filter(ldmc < ldmc_cutoff) %>%
-  filter(leaf_thickness < leaf_thickness_cutoff) #%>%
-  mutate(across(all_of(c('sla', 'ldmc', 'leaf_thickness')), ~ as.numeric(scale(.x))))
-#### NOTE: TESTING WHETHER SCALING CAN PROVIDE CONDITIONAL R2 FOR MODELS, BUT CRASHES R SESSION.
+  filter(leaf_thickness < leaf_thickness_cutoff) %>%
+  mutate(across(all_of(c('ldmc', 'leaf_thickness', 'sla')), ~ as.numeric(range01(.x)))) # scale all vars
 
-### find species with > 20 measurements
+### find species with > 10 measurements
 spp_with_10plus <- key_leaf_t %>%
   count(species) %>%
   filter(n >= 10)
@@ -77,7 +83,8 @@ formulas <- tribble(
   ~type, ~formula_template,
   "linear", "{trait_y} ~ {trait_x} + (1 + {trait_x} | {group})",
   "poly", "{trait_y} ~ {trait_x} + I({trait_x}^2) + (1 + {trait_x} | {group})",
-  "exp", "log({trait_y} + 1e-10) ~ {trait_x} + (1 + {trait_x} | {group})"
+  "exp", "sign({trait_y}) * log(abs({trait_y}) + 1e-10) ~ {trait_x} + (1 + {trait_x} | {group})"
+  # "exp", "log({trait_y} + 1e-10) ~ {trait_x} + (1 + {trait_x} | {group})"
 )
 
 # POPULATION/GLOBAL LEVEL ----
@@ -247,4 +254,114 @@ model_outputs <- modelsummary(results_best$model,
                               estimate = "{estimate} [{conf.low}, {conf.high}] {stars}",
                               output = 'data.frame')
 names(model_outputs)[4:6] <- results_best$model_name
-writexl::write_xlsx(model_outputs, 'results/tab/trait_trait_mixed_ALL_LEAVES_model_outputs_raw.xlsx')
+
+model_outputs_clean <- model_outputs %>%
+  mutate(term = str_replace_all(term, paste(traits, collapse = '|'), 'trait_x')) %>% # replace trait names with trait_x
+  pivot_longer(cols = !c('part', 'term', 'statistic')) %>%
+  mutate(statistic = case_when(
+    part == 'gof' ~ 'statistic',
+    statistic == 'std.error' ~ 'SD',
+    TRUE ~ statistic
+  ),
+  value = case_when(
+    value == '' ~ NA_character_,
+    TRUE ~ value
+  )) %>%
+  filter(!is.na(value)) %>%
+  pivot_wider(names_from = 'name', values_from = 'value') %>%
+  mutate(part = case_when(
+    part == 'gof' ~ 'goodness-of-fit',
+    TRUE ~ part
+  ),
+  term = case_when(
+    term == '(Intercept)' ~ 'Intercept',
+    term == 'I(trait_x^2)' ~ 'trait_x^2',
+    TRUE ~ term
+  )) %>%
+  filter(statistic != 'SD') # filter out SD as we have CI
+
+# remove underscores
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), '_', ' ')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'poly', '(polynomial)')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'linear', '(linear)')
+names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'exp', '(exponential)')
+
+# change column orders, drop part
+model_outputs_clean <- model_outputs_clean %>%
+  select(term, 6, 5, 4)
+
+# Add letters on that match to the figure
+names(model_outputs_clean)[2:4] <- paste0(LETTERS[1:3], '. ', names(model_outputs_clean)[2:4])
+
+# Transpose format
+model_outputs_wide <- model_outputs_clean %>%
+  pivot_longer(cols = 2:4, names_to = 'model') %>%
+  pivot_wider(names_from = 'term', values_from = 'value')
+
+writexl::write_xlsx(model_outputs_wide, 'results/tab/trait_trait_mixed_ALL_LEAVES_model_outputs_raw_GLOBAL.xlsx')
+
+#### b) Species model summaries ----
+spp_model_outputs <- modelsummary(results_best_spp$model, 
+                                  estimate = "{estimate} [{conf.low}, {conf.high}] {stars}",
+                                  output = 'data.frame')
+names(spp_model_outputs)[4:198] <- paste(results_best_spp$model_name, results_best_spp$species)
+
+spp_model_outputs_clean <- spp_model_outputs %>%
+  mutate(term = str_replace_all(term, paste(traits, collapse = '|'), 'trait_x')) %>% # replace trait names with trait_x
+  pivot_longer(cols = !c('part', 'term', 'statistic')) %>%
+  mutate(statistic = case_when(
+    part == 'gof' ~ 'statistic',
+    statistic == 'std.error' ~ 'SD',
+    TRUE ~ statistic
+  ),
+  value = case_when(
+    value == '' ~ NA_character_,
+    TRUE ~ value
+  )) %>%
+  filter(!is.na(value)) %>% # remove empty cells
+  pivot_wider(names_from = 'name', values_from = 'value') %>%
+  mutate(part = case_when(
+    part == 'gof' ~ 'goodness-of-fit',
+    TRUE ~ part
+  ),
+  term = case_when(
+    term == '(Intercept)' ~ 'Intercept',
+    term == 'I(I(trait_x^2))' ~ 'trait_x^2',
+    TRUE ~ term
+  )) %>%
+  filter(statistic != 'SD') %>%
+  filter(term != 'Std.Errors')
+
+# remove underscores
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), '_', ' ')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), '_', ' ')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), '_', ' ')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), 'poly', '(polynomial)')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), 'linear', '(linear)')
+names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), 'exp', '(exponential)')
+
+# change column orders, drop part
+names(spp_model_outputs_clean)
+
+# create indices for selecting columns
+x <- c(3+3, 3+2, 3+1)
+result <- rep(x, times = 65) + rep(3 * (0:64), each = length(x))
+
+spp_model_outputs_clean <- spp_model_outputs_clean %>%
+  select(term, all_of(result))
+
+# Add letters on that match to the figure
+names(spp_model_outputs_clean)[2:196] <- paste0(rep(LETTERS[1:3], 65), '. ', names(spp_model_outputs_clean)[2:196])
+
+# Transpose format
+spp_model_outputs_wide <- spp_model_outputs_clean %>%
+  pivot_longer(cols = 2:196, names_to = 'model') %>%
+  pivot_wider(names_from = 'term', values_from = 'value') %>%
+  mutate(species = str_extract(model, "(?<=\\)).*"),
+         model = str_remove(model, "(?<=\\)).*")) %>%
+  dplyr::select(1, 11, 1:10) %>%
+  arrange(model)
+
+writexl::write_xlsx(spp_model_outputs_wide, 'results/tab/trait_trait_mixed_ALL_LEAVES_model_outputs_raw_SPECIES.xlsx')
+ 
