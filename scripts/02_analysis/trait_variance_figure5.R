@@ -317,6 +317,17 @@ source_general_summary <- lmm_trait_variation |>  mutate(
             max_prop = max(proportion)) |> 
   arrange(trait_group, mean_prop)
 
+source_detailed_summary <- lmm_trait_variation |>  
+  mutate(
+    trait_group = factor(traits_groups[as.character(traits)], 
+                         levels = c("Leaf", "Roots", "Plant size"))) |>
+  group_by(trait_group, source) |>                        # ← source has all 4 levels
+  summarise(mean_prop = mean(proportion),
+            min_prop  = min(proportion),
+            max_prop  = max(proportion),
+            .groups = "drop") |> 
+  arrange(trait_group, mean_prop)
+
 
 ### Export tables  ----
 write_csv(lmm_trait_variation, "results/tab/proportion_total_trait_variance.csv")

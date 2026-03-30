@@ -166,7 +166,7 @@ prop_explained <- eigenvals_rda / sum(eigenvals_rda) * 100
 site_scores <- scores(rda_partial, display = "sites", choices = 1:2)
 # Add species labels to site scores
 site_df <- as.data.frame(site_scores) |> 
-  mutate(species = data_combined$species,
+  mutate(species = full_table$species,
          elevation = full_table$elevation_m_asl,
          species = fct_relevel(species, "Themeda triandra", after = 2))
 
@@ -254,7 +254,7 @@ rda_plot <- ggplot(data = site_df, aes(x = RDA1, y = RDA2)) +
                   size = 4, fontface = "bold", color = "black") +
   labs(
     x = glue("PCA1 ({round(prop_explained[1], 1)}% of constrained variance)"),
-    y = glue("PCA1 ({round(prop_explained[2], 1)}% of constrained variance)")) +
+    y = glue("PCA2 ({round(prop_explained[2], 1)}% of constrained variance)")) +
   theme_bw(base_size = 16) +
   theme(
     axis.title = element_text(size = 16),
