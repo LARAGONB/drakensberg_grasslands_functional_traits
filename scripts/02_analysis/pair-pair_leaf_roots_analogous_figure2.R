@@ -172,21 +172,30 @@ for(i in 1:length(pairs$traits)){
   y_label <- label_lookup[y_var]
   
   spp_data <- spp_plot_data |> 
-    filter(traits == trait_pair)
+    filter(traits == trait_pair) |> 
+    dplyr::mutate(
+      species = factor(species, levels = c("ERCA", "HAFA", "THTR", "HEPI", "SEGL")))
   
   global_data <- global_plot_data |> 
     filter(traits == trait_pair)
   
   plot <- ggplot(spp_data, aes(x = .data[[x_var]], y = .data[[y_var]])) +
-    ## Raw data
-    geom_point(aes(color = species),alpha = 0.6,size = 2) +
-    ## Species-level predictions
-    geom_line(aes(y = predicted,color = species,linetype = significant),linewidth = 1) +
-    ## Global prediction
-    geom_line(data = global_data,aes(x = .data[[x_var]],y = predicted,linetype = significant), linewidth = 1.2,color = "black") +
-    scale_color_manual(values = c("#42049EFF","#8204A7FF","#B6308BFF","#F79143FF","#FCCE25FF"),
-      name = "Species") +
-    scale_linetype_manual(values = c("TRUE" = 1, "FALSE" = 2), guide = 'none') +
+    geom_point(aes(color = species, shape = species), alpha = 0.6, size = 2) +
+    geom_line(aes(y = predicted, color = species, linetype = significant), linewidth = 1) +
+    geom_line(
+      data = global_data,
+      aes(x = .data[[x_var]], y = predicted, linetype = significant),
+      linewidth = 1.2, color = "black"
+    ) +
+    scale_color_manual(
+      values = c("#42049EFF","#8204A7FF","#B6308BFF","#F79143FF","#FCCE25FF"),
+      name = "Species"
+    ) +
+    scale_shape_manual(
+      values = c("ERCA" = 16, "HAFA" = 16, "THTR" = 16, "HEPI" = 15, "SEGL" = 15),
+      name = "Species"
+    ) +
+    scale_linetype_manual(values = c("TRUE" = 1, "FALSE" = 2), guide = "none") +
     labs(x = x_label, y = y_label) +
     theme_classic()
   

@@ -19,7 +19,7 @@
 
 #install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
 # devtools::install_github("gavinsimpson/ggvegan")
-pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "viridis", "fixest", "lmtest", "lme4", "ggh4x")
+pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "viridis", "fixest", "lmtest", "lme4", "ggh4x", "emmeans")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
