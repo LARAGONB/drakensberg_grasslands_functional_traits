@@ -304,17 +304,22 @@ source_summary <- lmm_trait_variation |>  mutate(
 
 
 #Summary across all (4) hierarchical levels
-source_general_summary <- lmm_trait_variation |>  mutate(
-  trait_group = factor(traits_groups[as.character(traits)], 
-                       levels = c("Leaf", "Roots", "Plant size")),
-  source_general = case_when(
-    source == "ITV_between" ~ "ITV",
-    source == "ITV_within" ~ "ITV",
-    .default = as.character(source)), .before = source) |> 
-  group_by(trait_group, source_general) |> 
+source_general_summary <- lmm_trait_variation |>  
+  mutate(
+    trait_group = factor(traits_groups[as.character(traits)], 
+                         levels = c("Leaf", "Roots", "Plant size")),
+    source_general = case_when(
+      source == "ITV_between" ~ "ITV",
+      source == "ITV_within" ~ "ITV",
+      .default = as.character(source)), 
+    .before = source) |> 
+  group_by(trait_group, traits, source_general) |>
+  summarise(proportion = sum(proportion), .groups = "drop") |>
+  group_by(trait_group, source_general) |>
   summarise(mean_prop = mean(proportion),
             min_prop = min(proportion),
-            max_prop = max(proportion)) |> 
+            max_prop = max(proportion),
+            .groups = "drop") |>
   arrange(trait_group, mean_prop)
 
 source_detailed_summary <- lmm_trait_variation |>  
