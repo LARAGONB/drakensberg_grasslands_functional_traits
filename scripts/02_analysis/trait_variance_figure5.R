@@ -4,14 +4,12 @@
 # elevation and itv within elevations)
 ################################################################################
 #
-# Lina Aragón
-# linamaragonb@gmail.com
+# LAB
 # September 29, 2025
 #
-# Description
-# In this script we calculated the CV for the biologically hierarchichal level: 
+# Description: In this script we calculated the CV for the biologically hierarchichal level: 
 # growth form, species, itv between elevation and itv within elevations.
-# Addtionally, we calculated the percentage of total trait variance explained by
+# We also calculated the percentage of total trait variance explained by
 # the same biologically hierarchichal levels. For this we used a linear mixed model
 ################################################################################
 

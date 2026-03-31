@@ -1,11 +1,22 @@
-library(lme4)
-library(lmerTest)
-library(broom.mixed)
-library(modelsummary)
-library(tidyverse)
-library(glue)
-library(fixest)
-library(patchwork)
+################################################################################
+# Trait-trait covariation supplementary data
+################################################################################
+#
+# JDMW
+# January, 2026
+#
+# Description: This code analyses trait-trait covariation among leaf traits including
+# data from the aboveground trait data set
+################################################################################
+
+# SET UP #######################################################################
+
+# 1. Load packages ----------------------------------------------------------------
+pkgs <- c("lme4", "lmerTest", "broom.mixed", "modelsummary", "tidyverse", "glue", "fixest",
+          "patchwork")
+# lapply(pkgs, install.packages, character.only = TRUE)
+lapply(pkgs, library, character.only = TRUE)
+remove(pkgs)
 
 ### 2. Load and format data ----
 ### retrieve raw data files from the OSF project page

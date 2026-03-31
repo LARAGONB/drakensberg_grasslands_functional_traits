@@ -2,11 +2,10 @@
 # PCA analyses
 ################################################################################
 #
-# Lina Aragón
-# linamaragonb@gmail.com
+# LAB
 # September 24, 2025
 #
-# Description
+# Description: This code analyses leaf, roots and plant size functional spaces
 ################################################################################
 
 # SET UP #######################################################################

@@ -1,10 +1,21 @@
-### 1. Set up ----
-library(tidyverse)
-library(ggpubr)
-library(ggridges)
-library(patchwork)
-library(ggdist)
-library(dunn.test)
+################################################################################
+# BG:AG figures
+################################################################################
+#
+# JDMW
+# January, 2026
+#
+# Description: This code analyses the distribution of BG:AG for the 5 species 
+# along the elevational gradient
+################################################################################
+
+# SET UP #######################################################################
+
+# 1. Load packages ----------------------------------------------------------------
+pkgs <- c("tidyverse", "ggpubr", "ggridges", "patchwork", "ggdist", "dunn.test")
+# lapply(pkgs, install.packages, character.only = TRUE)
+lapply(pkgs, library, character.only = TRUE)
+remove(pkgs)
 
 #### load in the trait data
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv") %>%

@@ -1,17 +1,31 @@
-library(lme4)
-library(lmerTest)
-library(broom.mixed)
-library(modelsummary)
-library(tidyverse)
-library(glue)
-library(fixest)
-library(patchwork)
+################################################################################
+# Trait-trait covariation
+################################################################################
+#
+# JDMW
+# January, 2026
+#
+# Description: This code analyses trait-trait covariation among analogous leaf
+# and roots traits using linear, polynomial and exponential models
+################################################################################
+
+# SET UP #######################################################################
+
+#  1. Load packages ----------------------------------------------------------------
+pkgs <- c("lme4", "lmerTest", "broom.mixed", "modelsummary", "tidyverse", "glue", "fixest",
+          "patchwork")
+# lapply(pkgs, install.packages, character.only = TRUE)
+lapply(pkgs, library, character.only = TRUE)
+remove(pkgs)
 
 # 2. Load data ----
 range01 <- function(x){(x-min(x))/(max(x)-min(x))}
 traits <- c("leaf_thickness", "sla", "ldmc", "rd", "srl", "rtd")
 
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
+
+
+# PROCESSING ###################################################################
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv") %>%
   mutate(across(all_of(traits), ~ as.numeric(range01(.x)))) # scale all vars
 

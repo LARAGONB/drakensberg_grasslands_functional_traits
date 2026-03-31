@@ -2,11 +2,11 @@
 # RV analyses
 ################################################################################
 #
-# Lina Aragón
-# linamaragonb@gmail.com
+# LAB
 # October 14, 2025
 #
-# Description
+# Description: This code find the RV coefficient for leaf, roots and plant size
+# traits and combinesd the MFA grapsh with those obtained for the RV coefficient
 ################################################################################
 
 # 1. Load libraries ----

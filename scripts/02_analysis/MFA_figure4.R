@@ -2,11 +2,11 @@
 # MFA analyses
 ################################################################################
 #
-# Lina Aragón
-# linamaragonb@gmail.com
+# LAB
 # October 14, 2025
 #
-# Description
+# Description: This code evaluate whole-plant trait coordination by implementing
+# and MFA analysis including leaf, roots and plant size traits.   
 ################################################################################
 
 # 1. Load libraries ----

@@ -1,11 +1,22 @@
-library(lme4)
-library(lmerTest)
-library(broom.mixed)
-library(modelsummary)
-library(tidyverse)
-library(glue)
-library(fixest)
-library(patchwork)
+################################################################################
+# Trait-trait covariation supplementary data
+################################################################################
+#
+# JDMW
+# January, 2026
+#
+# Description: This code analyses trait-trait covariation among selected leaf,
+# roots, and plant size traits
+################################################################################
+
+# SET UP #######################################################################
+
+#  Load packages ----------------------------------------------------------------
+pkgs <- c("lme4", "lmerTest", "broom.mixed", "modelsummary", "tidyverse", "glue", "fixest",
+          "patchwork")
+# lapply(pkgs, install.packages, character.only = TRUE)
+lapply(pkgs, library, character.only = TRUE)
+remove(pkgs)
 
 # 1. Load data ----
 range01 <- function(x){(x-min(x))/(max(x)-min(x))}
@@ -17,6 +28,7 @@ trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023
   mutate(across(all_of(traits), ~ as.numeric(range01(.x)))) # scale all vars
 names(trait_data_wide)
 
+# PROCESSING ###################################################################
 # 3. Define traits ----
 metadata <- c("id", "aspect", "site_id", "elevation_m_asl", "plant_id", "species", "family", "growth_form")
 
