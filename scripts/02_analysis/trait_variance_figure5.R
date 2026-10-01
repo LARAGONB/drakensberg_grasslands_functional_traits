@@ -17,7 +17,8 @@
 
 #install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
 # devtools::install_github("gavinsimpson/ggvegan")
-pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "viridis", "fixest", "lmtest", "lme4", "ggh4x", "emmeans")
+pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "viridis", 
+          "fixest", "lmtest", "lme4", "ggh4x", "emmeans", "cowplot")
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -25,25 +26,31 @@ remove(pkgs)
 trait_data <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023.csv")
 trait_data_wide <- read_csv("data/processed/v_PFCT7_clean_functional_traits_2023_wide.csv")
 
+
+trait_data_wide |> 
+  select(species, veg_height) |>
+  group_by(species) |> 
+  get_summary_stats(type = "five_number")
+
 # 3. Calculate CV = coefficient of variation ---- 
 # For growth form, between species, withing species along the elevational gradient, and withing species at each elevation
 
 ##cv for all plants ----
 
 cv_all_plants <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb", "reproductive_height")) |> 
   group_by(traits) |> 
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
 
 ## cv for growth form ----
 cv_growth_form <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb", "reproductive_height")) |> 
   group_by(growth_form, traits) |> 
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
 
 ## cv between species ----
 cv_between_spp <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb", "reproductive_height")) |> 
   group_by(species, traits) |> 
   summarise(mean_spp = mean(value, na.rm = TRUE), .groups = "drop") |> #traits species means for each species
   group_by(traits) |> 
@@ -51,13 +58,13 @@ cv_between_spp <- trait_data |>
 
 ## cv within species overall ----
 cv_within_spp <- trait_data |>
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb", "reproductive_height")) |> 
   group_by(species, traits) |>
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
 
 ## cv within species along the elevational gradiente (itv between) ----
 cv_itv_between <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb", "reproductive_height")) |> 
   group_by(species, elevation_m_asl, traits) |> 
   summarise(mean_spp_ele = mean(value, na.rm = TRUE), .groups = "drop") |>  # traits elevations means for each species
   group_by(species, traits) |> 
@@ -65,7 +72,7 @@ cv_itv_between <- trait_data |>
 
 ## cv within species within each elevational gradient ----
 cv_itv_within <- trait_data |> 
-  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb")) |> 
+  filter(traits %in% c("root_depth", "veg_height", "rd", "bi", "srl", "rtd", "rdmc", "sla", "ldmc", "leaf_thickness", "bgb_agb", "reproductive_height")) |> 
   group_by(species, elevation_m_asl, traits) |> 
   summarise(cv = (sd(value, na.rm = TRUE) / mean(value, na.rm = TRUE)) * 100, .groups = "drop")
   
@@ -143,8 +150,7 @@ new_levels <- c(
   "leaf_thickness", "ldmc", "sla",      
   "bi", "rd", "rdmc",                   
   "rtd", "srl",                         
-  "EMPTY_PANEL",                        
-  "veg_height", "root_depth", "bgb_agb")
+  "veg_height", "reproductive_height","root_depth", "bgb_agb")
 
 # Extend traits_labels so the placeholder has an empty strip label
 traits_labels_extended <- traits_labels
@@ -155,7 +161,7 @@ fills <- c(
   rep(group_colors[1], 3),   
   rep(group_colors[2], 3),   
   rep(group_colors[2], 2),   
-  "white",                   
+  rep(group_colors[3], 3),                   
   rep(group_colors[3], 3))
 fills_named <- setNames(fills, new_levels)
 
@@ -447,7 +453,7 @@ perc_plot_roots <- ggplot(lmm_trait_variation |>
 perc_plot_roots
 
 perc_plot_plant_size <- ggplot(lmm_trait_variation |> 
-                           filter(traits %in% c("veg_height", "root_depth", "bgb_agb")), aes(x = traits, y = proportion, fill = source)) +
+                           filter(traits %in% c("veg_height", "reproductive_height", "root_depth", "bgb_agb")), aes(x = traits, y = proportion, fill = source)) +
   geom_bar(stat = "identity", position = "stack", width = 0.8) +
   scale_y_continuous(
     breaks = seq(0, 100, by = 20),   
