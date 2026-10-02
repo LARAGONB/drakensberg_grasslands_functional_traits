@@ -19,6 +19,7 @@ pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggr
           "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra", "BiodiversityR",
           "cowplot", "pairwiseAdonis", "patchwork", "emmeans", "ggExtra", "multcomp",
           "multcompView", "RColorBrewer")
+# lapply(pkgs, install.packages, character.only = TRUE)
 lapply(pkgs, library, character.only = TRUE)
 remove(pkgs)
 
@@ -117,7 +118,7 @@ environmental_scaled <- decostand(full_table |>
 ## Remove highly correlated variables ------------------------------------------
 ### Environment final ----
 environmental_scaled_filtered <- environmental_scaled |> 
-  dplyr::select(elevation_m_asl,
+  dplyr::select(mean_temperature_soil,
                 mean_ndvi_sum)
 
 ## RDA analyses ----------------------------------------------------------------
@@ -131,15 +132,19 @@ anova.cca(rda_m, permutations = 1000, by = "terms")
 summary(rda_m)
 vif.cca(rda_m)
 
+
+
 ### Constrained by spp ----
-rda_partial <- rda(trait_scaled ~ elevation_m_asl + mean_ndvi_sum + Condition(species), data = env_spp)
-RsquareAdj(rda_partial)$adj.r.squared*100
+rda_partial <- rda(trait_scaled ~ mean_temperature_soil + mean_ndvi_sum + Condition(species), data = env_spp)
 set.seed(4321)
 anova.cca(rda_partial, permutations = 1000)
 set.seed(4321)
 anova.cca(rda_partial, permutations = 1000, by = "terms")
+anova.cca(rda_partial, permutations = 1000, by = "margin")
+anova.cca(rda_partial, permutations = 1000, by = "axis")
 summary(rda_partial)
 vif.cca(rda_partial)
+RsquareAdj(rda_partial)$adj.r.squared*100
 
 ### Soil----
 rda_soil <- rda(trait_scaled ~ cec + ph + sand + silt + tc + tn + tp, 
@@ -185,7 +190,7 @@ env_scores <- scores(rda_partial, display = "bp", choices = 1:2)
 env_df <- as.data.frame(env_scores) |> 
   rownames_to_column(var = "variable") |> 
   mutate(variable = case_when(
-    variable == "elevation_m_asl" ~ "Elevation (m asl)",
+    variable == "mean_temperature_soil" ~ "Mean Soil \nTemperature (°C)",
     variable == "mean_ndvi_sum" ~ "Summer NDVI"
   ))
 

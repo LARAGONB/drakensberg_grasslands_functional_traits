@@ -38,18 +38,19 @@ traits_labels <- c("leaf_thickness" = "LT",
                   "rtd" = "RTD",
                   "srl" = "SRL",
                   "veg_height" = "VHeight",
+                  "reproductive_height" = "RepHeight",
                   "root_depth" = "RDepth",
                   "bgb_agb" = "BG:AG")
 
 #Traits levels
 traits_levels <- c("leaf_thickness", "ldmc", "sla",
                    "bi", "rd", "rdmc", "rtd", "srl",
-                   "veg_height","root_depth", "bgb_agb")
+                   "veg_height", "reproductive_height","root_depth", "bgb_agb")
 
 #Traits levels
 traits_groups <- c(leaf_thickness = "Leaf", ldmc = "Leaf", sla = "Leaf",
                    bi = "Roots", rd = "Roots", rdmc = "Roots", rtd = "Roots", srl = "Roots",
-                   veg_height = "Plant size", root_depth = "Plant size", bgb_agb = "Plant size")
+                   veg_height = "Plant size", reproductive_height = "Plant size", root_depth = "Plant size", bgb_agb = "Plant size")
 
 #Elevation shapes
 elevation_shapes <- c("2200" = 19, "2400" = 15, "2600" = 17, "2800" = 3)

@@ -197,6 +197,39 @@ rdmc,itv_within,3.127324275174035,NA,Themeda triandra,2200
 rdmc,itv_within,7.612575108410037,NA,Themeda triandra,2400
 rdmc,itv_within,8.678102567446649,NA,Themeda triandra,2600
 rdmc,itv_within,27.97011987764282,NA,Themeda triandra,2800
+reproductive_height,all_plants,32.989794781255725,NA,NA,NA
+reproductive_height,growth_form,34.74905033793711,forb,NA,NA
+reproductive_height,growth_form,31.650617779133455,grass,NA,NA
+reproductive_height,between_species,16.94367832091219,NA,NA,NA
+reproductive_height,within_species,27.57374193810676,NA,Eragrostis capensis,NA
+reproductive_height,within_species,35.76429702671292,NA,Harpochloa falx,NA
+reproductive_height,within_species,34.86696463353576,NA,Helichrysum pilosellum,NA
+reproductive_height,within_species,22.383233602826692,NA,Senecio glaberrimus,NA
+reproductive_height,within_species,26.827949775042292,NA,Themeda triandra,NA
+reproductive_height,itv_between,18.080550091706,NA,Eragrostis capensis,NA
+reproductive_height,itv_between,33.68568308134927,NA,Harpochloa falx,NA
+reproductive_height,itv_between,23.685029932746264,NA,Helichrysum pilosellum,NA
+reproductive_height,itv_between,12.323206368869656,NA,Senecio glaberrimus,NA
+reproductive_height,itv_between,15.758298060194576,NA,Themeda triandra,NA
+reproductive_height,itv_within,14.420392969566237,NA,Eragrostis capensis,2200
+reproductive_height,itv_within,17.89904148816891,NA,Eragrostis capensis,2400
+reproductive_height,itv_within,43.20570306257315,NA,Eragrostis capensis,2600
+reproductive_height,itv_within,16.127722176594965,NA,Harpochloa falx,2200
+reproductive_height,itv_within,32.02475927069323,NA,Harpochloa falx,2400
+reproductive_height,itv_within,11.388330026346063,NA,Harpochloa falx,2600
+reproductive_height,itv_within,11.96064608687169,NA,Harpochloa falx,2800
+reproductive_height,itv_within,34.4999454719938,NA,Helichrysum pilosellum,2200
+reproductive_height,itv_within,33.58226110754323,NA,Helichrysum pilosellum,2400
+reproductive_height,itv_within,14.656436514536548,NA,Helichrysum pilosellum,2600
+reproductive_height,itv_within,40.39353171507914,NA,Helichrysum pilosellum,2800
+reproductive_height,itv_within,28.682256100003478,NA,Senecio glaberrimus,2200
+reproductive_height,itv_within,7.1204034666901315,NA,Senecio glaberrimus,2400
+reproductive_height,itv_within,27.80555668866916,NA,Senecio glaberrimus,2600
+reproductive_height,itv_within,15.260522541522889,NA,Senecio glaberrimus,2800
+reproductive_height,itv_within,18.619450553766747,NA,Themeda triandra,2200
+reproductive_height,itv_within,19.08210047499007,NA,Themeda triandra,2400
+reproductive_height,itv_within,38.13647787053501,NA,Themeda triandra,2600
+reproductive_height,itv_within,NA,NA,Themeda triandra,2800
 root_depth,all_plants,29.63763211046016,NA,NA,NA
 root_depth,growth_form,34.51504764232351,forb,NA,NA
 root_depth,growth_form,24.51101251739254,grass,NA,NA
