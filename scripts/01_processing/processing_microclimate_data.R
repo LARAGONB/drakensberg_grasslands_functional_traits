@@ -37,6 +37,8 @@ microclim_sum <- tomst_microclim %>%
             sd = sd(value)) %>%
   mutate(elevation_m_asl = as.factor(elevation_m_asl))
 
+range(tomst_microclim$date_time)[2] - range(tomst_microclim$date_time)[1]
+
 # 4. Visualise data ----
 microclim_sum %>%
   ggplot() +
