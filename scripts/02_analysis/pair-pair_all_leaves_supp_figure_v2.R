@@ -209,9 +209,9 @@ select_spp_plot_data <- select_spp_plot_data %>%
 
 # Create nice labels (customize as needed)
 label_lookup <- c(
-  "sla" = "scaled SLA (cm² g^-1)",
-  "ldmc" = "scaled LDMC (mg g^-1)",
-  "leaf_thickness" = "scaled Leaf thickness (mm)"
+  "sla" = '"scaled SLA (cm"^2~"g"^-1*")"',
+  "ldmc" = '"scaled LDMC (mg g"^-1*")"',
+  "leaf_thickness" = '"scaled Leaf thickness (mm)"'
 )
 
 result_plots <- list()
@@ -221,8 +221,11 @@ for(i in 1:length(pairs$traits)){
   x_var <- str_split(trait_pair, '~')[[1]][2]
   y_var <- str_split(trait_pair, '~')[[1]][1]
   
-  x_label <- label_lookup[x_var]
-  y_label <- label_lookup[y_var]
+  # x_label <- label_lookup[x_var]
+  # y_label <- label_lookup[y_var]
+  
+  x_label <- parse(text = label_lookup[[x_var]])
+  y_label <- parse(text = label_lookup[[y_var]])
   
   other_spp_data <- other_spp_plot_data |> 
     filter(traits == trait_pair)

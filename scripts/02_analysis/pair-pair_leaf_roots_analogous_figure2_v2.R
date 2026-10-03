@@ -168,20 +168,20 @@ spp_plot_data <- spp_plot_data %>%
 
 # Create nice labels (customize as needed)
 label_lookup <- c(
-  "srl" = "SRL (m g^-1)",
-  "rd" = "RD (mm)",
-  "rtd" = "RTD (g cm^-3)",
-  "rdmc" = "RDMC (mg g^-1)",
-  "bi" = "BI",
-  "root_depth" = "Root depth (cm)",
-  "sla" = "SLA (cm² g^-1)",
-  "ldmc" = "LDMC (mg g^-1)",
-  "leaf_thickness" = "Leaf thickness (mm)",
-  "bgb_agb" = "BGB:AGB",
-  "veg_height" = "Vegetation height (cm)",
-  "reproductive_height" = "Reproductive height (cm)",
-  "belowground_biomass" = 'Belowground biomass (g)',
-  "aboveground_biomass" = 'Aboveground biomass (g)'
+  "srl" = '"scaled SRL (m g"^-1*")"',
+  "rd" = '"scaled RD (mm)"',
+  "rtd" = '"scaled RTD (g cm"^-3*")"',
+  "rdmc" = '"scaled RDMC (mg g"^-1*")"',
+  "bi" = '"scaled BI"',
+  "root_depth" = '"scaled Root depth (cm)"',
+  "sla" = '"scaled SLA (cm"^2~"g"^-1*")"',
+  "ldmc" = '"scaled LDMC (mg g"^-1*")"',
+  "leaf_thickness" = '"scaled Leaf thickness (mm)"',
+  "bgb_agb" = '"scaled BG:AG"',
+  "veg_height" = '"scaled Vegetation height (cm)"',
+  "reproductive_height" = '"scaled Reproductive height (cm)"',
+  "belowground_biomass" = '"scaled Belowground biomass (g)"',
+  "aboveground_biomass" = '"scaled Aboveground biomass (g)"'
 )
 
 result_plots <- list()
@@ -191,8 +191,11 @@ for(i in 1:length(pairs$traits)){
   x_var <- str_split(trait_pair, '~')[[1]][2]
   y_var <- str_split(trait_pair, '~')[[1]][1]
 
-  x_label <- label_lookup[x_var]
-  y_label <- label_lookup[y_var]
+  # x_label <- label_lookup[x_var]
+  # y_label <- label_lookup[y_var]
+  
+  x_label <- parse(text = label_lookup[[x_var]])
+  y_label <- parse(text = label_lookup[[y_var]])
   
   spp_data <- spp_plot_data |> 
     filter(traits == trait_pair) |> 
@@ -229,7 +232,7 @@ for(i in 1:length(pairs$traits)){
   result_plots[[i]] <- plot
 }
 
-result_plots[[11]]
+result_plots[[1]]
 
 # make a combined plot of all plots
 combo_plot <- result_plots[[2]] + result_plots[[3]] + result_plots[[1]] + 
@@ -330,23 +333,23 @@ names(model_outputs_clean) <- str_replace(names(model_outputs_clean), 'exp', '(e
 
 # change column orders, drop part
 model_outputs_clean <- model_outputs_clean %>%
-  select(term, 9, 8, 4, 10, 11, 6, 12, 5, 7)
+  select(term, 4:15)
 
 # Add letters on that match to the figure
-names(model_outputs_clean)[2:10] <- paste0(LETTERS[1:9], '. ', names(model_outputs_clean)[2:10])
+names(model_outputs_clean)[2:13] <- paste0(LETTERS[1:12], '. ', names(model_outputs_clean)[2:13])
 
 # Transpose format
 model_outputs_wide <- model_outputs_clean %>%
-  pivot_longer(cols = 2:10, names_to = 'model') %>%
+  pivot_longer(cols = 2:13, names_to = 'model') %>%
   pivot_wider(names_from = 'term', values_from = 'value')
 
-writexl::write_xlsx(model_outputs_wide, 'results/tab/trait_trait_mixed_model_outputs_raw_GLOBAL.xlsx')
+writexl::write_xlsx(model_outputs_wide, 'results/tab/trait_trait_mixed_model_outputs_raw_GLOBAL_v2.xlsx')
 
 #### b) Species model summaries ----
 spp_model_outputs <- modelsummary(results_best_spp$model, 
                               estimate = "{estimate} [{conf.low}, {conf.high}] {stars}",
                               output = 'data.frame')
-names(spp_model_outputs)[4:48] <- paste(results_best_spp$model_name, results_best_spp$species)
+names(spp_model_outputs)[4:63] <- paste(results_best_spp$model_name, results_best_spp$species)
 
 spp_model_outputs_clean <- spp_model_outputs %>%
   mutate(term = str_replace_all(term, paste(traits, collapse = '|'), 'trait_x')) %>% # replace trait names with trait_x
@@ -385,27 +388,32 @@ names(spp_model_outputs_clean) <- str_replace(names(spp_model_outputs_clean), 'e
 names(spp_model_outputs_clean)
 
 spp_model_outputs_clean <- spp_model_outputs_clean %>%
-  select(term, 
-         3+6, 3+9+6, 3+9+9+6, 3+9+9+9+6, 3+9+9+9+9+6, # lt~sla
-         3+5, 3+9+5, 3+9+9+5, 3+9+9+9+5, 3+9+9+9+9+5, # ldmc~sla
-         3+1, 3+9+1, 3+9+9+1, 3+9+9+9+1, 3+9+9+9+9+1, # ldmc~lt
-         3+7, 3+9+7, 3+9+9+7, 3+9+9+9+7, 3+9+9+9+9+7, # rd~srl
-         3+8, 3+9+8, 3+9+9+8, 3+9+9+9+8, 3+9+9+9+9+8, # rtd~srl
-         3+3, 3+9+3, 3+9+9+3, 3+9+9+9+3, 3+9+9+9+9+3, # rtd~rd
-         3+9, 3+9+9, 3+9+9+9, 3+9+9+9+9, 3+9+9+9+9+9, # sla~srl
-         3+2, 3+9+2, 3+9+9+2, 3+9+9+9+2, 3+9+9+9+9+2, # lt~rd
-         3+4, 3+9+4, 3+9+9+4, 3+9+9+9+4, 3+9+9+9+9+4, # ldmc~rtd
+  select(
+    term,
+    starts_with("leaf thickness~sla"),
+    starts_with("ldmc~sla"),
+    starts_with("ldmc~leaf thickness"),
+    starts_with("rd~srl"),
+    starts_with("rtd~srl"),
+    starts_with("rtd~rd"),
+    starts_with("sla~srl"),
+    starts_with("leaf thickness~rd"),
+    starts_with("ldmc~rtd"),
+    starts_with("aboveground biomass~belowground biomass"),
+    starts_with("veg height~root depth"),
+    starts_with("reproductive height~veg height")
   )
+ncol(spp_model_outputs_clean)
 
 # Add letters on that match to the figure
-names(spp_model_outputs_clean)[2:46] <- paste0(rep(LETTERS[1:9], each = 5), '. ', names(spp_model_outputs_clean)[2:46])
+names(spp_model_outputs_clean)[2:61] <- paste0(rep(LETTERS[1:12], each = 5), '. ', names(spp_model_outputs_clean)[2:61])
 
 # Transpose format
 spp_model_outputs_wide <- spp_model_outputs_clean %>%
-  pivot_longer(cols = 2:46, names_to = 'model') %>%
+  pivot_longer(cols = 2:61, names_to = 'model') %>%
   pivot_wider(names_from = 'term', values_from = 'value') %>%
   mutate(species = str_extract(model, "\\S+\\s+\\S+$"),
     model = str_remove(model, "\\s*\\S+\\s+\\S+$")) %>%
   dplyr::select(1, 11, 2:10)
 
-writexl::write_xlsx(spp_model_outputs_wide, 'results/tab/trait_trait_mixed_model_outputs_raw_SPECIES.xlsx')
+writexl::write_xlsx(spp_model_outputs_wide, 'results/tab/trait_trait_mixed_model_outputs_raw_SPECIES_v2.xlsx')
