@@ -166,7 +166,7 @@ spp_plot_data <- spp_plot_data %>%
     species == "Senecio glaberrimus" ~ "SEGL"
   ))
 
-# Create nice labels (customize as needed)
+# Create nice labels
 label_lookup <- c(
   "srl" = '"scaled SRL (m g"^-1*")"',
   "rd" = '"scaled RD (mm)"',
