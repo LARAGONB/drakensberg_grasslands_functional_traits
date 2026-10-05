@@ -14,7 +14,7 @@
 
 # Load packages ----------------------------------------------------------------
 #install.packages("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis", "fixest", "lmtest", "corrplot") #install if needed
-#devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
 pkgs <- c("devtools", "tidyverse", "ggplot2", "plotly", "vegan", "ggvegan", "ggrepel", "glue", "viridis",
           "fixest", "lmtest", "corrplot", "FactoMineR", "factoextra", "BiodiversityR",
           "cowplot", "pairwiseAdonis", "patchwork", "emmeans", "ggExtra", "multcomp",
@@ -122,6 +122,9 @@ environmental_scaled_filtered <- environmental_scaled |>
                 mean_ndvi_sum)
 
 ## RDA analyses ----------------------------------------------------------------
+# env_spp <- cbind(environmental_scaled |> 
+#                    dplyr::select(-elevation_m_asl,-mean_temperature_air, -tc), species = full_table$species)
+
 env_spp <- cbind(environmental_scaled_filtered, species = full_table$species)
 
 ### With species ----
