@@ -280,8 +280,8 @@ lmm_trait_variation <- trait_data |>
   group_by(traits) |>
   nest() |>
   mutate(
-    # model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|species:elevation_m_asl), data = .x)),
-    model = map(data, ~ lmer(value ~ (1|species) + (1|species:elevation_m_asl), data = .x)),
+    model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|species:elevation_m_asl), data = .x)),
+    # model = map(data, ~ lmer(value ~ (1|species) + (1|species:elevation_m_asl), data = .x)),
     varcomp = map(model, ~ as_tibble(VarCorr(.x)) |> 
                     dplyr::select(grp,vcov, sdcor) |>
                     mutate(
@@ -292,87 +292,90 @@ lmm_trait_variation <- trait_data |>
   rename(source = grp) |> 
   mutate(
     source = case_when(
-      # source == "growth_form" ~ "Growth form",
+      source == "growth_form" ~ "Growth form",
       source == "species" ~ "Species",
       source == "species:elevation_m_asl" ~ "ITV_between",
       source == "Residual" ~ "ITV_within"
     ),
     traits = factor(traits, levels = traits_levels),
-    # source = factor(source, levels = c("Growth form", "Species", "ITV_between", "ITV_within"))) |>
-    source = factor(source, levels = c("Species", "ITV_between", "ITV_within"))) |>
+    source = factor(source, levels = c("Growth form", "Species", "ITV_between", "ITV_within"))) |>
+    # source = factor(source, levels = c("Species", "ITV_between", "ITV_within"))) |>
   arrange(traits, source)
 
-# #Comparisons across general (3) hierarchical levels
-# source_general_model <- lmm_trait_variation |>  
-#   ungroup() |> 
-#   mutate(trait_group = factor(traits_groups[as.character(traits)], levels = c("Leaf", "Roots", "Plant size")),
-#          source_general = case_when(
-#            source == "ITV_between" ~ "ITV",
-#            source == "ITV_within" ~ "ITV",
-#            .default = as.character(source)), .before = source) |> 
-#   nest(.by = source_general) |>
-#   mutate(
-#     model = map(data, \(df) lm(proportion ~ trait_group, data = df)),
-#     summary = map(model, \(df) summary(df)),
-#     anova = map(model, \(df) car::Anova(df, type = 3)),
-#     emmeans = map(model, \(df) emmeans(df, pairwise ~ trait_group, adjust = "bh")))
-# 
-# #Comparisons across all (4) hierarchical levels
-# source_model <- lmm_trait_variation |>  
-#   ungroup() |> 
-#   mutate(trait_group = factor(traits_groups[as.character(traits)], 
-#                               levels = c("Leaf", "Roots", "Plant size"))) |> 
-#   nest(.by = source) |>
-#   mutate(
-#     model = map(data, \(df) lm(proportion ~ trait_group, data = df)),
-#     summary = map(model, \(df) summary(df)),
-#     anova = map(model, \(df) car::Anova(df, type = 3)),
-#     emmeans = map(model, \(df) emmeans(df, pairwise ~ trait_group, adjust = "bh")))
-# 
-# #Summary across general (3) hierarchical levels
-# source_summary <- lmm_trait_variation |>  mutate(
-#   trait_group = factor(traits_groups[as.character(traits)], 
-#                        levels = c("Leaf", "Roots", "Plant size")),
-#   source_general = case_when(
-#     source == "ITV_between" ~ "ITV",
-#     source == "ITV_within" ~ "ITV",
-#     .default = as.character(source)), .before = source) |> 
-#   group_by(trait_group, source_general, source) |> 
-#   summarise(mean_prop = mean(proportion),
-#             min_prop = min(proportion),
-#             max_prop = max(proportion)) |> 
-#   arrange(trait_group, mean_prop)
-# 
-# 
-# #Summary across all (4) hierarchical levels
-# source_general_summary <- lmm_trait_variation |>  
-#   mutate(
-#     trait_group = factor(traits_groups[as.character(traits)], 
-#                          levels = c("Leaf", "Roots", "Plant size")),
-#     source_general = case_when(
-#       source == "ITV_between" ~ "ITV",
-#       source == "ITV_within" ~ "ITV",
-#       .default = as.character(source)), 
-#     .before = source) |> 
-#   group_by(trait_group, traits, source_general) |>
-#   summarise(proportion = sum(proportion), .groups = "drop") |>
-#   group_by(trait_group, source_general) |>
-#   summarise(mean_prop = mean(proportion),
-#             min_prop = min(proportion),
-#             max_prop = max(proportion),
-#             .groups = "drop") |>
-#   arrange(trait_group, mean_prop)
-# 
-# source_detailed_summary <- lmm_trait_variation |>  
-#   mutate(
-#     trait_group = factor(traits_groups[as.character(traits)], 
-#                          levels = c("Leaf", "Roots", "Plant size"))) |>
-#   group_by(trait_group, source) |>                        # ← source has all 4 levels
-#   summarise(mean_prop = mean(proportion),
-#             min_prop  = min(proportion),
-#             max_prop  = max(proportion),
-#             .groups = "drop") |> 
-#   arrange(trait_group, mean_prop)
+#Comparisons across general (3) hierarchical levels
+source_general_model <- lmm_trait_variation |>
+  ungroup() |>
+  mutate(trait_group = factor(traits_groups[as.character(traits)], levels = c("Leaf", "Roots", "Plant size")),
+         source_general = case_when(
+           source == "ITV_between" ~ "ITV",
+           source == "ITV_within" ~ "ITV",
+           .default = as.character(source)), .before = source) |>
+  nest(.by = source_general) |>
+  mutate(
+    model = map(data, \(df) lm(proportion ~ trait_group, data = df)),
+    summary = map(model, \(df) summary(df)),
+    anova = map(model, \(df) car::Anova(df, type = 3)),
+    emmeans = map(model, \(df) emmeans(df, pairwise ~ trait_group, adjust = "bh")))
+
+#Comparisons across all (4) hierarchical levels
+source_model <- lmm_trait_variation |>
+  ungroup() |>
+  mutate(trait_group = factor(traits_groups[as.character(traits)],
+                              levels = c("Leaf", "Roots", "Plant size"))) |>
+  nest(.by = source) |>
+  mutate(
+    model = map(data, \(df) lm(proportion ~ trait_group, data = df)),
+    summary = map(model, \(df) summary(df)),
+    anova = map(model, \(df) car::Anova(df, type = 3)),
+    emmeans = map(model, \(df) emmeans(df, pairwise ~ trait_group, adjust = "bh")))
+
+source_model$summary
+source_model$anova
+
+#Summary across general (3) hierarchical levels
+source_summary <- lmm_trait_variation |>  mutate(
+  trait_group = factor(traits_groups[as.character(traits)],
+                       levels = c("Leaf", "Roots", "Plant size")),
+  source_general = case_when(
+    source == "ITV_between" ~ "ITV",
+    source == "ITV_within" ~ "ITV",
+    .default = as.character(source)), .before = source) |>
+  group_by(trait_group, source_general, source) |>
+  summarise(mean_prop = mean(proportion),
+            min_prop = min(proportion),
+            max_prop = max(proportion)) |>
+  arrange(trait_group, mean_prop)
+
+
+#Summary across all (4) hierarchical levels
+source_general_summary <- lmm_trait_variation |>
+  mutate(
+    trait_group = factor(traits_groups[as.character(traits)],
+                         levels = c("Leaf", "Roots", "Plant size")),
+    source_general = case_when(
+      source == "ITV_between" ~ "ITV",
+      source == "ITV_within" ~ "ITV",
+      .default = as.character(source)),
+    .before = source) |>
+  group_by(trait_group, traits, source_general) |>
+  summarise(proportion = sum(proportion), .groups = "drop") |>
+  group_by(trait_group, source_general) |>
+  summarise(mean_prop = mean(proportion),
+            min_prop = min(proportion),
+            max_prop = max(proportion),
+            .groups = "drop") |>
+  arrange(trait_group, mean_prop)
+
+source_detailed_summary <- lmm_trait_variation |>
+  mutate(
+    trait_group = factor(traits_groups[as.character(traits)],
+                         levels = c("Leaf", "Roots", "Plant size"))) |>
+  group_by(trait_group, source) |>                        # ← source has all 4 levels
+  summarise(mean_prop = mean(proportion),
+            min_prop  = min(proportion),
+            max_prop  = max(proportion),
+            .groups = "drop") |>
+  arrange(trait_group, mean_prop)
 
 
 ### Export tables  ----
