@@ -271,17 +271,12 @@ ggsave("results/img/trait_variance/whitin_itvb_itvw_cv_png.png", whitin_itvb_itv
 
 ## Table with proportion of variance per growth_form, species, elevation, residual ----
 lmm_trait_variation <- trait_data |> 
-  # filter(species != 'Eragrostis capensis') |>
-  # filter(species != 'Senecio glaberrimus') |>
-  # filter(species != 'Themeda triandra') |>
-  # filter(species != 'Helichrysum pilosellum') |>
-  # filter(species != 'Harpochloa falx') |>
   filter(traits %in% traits_levels) |>
   group_by(traits) |>
   nest() |>
   mutate(
-    model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|species:elevation_m_asl), data = .x)),
-    # model = map(data, ~ lmer(value ~ (1|species) + (1|species:elevation_m_asl), data = .x)),
+    # model = map(data, ~ lmer(value ~ (1|growth_form) + (1|species) + (1|species:elevation_m_asl), data = .x)),
+    model = map(data, ~ lmer(value ~ (1|species) + (1|species:elevation_m_asl), data = .x)),
     varcomp = map(model, ~ as_tibble(VarCorr(.x)) |> 
                     dplyr::select(grp,vcov, sdcor) |>
                     mutate(
@@ -292,7 +287,7 @@ lmm_trait_variation <- trait_data |>
   rename(source = grp) |> 
   mutate(
     source = case_when(
-      source == "growth_form" ~ "Growth form",
+      # source == "growth_form" ~ "Growth form",
       source == "species" ~ "Species",
       source == "species:elevation_m_asl" ~ "ITV_between",
       source == "Residual" ~ "ITV_within"
@@ -331,6 +326,7 @@ source_model <- lmm_trait_variation |>
 
 source_model$summary
 source_model$anova
+source_model$emmeans
 
 #Summary across general (3) hierarchical levels
 source_summary <- lmm_trait_variation |>  mutate(
@@ -438,9 +434,12 @@ perc_plot_all_groups <- ggplot(lmm_trait_variation |>
 perc_plot_all_groups
 
 #Build the legend
-color_table <- enframe(c(group_colors_leaf[2:4], group_colors_roots[2:4], group_colors_plant_size[2:4]), 
+color_table <- enframe(c(group_colors_leaf[1:3], group_colors_roots[1:3], group_colors_plant_size[1:3]), 
                        name = "source",
                        value = "fill_color") |> 
+  # enframe(c(group_colors_leaf[2:4], group_colors_roots[2:4], group_colors_plant_size[2:4]), 
+  #                      name = "source",
+  #                      value = "fill_color") |> 
   # mutate(grp = rep(c("Leaf", "Roots", "Plant size"), each = 4),
   #        grp = factor(grp, levels = c("Leaf", "Roots", "Plant size")),
   #        source = factor(source, levels = c("ITV_within", "ITV_between", "Species", "Growth form")))
