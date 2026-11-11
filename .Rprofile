@@ -69,22 +69,38 @@ group_colors <- c("Leaf" = "#117733",
                   "Plant size" = "#0072B2") 
 
 #Group colors trait variation
+# group_colors_leaf <- c(
+#     "Growth form" = "#117733",
+#     "Species" = "#59AA6B",
+#     "ITV_between" = "#9BE8AA",
+#     "ITV_within" = "#DEFFE4")
+# 
+# 
+# group_colors_roots <- c(
+#   "Growth form" = "#7F3B08",
+#   "Species" = "#AC6545",
+#   "ITV_between" = "#E4997D",
+#   "ITV_within" = "#FFCEC0")
+# 
+# group_colors_plant_size <- c(
+#   "Growth form" = "#0072B2",
+#   "Species" = "#4E94D4",
+#   "ITV_between" = "#83BFFF",
+#   "ITV_within" = "#CDE2FF")
+
 group_colors_leaf <- c(
-    "Growth form" = "#117733",
-    "Species" = "#59AA6B",
-    "ITV_between" = "#9BE8AA",
-    "ITV_within" = "#DEFFE4")
+  "Species" = "#117733",
+  "ITV_between" = "#59AA6B",
+  "ITV_within" = "#9BE8AA")
 
 
 group_colors_roots <- c(
-  "Growth form" = "#7F3B08",
-  "Species" = "#AC6545",
-  "ITV_between" = "#E4997D",
-  "ITV_within" = "#FFCEC0")
+  "Species" = "#7F3B08",
+  "ITV_between" = "#AC6545",
+  "ITV_within" = "#E4997D")
 
 group_colors_plant_size <- c(
-  "Growth form" = "#0072B2",
-  "Species" = "#4E94D4",
-  "ITV_between" = "#83BFFF",
-  "ITV_within" = "#CDE2FF")
+  "Species" = "#0072B2",
+  "ITV_between" = "#4E94D4",
+  "ITV_within" = "#83BFFF")
 

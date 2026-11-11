@@ -381,6 +381,8 @@ model_spp_leaf <- pca_sites_leaf |>
     tukey = map(lm_mod, \(x) emmeans(x, pairwise ~ species, adjust = "BH"))) |> 
   relocate(data, levene, lm_mod, oneway_mod, .after = tukey)
 
+summary(model_spp_leaf$lm_mod[[1]])
+summary(model_spp_leaf$oneway_mod[[1]])
 
 ##### Letter for PC1 ~ species plot
 letters_pc1_leaf <- pca_sites_leaf |> 
@@ -514,6 +516,11 @@ model_spp_plant_size <- pca_sites_plant_size |>
   relocate(data, levene, lm_mod, oneway_mod, .after = tukey)
 
 model_spp_plant_size$tukey
+summary(model_spp_plant_size$lm_mod[[1]])
+summary(model_spp_plant_size$lm_mod[[2]])
+
+model_spp_plant_size$oneway_mod[[1]]
+model_spp_plant_size$oneway_mod[[2]]
 
 ##### Letter for PC1 ~ species plot
 letters_pc1_plant_size <- pca_sites_plant_size |> 
